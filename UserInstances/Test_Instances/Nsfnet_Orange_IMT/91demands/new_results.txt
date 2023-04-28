@@ -1,0 +1,3567 @@
+
+FRAMEWORK FOR COLUMN GENERATION FOR AN EDGE PATH FORMULATION
+
+==================BEGIN READING DATA============== 
+
+==================END READING DATA============== 
+
+---------------BEGIN OF Data Information------------------
+  Graph G  
+Number of nodes: 14| Number of links: : 21
+Nodes: ( 1 2 3 4 5 6 7 8 9 10 11 12 13 14 )
+Not oriented
+Edges: (1,2) Length 1100
+(1,3) Length 1600
+(1,8) Length 2800
+(2,3) Length 600
+(2,4) Length 1000
+(3,6) Length 2000
+(4,5) Length 600
+(4,11) Length 2400
+(5,6) Length 1100
+(5,7) Length 800
+(6,10) Length 1200
+(6,13) Length 2000
+(7,8) Length 700
+(8,9) Length 700
+(9,10) Length 900
+(9,12) Length 500
+(9,14) Length 500
+(11,12) Length 800
+(11,14) Length 800
+(12,13) Length 300
+(13,14) Length 300
+-------- 
+
+  Graph G prime 
+Number of nodes: 14| Number of links: : 42
+Nodes: ( 1 2 3 4 5 6 7 8 9 10 11 12 13 14 )
+Oriented
+Arcs:  (1,2) Length 1100
+ (1,3) Length 1600
+ (1,8) Length 2800
+ (2,3) Length 600
+ (2,4) Length 1000
+ (3,6) Length 2000
+ (4,5) Length 600
+ (4,11) Length 2400
+ (5,6) Length 1100
+ (5,7) Length 800
+ (6,10) Length 1200
+ (6,13) Length 2000
+ (7,8) Length 700
+ (8,9) Length 700
+ (9,10) Length 900
+ (9,12) Length 500
+ (9,14) Length 500
+ (11,12) Length 800
+ (11,14) Length 800
+ (12,13) Length 300
+ (13,14) Length 300
+ (2,1) Length 1100
+ (3,1) Length 1600
+ (8,1) Length 2800
+ (3,2) Length 600
+ (4,2) Length 1000
+ (6,3) Length 2000
+ (5,4) Length 600
+ (11,4) Length 2400
+ (6,5) Length 1100
+ (7,5) Length 800
+ (10,6) Length 1200
+ (13,6) Length 2000
+ (8,7) Length 700
+ (9,8) Length 700
+ (10,9) Length 900
+ (12,9) Length 500
+ (14,9) Length 500
+ (12,11) Length 800
+ (14,11) Length 800
+ (13,12) Length 300
+ (14,13) Length 300
+-------- 
+
+  Demands  
+--------Index: 1
+Origin: 1| Destination: 2
+Slots: 5| Max Lenght: 3000
+
+--------Index: 2
+Origin: 1| Destination: 3
+Slots: 5| Max Lenght: 3000
+
+--------Index: 3
+Origin: 1| Destination: 4
+Slots: 5| Max Lenght: 3000
+
+--------Index: 4
+Origin: 1| Destination: 5
+Slots: 3| Max Lenght: 6000
+
+--------Index: 5
+Origin: 1| Destination: 6
+Slots: 3| Max Lenght: 6000
+
+--------Index: 6
+Origin: 1| Destination: 7
+Slots: 3| Max Lenght: 6000
+
+--------Index: 7
+Origin: 1| Destination: 8
+Slots: 3| Max Lenght: 6000
+
+--------Index: 8
+Origin: 1| Destination: 9
+Slots: 3| Max Lenght: 6000
+
+--------Index: 9
+Origin: 1| Destination: 10
+Slots: 3| Max Lenght: 6000
+
+--------Index: 10
+Origin: 1| Destination: 11
+Slots: 3| Max Lenght: 6000
+
+--------Index: 11
+Origin: 1| Destination: 12
+Slots: 3| Max Lenght: 6000
+
+--------Index: 12
+Origin: 1| Destination: 13
+Slots: 3| Max Lenght: 6000
+
+--------Index: 13
+Origin: 1| Destination: 14
+Slots: 3| Max Lenght: 6000
+
+--------Index: 14
+Origin: 2| Destination: 3
+Slots: 5| Max Lenght: 3000
+
+--------Index: 15
+Origin: 2| Destination: 4
+Slots: 5| Max Lenght: 3000
+
+--------Index: 16
+Origin: 2| Destination: 5
+Slots: 5| Max Lenght: 3000
+
+--------Index: 17
+Origin: 2| Destination: 6
+Slots: 3| Max Lenght: 6000
+
+--------Index: 18
+Origin: 2| Destination: 7
+Slots: 3| Max Lenght: 6000
+
+--------Index: 19
+Origin: 2| Destination: 8
+Slots: 3| Max Lenght: 6000
+
+--------Index: 20
+Origin: 2| Destination: 9
+Slots: 3| Max Lenght: 6000
+
+--------Index: 21
+Origin: 2| Destination: 10
+Slots: 3| Max Lenght: 6000
+
+--------Index: 22
+Origin: 2| Destination: 11
+Slots: 3| Max Lenght: 6000
+
+--------Index: 23
+Origin: 2| Destination: 12
+Slots: 3| Max Lenght: 6000
+
+--------Index: 24
+Origin: 2| Destination: 13
+Slots: 3| Max Lenght: 6000
+
+--------Index: 25
+Origin: 2| Destination: 14
+Slots: 3| Max Lenght: 6000
+
+--------Index: 26
+Origin: 3| Destination: 4
+Slots: 5| Max Lenght: 3000
+
+--------Index: 27
+Origin: 3| Destination: 5
+Slots: 5| Max Lenght: 3000
+
+--------Index: 28
+Origin: 3| Destination: 6
+Slots: 5| Max Lenght: 3000
+
+--------Index: 29
+Origin: 3| Destination: 7
+Slots: 3| Max Lenght: 6000
+
+--------Index: 30
+Origin: 3| Destination: 8
+Slots: 3| Max Lenght: 6000
+
+--------Index: 31
+Origin: 3| Destination: 9
+Slots: 3| Max Lenght: 6000
+
+--------Index: 32
+Origin: 3| Destination: 10
+Slots: 3| Max Lenght: 6000
+
+--------Index: 33
+Origin: 3| Destination: 11
+Slots: 3| Max Lenght: 6000
+
+--------Index: 34
+Origin: 3| Destination: 12
+Slots: 3| Max Lenght: 6000
+
+--------Index: 35
+Origin: 3| Destination: 13
+Slots: 3| Max Lenght: 6000
+
+--------Index: 36
+Origin: 3| Destination: 14
+Slots: 3| Max Lenght: 6000
+
+--------Index: 37
+Origin: 4| Destination: 5
+Slots: 5| Max Lenght: 3000
+
+--------Index: 38
+Origin: 4| Destination: 6
+Slots: 5| Max Lenght: 3000
+
+--------Index: 39
+Origin: 4| Destination: 7
+Slots: 5| Max Lenght: 3000
+
+--------Index: 40
+Origin: 4| Destination: 8
+Slots: 5| Max Lenght: 3000
+
+--------Index: 41
+Origin: 4| Destination: 9
+Slots: 3| Max Lenght: 6000
+
+--------Index: 42
+Origin: 4| Destination: 10
+Slots: 3| Max Lenght: 6000
+
+--------Index: 43
+Origin: 4| Destination: 11
+Slots: 3| Max Lenght: 6000
+
+--------Index: 44
+Origin: 4| Destination: 12
+Slots: 3| Max Lenght: 6000
+
+--------Index: 45
+Origin: 4| Destination: 13
+Slots: 3| Max Lenght: 6000
+
+--------Index: 46
+Origin: 4| Destination: 14
+Slots: 3| Max Lenght: 6000
+
+--------Index: 47
+Origin: 5| Destination: 6
+Slots: 5| Max Lenght: 3000
+
+--------Index: 48
+Origin: 5| Destination: 7
+Slots: 5| Max Lenght: 3000
+
+--------Index: 49
+Origin: 5| Destination: 8
+Slots: 3| Max Lenght: 6000
+
+--------Index: 50
+Origin: 5| Destination: 9
+Slots: 5| Max Lenght: 3000
+
+--------Index: 51
+Origin: 5| Destination: 10
+Slots: 5| Max Lenght: 3000
+
+--------Index: 52
+Origin: 5| Destination: 11
+Slots: 3| Max Lenght: 6000
+
+--------Index: 53
+Origin: 5| Destination: 12
+Slots: 3| Max Lenght: 6000
+
+--------Index: 54
+Origin: 5| Destination: 13
+Slots: 3| Max Lenght: 6000
+
+--------Index: 55
+Origin: 5| Destination: 14
+Slots: 3| Max Lenght: 6000
+
+--------Index: 56
+Origin: 6| Destination: 7
+Slots: 5| Max Lenght: 3000
+
+--------Index: 57
+Origin: 6| Destination: 8
+Slots: 3| Max Lenght: 6000
+
+--------Index: 58
+Origin: 6| Destination: 9
+Slots: 3| Max Lenght: 6000
+
+--------Index: 59
+Origin: 6| Destination: 10
+Slots: 5| Max Lenght: 3000
+
+--------Index: 60
+Origin: 6| Destination: 11
+Slots: 3| Max Lenght: 6000
+
+--------Index: 61
+Origin: 6| Destination: 12
+Slots: 5| Max Lenght: 3000
+
+--------Index: 62
+Origin: 6| Destination: 13
+Slots: 5| Max Lenght: 3000
+
+--------Index: 63
+Origin: 6| Destination: 14
+Slots: 5| Max Lenght: 3000
+
+--------Index: 64
+Origin: 7| Destination: 8
+Slots: 5| Max Lenght: 3000
+
+--------Index: 65
+Origin: 7| Destination: 9
+Slots: 5| Max Lenght: 3000
+
+--------Index: 66
+Origin: 7| Destination: 10
+Slots: 5| Max Lenght: 3000
+
+--------Index: 67
+Origin: 7| Destination: 11
+Slots: 3| Max Lenght: 6000
+
+--------Index: 68
+Origin: 7| Destination: 12
+Slots: 5| Max Lenght: 3000
+
+--------Index: 69
+Origin: 7| Destination: 13
+Slots: 3| Max Lenght: 6000
+
+--------Index: 70
+Origin: 7| Destination: 14
+Slots: 5| Max Lenght: 3000
+
+--------Index: 71
+Origin: 8| Destination: 9
+Slots: 3| Max Lenght: 6000
+
+--------Index: 72
+Origin: 8| Destination: 10
+Slots: 3| Max Lenght: 6000
+
+--------Index: 73
+Origin: 8| Destination: 11
+Slots: 5| Max Lenght: 3000
+
+--------Index: 74
+Origin: 8| Destination: 12
+Slots: 5| Max Lenght: 3000
+
+--------Index: 75
+Origin: 8| Destination: 13
+Slots: 5| Max Lenght: 3000
+
+--------Index: 76
+Origin: 8| Destination: 14
+Slots: 5| Max Lenght: 3000
+
+--------Index: 77
+Origin: 9| Destination: 10
+Slots: 5| Max Lenght: 3000
+
+--------Index: 78
+Origin: 9| Destination: 11
+Slots: 3| Max Lenght: 6000
+
+--------Index: 79
+Origin: 9| Destination: 12
+Slots: 3| Max Lenght: 6000
+
+--------Index: 80
+Origin: 9| Destination: 13
+Slots: 5| Max Lenght: 3000
+
+--------Index: 81
+Origin: 9| Destination: 14
+Slots: 6| Max Lenght: 600
+
+--------Index: 82
+Origin: 10| Destination: 11
+Slots: 3| Max Lenght: 6000
+
+--------Index: 83
+Origin: 10| Destination: 12
+Slots: 5| Max Lenght: 3000
+
+--------Index: 84
+Origin: 10| Destination: 13
+Slots: 3| Max Lenght: 6000
+
+--------Index: 85
+Origin: 10| Destination: 14
+Slots: 5| Max Lenght: 3000
+
+--------Index: 86
+Origin: 11| Destination: 12
+Slots: 5| Max Lenght: 3000
+
+--------Index: 87
+Origin: 11| Destination: 13
+Slots: 5| Max Lenght: 3000
+
+--------Index: 88
+Origin: 11| Destination: 14
+Slots: 3| Max Lenght: 3000
+
+--------Index: 89
+Origin: 12| Destination: 13
+Slots: 6| Max Lenght: 600
+
+--------Index: 90
+Origin: 12| Destination: 14
+Slots: 6| Max Lenght: 3000
+
+--------Index: 91
+Origin: 13| Destination: 14
+Slots: 6| Max Lenght: 600
+
+
+----------------END OF Data Information-------------------
+
+---------------BEGIN OF ILP Min Cost Multi Commodity Cplex------------------
+Number of demands : 91
+Number of arcs : 42
+Number of nodes : 14
+
+Number of variables = 3823
+
+Capacity :50
+
+---------------END OF ILP Min Cost Multi Commodity Cplex------------------
+TIME == MCMCF duration in seconds: 0
+Output - MCMCF Problem - 
+Capacity = 50
+Routing : 
+From demand: 1 Between nodes: 1 to 2 :: 1 - 2 :: with length 1100
+From demand: 2 Between nodes: 1 to 3 :: 1 - 3 :: with length 1600
+From demand: 3 Between nodes: 1 to 4 :: 1 - 2 - 4 :: with length 2100
+From demand: 4 Between nodes: 1 to 5 :: 1 - 3 - 2 - 4 - 5 :: with length 3800
+From demand: 5 Between nodes: 1 to 6 :: 1 - 2 - 4 - 5 - 6 :: with length 3800
+From demand: 6 Between nodes: 1 to 7 :: 1 - 8 - 7 :: with length 3500
+From demand: 7 Between nodes: 1 to 8 :: 1 - 8 :: with length 2800
+From demand: 8 Between nodes: 1 to 9 :: 1 - 3 - 6 - 10 - 9 :: with length 5700
+From demand: 9 Between nodes: 1 to 10 :: 1 - 3 - 6 - 10 :: with length 4800
+From demand: 10 Between nodes: 1 to 11 :: 1 - 2 - 4 - 11 :: with length 4500
+From demand: 11 Between nodes: 1 to 12 :: 1 - 2 - 4 - 11 - 12 :: with length 5300
+From demand: 12 Between nodes: 1 to 13 :: 1 - 3 - 6 - 13 :: with length 5600
+From demand: 13 Between nodes: 1 to 14 :: 1 - 2 - 3 - 6 - 13 - 14 :: with length 6000
+From demand: 14 Between nodes: 2 to 3 :: 2 - 3 :: with length 600
+From demand: 15 Between nodes: 2 to 4 :: 2 - 4 :: with length 1000
+From demand: 16 Between nodes: 2 to 5 :: 2 - 4 - 5 :: with length 1600
+From demand: 17 Between nodes: 2 to 6 :: 2 - 3 - 6 :: with length 2600
+From demand: 18 Between nodes: 2 to 7 :: 2 - 4 - 5 - 7 :: with length 2400
+From demand: 19 Between nodes: 2 to 8 :: 2 - 1 - 8 :: with length 3900
+From demand: 20 Between nodes: 2 to 9 :: 2 - 3 - 6 - 10 - 9 :: with length 4700
+From demand: 21 Between nodes: 2 to 10 :: 2 - 3 - 6 - 10 :: with length 3800
+From demand: 22 Between nodes: 2 to 11 :: 2 - 4 - 11 :: with length 3400
+From demand: 23 Between nodes: 2 to 12 :: 2 - 3 - 6 - 13 - 12 :: with length 4900
+From demand: 24 Between nodes: 2 to 13 :: 2 - 3 - 6 - 13 :: with length 4600
+From demand: 25 Between nodes: 2 to 14 :: 2 - 3 - 6 - 10 - 9 - 14 :: with length 5200
+From demand: 26 Between nodes: 3 to 4 :: 3 - 2 - 4 :: with length 1600
+From demand: 27 Between nodes: 3 to 5 :: 3 - 2 - 4 - 5 :: with length 2200
+From demand: 28 Between nodes: 3 to 6 :: 3 - 6 :: with length 2000
+From demand: 29 Between nodes: 3 to 7 :: 3 - 6 - 5 - 7 :: with length 3900
+From demand: 30 Between nodes: 3 to 8 :: 3 - 1 - 8 :: with length 4400
+From demand: 31 Between nodes: 3 to 9 :: 3 - 6 - 10 - 9 :: with length 4100
+From demand: 32 Between nodes: 3 to 10 :: 3 - 6 - 10 :: with length 3200
+From demand: 33 Between nodes: 3 to 11 :: 3 - 2 - 4 - 11 :: with length 4000
+From demand: 34 Between nodes: 3 to 12 :: 3 - 2 - 4 - 11 - 12 :: with length 4800
+From demand: 35 Between nodes: 3 to 13 :: 3 - 6 - 13 :: with length 4000
+From demand: 36 Between nodes: 3 to 14 :: 3 - 6 - 13 - 14 :: with length 4300
+From demand: 37 Between nodes: 4 to 5 :: 4 - 5 :: with length 600
+From demand: 38 Between nodes: 4 to 6 :: 4 - 5 - 6 :: with length 1700
+From demand: 39 Between nodes: 4 to 7 :: 4 - 5 - 7 :: with length 1400
+From demand: 40 Between nodes: 4 to 8 :: 4 - 5 - 7 - 8 :: with length 2100
+From demand: 41 Between nodes: 4 to 9 :: 4 - 11 - 12 - 9 :: with length 3700
+From demand: 42 Between nodes: 4 to 10 :: 4 - 5 - 6 - 10 :: with length 2900
+From demand: 43 Between nodes: 4 to 11 :: 4 - 11 :: with length 2400
+From demand: 44 Between nodes: 4 to 12 :: 4 - 11 - 12 :: with length 3200
+From demand: 45 Between nodes: 4 to 13 :: 4 - 11 - 12 - 13 :: with length 3500
+From demand: 46 Between nodes: 4 to 14 :: 4 - 11 - 14 :: with length 3200
+From demand: 47 Between nodes: 5 to 6 :: 5 - 6 :: with length 1100
+From demand: 48 Between nodes: 5 to 7 :: 5 - 7 :: with length 800
+From demand: 49 Between nodes: 5 to 8 :: 5 - 7 - 8 :: with length 1500
+From demand: 50 Between nodes: 5 to 9 :: 5 - 7 - 8 - 9 :: with length 2200
+From demand: 51 Between nodes: 5 to 10 :: 5 - 6 - 10 :: with length 2300
+From demand: 52 Between nodes: 5 to 11 :: 5 - 4 - 11 :: with length 3000
+From demand: 53 Between nodes: 5 to 12 :: 5 - 6 - 13 - 12 :: with length 3400
+From demand: 54 Between nodes: 5 to 13 :: 5 - 6 - 13 :: with length 3100
+From demand: 55 Between nodes: 5 to 14 :: 5 - 6 - 10 - 9 - 14 :: with length 3700
+From demand: 56 Between nodes: 6 to 7 :: 6 - 5 - 7 :: with length 1900
+From demand: 57 Between nodes: 6 to 8 :: 6 - 5 - 7 - 8 :: with length 2600
+From demand: 58 Between nodes: 6 to 9 :: 6 - 13 - 12 - 9 :: with length 2800
+From demand: 59 Between nodes: 6 to 10 :: 6 - 10 :: with length 1200
+From demand: 60 Between nodes: 6 to 11 :: 6 - 13 - 12 - 11 :: with length 3100
+From demand: 61 Between nodes: 6 to 12 :: 6 - 13 - 12 :: with length 2300
+From demand: 62 Between nodes: 6 to 13 :: 6 - 13 :: with length 2000
+From demand: 63 Between nodes: 6 to 14 :: 6 - 10 - 9 - 14 :: with length 2600
+From demand: 64 Between nodes: 7 to 8 :: 7 - 8 :: with length 700
+From demand: 65 Between nodes: 7 to 9 :: 7 - 8 - 9 :: with length 1400
+From demand: 66 Between nodes: 7 to 10 :: 7 - 8 - 9 - 10 :: with length 2300
+From demand: 67 Between nodes: 7 to 11 :: 7 - 5 - 6 - 13 - 12 - 11 :: with length 5000
+From demand: 68 Between nodes: 7 to 12 :: 7 - 8 - 9 - 12 :: with length 1900
+From demand: 69 Between nodes: 7 to 13 :: 7 - 5 - 6 - 13 :: with length 3900
+From demand: 70 Between nodes: 7 to 14 :: 7 - 8 - 9 - 14 :: with length 1900
+From demand: 71 Between nodes: 8 to 9 :: 8 - 7 - 5 - 4 - 11 - 12 - 9 :: with length 5800
+From demand: 72 Between nodes: 8 to 10 :: 8 - 7 - 5 - 6 - 10 :: with length 3800
+From demand: 73 Between nodes: 8 to 11 :: 8 - 9 - 12 - 11 :: with length 2000
+From demand: 74 Between nodes: 8 to 12 :: 8 - 9 - 14 - 13 - 12 :: with length 1800
+From demand: 75 Between nodes: 8 to 13 :: 8 - 9 - 12 - 13 :: with length 1500
+From demand: 76 Between nodes: 8 to 14 :: 8 - 9 - 14 :: with length 1200
+From demand: 77 Between nodes: 9 to 10 :: 9 - 10 :: with length 900
+From demand: 78 Between nodes: 9 to 11 :: 9 - 12 - 11 :: with length 1300
+From demand: 79 Between nodes: 9 to 12 :: 9 - 12 :: with length 500
+From demand: 80 Between nodes: 9 to 13 :: 9 - 12 - 13 :: with length 800
+From demand: 81 Between nodes: 9 to 14 :: 9 - 14 :: with length 500
+From demand: 82 Between nodes: 10 to 11 :: 10 - 9 - 12 - 11 :: with length 2200
+From demand: 83 Between nodes: 10 to 12 :: 10 - 9 - 12 :: with length 1400
+From demand: 84 Between nodes: 10 to 13 :: 10 - 6 - 13 :: with length 3200
+From demand: 85 Between nodes: 10 to 14 :: 10 - 9 - 14 :: with length 1400
+From demand: 86 Between nodes: 11 to 12 :: 11 - 12 :: with length 800
+From demand: 87 Between nodes: 11 to 13 :: 11 - 12 - 13 :: with length 1100
+From demand: 88 Between nodes: 11 to 14 :: 11 - 14 :: with length 800
+From demand: 89 Between nodes: 12 to 13 :: 12 - 13 :: with length 300
+From demand: 90 Between nodes: 12 to 14 :: 12 - 9 - 14 :: with length 1000
+From demand: 91 Between nodes: 13 to 14 :: 13 - 14 :: with length 300
+
+Lower Bound UPDATED: 50
+Upper Bound: 121
+
+---------------BEGIN OF Possible paths Information------------------
+For demand: 1
+Edges: (1,2) Path Lenght: 1100
+***********************: 
+For demand: 2
+Edges: (1,3) Path Lenght: 1600
+***********************: 
+For demand: 3
+Edges: (1,2) (2,4) Path Lenght: 2100
+***********************: 
+For demand: 4
+Edges: (1,3) (2,3) (2,4) (4,5) Path Lenght: 3800
+***********************: 
+For demand: 5
+Edges: (1,2) (2,4) (4,5) (5,6) Path Lenght: 3800
+***********************: 
+For demand: 6
+Edges: (1,8) (7,8) Path Lenght: 3500
+***********************: 
+For demand: 7
+Edges: (1,8) Path Lenght: 2800
+***********************: 
+For demand: 8
+Edges: (1,3) (3,6) (6,10) (9,10) Path Lenght: 5700
+***********************: 
+For demand: 9
+Edges: (1,3) (3,6) (6,10) Path Lenght: 4800
+***********************: 
+For demand: 10
+Edges: (1,2) (2,4) (4,11) Path Lenght: 4500
+***********************: 
+For demand: 11
+Edges: (1,2) (2,4) (4,11) (11,12) Path Lenght: 5300
+***********************: 
+For demand: 12
+Edges: (1,3) (3,6) (6,13) Path Lenght: 5600
+***********************: 
+For demand: 13
+Edges: (1,2) (2,3) (3,6) (6,13) (13,14) Path Lenght: 6000
+***********************: 
+For demand: 14
+Edges: (2,3) Path Lenght: 600
+***********************: 
+For demand: 15
+Edges: (2,4) Path Lenght: 1000
+***********************: 
+For demand: 16
+Edges: (2,4) (4,5) Path Lenght: 1600
+***********************: 
+For demand: 17
+Edges: (2,3) (3,6) Path Lenght: 2600
+***********************: 
+For demand: 18
+Edges: (2,4) (4,5) (5,7) Path Lenght: 2400
+***********************: 
+For demand: 19
+Edges: (1,2) (1,8) Path Lenght: 3900
+***********************: 
+For demand: 20
+Edges: (2,3) (3,6) (6,10) (9,10) Path Lenght: 4700
+***********************: 
+For demand: 21
+Edges: (2,3) (3,6) (6,10) Path Lenght: 3800
+***********************: 
+For demand: 22
+Edges: (2,4) (4,11) Path Lenght: 3400
+***********************: 
+For demand: 23
+Edges: (2,3) (3,6) (6,13) (12,13) Path Lenght: 4900
+***********************: 
+For demand: 24
+Edges: (2,3) (3,6) (6,13) Path Lenght: 4600
+***********************: 
+For demand: 25
+Edges: (2,3) (3,6) (6,10) (9,10) (9,14) Path Lenght: 5200
+***********************: 
+For demand: 26
+Edges: (2,3) (2,4) Path Lenght: 1600
+***********************: 
+For demand: 27
+Edges: (2,3) (2,4) (4,5) Path Lenght: 2200
+***********************: 
+For demand: 28
+Edges: (3,6) Path Lenght: 2000
+***********************: 
+For demand: 29
+Edges: (3,6) (5,6) (5,7) Path Lenght: 3900
+***********************: 
+For demand: 30
+Edges: (1,3) (1,8) Path Lenght: 4400
+***********************: 
+For demand: 31
+Edges: (3,6) (6,10) (9,10) Path Lenght: 4100
+***********************: 
+For demand: 32
+Edges: (3,6) (6,10) Path Lenght: 3200
+***********************: 
+For demand: 33
+Edges: (2,3) (2,4) (4,11) Path Lenght: 4000
+***********************: 
+For demand: 34
+Edges: (2,3) (2,4) (4,11) (11,12) Path Lenght: 4800
+***********************: 
+For demand: 35
+Edges: (3,6) (6,13) Path Lenght: 4000
+***********************: 
+For demand: 36
+Edges: (3,6) (6,13) (13,14) Path Lenght: 4300
+***********************: 
+For demand: 37
+Edges: (4,5) Path Lenght: 600
+***********************: 
+For demand: 38
+Edges: (4,5) (5,6) Path Lenght: 1700
+***********************: 
+For demand: 39
+Edges: (4,5) (5,7) Path Lenght: 1400
+***********************: 
+For demand: 40
+Edges: (4,5) (5,7) (7,8) Path Lenght: 2100
+***********************: 
+For demand: 41
+Edges: (4,11) (11,12) (9,12) Path Lenght: 3700
+***********************: 
+For demand: 42
+Edges: (4,5) (5,6) (6,10) Path Lenght: 2900
+***********************: 
+For demand: 43
+Edges: (4,11) Path Lenght: 2400
+***********************: 
+For demand: 44
+Edges: (4,11) (11,12) Path Lenght: 3200
+***********************: 
+For demand: 45
+Edges: (4,11) (11,12) (12,13) Path Lenght: 3500
+***********************: 
+For demand: 46
+Edges: (4,11) (11,14) Path Lenght: 3200
+***********************: 
+For demand: 47
+Edges: (5,6) Path Lenght: 1100
+***********************: 
+For demand: 48
+Edges: (5,7) Path Lenght: 800
+***********************: 
+For demand: 49
+Edges: (5,7) (7,8) Path Lenght: 1500
+***********************: 
+For demand: 50
+Edges: (5,7) (7,8) (8,9) Path Lenght: 2200
+***********************: 
+For demand: 51
+Edges: (5,6) (6,10) Path Lenght: 2300
+***********************: 
+For demand: 52
+Edges: (4,5) (4,11) Path Lenght: 3000
+***********************: 
+For demand: 53
+Edges: (5,6) (6,13) (12,13) Path Lenght: 3400
+***********************: 
+For demand: 54
+Edges: (5,6) (6,13) Path Lenght: 3100
+***********************: 
+For demand: 55
+Edges: (5,6) (6,10) (9,10) (9,14) Path Lenght: 3700
+***********************: 
+For demand: 56
+Edges: (5,6) (5,7) Path Lenght: 1900
+***********************: 
+For demand: 57
+Edges: (5,6) (5,7) (7,8) Path Lenght: 2600
+***********************: 
+For demand: 58
+Edges: (6,13) (12,13) (9,12) Path Lenght: 2800
+***********************: 
+For demand: 59
+Edges: (6,10) Path Lenght: 1200
+***********************: 
+For demand: 60
+Edges: (6,13) (12,13) (11,12) Path Lenght: 3100
+***********************: 
+For demand: 61
+Edges: (6,13) (12,13) Path Lenght: 2300
+***********************: 
+For demand: 62
+Edges: (6,13) Path Lenght: 2000
+***********************: 
+For demand: 63
+Edges: (6,10) (9,10) (9,14) Path Lenght: 2600
+***********************: 
+For demand: 64
+Edges: (7,8) Path Lenght: 700
+***********************: 
+For demand: 65
+Edges: (7,8) (8,9) Path Lenght: 1400
+***********************: 
+For demand: 66
+Edges: (7,8) (8,9) (9,10) Path Lenght: 2300
+***********************: 
+For demand: 67
+Edges: (5,7) (5,6) (6,13) (12,13) (11,12) Path Lenght: 5000
+***********************: 
+For demand: 68
+Edges: (7,8) (8,9) (9,12) Path Lenght: 1900
+***********************: 
+For demand: 69
+Edges: (5,7) (5,6) (6,13) Path Lenght: 3900
+***********************: 
+For demand: 70
+Edges: (7,8) (8,9) (9,14) Path Lenght: 1900
+***********************: 
+For demand: 71
+Edges: (7,8) (5,7) (4,5) (4,11) (11,12) (9,12) Path Lenght: 5800
+***********************: 
+For demand: 72
+Edges: (7,8) (5,7) (5,6) (6,10) Path Lenght: 3800
+***********************: 
+For demand: 73
+Edges: (8,9) (9,12) (11,12) Path Lenght: 2000
+***********************: 
+For demand: 74
+Edges: (8,9) (9,14) (13,14) (12,13) Path Lenght: 1800
+***********************: 
+For demand: 75
+Edges: (8,9) (9,12) (12,13) Path Lenght: 1500
+***********************: 
+For demand: 76
+Edges: (8,9) (9,14) Path Lenght: 1200
+***********************: 
+For demand: 77
+Edges: (9,10) Path Lenght: 900
+***********************: 
+For demand: 78
+Edges: (9,12) (11,12) Path Lenght: 1300
+***********************: 
+For demand: 79
+Edges: (9,12) Path Lenght: 500
+***********************: 
+For demand: 80
+Edges: (9,12) (12,13) Path Lenght: 800
+***********************: 
+For demand: 81
+Edges: (9,14) Path Lenght: 500
+***********************: 
+For demand: 82
+Edges: (9,10) (9,12) (11,12) Path Lenght: 2200
+***********************: 
+For demand: 83
+Edges: (9,10) (9,12) Path Lenght: 1400
+***********************: 
+For demand: 84
+Edges: (6,10) (6,13) Path Lenght: 3200
+***********************: 
+For demand: 85
+Edges: (9,10) (9,14) Path Lenght: 1400
+***********************: 
+For demand: 86
+Edges: (11,12) Path Lenght: 800
+***********************: 
+For demand: 87
+Edges: (11,12) (12,13) Path Lenght: 1100
+***********************: 
+For demand: 88
+Edges: (11,14) Path Lenght: 800
+***********************: 
+For demand: 89
+Edges: (12,13) Path Lenght: 300
+***********************: 
+For demand: 90
+Edges: (9,12) (9,14) Path Lenght: 1000
+***********************: 
+For demand: 91
+Edges: (13,14) Path Lenght: 300
+***********************: 
+
+---------------END OF Possible paths Information------------------
+
+---------------BEGIN OF ILP Edge Path Formulation Cplex------------------
+Number of demands : 91
+Number of Edges : 21
+Number of nodes : 14
+Number of slices from MCMCF : 120
+
+Number of variables = 242243
+
+Objective Value: 120
+
+Gap: 0.583333
+
+---------------END OF ILP Edge Path Formulation Cplex------------------
+TIME == RSA duration in seconds: 1801
+RSA TOOK TOO LONG
+Solution found but there is a gap of: 0.583333Output - RSA Problem - 
+Interval chromatic number = 120
+Routing : 
+From demand: 1 Between nodes: 1 to 2 :: 1 - 2 :: with length 1100
+ Slots : 17 - 22
+From demand: 2 Between nodes: 1 to 3 :: 1 - 3 :: with length 1600
+ Slots : 44 - 49
+From demand: 3 Between nodes: 1 to 4 :: 1 - 2 - 4 :: with length 2100
+ Slots : 45 - 50
+From demand: 4 Between nodes: 1 to 5 :: 1 - 3 - 2 - 4 - 5 :: with length 3800
+ Slots : 65 - 68
+From demand: 5 Between nodes: 1 to 6 :: 1 - 2 - 4 - 5 - 6 :: with length 3800
+ Slots : 11 - 14
+From demand: 6 Between nodes: 1 to 7 :: 1 - 8 - 7 :: with length 3500
+ Slots : 47 - 50
+From demand: 7 Between nodes: 1 to 8 :: 1 - 8 :: with length 2800
+ Slots : 5 - 8
+From demand: 8 Between nodes: 1 to 9 :: 1 - 3 - 6 - 10 - 9 :: with length 5700
+ Slots : 77 - 80
+From demand: 9 Between nodes: 1 to 10 :: 1 - 3 - 6 - 10 :: with length 4800
+ Slots : 8 - 11
+From demand: 10 Between nodes: 1 to 11 :: 1 - 2 - 4 - 11 :: with length 4500
+ Slots : 39 - 42
+From demand: 11 Between nodes: 1 to 12 :: 1 - 2 - 4 - 11 - 12 :: with length 5300
+ Slots : 31 - 34
+From demand: 12 Between nodes: 1 to 13 :: 1 - 3 - 6 - 13 :: with length 5600
+ Slots : 21 - 24
+From demand: 13 Between nodes: 1 to 14 :: 1 - 2 - 3 - 6 - 13 - 14 :: with length 6000
+ Slots : 111 - 114
+From demand: 14 Between nodes: 2 to 3 :: 2 - 3 :: with length 600
+ Slots : 30 - 35
+From demand: 15 Between nodes: 2 to 4 :: 2 - 4 :: with length 1000
+ Slots : 16 - 21
+From demand: 16 Between nodes: 2 to 5 :: 2 - 4 - 5 :: with length 1600
+ Slots : 21 - 26
+From demand: 17 Between nodes: 2 to 6 :: 2 - 3 - 6 :: with length 2600
+ Slots : 24 - 27
+From demand: 18 Between nodes: 2 to 7 :: 2 - 4 - 5 - 7 :: with length 2400
+ Slots : 112 - 115
+From demand: 19 Between nodes: 2 to 8 :: 2 - 1 - 8 :: with length 3900
+ Slots : 28 - 31
+From demand: 20 Between nodes: 2 to 9 :: 2 - 3 - 6 - 10 - 9 :: with length 4700
+ Slots : 35 - 38
+From demand: 21 Between nodes: 2 to 10 :: 2 - 3 - 6 - 10 :: with length 3800
+ Slots : 27 - 30
+From demand: 22 Between nodes: 2 to 11 :: 2 - 4 - 11 :: with length 3400
+ Slots : 26 - 29
+From demand: 23 Between nodes: 2 to 12 :: 2 - 3 - 6 - 13 - 12 :: with length 4900
+ Slots : 14 - 17
+From demand: 24 Between nodes: 2 to 13 :: 2 - 3 - 6 - 13 :: with length 4600
+ Slots : 106 - 109
+From demand: 25 Between nodes: 2 to 14 :: 2 - 3 - 6 - 10 - 9 - 14 :: with length 5200
+ Slots : 47 - 50
+From demand: 26 Between nodes: 3 to 4 :: 3 - 2 - 4 :: with length 1600
+ Slots : 0 - 5
+From demand: 27 Between nodes: 3 to 5 :: 3 - 2 - 4 - 5 :: with length 2200
+ Slots : 6 - 11
+From demand: 28 Between nodes: 3 to 6 :: 3 - 6 :: with length 2000
+ Slots : 0 - 5
+From demand: 29 Between nodes: 3 to 7 :: 3 - 6 - 5 - 7 :: with length 3900
+ Slots : 38 - 41
+From demand: 30 Between nodes: 3 to 8 :: 3 - 1 - 8 :: with length 4400
+ Slots : 0 - 3
+From demand: 31 Between nodes: 3 to 9 :: 3 - 6 - 10 - 9 :: with length 4100
+ Slots : 30 - 33
+From demand: 32 Between nodes: 3 to 10 :: 3 - 6 - 10 :: with length 3200
+ Slots : 5 - 8
+From demand: 33 Between nodes: 3 to 11 :: 3 - 2 - 4 - 11 :: with length 4000
+ Slots : 71 - 74
+From demand: 34 Between nodes: 3 to 12 :: 3 - 2 - 4 - 11 - 12 :: with length 4800
+ Slots : 42 - 45
+From demand: 35 Between nodes: 3 to 13 :: 3 - 6 - 13 :: with length 4000
+ Slots : 44 - 47
+From demand: 36 Between nodes: 3 to 14 :: 3 - 6 - 13 - 14 :: with length 4300
+ Slots : 66 - 69
+From demand: 37 Between nodes: 4 to 5 :: 4 - 5 :: with length 600
+ Slots : 14 - 19
+From demand: 38 Between nodes: 4 to 6 :: 4 - 5 - 6 :: with length 1700
+ Slots : 89 - 94
+From demand: 39 Between nodes: 4 to 7 :: 4 - 5 - 7 :: with length 1400
+ Slots : 105 - 110
+From demand: 40 Between nodes: 4 to 8 :: 4 - 5 - 7 - 8 :: with length 2100
+ Slots : 42 - 47
+From demand: 41 Between nodes: 4 to 9 :: 4 - 11 - 12 - 9 :: with length 3700
+ Slots : 15 - 18
+From demand: 42 Between nodes: 4 to 10 :: 4 - 5 - 6 - 10 :: with length 2900
+ Slots : 52 - 55
+From demand: 43 Between nodes: 4 to 11 :: 4 - 11 :: with length 2400
+ Slots : 8 - 11
+From demand: 44 Between nodes: 4 to 12 :: 4 - 11 - 12 :: with length 3200
+ Slots : 0 - 3
+From demand: 45 Between nodes: 4 to 13 :: 4 - 11 - 12 - 13 :: with length 3500
+ Slots : 21 - 24
+From demand: 46 Between nodes: 4 to 14 :: 4 - 11 - 14 :: with length 3200
+ Slots : 3 - 6
+From demand: 47 Between nodes: 5 to 6 :: 5 - 6 :: with length 1100
+ Slots : 0 - 5
+From demand: 48 Between nodes: 5 to 7 :: 5 - 7 :: with length 800
+ Slots : 0 - 5
+From demand: 49 Between nodes: 5 to 8 :: 5 - 7 - 8 :: with length 1500
+ Slots : 28 - 31
+From demand: 50 Between nodes: 5 to 9 :: 5 - 7 - 8 - 9 :: with length 2200
+ Slots : 23 - 28
+From demand: 51 Between nodes: 5 to 10 :: 5 - 6 - 10 :: with length 2300
+ Slots : 42 - 47
+From demand: 52 Between nodes: 5 to 11 :: 5 - 4 - 11 :: with length 3000
+ Slots : 47 - 50
+From demand: 53 Between nodes: 5 to 12 :: 5 - 6 - 13 - 12 :: with length 3400
+ Slots : 34 - 37
+From demand: 54 Between nodes: 5 to 13 :: 5 - 6 - 13 :: with length 3100
+ Slots : 27 - 30
+From demand: 55 Between nodes: 5 to 14 :: 5 - 6 - 10 - 9 - 14 :: with length 3700
+ Slots : 73 - 76
+From demand: 56 Between nodes: 6 to 7 :: 6 - 5 - 7 :: with length 1900
+ Slots : 5 - 10
+From demand: 57 Between nodes: 6 to 8 :: 6 - 5 - 7 - 8 :: with length 2600
+ Slots : 31 - 34
+From demand: 58 Between nodes: 6 to 9 :: 6 - 13 - 12 - 9 :: with length 2800
+ Slots : 84 - 87
+From demand: 59 Between nodes: 6 to 10 :: 6 - 10 :: with length 1200
+ Slots : 0 - 5
+From demand: 60 Between nodes: 6 to 11 :: 6 - 13 - 12 - 11 :: with length 3100
+ Slots : 96 - 99
+From demand: 61 Between nodes: 6 to 12 :: 6 - 13 - 12 :: with length 2300
+ Slots : 9 - 14
+From demand: 62 Between nodes: 6 to 13 :: 6 - 13 :: with length 2000
+ Slots : 51 - 56
+From demand: 63 Between nodes: 6 to 14 :: 6 - 10 - 9 - 14 :: with length 2600
+ Slots : 18 - 23
+From demand: 64 Between nodes: 7 to 8 :: 7 - 8 :: with length 700
+ Slots : 5 - 10
+From demand: 65 Between nodes: 7 to 9 :: 7 - 8 - 9 :: with length 1400
+ Slots : 10 - 15
+From demand: 66 Between nodes: 7 to 10 :: 7 - 8 - 9 - 10 :: with length 2300
+ Slots : 0 - 5
+From demand: 67 Between nodes: 7 to 11 :: 7 - 5 - 6 - 13 - 12 - 11 :: with length 5000
+ Slots : 18 - 21
+From demand: 68 Between nodes: 7 to 12 :: 7 - 8 - 9 - 12 :: with length 1900
+ Slots : 18 - 23
+From demand: 69 Between nodes: 7 to 13 :: 7 - 5 - 6 - 13 :: with length 3900
+ Slots : 47 - 50
+From demand: 70 Between nodes: 7 to 14 :: 7 - 8 - 9 - 14 :: with length 1900
+ Slots : 37 - 42
+From demand: 71 Between nodes: 8 to 9 :: 8 - 7 - 5 - 4 - 11 - 12 - 9 :: with length 5800
+ Slots : 34 - 37
+From demand: 72 Between nodes: 8 to 10 :: 8 - 7 - 5 - 6 - 10 :: with length 3800
+ Slots : 64 - 67
+From demand: 73 Between nodes: 8 to 11 :: 8 - 9 - 12 - 11 :: with length 2000
+ Slots : 55 - 60
+From demand: 74 Between nodes: 8 to 12 :: 8 - 9 - 14 - 13 - 12 :: with length 1800
+ Slots : 115 - 120
+From demand: 75 Between nodes: 8 to 13 :: 8 - 9 - 12 - 13 :: with length 1500
+ Slots : 45 - 50
+From demand: 76 Between nodes: 8 to 14 :: 8 - 9 - 14 :: with length 1200
+ Slots : 30 - 35
+From demand: 77 Between nodes: 9 to 10 :: 9 - 10 :: with length 900
+ Slots : 25 - 30
+From demand: 78 Between nodes: 9 to 11 :: 9 - 12 - 11 :: with length 1300
+ Slots : 38 - 41
+From demand: 79 Between nodes: 9 to 12 :: 9 - 12 :: with length 500
+ Slots : 31 - 34
+From demand: 80 Between nodes: 9 to 13 :: 9 - 12 - 13 :: with length 800
+ Slots : 0 - 5
+From demand: 81 Between nodes: 9 to 14 :: 9 - 14 :: with length 500
+ Slots : 9 - 15
+From demand: 82 Between nodes: 10 to 11 :: 10 - 9 - 12 - 11 :: with length 2200
+ Slots : 10 - 13
+From demand: 83 Between nodes: 10 to 12 :: 10 - 9 - 12 :: with length 1400
+ Slots : 5 - 10
+From demand: 84 Between nodes: 10 to 13 :: 10 - 6 - 13 :: with length 3200
+ Slots : 24 - 27
+From demand: 85 Between nodes: 10 to 14 :: 10 - 9 - 14 :: with length 1400
+ Slots : 42 - 47
+From demand: 86 Between nodes: 11 to 12 :: 11 - 12 :: with length 800
+ Slots : 5 - 10
+From demand: 87 Between nodes: 11 to 13 :: 11 - 12 - 13 :: with length 1100
+ Slots : 26 - 31
+From demand: 88 Between nodes: 11 to 14 :: 11 - 14 :: with length 800
+ Slots : 47 - 50
+From demand: 89 Between nodes: 12 to 13 :: 12 - 13 :: with length 300
+ Slots : 39 - 45
+From demand: 90 Between nodes: 12 to 14 :: 12 - 9 - 14 :: with length 1000
+ Slots : 24 - 30
+From demand: 91 Between nodes: 13 to 14 :: 13 - 14 :: with length 300
+ Slots : 36 - 42
+
+The first iteration of RSA will reduce the number of variables for the problem
+The actual value is: 120 and will become: 120
+Upper Bound UPDATED: 120
+Lower Bound: 50
+TIME == Finding cliques duration in seconds: 9
+
+---------------BEGIN OF Forbidden Cliques Information------------------
+
+---------------END OF Forbidden Cliques Information------------------
+
+ITERATION FINISHED
+
+---------------BEGIN OF ILP Min Cost Multi Commodity Cplex------------------
+Number of demands : 91
+Number of arcs : 42
+Number of nodes : 14
+
+Number of variables = 3823
+
+Capacity :50
+
+---------------END OF ILP Min Cost Multi Commodity Cplex------------------
+TIME == MCMCF duration in seconds: 0
+Output - MCMCF Problem - 
+Capacity = 50
+Routing : 
+From demand: 1 Between nodes: 1 to 2 :: 1 - 3 - 2 :: with length 2200
+From demand: 2 Between nodes: 1 to 3 :: 1 - 3 :: with length 1600
+From demand: 3 Between nodes: 1 to 4 :: 1 - 2 - 4 :: with length 2100
+From demand: 4 Between nodes: 1 to 5 :: 1 - 3 - 6 - 5 :: with length 4700
+From demand: 5 Between nodes: 1 to 6 :: 1 - 3 - 6 :: with length 3600
+From demand: 6 Between nodes: 1 to 7 :: 1 - 3 - 6 - 5 - 7 :: with length 5500
+From demand: 7 Between nodes: 1 to 8 :: 1 - 8 :: with length 2800
+From demand: 8 Between nodes: 1 to 9 :: 1 - 2 - 4 - 11 - 12 - 9 :: with length 5800
+From demand: 9 Between nodes: 1 to 10 :: 1 - 2 - 3 - 6 - 10 :: with length 4900
+From demand: 10 Between nodes: 1 to 11 :: 1 - 2 - 4 - 11 :: with length 4500
+From demand: 11 Between nodes: 1 to 12 :: 1 - 3 - 6 - 13 - 12 :: with length 5900
+From demand: 12 Between nodes: 1 to 13 :: 1 - 3 - 6 - 13 :: with length 5600
+From demand: 13 Between nodes: 1 to 14 :: 1 - 3 - 6 - 13 - 14 :: with length 5900
+From demand: 14 Between nodes: 2 to 3 :: 2 - 3 :: with length 600
+From demand: 15 Between nodes: 2 to 4 :: 2 - 4 :: with length 1000
+From demand: 16 Between nodes: 2 to 5 :: 2 - 4 - 5 :: with length 1600
+From demand: 17 Between nodes: 2 to 6 :: 2 - 3 - 6 :: with length 2600
+From demand: 18 Between nodes: 2 to 7 :: 2 - 1 - 8 - 7 :: with length 4600
+From demand: 19 Between nodes: 2 to 8 :: 2 - 1 - 8 :: with length 3900
+From demand: 20 Between nodes: 2 to 9 :: 2 - 4 - 11 - 12 - 9 :: with length 4700
+From demand: 21 Between nodes: 2 to 10 :: 2 - 4 - 11 - 12 - 9 - 10 :: with length 5600
+From demand: 22 Between nodes: 2 to 11 :: 2 - 4 - 11 :: with length 3400
+From demand: 23 Between nodes: 2 to 12 :: 2 - 3 - 6 - 13 - 12 :: with length 4900
+From demand: 24 Between nodes: 2 to 13 :: 2 - 3 - 6 - 13 :: with length 4600
+From demand: 25 Between nodes: 2 to 14 :: 2 - 4 - 11 - 14 :: with length 4200
+From demand: 26 Between nodes: 3 to 4 :: 3 - 2 - 4 :: with length 1600
+From demand: 27 Between nodes: 3 to 5 :: 3 - 2 - 4 - 5 :: with length 2200
+From demand: 28 Between nodes: 3 to 6 :: 3 - 6 :: with length 2000
+From demand: 29 Between nodes: 3 to 7 :: 3 - 2 - 1 - 8 - 7 :: with length 5200
+From demand: 30 Between nodes: 3 to 8 :: 3 - 1 - 8 :: with length 4400
+From demand: 31 Between nodes: 3 to 9 :: 3 - 6 - 10 - 9 :: with length 4100
+From demand: 32 Between nodes: 3 to 10 :: 3 - 6 - 10 :: with length 3200
+From demand: 33 Between nodes: 3 to 11 :: 3 - 2 - 4 - 11 :: with length 4000
+From demand: 34 Between nodes: 3 to 12 :: 3 - 6 - 13 - 12 :: with length 4300
+From demand: 35 Between nodes: 3 to 13 :: 3 - 6 - 13 :: with length 4000
+From demand: 36 Between nodes: 3 to 14 :: 3 - 6 - 13 - 14 :: with length 4300
+From demand: 37 Between nodes: 4 to 5 :: 4 - 5 :: with length 600
+From demand: 38 Between nodes: 4 to 6 :: 4 - 5 - 6 :: with length 1700
+From demand: 39 Between nodes: 4 to 7 :: 4 - 5 - 7 :: with length 1400
+From demand: 40 Between nodes: 4 to 8 :: 4 - 5 - 7 - 8 :: with length 2100
+From demand: 41 Between nodes: 4 to 9 :: 4 - 11 - 12 - 9 :: with length 3700
+From demand: 42 Between nodes: 4 to 10 :: 4 - 11 - 12 - 9 - 10 :: with length 4600
+From demand: 43 Between nodes: 4 to 11 :: 4 - 11 :: with length 2400
+From demand: 44 Between nodes: 4 to 12 :: 4 - 11 - 12 :: with length 3200
+From demand: 45 Between nodes: 4 to 13 :: 4 - 5 - 6 - 13 :: with length 3700
+From demand: 46 Between nodes: 4 to 14 :: 4 - 11 - 14 :: with length 3200
+From demand: 47 Between nodes: 5 to 6 :: 5 - 6 :: with length 1100
+From demand: 48 Between nodes: 5 to 7 :: 5 - 7 :: with length 800
+From demand: 49 Between nodes: 5 to 8 :: 5 - 7 - 8 :: with length 1500
+From demand: 50 Between nodes: 5 to 9 :: 5 - 7 - 8 - 9 :: with length 2200
+From demand: 51 Between nodes: 5 to 10 :: 5 - 6 - 10 :: with length 2300
+From demand: 52 Between nodes: 5 to 11 :: 5 - 6 - 10 - 9 - 14 - 11 :: with length 4500
+From demand: 53 Between nodes: 5 to 12 :: 5 - 6 - 13 - 12 :: with length 3400
+From demand: 54 Between nodes: 5 to 13 :: 5 - 6 - 13 :: with length 3100
+From demand: 55 Between nodes: 5 to 14 :: 5 - 4 - 11 - 14 :: with length 3800
+From demand: 56 Between nodes: 6 to 7 :: 6 - 5 - 7 :: with length 1900
+From demand: 57 Between nodes: 6 to 8 :: 6 - 5 - 7 - 8 :: with length 2600
+From demand: 58 Between nodes: 6 to 9 :: 6 - 10 - 9 :: with length 2100
+From demand: 59 Between nodes: 6 to 10 :: 6 - 10 :: with length 1200
+From demand: 60 Between nodes: 6 to 11 :: 6 - 5 - 4 - 11 :: with length 4100
+From demand: 61 Between nodes: 6 to 12 :: 6 - 10 - 9 - 12 :: with length 2600
+From demand: 62 Between nodes: 6 to 13 :: 6 - 13 :: with length 2000
+From demand: 63 Between nodes: 6 to 14 :: 6 - 13 - 14 :: with length 2300
+From demand: 64 Between nodes: 7 to 8 :: 7 - 8 :: with length 700
+From demand: 65 Between nodes: 7 to 9 :: 7 - 8 - 9 :: with length 1400
+From demand: 66 Between nodes: 7 to 10 :: 7 - 8 - 9 - 10 :: with length 2300
+From demand: 67 Between nodes: 7 to 11 :: 7 - 5 - 4 - 11 :: with length 3800
+From demand: 68 Between nodes: 7 to 12 :: 7 - 8 - 9 - 14 - 13 - 12 :: with length 2500
+From demand: 69 Between nodes: 7 to 13 :: 7 - 5 - 4 - 11 - 12 - 13 :: with length 4900
+From demand: 70 Between nodes: 7 to 14 :: 7 - 8 - 9 - 14 :: with length 1900
+From demand: 71 Between nodes: 8 to 9 :: 8 - 9 :: with length 700
+From demand: 72 Between nodes: 8 to 10 :: 8 - 7 - 5 - 6 - 10 :: with length 3800
+From demand: 73 Between nodes: 8 to 11 :: 8 - 9 - 14 - 11 :: with length 2000
+From demand: 74 Between nodes: 8 to 12 :: 8 - 9 - 12 :: with length 1200
+From demand: 75 Between nodes: 8 to 13 :: 8 - 9 - 14 - 13 :: with length 1500
+From demand: 76 Between nodes: 8 to 14 :: 8 - 9 - 12 - 13 - 14 :: with length 1800
+From demand: 77 Between nodes: 9 to 10 :: 9 - 10 :: with length 900
+From demand: 78 Between nodes: 9 to 11 :: 9 - 12 - 11 :: with length 1300
+From demand: 79 Between nodes: 9 to 12 :: 9 - 12 :: with length 500
+From demand: 80 Between nodes: 9 to 13 :: 9 - 14 - 13 :: with length 800
+From demand: 81 Between nodes: 9 to 14 :: 9 - 14 :: with length 500
+From demand: 82 Between nodes: 10 to 11 :: 10 - 6 - 13 - 12 - 11 :: with length 4300
+From demand: 83 Between nodes: 10 to 12 :: 10 - 9 - 14 - 11 - 12 :: with length 3000
+From demand: 84 Between nodes: 10 to 13 :: 10 - 9 - 12 - 13 :: with length 1700
+From demand: 85 Between nodes: 10 to 14 :: 10 - 9 - 12 - 13 - 14 :: with length 2000
+From demand: 86 Between nodes: 11 to 12 :: 11 - 12 :: with length 800
+From demand: 87 Between nodes: 11 to 13 :: 11 - 14 - 13 :: with length 1100
+From demand: 88 Between nodes: 11 to 14 :: 11 - 12 - 9 - 14 :: with length 1800
+From demand: 89 Between nodes: 12 to 13 :: 12 - 13 :: with length 300
+From demand: 90 Between nodes: 12 to 14 :: 12 - 11 - 14 :: with length 1600
+From demand: 91 Between nodes: 13 to 14 :: 13 - 14 :: with length 300
+
+
+---------------BEGIN OF Possible paths Information------------------
+For demand: 1
+Edges: (1,2) Path Lenght: 1100
+Edges: (1,3) (2,3) Path Lenght: 2200
+***********************: 
+For demand: 2
+Edges: (1,3) Path Lenght: 1600
+***********************: 
+For demand: 3
+Edges: (1,2) (2,4) Path Lenght: 2100
+***********************: 
+For demand: 4
+Edges: (1,3) (2,3) (2,4) (4,5) Path Lenght: 3800
+Edges: (1,3) (3,6) (5,6) Path Lenght: 4700
+***********************: 
+For demand: 5
+Edges: (1,2) (2,4) (4,5) (5,6) Path Lenght: 3800
+Edges: (1,3) (3,6) Path Lenght: 3600
+***********************: 
+For demand: 6
+Edges: (1,8) (7,8) Path Lenght: 3500
+Edges: (1,3) (3,6) (5,6) (5,7) Path Lenght: 5500
+***********************: 
+For demand: 7
+Edges: (1,8) Path Lenght: 2800
+***********************: 
+For demand: 8
+Edges: (1,3) (3,6) (6,10) (9,10) Path Lenght: 5700
+Edges: (1,2) (2,4) (4,11) (11,12) (9,12) Path Lenght: 5800
+***********************: 
+For demand: 9
+Edges: (1,3) (3,6) (6,10) Path Lenght: 4800
+Edges: (1,2) (2,3) (3,6) (6,10) Path Lenght: 4900
+***********************: 
+For demand: 10
+Edges: (1,2) (2,4) (4,11) Path Lenght: 4500
+***********************: 
+For demand: 11
+Edges: (1,2) (2,4) (4,11) (11,12) Path Lenght: 5300
+Edges: (1,3) (3,6) (6,13) (12,13) Path Lenght: 5900
+***********************: 
+For demand: 12
+Edges: (1,3) (3,6) (6,13) Path Lenght: 5600
+***********************: 
+For demand: 13
+Edges: (1,2) (2,3) (3,6) (6,13) (13,14) Path Lenght: 6000
+Edges: (1,3) (3,6) (6,13) (13,14) Path Lenght: 5900
+***********************: 
+For demand: 14
+Edges: (2,3) Path Lenght: 600
+***********************: 
+For demand: 15
+Edges: (2,4) Path Lenght: 1000
+***********************: 
+For demand: 16
+Edges: (2,4) (4,5) Path Lenght: 1600
+***********************: 
+For demand: 17
+Edges: (2,3) (3,6) Path Lenght: 2600
+***********************: 
+For demand: 18
+Edges: (2,4) (4,5) (5,7) Path Lenght: 2400
+Edges: (1,2) (1,8) (7,8) Path Lenght: 4600
+***********************: 
+For demand: 19
+Edges: (1,2) (1,8) Path Lenght: 3900
+***********************: 
+For demand: 20
+Edges: (2,3) (3,6) (6,10) (9,10) Path Lenght: 4700
+Edges: (2,4) (4,11) (11,12) (9,12) Path Lenght: 4700
+***********************: 
+For demand: 21
+Edges: (2,3) (3,6) (6,10) Path Lenght: 3800
+Edges: (2,4) (4,11) (11,12) (9,12) (9,10) Path Lenght: 5600
+***********************: 
+For demand: 22
+Edges: (2,4) (4,11) Path Lenght: 3400
+***********************: 
+For demand: 23
+Edges: (2,3) (3,6) (6,13) (12,13) Path Lenght: 4900
+***********************: 
+For demand: 24
+Edges: (2,3) (3,6) (6,13) Path Lenght: 4600
+***********************: 
+For demand: 25
+Edges: (2,3) (3,6) (6,10) (9,10) (9,14) Path Lenght: 5200
+Edges: (2,4) (4,11) (11,14) Path Lenght: 4200
+***********************: 
+For demand: 26
+Edges: (2,3) (2,4) Path Lenght: 1600
+***********************: 
+For demand: 27
+Edges: (2,3) (2,4) (4,5) Path Lenght: 2200
+***********************: 
+For demand: 28
+Edges: (3,6) Path Lenght: 2000
+***********************: 
+For demand: 29
+Edges: (3,6) (5,6) (5,7) Path Lenght: 3900
+Edges: (2,3) (1,2) (1,8) (7,8) Path Lenght: 5200
+***********************: 
+For demand: 30
+Edges: (1,3) (1,8) Path Lenght: 4400
+***********************: 
+For demand: 31
+Edges: (3,6) (6,10) (9,10) Path Lenght: 4100
+***********************: 
+For demand: 32
+Edges: (3,6) (6,10) Path Lenght: 3200
+***********************: 
+For demand: 33
+Edges: (2,3) (2,4) (4,11) Path Lenght: 4000
+***********************: 
+For demand: 34
+Edges: (2,3) (2,4) (4,11) (11,12) Path Lenght: 4800
+Edges: (3,6) (6,13) (12,13) Path Lenght: 4300
+***********************: 
+For demand: 35
+Edges: (3,6) (6,13) Path Lenght: 4000
+***********************: 
+For demand: 36
+Edges: (3,6) (6,13) (13,14) Path Lenght: 4300
+***********************: 
+For demand: 37
+Edges: (4,5) Path Lenght: 600
+***********************: 
+For demand: 38
+Edges: (4,5) (5,6) Path Lenght: 1700
+***********************: 
+For demand: 39
+Edges: (4,5) (5,7) Path Lenght: 1400
+***********************: 
+For demand: 40
+Edges: (4,5) (5,7) (7,8) Path Lenght: 2100
+***********************: 
+For demand: 41
+Edges: (4,11) (11,12) (9,12) Path Lenght: 3700
+***********************: 
+For demand: 42
+Edges: (4,5) (5,6) (6,10) Path Lenght: 2900
+Edges: (4,11) (11,12) (9,12) (9,10) Path Lenght: 4600
+***********************: 
+For demand: 43
+Edges: (4,11) Path Lenght: 2400
+***********************: 
+For demand: 44
+Edges: (4,11) (11,12) Path Lenght: 3200
+***********************: 
+For demand: 45
+Edges: (4,11) (11,12) (12,13) Path Lenght: 3500
+Edges: (4,5) (5,6) (6,13) Path Lenght: 3700
+***********************: 
+For demand: 46
+Edges: (4,11) (11,14) Path Lenght: 3200
+***********************: 
+For demand: 47
+Edges: (5,6) Path Lenght: 1100
+***********************: 
+For demand: 48
+Edges: (5,7) Path Lenght: 800
+***********************: 
+For demand: 49
+Edges: (5,7) (7,8) Path Lenght: 1500
+***********************: 
+For demand: 50
+Edges: (5,7) (7,8) (8,9) Path Lenght: 2200
+***********************: 
+For demand: 51
+Edges: (5,6) (6,10) Path Lenght: 2300
+***********************: 
+For demand: 52
+Edges: (4,5) (4,11) Path Lenght: 3000
+Edges: (5,6) (6,10) (9,10) (9,14) (11,14) Path Lenght: 4500
+***********************: 
+For demand: 53
+Edges: (5,6) (6,13) (12,13) Path Lenght: 3400
+***********************: 
+For demand: 54
+Edges: (5,6) (6,13) Path Lenght: 3100
+***********************: 
+For demand: 55
+Edges: (5,6) (6,10) (9,10) (9,14) Path Lenght: 3700
+Edges: (4,5) (4,11) (11,14) Path Lenght: 3800
+***********************: 
+For demand: 56
+Edges: (5,6) (5,7) Path Lenght: 1900
+***********************: 
+For demand: 57
+Edges: (5,6) (5,7) (7,8) Path Lenght: 2600
+***********************: 
+For demand: 58
+Edges: (6,13) (12,13) (9,12) Path Lenght: 2800
+Edges: (6,10) (9,10) Path Lenght: 2100
+***********************: 
+For demand: 59
+Edges: (6,10) Path Lenght: 1200
+***********************: 
+For demand: 60
+Edges: (6,13) (12,13) (11,12) Path Lenght: 3100
+Edges: (5,6) (4,5) (4,11) Path Lenght: 4100
+***********************: 
+For demand: 61
+Edges: (6,13) (12,13) Path Lenght: 2300
+Edges: (6,10) (9,10) (9,12) Path Lenght: 2600
+***********************: 
+For demand: 62
+Edges: (6,13) Path Lenght: 2000
+***********************: 
+For demand: 63
+Edges: (6,10) (9,10) (9,14) Path Lenght: 2600
+Edges: (6,13) (13,14) Path Lenght: 2300
+***********************: 
+For demand: 64
+Edges: (7,8) Path Lenght: 700
+***********************: 
+For demand: 65
+Edges: (7,8) (8,9) Path Lenght: 1400
+***********************: 
+For demand: 66
+Edges: (7,8) (8,9) (9,10) Path Lenght: 2300
+***********************: 
+For demand: 67
+Edges: (5,7) (5,6) (6,13) (12,13) (11,12) Path Lenght: 5000
+Edges: (5,7) (4,5) (4,11) Path Lenght: 3800
+***********************: 
+For demand: 68
+Edges: (7,8) (8,9) (9,12) Path Lenght: 1900
+Edges: (7,8) (8,9) (9,14) (13,14) (12,13) Path Lenght: 2500
+***********************: 
+For demand: 69
+Edges: (5,7) (5,6) (6,13) Path Lenght: 3900
+Edges: (5,7) (4,5) (4,11) (11,12) (12,13) Path Lenght: 4900
+***********************: 
+For demand: 70
+Edges: (7,8) (8,9) (9,14) Path Lenght: 1900
+***********************: 
+For demand: 71
+Edges: (7,8) (5,7) (4,5) (4,11) (11,12) (9,12) Path Lenght: 5800
+Edges: (8,9) Path Lenght: 700
+***********************: 
+For demand: 72
+Edges: (7,8) (5,7) (5,6) (6,10) Path Lenght: 3800
+***********************: 
+For demand: 73
+Edges: (8,9) (9,12) (11,12) Path Lenght: 2000
+Edges: (8,9) (9,14) (11,14) Path Lenght: 2000
+***********************: 
+For demand: 74
+Edges: (8,9) (9,14) (13,14) (12,13) Path Lenght: 1800
+Edges: (8,9) (9,12) Path Lenght: 1200
+***********************: 
+For demand: 75
+Edges: (8,9) (9,12) (12,13) Path Lenght: 1500
+Edges: (8,9) (9,14) (13,14) Path Lenght: 1500
+***********************: 
+For demand: 76
+Edges: (8,9) (9,14) Path Lenght: 1200
+Edges: (8,9) (9,12) (12,13) (13,14) Path Lenght: 1800
+***********************: 
+For demand: 77
+Edges: (9,10) Path Lenght: 900
+***********************: 
+For demand: 78
+Edges: (9,12) (11,12) Path Lenght: 1300
+***********************: 
+For demand: 79
+Edges: (9,12) Path Lenght: 500
+***********************: 
+For demand: 80
+Edges: (9,12) (12,13) Path Lenght: 800
+Edges: (9,14) (13,14) Path Lenght: 800
+***********************: 
+For demand: 81
+Edges: (9,14) Path Lenght: 500
+***********************: 
+For demand: 82
+Edges: (9,10) (9,12) (11,12) Path Lenght: 2200
+Edges: (6,10) (6,13) (12,13) (11,12) Path Lenght: 4300
+***********************: 
+For demand: 83
+Edges: (9,10) (9,12) Path Lenght: 1400
+Edges: (9,10) (9,14) (11,14) (11,12) Path Lenght: 3000
+***********************: 
+For demand: 84
+Edges: (6,10) (6,13) Path Lenght: 3200
+Edges: (9,10) (9,12) (12,13) Path Lenght: 1700
+***********************: 
+For demand: 85
+Edges: (9,10) (9,14) Path Lenght: 1400
+Edges: (9,10) (9,12) (12,13) (13,14) Path Lenght: 2000
+***********************: 
+For demand: 86
+Edges: (11,12) Path Lenght: 800
+***********************: 
+For demand: 87
+Edges: (11,12) (12,13) Path Lenght: 1100
+Edges: (11,14) (13,14) Path Lenght: 1100
+***********************: 
+For demand: 88
+Edges: (11,14) Path Lenght: 800
+Edges: (11,12) (9,12) (9,14) Path Lenght: 1800
+***********************: 
+For demand: 89
+Edges: (12,13) Path Lenght: 300
+***********************: 
+For demand: 90
+Edges: (9,12) (9,14) Path Lenght: 1000
+Edges: (11,12) (11,14) Path Lenght: 1600
+***********************: 
+For demand: 91
+Edges: (13,14) Path Lenght: 300
+***********************: 
+
+---------------END OF Possible paths Information------------------
+
+---------------BEGIN OF ILP Edge Path Formulation Cplex------------------
+Number of demands : 91
+Number of Edges : 21
+Number of nodes : 14
+Number of slices from MCMCF : 120
+
+Number of variables = 242281
+
+Objective Value: 58
+
+Gap: 0.137931
+
+---------------END OF ILP Edge Path Formulation Cplex------------------
+TIME == RSA duration in seconds: 1800
+RSA TOOK TOO LONG
+Solution found but there is a gap of: 0.137931Output - RSA Problem - 
+Interval chromatic number = 58
+Routing : 
+From demand: 1 Between nodes: 1 to 2 :: 1 - 3 - 2 :: with length 2200
+ Slots : 3 - 8
+From demand: 2 Between nodes: 1 to 3 :: 1 - 3 :: with length 1600
+ Slots : 44 - 49
+From demand: 3 Between nodes: 1 to 4 :: 1 - 2 - 4 :: with length 2100
+ Slots : 44 - 49
+From demand: 4 Between nodes: 1 to 5 :: 1 - 3 - 2 - 4 - 5 :: with length 3800
+ Slots : 49 - 52
+From demand: 5 Between nodes: 1 to 6 :: 1 - 3 - 6 :: with length 3600
+ Slots : 55 - 58
+From demand: 6 Between nodes: 1 to 7 :: 1 - 8 - 7 :: with length 3500
+ Slots : 51 - 54
+From demand: 7 Between nodes: 1 to 8 :: 1 - 8 :: with length 2800
+ Slots : 1 - 4
+From demand: 8 Between nodes: 1 to 9 :: 1 - 3 - 6 - 10 - 9 :: with length 5700
+ Slots : 15 - 18
+From demand: 9 Between nodes: 1 to 10 :: 1 - 3 - 6 - 10 :: with length 4800
+ Slots : 12 - 15
+From demand: 10 Between nodes: 1 to 11 :: 1 - 2 - 4 - 11 :: with length 4500
+ Slots : 4 - 7
+From demand: 11 Between nodes: 1 to 12 :: 1 - 3 - 6 - 13 - 12 :: with length 5900
+ Slots : 23 - 26
+From demand: 12 Between nodes: 1 to 13 :: 1 - 3 - 6 - 13 :: with length 5600
+ Slots : 8 - 11
+From demand: 13 Between nodes: 1 to 14 :: 1 - 3 - 6 - 13 - 14 :: with length 5900
+ Slots : 29 - 32
+From demand: 14 Between nodes: 2 to 3 :: 2 - 3 :: with length 600
+ Slots : 22 - 27
+From demand: 15 Between nodes: 2 to 4 :: 2 - 4 :: with length 1000
+ Slots : 14 - 19
+From demand: 16 Between nodes: 2 to 5 :: 2 - 4 - 5 :: with length 1600
+ Slots : 37 - 42
+From demand: 17 Between nodes: 2 to 6 :: 2 - 3 - 6 :: with length 2600
+ Slots : 0 - 3
+From demand: 18 Between nodes: 2 to 7 :: 2 - 1 - 8 - 7 :: with length 4600
+ Slots : 13 - 16
+From demand: 19 Between nodes: 2 to 8 :: 2 - 1 - 8 :: with length 3900
+ Slots : 38 - 41
+From demand: 20 Between nodes: 2 to 9 :: 2 - 3 - 6 - 10 - 9 :: with length 4700
+ Slots : 38 - 41
+From demand: 21 Between nodes: 2 to 10 :: 2 - 3 - 6 - 10 :: with length 3800
+ Slots : 32 - 35
+From demand: 22 Between nodes: 2 to 11 :: 2 - 4 - 11 :: with length 3400
+ Slots : 34 - 37
+From demand: 23 Between nodes: 2 to 12 :: 2 - 3 - 6 - 13 - 12 :: with length 4900
+ Slots : 45 - 48
+From demand: 24 Between nodes: 2 to 13 :: 2 - 3 - 6 - 13 :: with length 4600
+ Slots : 35 - 38
+From demand: 25 Between nodes: 2 to 14 :: 2 - 4 - 11 - 14 :: with length 4200
+ Slots : 31 - 34
+From demand: 26 Between nodes: 3 to 4 :: 3 - 2 - 4 :: with length 1600
+ Slots : 52 - 57
+From demand: 27 Between nodes: 3 to 5 :: 3 - 2 - 4 - 5 :: with length 2200
+ Slots : 8 - 13
+From demand: 28 Between nodes: 3 to 6 :: 3 - 6 :: with length 2000
+ Slots : 3 - 8
+From demand: 29 Between nodes: 3 to 7 :: 3 - 2 - 1 - 8 - 7 :: with length 5200
+ Slots : 16 - 19
+From demand: 30 Between nodes: 3 to 8 :: 3 - 1 - 8 :: with length 4400
+ Slots : 35 - 38
+From demand: 31 Between nodes: 3 to 9 :: 3 - 6 - 10 - 9 :: with length 4100
+ Slots : 42 - 45
+From demand: 32 Between nodes: 3 to 10 :: 3 - 6 - 10 :: with length 3200
+ Slots : 48 - 51
+From demand: 33 Between nodes: 3 to 11 :: 3 - 2 - 4 - 11 :: with length 4000
+ Slots : 28 - 31
+From demand: 34 Between nodes: 3 to 12 :: 3 - 6 - 13 - 12 :: with length 4300
+ Slots : 20 - 23
+From demand: 35 Between nodes: 3 to 13 :: 3 - 6 - 13 :: with length 4000
+ Slots : 51 - 54
+From demand: 36 Between nodes: 3 to 14 :: 3 - 6 - 13 - 14 :: with length 4300
+ Slots : 26 - 29
+From demand: 37 Between nodes: 4 to 5 :: 4 - 5 :: with length 600
+ Slots : 18 - 23
+From demand: 38 Between nodes: 4 to 6 :: 4 - 5 - 6 :: with length 1700
+ Slots : 27 - 32
+From demand: 39 Between nodes: 4 to 7 :: 4 - 5 - 7 :: with length 1400
+ Slots : 13 - 18
+From demand: 40 Between nodes: 4 to 8 :: 4 - 5 - 7 - 8 :: with length 2100
+ Slots : 32 - 37
+From demand: 41 Between nodes: 4 to 9 :: 4 - 11 - 12 - 9 :: with length 3700
+ Slots : 18 - 21
+From demand: 42 Between nodes: 4 to 10 :: 4 - 5 - 6 - 10 :: with length 2900
+ Slots : 45 - 48
+From demand: 43 Between nodes: 4 to 11 :: 4 - 11 :: with length 2400
+ Slots : 7 - 10
+From demand: 44 Between nodes: 4 to 12 :: 4 - 11 - 12 :: with length 3200
+ Slots : 37 - 40
+From demand: 45 Between nodes: 4 to 13 :: 4 - 5 - 6 - 13 :: with length 3700
+ Slots : 5 - 8
+From demand: 46 Between nodes: 4 to 14 :: 4 - 11 - 14 :: with length 3200
+ Slots : 12 - 15
+From demand: 47 Between nodes: 5 to 6 :: 5 - 6 :: with length 1100
+ Slots : 51 - 56
+From demand: 48 Between nodes: 5 to 7 :: 5 - 7 :: with length 800
+ Slots : 4 - 9
+From demand: 49 Between nodes: 5 to 8 :: 5 - 7 - 8 :: with length 1500
+ Slots : 37 - 40
+From demand: 50 Between nodes: 5 to 9 :: 5 - 7 - 8 - 9 :: with length 2200
+ Slots : 22 - 27
+From demand: 51 Between nodes: 5 to 10 :: 5 - 6 - 10 :: with length 2300
+ Slots : 0 - 5
+From demand: 52 Between nodes: 5 to 11 :: 5 - 4 - 11 :: with length 3000
+ Slots : 42 - 45
+From demand: 53 Between nodes: 5 to 12 :: 5 - 6 - 13 - 12 :: with length 3400
+ Slots : 16 - 19
+From demand: 54 Between nodes: 5 to 13 :: 5 - 6 - 13 :: with length 3100
+ Slots : 32 - 35
+From demand: 55 Between nodes: 5 to 14 :: 5 - 6 - 10 - 9 - 14 :: with length 3700
+ Slots : 35 - 38
+From demand: 56 Between nodes: 6 to 7 :: 6 - 5 - 7 :: with length 1900
+ Slots : 40 - 45
+From demand: 57 Between nodes: 6 to 8 :: 6 - 5 - 7 - 8 :: with length 2600
+ Slots : 10 - 13
+From demand: 58 Between nodes: 6 to 9 :: 6 - 13 - 12 - 9 :: with length 2800
+ Slots : 42 - 45
+From demand: 59 Between nodes: 6 to 10 :: 6 - 10 :: with length 1200
+ Slots : 5 - 10
+From demand: 60 Between nodes: 6 to 11 :: 6 - 5 - 4 - 11 :: with length 4100
+ Slots : 23 - 26
+From demand: 61 Between nodes: 6 to 12 :: 6 - 10 - 9 - 12 :: with length 2600
+ Slots : 22 - 27
+From demand: 62 Between nodes: 6 to 13 :: 6 - 13 :: with length 2000
+ Slots : 11 - 16
+From demand: 63 Between nodes: 6 to 14 :: 6 - 10 - 9 - 14 :: with length 2600
+ Slots : 27 - 32
+From demand: 64 Between nodes: 7 to 8 :: 7 - 8 :: with length 700
+ Slots : 45 - 50
+From demand: 65 Between nodes: 7 to 9 :: 7 - 8 - 9 :: with length 1400
+ Slots : 5 - 10
+From demand: 66 Between nodes: 7 to 10 :: 7 - 8 - 9 - 10 :: with length 2300
+ Slots : 0 - 5
+From demand: 67 Between nodes: 7 to 11 :: 7 - 5 - 4 - 11 :: with length 3800
+ Slots : 0 - 3
+From demand: 68 Between nodes: 7 to 12 :: 7 - 8 - 9 - 12 :: with length 1900
+ Slots : 27 - 32
+From demand: 69 Between nodes: 7 to 13 :: 7 - 5 - 6 - 13 :: with length 3900
+ Slots : 48 - 51
+From demand: 70 Between nodes: 7 to 14 :: 7 - 8 - 9 - 14 :: with length 1900
+ Slots : 40 - 45
+From demand: 71 Between nodes: 8 to 9 :: 8 - 9 :: with length 700
+ Slots : 32 - 35
+From demand: 72 Between nodes: 8 to 10 :: 8 - 7 - 5 - 6 - 10 :: with length 3800
+ Slots : 19 - 22
+From demand: 73 Between nodes: 8 to 11 :: 8 - 9 - 14 - 11 :: with length 2000
+ Slots : 53 - 58
+From demand: 74 Between nodes: 8 to 12 :: 8 - 9 - 14 - 13 - 12 :: with length 1800
+ Slots : 48 - 53
+From demand: 75 Between nodes: 8 to 13 :: 8 - 9 - 12 - 13 :: with length 1500
+ Slots : 35 - 40
+From demand: 76 Between nodes: 8 to 14 :: 8 - 9 - 12 - 13 - 14 :: with length 1800
+ Slots : 10 - 15
+From demand: 77 Between nodes: 9 to 10 :: 9 - 10 :: with length 900
+ Slots : 5 - 10
+From demand: 78 Between nodes: 9 to 11 :: 9 - 12 - 11 :: with length 1300
+ Slots : 1 - 4
+From demand: 79 Between nodes: 9 to 12 :: 9 - 12 :: with length 500
+ Slots : 15 - 18
+From demand: 80 Between nodes: 9 to 13 :: 9 - 14 - 13 :: with length 800
+ Slots : 15 - 20
+From demand: 81 Between nodes: 9 to 14 :: 9 - 14 :: with length 500
+ Slots : 21 - 27
+From demand: 82 Between nodes: 10 to 11 :: 10 - 9 - 12 - 11 :: with length 2200
+ Slots : 46 - 49
+From demand: 83 Between nodes: 10 to 12 :: 10 - 9 - 12 :: with length 1400
+ Slots : 49 - 54
+From demand: 84 Between nodes: 10 to 13 :: 10 - 6 - 13 :: with length 3200
+ Slots : 54 - 57
+From demand: 85 Between nodes: 10 to 14 :: 10 - 9 - 14 :: with length 1400
+ Slots : 10 - 15
+From demand: 86 Between nodes: 11 to 12 :: 11 - 12 :: with length 800
+ Slots : 29 - 34
+From demand: 87 Between nodes: 11 to 13 :: 11 - 14 - 13 :: with length 1100
+ Slots : 40 - 45
+From demand: 88 Between nodes: 11 to 14 :: 11 - 14 :: with length 800
+ Slots : 8 - 11
+From demand: 89 Between nodes: 12 to 13 :: 12 - 13 :: with length 300
+ Slots : 1 - 7
+From demand: 90 Between nodes: 12 to 14 :: 12 - 9 - 14 :: with length 1000
+ Slots : 4 - 10
+From demand: 91 Between nodes: 13 to 14 :: 13 - 14 :: with length 300
+ Slots : 1 - 7
+
+Upper Bound UPDATED: 58
+Lower Bound: 50
+TIME == Finding cliques duration in seconds: 10
+
+---------------BEGIN OF Forbidden Cliques Information------------------
+Size: 17| Omega: 53
+Clique: ( 5 8 9 11 12 13 17 20 21 23 24 28 31 32 34 35 36 )
+Paths of this clique:
+Edges: (1,3) (3,6) Path Lenght: 3600
+Edges: (1,3) (3,6) (6,10) (9,10) Path Lenght: 5700
+Edges: (1,3) (3,6) (6,10) Path Lenght: 4800
+Edges: (1,3) (3,6) (6,13) (12,13) Path Lenght: 5900
+Edges: (1,3) (3,6) (6,13) Path Lenght: 5600
+Edges: (1,3) (3,6) (6,13) (13,14) Path Lenght: 5900
+Edges: (2,3) (3,6) Path Lenght: 2600
+Edges: (2,3) (3,6) (6,10) (9,10) Path Lenght: 4700
+Edges: (2,3) (3,6) (6,10) Path Lenght: 3800
+Edges: (2,3) (3,6) (6,13) (12,13) Path Lenght: 4900
+Edges: (2,3) (3,6) (6,13) Path Lenght: 4600
+Edges: (3,6) Path Lenght: 2000
+Edges: (3,6) (6,10) (9,10) Path Lenght: 4100
+Edges: (3,6) (6,10) Path Lenght: 3200
+Edges: (3,6) (6,13) (12,13) Path Lenght: 4300
+Edges: (3,6) (6,13) Path Lenght: 4000
+Edges: (3,6) (6,13) (13,14) Path Lenght: 4300
+-------- 
+
+Size: 13| Omega: 53
+Clique: ( 6 18 29 40 49 50 57 64 65 66 68 70 72 )
+Paths of this clique:
+Edges: (1,8) (7,8) Path Lenght: 3500
+Edges: (1,2) (1,8) (7,8) Path Lenght: 4600
+Edges: (2,3) (1,2) (1,8) (7,8) Path Lenght: 5200
+Edges: (4,5) (5,7) (7,8) Path Lenght: 2100
+Edges: (5,7) (7,8) Path Lenght: 1500
+Edges: (5,7) (7,8) (8,9) Path Lenght: 2200
+Edges: (5,6) (5,7) (7,8) Path Lenght: 2600
+Edges: (7,8) Path Lenght: 700
+Edges: (7,8) (8,9) Path Lenght: 1400
+Edges: (7,8) (8,9) (9,10) Path Lenght: 2300
+Edges: (7,8) (8,9) (9,12) Path Lenght: 1900
+Edges: (7,8) (8,9) (9,14) Path Lenght: 1900
+Edges: (7,8) (5,7) (5,6) (6,10) Path Lenght: 3800
+-------- 
+
+
+---------------END OF Forbidden Cliques Information------------------
+
+ITERATION FINISHED
+
+---------------BEGIN OF ILP Min Cost Multi Commodity Cplex------------------
+Number of demands : 91
+Number of arcs : 42
+Number of nodes : 14
+
+Number of variables = 3823
+
+Capacity :50
+
+---------------END OF ILP Min Cost Multi Commodity Cplex------------------
+TIME == MCMCF duration in seconds: 0
+Output - MCMCF Problem - 
+Capacity = 50
+Routing : 
+From demand: 1 Between nodes: 1 to 2 :: 1 - 2 :: with length 1100
+From demand: 2 Between nodes: 1 to 3 :: 1 - 2 - 3 :: with length 1700
+From demand: 3 Between nodes: 1 to 4 :: 1 - 2 - 4 :: with length 2100
+From demand: 4 Between nodes: 1 to 5 :: 1 - 2 - 4 - 5 :: with length 2700
+From demand: 5 Between nodes: 1 to 6 :: 1 - 3 - 6 :: with length 3600
+From demand: 6 Between nodes: 1 to 7 :: 1 - 2 - 4 - 5 - 7 :: with length 3500
+From demand: 7 Between nodes: 1 to 8 :: 1 - 8 :: with length 2800
+From demand: 8 Between nodes: 1 to 9 :: 1 - 2 - 4 - 11 - 12 - 9 :: with length 5800
+From demand: 9 Between nodes: 1 to 10 :: 1 - 3 - 6 - 10 :: with length 4800
+From demand: 10 Between nodes: 1 to 11 :: 1 - 2 - 4 - 11 :: with length 4500
+From demand: 11 Between nodes: 1 to 12 :: 1 - 3 - 6 - 13 - 12 :: with length 5900
+From demand: 12 Between nodes: 1 to 13 :: 1 - 3 - 6 - 13 :: with length 5600
+From demand: 13 Between nodes: 1 to 14 :: 1 - 3 - 6 - 13 - 14 :: with length 5900
+From demand: 14 Between nodes: 2 to 3 :: 2 - 1 - 3 :: with length 2700
+From demand: 15 Between nodes: 2 to 4 :: 2 - 4 :: with length 1000
+From demand: 16 Between nodes: 2 to 5 :: 2 - 4 - 5 :: with length 1600
+From demand: 17 Between nodes: 2 to 6 :: 2 - 3 - 6 :: with length 2600
+From demand: 18 Between nodes: 2 to 7 :: 2 - 1 - 8 - 7 :: with length 4600
+From demand: 19 Between nodes: 2 to 8 :: 2 - 1 - 8 :: with length 3900
+From demand: 20 Between nodes: 2 to 9 :: 2 - 4 - 11 - 12 - 9 :: with length 4700
+From demand: 21 Between nodes: 2 to 10 :: 2 - 3 - 6 - 10 :: with length 3800
+From demand: 22 Between nodes: 2 to 11 :: 2 - 3 - 6 - 10 - 9 - 12 - 11 :: with length 6000
+From demand: 23 Between nodes: 2 to 12 :: 2 - 4 - 11 - 12 :: with length 4200
+From demand: 24 Between nodes: 2 to 13 :: 2 - 4 - 11 - 14 - 13 :: with length 4500
+From demand: 25 Between nodes: 2 to 14 :: 2 - 3 - 6 - 13 - 14 :: with length 4900
+From demand: 26 Between nodes: 3 to 4 :: 3 - 2 - 4 :: with length 1600
+From demand: 27 Between nodes: 3 to 5 :: 3 - 2 - 4 - 5 :: with length 2200
+From demand: 28 Between nodes: 3 to 6 :: 3 - 6 :: with length 2000
+From demand: 29 Between nodes: 3 to 7 :: 3 - 6 - 5 - 7 :: with length 3900
+From demand: 30 Between nodes: 3 to 8 :: 3 - 2 - 1 - 8 :: with length 4500
+From demand: 31 Between nodes: 3 to 9 :: 3 - 6 - 10 - 9 :: with length 4100
+From demand: 32 Between nodes: 3 to 10 :: 3 - 6 - 10 :: with length 3200
+From demand: 33 Between nodes: 3 to 11 :: 3 - 2 - 4 - 11 :: with length 4000
+From demand: 34 Between nodes: 3 to 12 :: 3 - 6 - 13 - 12 :: with length 4300
+From demand: 35 Between nodes: 3 to 13 :: 3 - 6 - 13 :: with length 4000
+From demand: 36 Between nodes: 3 to 14 :: 3 - 6 - 10 - 9 - 14 :: with length 4600
+From demand: 37 Between nodes: 4 to 5 :: 4 - 5 :: with length 600
+From demand: 38 Between nodes: 4 to 6 :: 4 - 5 - 6 :: with length 1700
+From demand: 39 Between nodes: 4 to 7 :: 4 - 5 - 7 :: with length 1400
+From demand: 40 Between nodes: 4 to 8 :: 4 - 5 - 7 - 8 :: with length 2100
+From demand: 41 Between nodes: 4 to 9 :: 4 - 5 - 6 - 10 - 9 :: with length 3800
+From demand: 42 Between nodes: 4 to 10 :: 4 - 11 - 14 - 9 - 10 :: with length 4600
+From demand: 43 Between nodes: 4 to 11 :: 4 - 11 :: with length 2400
+From demand: 44 Between nodes: 4 to 12 :: 4 - 11 - 12 :: with length 3200
+From demand: 45 Between nodes: 4 to 13 :: 4 - 11 - 12 - 13 :: with length 3500
+From demand: 46 Between nodes: 4 to 14 :: 4 - 11 - 14 :: with length 3200
+From demand: 47 Between nodes: 5 to 6 :: 5 - 6 :: with length 1100
+From demand: 48 Between nodes: 5 to 7 :: 5 - 7 :: with length 800
+From demand: 49 Between nodes: 5 to 8 :: 5 - 7 - 8 :: with length 1500
+From demand: 50 Between nodes: 5 to 9 :: 5 - 7 - 8 - 9 :: with length 2200
+From demand: 51 Between nodes: 5 to 10 :: 5 - 6 - 10 :: with length 2300
+From demand: 52 Between nodes: 5 to 11 :: 5 - 6 - 10 - 9 - 12 - 11 :: with length 4500
+From demand: 53 Between nodes: 5 to 12 :: 5 - 6 - 13 - 12 :: with length 3400
+From demand: 54 Between nodes: 5 to 13 :: 5 - 6 - 13 :: with length 3100
+From demand: 55 Between nodes: 5 to 14 :: 5 - 6 - 13 - 14 :: with length 3400
+From demand: 56 Between nodes: 6 to 7 :: 6 - 5 - 7 :: with length 1900
+From demand: 57 Between nodes: 6 to 8 :: 6 - 5 - 7 - 8 :: with length 2600
+From demand: 58 Between nodes: 6 to 9 :: 6 - 10 - 9 :: with length 2100
+From demand: 59 Between nodes: 6 to 10 :: 6 - 10 :: with length 1200
+From demand: 60 Between nodes: 6 to 11 :: 6 - 5 - 4 - 11 :: with length 4100
+From demand: 61 Between nodes: 6 to 12 :: 6 - 13 - 12 :: with length 2300
+From demand: 62 Between nodes: 6 to 13 :: 6 - 13 :: with length 2000
+From demand: 63 Between nodes: 6 to 14 :: 6 - 13 - 14 :: with length 2300
+From demand: 64 Between nodes: 7 to 8 :: 7 - 8 :: with length 700
+From demand: 65 Between nodes: 7 to 9 :: 7 - 8 - 9 :: with length 1400
+From demand: 66 Between nodes: 7 to 10 :: 7 - 8 - 9 - 10 :: with length 2300
+From demand: 67 Between nodes: 7 to 11 :: 7 - 5 - 4 - 11 :: with length 3800
+From demand: 68 Between nodes: 7 to 12 :: 7 - 8 - 9 - 12 :: with length 1900
+From demand: 69 Between nodes: 7 to 13 :: 7 - 5 - 4 - 11 - 14 - 13 :: with length 4900
+From demand: 70 Between nodes: 7 to 14 :: 7 - 8 - 9 - 12 - 13 - 14 :: with length 2500
+From demand: 71 Between nodes: 8 to 9 :: 8 - 9 :: with length 700
+From demand: 72 Between nodes: 8 to 10 :: 8 - 7 - 5 - 6 - 10 :: with length 3800
+From demand: 73 Between nodes: 8 to 11 :: 8 - 9 - 12 - 11 :: with length 2000
+From demand: 74 Between nodes: 8 to 12 :: 8 - 9 - 14 - 11 - 12 :: with length 2800
+From demand: 75 Between nodes: 8 to 13 :: 8 - 9 - 14 - 13 :: with length 1500
+From demand: 76 Between nodes: 8 to 14 :: 8 - 9 - 14 :: with length 1200
+From demand: 77 Between nodes: 9 to 10 :: 9 - 10 :: with length 900
+From demand: 78 Between nodes: 9 to 11 :: 9 - 14 - 11 :: with length 1300
+From demand: 79 Between nodes: 9 to 12 :: 9 - 12 :: with length 500
+From demand: 80 Between nodes: 9 to 13 :: 9 - 12 - 13 :: with length 800
+From demand: 81 Between nodes: 9 to 14 :: 9 - 14 :: with length 500
+From demand: 82 Between nodes: 10 to 11 :: 10 - 6 - 13 - 12 - 11 :: with length 4300
+From demand: 83 Between nodes: 10 to 12 :: 10 - 9 - 12 :: with length 1400
+From demand: 84 Between nodes: 10 to 13 :: 10 - 9 - 14 - 13 :: with length 1700
+From demand: 85 Between nodes: 10 to 14 :: 10 - 9 - 12 - 11 - 14 :: with length 3000
+From demand: 86 Between nodes: 11 to 12 :: 11 - 14 - 9 - 12 :: with length 1800
+From demand: 87 Between nodes: 11 to 13 :: 11 - 12 - 13 :: with length 1100
+From demand: 88 Between nodes: 11 to 14 :: 11 - 12 - 13 - 14 :: with length 1400
+From demand: 89 Between nodes: 12 to 13 :: 12 - 13 :: with length 300
+From demand: 90 Between nodes: 12 to 14 :: 12 - 13 - 14 :: with length 600
+From demand: 91 Between nodes: 13 to 14 :: 13 - 14 :: with length 300
+
+
+---------------BEGIN OF Possible paths Information------------------
+For demand: 1
+Edges: (1,2) Path Lenght: 1100
+Edges: (1,3) (2,3) Path Lenght: 2200
+***********************: 
+For demand: 2
+Edges: (1,3) Path Lenght: 1600
+Edges: (1,2) (2,3) Path Lenght: 1700
+***********************: 
+For demand: 3
+Edges: (1,2) (2,4) Path Lenght: 2100
+***********************: 
+For demand: 4
+Edges: (1,3) (2,3) (2,4) (4,5) Path Lenght: 3800
+Edges: (1,3) (3,6) (5,6) Path Lenght: 4700
+Edges: (1,2) (2,4) (4,5) Path Lenght: 2700
+***********************: 
+For demand: 5
+Edges: (1,2) (2,4) (4,5) (5,6) Path Lenght: 3800
+Edges: (1,3) (3,6) Path Lenght: 3600
+***********************: 
+For demand: 6
+Edges: (1,8) (7,8) Path Lenght: 3500
+Edges: (1,3) (3,6) (5,6) (5,7) Path Lenght: 5500
+Edges: (1,2) (2,4) (4,5) (5,7) Path Lenght: 3500
+***********************: 
+For demand: 7
+Edges: (1,8) Path Lenght: 2800
+***********************: 
+For demand: 8
+Edges: (1,3) (3,6) (6,10) (9,10) Path Lenght: 5700
+Edges: (1,2) (2,4) (4,11) (11,12) (9,12) Path Lenght: 5800
+***********************: 
+For demand: 9
+Edges: (1,3) (3,6) (6,10) Path Lenght: 4800
+Edges: (1,2) (2,3) (3,6) (6,10) Path Lenght: 4900
+***********************: 
+For demand: 10
+Edges: (1,2) (2,4) (4,11) Path Lenght: 4500
+***********************: 
+For demand: 11
+Edges: (1,2) (2,4) (4,11) (11,12) Path Lenght: 5300
+Edges: (1,3) (3,6) (6,13) (12,13) Path Lenght: 5900
+***********************: 
+For demand: 12
+Edges: (1,3) (3,6) (6,13) Path Lenght: 5600
+***********************: 
+For demand: 13
+Edges: (1,2) (2,3) (3,6) (6,13) (13,14) Path Lenght: 6000
+Edges: (1,3) (3,6) (6,13) (13,14) Path Lenght: 5900
+***********************: 
+For demand: 14
+Edges: (2,3) Path Lenght: 600
+Edges: (1,2) (1,3) Path Lenght: 2700
+***********************: 
+For demand: 15
+Edges: (2,4) Path Lenght: 1000
+***********************: 
+For demand: 16
+Edges: (2,4) (4,5) Path Lenght: 1600
+***********************: 
+For demand: 17
+Edges: (2,3) (3,6) Path Lenght: 2600
+***********************: 
+For demand: 18
+Edges: (2,4) (4,5) (5,7) Path Lenght: 2400
+Edges: (1,2) (1,8) (7,8) Path Lenght: 4600
+***********************: 
+For demand: 19
+Edges: (1,2) (1,8) Path Lenght: 3900
+***********************: 
+For demand: 20
+Edges: (2,3) (3,6) (6,10) (9,10) Path Lenght: 4700
+Edges: (2,4) (4,11) (11,12) (9,12) Path Lenght: 4700
+***********************: 
+For demand: 21
+Edges: (2,3) (3,6) (6,10) Path Lenght: 3800
+Edges: (2,4) (4,11) (11,12) (9,12) (9,10) Path Lenght: 5600
+***********************: 
+For demand: 22
+Edges: (2,4) (4,11) Path Lenght: 3400
+Edges: (2,3) (3,6) (6,10) (9,10) (9,12) (11,12) Path Lenght: 6000
+***********************: 
+For demand: 23
+Edges: (2,3) (3,6) (6,13) (12,13) Path Lenght: 4900
+Edges: (2,4) (4,11) (11,12) Path Lenght: 4200
+***********************: 
+For demand: 24
+Edges: (2,3) (3,6) (6,13) Path Lenght: 4600
+Edges: (2,4) (4,11) (11,14) (13,14) Path Lenght: 4500
+***********************: 
+For demand: 25
+Edges: (2,3) (3,6) (6,10) (9,10) (9,14) Path Lenght: 5200
+Edges: (2,4) (4,11) (11,14) Path Lenght: 4200
+Edges: (2,3) (3,6) (6,13) (13,14) Path Lenght: 4900
+***********************: 
+For demand: 26
+Edges: (2,3) (2,4) Path Lenght: 1600
+***********************: 
+For demand: 27
+Edges: (2,3) (2,4) (4,5) Path Lenght: 2200
+***********************: 
+For demand: 28
+Edges: (3,6) Path Lenght: 2000
+***********************: 
+For demand: 29
+Edges: (3,6) (5,6) (5,7) Path Lenght: 3900
+Edges: (2,3) (1,2) (1,8) (7,8) Path Lenght: 5200
+***********************: 
+For demand: 30
+Edges: (1,3) (1,8) Path Lenght: 4400
+Edges: (2,3) (1,2) (1,8) Path Lenght: 4500
+***********************: 
+For demand: 31
+Edges: (3,6) (6,10) (9,10) Path Lenght: 4100
+***********************: 
+For demand: 32
+Edges: (3,6) (6,10) Path Lenght: 3200
+***********************: 
+For demand: 33
+Edges: (2,3) (2,4) (4,11) Path Lenght: 4000
+***********************: 
+For demand: 34
+Edges: (2,3) (2,4) (4,11) (11,12) Path Lenght: 4800
+Edges: (3,6) (6,13) (12,13) Path Lenght: 4300
+***********************: 
+For demand: 35
+Edges: (3,6) (6,13) Path Lenght: 4000
+***********************: 
+For demand: 36
+Edges: (3,6) (6,13) (13,14) Path Lenght: 4300
+Edges: (3,6) (6,10) (9,10) (9,14) Path Lenght: 4600
+***********************: 
+For demand: 37
+Edges: (4,5) Path Lenght: 600
+***********************: 
+For demand: 38
+Edges: (4,5) (5,6) Path Lenght: 1700
+***********************: 
+For demand: 39
+Edges: (4,5) (5,7) Path Lenght: 1400
+***********************: 
+For demand: 40
+Edges: (4,5) (5,7) (7,8) Path Lenght: 2100
+***********************: 
+For demand: 41
+Edges: (4,11) (11,12) (9,12) Path Lenght: 3700
+Edges: (4,5) (5,6) (6,10) (9,10) Path Lenght: 3800
+***********************: 
+For demand: 42
+Edges: (4,5) (5,6) (6,10) Path Lenght: 2900
+Edges: (4,11) (11,12) (9,12) (9,10) Path Lenght: 4600
+Edges: (4,11) (11,14) (9,14) (9,10) Path Lenght: 4600
+***********************: 
+For demand: 43
+Edges: (4,11) Path Lenght: 2400
+***********************: 
+For demand: 44
+Edges: (4,11) (11,12) Path Lenght: 3200
+***********************: 
+For demand: 45
+Edges: (4,11) (11,12) (12,13) Path Lenght: 3500
+Edges: (4,5) (5,6) (6,13) Path Lenght: 3700
+***********************: 
+For demand: 46
+Edges: (4,11) (11,14) Path Lenght: 3200
+***********************: 
+For demand: 47
+Edges: (5,6) Path Lenght: 1100
+***********************: 
+For demand: 48
+Edges: (5,7) Path Lenght: 800
+***********************: 
+For demand: 49
+Edges: (5,7) (7,8) Path Lenght: 1500
+***********************: 
+For demand: 50
+Edges: (5,7) (7,8) (8,9) Path Lenght: 2200
+***********************: 
+For demand: 51
+Edges: (5,6) (6,10) Path Lenght: 2300
+***********************: 
+For demand: 52
+Edges: (4,5) (4,11) Path Lenght: 3000
+Edges: (5,6) (6,10) (9,10) (9,14) (11,14) Path Lenght: 4500
+Edges: (5,6) (6,10) (9,10) (9,12) (11,12) Path Lenght: 4500
+***********************: 
+For demand: 53
+Edges: (5,6) (6,13) (12,13) Path Lenght: 3400
+***********************: 
+For demand: 54
+Edges: (5,6) (6,13) Path Lenght: 3100
+***********************: 
+For demand: 55
+Edges: (5,6) (6,10) (9,10) (9,14) Path Lenght: 3700
+Edges: (4,5) (4,11) (11,14) Path Lenght: 3800
+Edges: (5,6) (6,13) (13,14) Path Lenght: 3400
+***********************: 
+For demand: 56
+Edges: (5,6) (5,7) Path Lenght: 1900
+***********************: 
+For demand: 57
+Edges: (5,6) (5,7) (7,8) Path Lenght: 2600
+***********************: 
+For demand: 58
+Edges: (6,13) (12,13) (9,12) Path Lenght: 2800
+Edges: (6,10) (9,10) Path Lenght: 2100
+***********************: 
+For demand: 59
+Edges: (6,10) Path Lenght: 1200
+***********************: 
+For demand: 60
+Edges: (6,13) (12,13) (11,12) Path Lenght: 3100
+Edges: (5,6) (4,5) (4,11) Path Lenght: 4100
+***********************: 
+For demand: 61
+Edges: (6,13) (12,13) Path Lenght: 2300
+Edges: (6,10) (9,10) (9,12) Path Lenght: 2600
+***********************: 
+For demand: 62
+Edges: (6,13) Path Lenght: 2000
+***********************: 
+For demand: 63
+Edges: (6,10) (9,10) (9,14) Path Lenght: 2600
+Edges: (6,13) (13,14) Path Lenght: 2300
+***********************: 
+For demand: 64
+Edges: (7,8) Path Lenght: 700
+***********************: 
+For demand: 65
+Edges: (7,8) (8,9) Path Lenght: 1400
+***********************: 
+For demand: 66
+Edges: (7,8) (8,9) (9,10) Path Lenght: 2300
+***********************: 
+For demand: 67
+Edges: (5,7) (5,6) (6,13) (12,13) (11,12) Path Lenght: 5000
+Edges: (5,7) (4,5) (4,11) Path Lenght: 3800
+***********************: 
+For demand: 68
+Edges: (7,8) (8,9) (9,12) Path Lenght: 1900
+Edges: (7,8) (8,9) (9,14) (13,14) (12,13) Path Lenght: 2500
+***********************: 
+For demand: 69
+Edges: (5,7) (5,6) (6,13) Path Lenght: 3900
+Edges: (5,7) (4,5) (4,11) (11,12) (12,13) Path Lenght: 4900
+Edges: (5,7) (4,5) (4,11) (11,14) (13,14) Path Lenght: 4900
+***********************: 
+For demand: 70
+Edges: (7,8) (8,9) (9,14) Path Lenght: 1900
+Edges: (7,8) (8,9) (9,12) (12,13) (13,14) Path Lenght: 2500
+***********************: 
+For demand: 71
+Edges: (7,8) (5,7) (4,5) (4,11) (11,12) (9,12) Path Lenght: 5800
+Edges: (8,9) Path Lenght: 700
+***********************: 
+For demand: 72
+Edges: (7,8) (5,7) (5,6) (6,10) Path Lenght: 3800
+***********************: 
+For demand: 73
+Edges: (8,9) (9,12) (11,12) Path Lenght: 2000
+Edges: (8,9) (9,14) (11,14) Path Lenght: 2000
+***********************: 
+For demand: 74
+Edges: (8,9) (9,14) (13,14) (12,13) Path Lenght: 1800
+Edges: (8,9) (9,12) Path Lenght: 1200
+Edges: (8,9) (9,14) (11,14) (11,12) Path Lenght: 2800
+***********************: 
+For demand: 75
+Edges: (8,9) (9,12) (12,13) Path Lenght: 1500
+Edges: (8,9) (9,14) (13,14) Path Lenght: 1500
+***********************: 
+For demand: 76
+Edges: (8,9) (9,14) Path Lenght: 1200
+Edges: (8,9) (9,12) (12,13) (13,14) Path Lenght: 1800
+***********************: 
+For demand: 77
+Edges: (9,10) Path Lenght: 900
+***********************: 
+For demand: 78
+Edges: (9,12) (11,12) Path Lenght: 1300
+Edges: (9,14) (11,14) Path Lenght: 1300
+***********************: 
+For demand: 79
+Edges: (9,12) Path Lenght: 500
+***********************: 
+For demand: 80
+Edges: (9,12) (12,13) Path Lenght: 800
+Edges: (9,14) (13,14) Path Lenght: 800
+***********************: 
+For demand: 81
+Edges: (9,14) Path Lenght: 500
+***********************: 
+For demand: 82
+Edges: (9,10) (9,12) (11,12) Path Lenght: 2200
+Edges: (6,10) (6,13) (12,13) (11,12) Path Lenght: 4300
+***********************: 
+For demand: 83
+Edges: (9,10) (9,12) Path Lenght: 1400
+Edges: (9,10) (9,14) (11,14) (11,12) Path Lenght: 3000
+***********************: 
+For demand: 84
+Edges: (6,10) (6,13) Path Lenght: 3200
+Edges: (9,10) (9,12) (12,13) Path Lenght: 1700
+Edges: (9,10) (9,14) (13,14) Path Lenght: 1700
+***********************: 
+For demand: 85
+Edges: (9,10) (9,14) Path Lenght: 1400
+Edges: (9,10) (9,12) (12,13) (13,14) Path Lenght: 2000
+Edges: (9,10) (9,12) (11,12) (11,14) Path Lenght: 3000
+***********************: 
+For demand: 86
+Edges: (11,12) Path Lenght: 800
+Edges: (11,14) (9,14) (9,12) Path Lenght: 1800
+***********************: 
+For demand: 87
+Edges: (11,12) (12,13) Path Lenght: 1100
+Edges: (11,14) (13,14) Path Lenght: 1100
+***********************: 
+For demand: 88
+Edges: (11,14) Path Lenght: 800
+Edges: (11,12) (9,12) (9,14) Path Lenght: 1800
+Edges: (11,12) (12,13) (13,14) Path Lenght: 1400
+***********************: 
+For demand: 89
+Edges: (12,13) Path Lenght: 300
+***********************: 
+For demand: 90
+Edges: (9,12) (9,14) Path Lenght: 1000
+Edges: (11,12) (11,14) Path Lenght: 1600
+Edges: (12,13) (13,14) Path Lenght: 600
+***********************: 
+For demand: 91
+Edges: (13,14) Path Lenght: 300
+***********************: 
+
+---------------END OF Possible paths Information------------------
+
+---------------BEGIN OF ILP Edge Path Formulation Cplex------------------
+Number of demands : 91
+Number of Edges : 21
+Number of nodes : 14
+Number of slices from MCMCF : 120
+
+Number of variables = 242304
+
+Objective Value: 120
+
+Gap: 0.583333
+
+---------------END OF ILP Edge Path Formulation Cplex------------------
+TIME == RSA duration in seconds: 1801
+RSA TOOK TOO LONG
+Solution found but there is a gap of: 0.583333Output - RSA Problem - 
+Interval chromatic number = 120
+Routing : 
+From demand: 1 Between nodes: 1 to 2 :: 1 - 2 :: with length 1100
+ Slots : 27 - 32
+From demand: 2 Between nodes: 1 to 3 :: 1 - 3 :: with length 1600
+ Slots : 25 - 30
+From demand: 3 Between nodes: 1 to 4 :: 1 - 2 - 4 :: with length 2100
+ Slots : 71 - 76
+From demand: 4 Between nodes: 1 to 5 :: 1 - 3 - 6 - 5 :: with length 4700
+ Slots : 18 - 21
+From demand: 5 Between nodes: 1 to 6 :: 1 - 3 - 6 :: with length 3600
+ Slots : 68 - 71
+From demand: 6 Between nodes: 1 to 7 :: 1 - 8 - 7 :: with length 3500
+ Slots : 28 - 31
+From demand: 7 Between nodes: 1 to 8 :: 1 - 8 :: with length 2800
+ Slots : 89 - 92
+From demand: 8 Between nodes: 1 to 9 :: 1 - 3 - 6 - 10 - 9 :: with length 5700
+ Slots : 64 - 67
+From demand: 9 Between nodes: 1 to 10 :: 1 - 2 - 3 - 6 - 10 :: with length 4900
+ Slots : 91 - 94
+From demand: 10 Between nodes: 1 to 11 :: 1 - 2 - 4 - 11 :: with length 4500
+ Slots : 94 - 97
+From demand: 11 Between nodes: 1 to 12 :: 1 - 3 - 6 - 13 - 12 :: with length 5900
+ Slots : 9 - 12
+From demand: 12 Between nodes: 1 to 13 :: 1 - 3 - 6 - 13 :: with length 5600
+ Slots : 55 - 58
+From demand: 13 Between nodes: 1 to 14 :: 1 - 3 - 6 - 13 - 14 :: with length 5900
+ Slots : 12 - 15
+From demand: 14 Between nodes: 2 to 3 :: 2 - 3 :: with length 600
+ Slots : 81 - 86
+From demand: 15 Between nodes: 2 to 4 :: 2 - 4 :: with length 1000
+ Slots : 42 - 47
+From demand: 16 Between nodes: 2 to 5 :: 2 - 4 - 5 :: with length 1600
+ Slots : 36 - 41
+From demand: 17 Between nodes: 2 to 6 :: 2 - 3 - 6 :: with length 2600
+ Slots : 47 - 50
+From demand: 18 Between nodes: 2 to 7 :: 2 - 4 - 5 - 7 :: with length 2400
+ Slots : 25 - 28
+From demand: 19 Between nodes: 2 to 8 :: 2 - 1 - 8 :: with length 3900
+ Slots : 50 - 53
+From demand: 20 Between nodes: 2 to 9 :: 2 - 4 - 11 - 12 - 9 :: with length 4700
+ Slots : 110 - 113
+From demand: 21 Between nodes: 2 to 10 :: 2 - 4 - 11 - 12 - 9 - 10 :: with length 5600
+ Slots : 22 - 25
+From demand: 22 Between nodes: 2 to 11 :: 2 - 4 - 11 :: with length 3400
+ Slots : 101 - 104
+From demand: 23 Between nodes: 2 to 12 :: 2 - 4 - 11 - 12 :: with length 4200
+ Slots : 68 - 71
+From demand: 24 Between nodes: 2 to 13 :: 2 - 4 - 11 - 14 - 13 :: with length 4500
+ Slots : 85 - 88
+From demand: 25 Between nodes: 2 to 14 :: 2 - 4 - 11 - 14 :: with length 4200
+ Slots : 81 - 84
+From demand: 26 Between nodes: 3 to 4 :: 3 - 2 - 4 :: with length 1600
+ Slots : 11 - 16
+From demand: 27 Between nodes: 3 to 5 :: 3 - 2 - 4 - 5 :: with length 2200
+ Slots : 105 - 110
+From demand: 28 Between nodes: 3 to 6 :: 3 - 6 :: with length 2000
+ Slots : 113 - 118
+From demand: 29 Between nodes: 3 to 7 :: 3 - 6 - 5 - 7 :: with length 3900
+ Slots : 44 - 47
+From demand: 30 Between nodes: 3 to 8 :: 3 - 2 - 1 - 8 :: with length 4500
+ Slots : 41 - 44
+From demand: 31 Between nodes: 3 to 9 :: 3 - 6 - 10 - 9 :: with length 4100
+ Slots : 29 - 32
+From demand: 32 Between nodes: 3 to 10 :: 3 - 6 - 10 :: with length 3200
+ Slots : 105 - 108
+From demand: 33 Between nodes: 3 to 11 :: 3 - 2 - 4 - 11 :: with length 4000
+ Slots : 29 - 32
+From demand: 34 Between nodes: 3 to 12 :: 3 - 6 - 13 - 12 :: with length 4300
+ Slots : 83 - 86
+From demand: 35 Between nodes: 3 to 13 :: 3 - 6 - 13 :: with length 4000
+ Slots : 25 - 28
+From demand: 36 Between nodes: 3 to 14 :: 3 - 6 - 13 - 14 :: with length 4300
+ Slots : 76 - 79
+From demand: 37 Between nodes: 4 to 5 :: 4 - 5 :: with length 600
+ Slots : 6 - 11
+From demand: 38 Between nodes: 4 to 6 :: 4 - 5 - 6 :: with length 1700
+ Slots : 56 - 61
+From demand: 39 Between nodes: 4 to 7 :: 4 - 5 - 7 :: with length 1400
+ Slots : 81 - 86
+From demand: 40 Between nodes: 4 to 8 :: 4 - 5 - 7 - 8 :: with length 2100
+ Slots : 64 - 69
+From demand: 41 Between nodes: 4 to 9 :: 4 - 11 - 12 - 9 :: with length 3700
+ Slots : 34 - 37
+From demand: 42 Between nodes: 4 to 10 :: 4 - 5 - 6 - 10 :: with length 2900
+ Slots : 21 - 24
+From demand: 43 Between nodes: 4 to 11 :: 4 - 11 :: with length 2400
+ Slots : 46 - 49
+From demand: 44 Between nodes: 4 to 12 :: 4 - 11 - 12 :: with length 3200
+ Slots : 113 - 116
+From demand: 45 Between nodes: 4 to 13 :: 4 - 11 - 12 - 13 :: with length 3500
+ Slots : 63 - 66
+From demand: 46 Between nodes: 4 to 14 :: 4 - 11 - 14 :: with length 3200
+ Slots : 18 - 21
+From demand: 47 Between nodes: 5 to 6 :: 5 - 6 :: with length 1100
+ Slots : 11 - 16
+From demand: 48 Between nodes: 5 to 7 :: 5 - 7 :: with length 800
+ Slots : 92 - 97
+From demand: 49 Between nodes: 5 to 8 :: 5 - 7 - 8 :: with length 1500
+ Slots : 49 - 52
+From demand: 50 Between nodes: 5 to 9 :: 5 - 7 - 8 - 9 :: with length 2200
+ Slots : 110 - 115
+From demand: 51 Between nodes: 5 to 10 :: 5 - 6 - 10 :: with length 2300
+ Slots : 80 - 85
+From demand: 52 Between nodes: 5 to 11 :: 5 - 4 - 11 :: with length 3000
+ Slots : 0 - 3
+From demand: 53 Between nodes: 5 to 12 :: 5 - 6 - 13 - 12 :: with length 3400
+ Slots : 6 - 9
+From demand: 54 Between nodes: 5 to 13 :: 5 - 6 - 13 :: with length 3100
+ Slots : 103 - 106
+From demand: 55 Between nodes: 5 to 14 :: 5 - 4 - 11 - 14 :: with length 3800
+ Slots : 78 - 81
+From demand: 56 Between nodes: 6 to 7 :: 6 - 5 - 7 :: with length 1900
+ Slots : 75 - 80
+From demand: 57 Between nodes: 6 to 8 :: 6 - 5 - 7 - 8 :: with length 2600
+ Slots : 107 - 110
+From demand: 58 Between nodes: 6 to 9 :: 6 - 13 - 12 - 9 :: with length 2800
+ Slots : 51 - 54
+From demand: 59 Between nodes: 6 to 10 :: 6 - 10 :: with length 1200
+ Slots : 0 - 5
+From demand: 60 Between nodes: 6 to 11 :: 6 - 13 - 12 - 11 :: with length 3100
+ Slots : 99 - 102
+From demand: 61 Between nodes: 6 to 12 :: 6 - 13 - 12 :: with length 2300
+ Slots : 86 - 91
+From demand: 62 Between nodes: 6 to 13 :: 6 - 13 :: with length 2000
+ Slots : 0 - 5
+From demand: 63 Between nodes: 6 to 14 :: 6 - 13 - 14 :: with length 2300
+ Slots : 91 - 96
+From demand: 64 Between nodes: 7 to 8 :: 7 - 8 :: with length 700
+ Slots : 0 - 5
+From demand: 65 Between nodes: 7 to 9 :: 7 - 8 - 9 :: with length 1400
+ Slots : 76 - 81
+From demand: 66 Between nodes: 7 to 10 :: 7 - 8 - 9 - 10 :: with length 2300
+ Slots : 82 - 87
+From demand: 67 Between nodes: 7 to 11 :: 7 - 5 - 6 - 13 - 12 - 11 :: with length 5000
+ Slots : 117 - 120
+From demand: 68 Between nodes: 7 to 12 :: 7 - 8 - 9 - 14 - 13 - 12 :: with length 2500
+ Slots : 33 - 38
+From demand: 69 Between nodes: 7 to 13 :: 7 - 5 - 6 - 13 :: with length 3900
+ Slots : 69 - 72
+From demand: 70 Between nodes: 7 to 14 :: 7 - 8 - 9 - 12 - 13 - 14 :: with length 2500
+ Slots : 44 - 49
+From demand: 71 Between nodes: 8 to 9 :: 8 - 9 :: with length 700
+ Slots : 38 - 41
+From demand: 72 Between nodes: 8 to 10 :: 8 - 7 - 5 - 6 - 10 :: with length 3800
+ Slots : 88 - 91
+From demand: 73 Between nodes: 8 to 11 :: 8 - 9 - 14 - 11 :: with length 2000
+ Slots : 13 - 18
+From demand: 74 Between nodes: 8 to 12 :: 8 - 9 - 12 :: with length 1200
+ Slots : 58 - 63
+From demand: 75 Between nodes: 8 to 13 :: 8 - 9 - 14 - 13 :: with length 1500
+ Slots : 25 - 30
+From demand: 76 Between nodes: 8 to 14 :: 8 - 9 - 14 :: with length 1200
+ Slots : 0 - 5
+From demand: 77 Between nodes: 9 to 10 :: 9 - 10 :: with length 900
+ Slots : 8 - 13
+From demand: 78 Between nodes: 9 to 11 :: 9 - 14 - 11 :: with length 1300
+ Slots : 64 - 67
+From demand: 79 Between nodes: 9 to 12 :: 9 - 12 :: with length 500
+ Slots : 78 - 81
+From demand: 80 Between nodes: 9 to 13 :: 9 - 14 - 13 :: with length 800
+ Slots : 59 - 64
+From demand: 81 Between nodes: 9 to 14 :: 9 - 14 :: with length 500
+ Slots : 99 - 105
+From demand: 82 Between nodes: 10 to 11 :: 10 - 9 - 12 - 11 :: with length 2200
+ Slots : 14 - 17
+From demand: 83 Between nodes: 10 to 12 :: 10 - 9 - 14 - 11 - 12 :: with length 3000
+ Slots : 105 - 110
+From demand: 84 Between nodes: 10 to 13 :: 10 - 6 - 13 :: with length 3200
+ Slots : 36 - 39
+From demand: 85 Between nodes: 10 to 14 :: 10 - 9 - 14 :: with length 1400
+ Slots : 89 - 94
+From demand: 86 Between nodes: 11 to 12 :: 11 - 12 :: with length 800
+ Slots : 7 - 12
+From demand: 87 Between nodes: 11 to 13 :: 11 - 14 - 13 :: with length 1100
+ Slots : 52 - 57
+From demand: 88 Between nodes: 11 to 14 :: 11 - 14 :: with length 800
+ Slots : 33 - 36
+From demand: 89 Between nodes: 12 to 13 :: 12 - 13 :: with length 300
+ Slots : 66 - 72
+From demand: 90 Between nodes: 12 to 14 :: 12 - 13 - 14 :: with length 600
+ Slots : 17 - 23
+From demand: 91 Between nodes: 13 to 14 :: 13 - 14 :: with length 300
+ Slots : 38 - 44
+
+TIME == Finding cliques duration in seconds: 6
+
+---------------BEGIN OF Forbidden Cliques Information------------------
+Size: 17| Omega: 53
+Clique: ( 5 8 9 11 12 13 17 20 21 23 24 28 31 32 34 35 36 )
+Paths of this clique:
+Edges: (1,3) (3,6) Path Lenght: 3600
+Edges: (1,3) (3,6) (6,10) (9,10) Path Lenght: 5700
+Edges: (1,3) (3,6) (6,10) Path Lenght: 4800
+Edges: (1,3) (3,6) (6,13) (12,13) Path Lenght: 5900
+Edges: (1,3) (3,6) (6,13) Path Lenght: 5600
+Edges: (1,3) (3,6) (6,13) (13,14) Path Lenght: 5900
+Edges: (2,3) (3,6) Path Lenght: 2600
+Edges: (2,3) (3,6) (6,10) (9,10) Path Lenght: 4700
+Edges: (2,3) (3,6) (6,10) Path Lenght: 3800
+Edges: (2,3) (3,6) (6,13) (12,13) Path Lenght: 4900
+Edges: (2,3) (3,6) (6,13) Path Lenght: 4600
+Edges: (3,6) Path Lenght: 2000
+Edges: (3,6) (6,10) (9,10) Path Lenght: 4100
+Edges: (3,6) (6,10) Path Lenght: 3200
+Edges: (3,6) (6,13) (12,13) Path Lenght: 4300
+Edges: (3,6) (6,13) Path Lenght: 4000
+Edges: (3,6) (6,13) (13,14) Path Lenght: 4300
+-------- 
+
+Size: 13| Omega: 53
+Clique: ( 6 18 29 40 49 50 57 64 65 66 68 70 72 )
+Paths of this clique:
+Edges: (1,8) (7,8) Path Lenght: 3500
+Edges: (1,2) (1,8) (7,8) Path Lenght: 4600
+Edges: (2,3) (1,2) (1,8) (7,8) Path Lenght: 5200
+Edges: (4,5) (5,7) (7,8) Path Lenght: 2100
+Edges: (5,7) (7,8) Path Lenght: 1500
+Edges: (5,7) (7,8) (8,9) Path Lenght: 2200
+Edges: (5,6) (5,7) (7,8) Path Lenght: 2600
+Edges: (7,8) Path Lenght: 700
+Edges: (7,8) (8,9) Path Lenght: 1400
+Edges: (7,8) (8,9) (9,10) Path Lenght: 2300
+Edges: (7,8) (8,9) (9,12) Path Lenght: 1900
+Edges: (7,8) (8,9) (9,14) Path Lenght: 1900
+Edges: (7,8) (5,7) (5,6) (6,10) Path Lenght: 3800
+-------- 
+
+Size: 14| Omega: 52
+Clique: ( 3 10 15 16 18 20 21 22 23 24 25 26 27 33 )
+Paths of this clique:
+Edges: (1,2) (2,4) Path Lenght: 2100
+Edges: (1,2) (2,4) (4,11) Path Lenght: 4500
+Edges: (2,4) Path Lenght: 1000
+Edges: (2,4) (4,5) Path Lenght: 1600
+Edges: (2,4) (4,5) (5,7) Path Lenght: 2400
+Edges: (2,4) (4,11) (11,12) (9,12) Path Lenght: 4700
+Edges: (2,4) (4,11) (11,12) (9,12) (9,10) Path Lenght: 5600
+Edges: (2,4) (4,11) Path Lenght: 3400
+Edges: (2,4) (4,11) (11,12) Path Lenght: 4200
+Edges: (2,4) (4,11) (11,14) (13,14) Path Lenght: 4500
+Edges: (2,4) (4,11) (11,14) Path Lenght: 4200
+Edges: (2,3) (2,4) Path Lenght: 1600
+Edges: (2,3) (2,4) (4,5) Path Lenght: 2200
+Edges: (2,3) (2,4) (4,11) Path Lenght: 4000
+-------- 
+
+Size: 16| Omega: 54
+Clique: ( 11 12 13 34 35 36 53 54 58 60 61 62 63 67 69 84 )
+Paths of this clique:
+Edges: (1,3) (3,6) (6,13) (12,13) Path Lenght: 5900
+Edges: (1,3) (3,6) (6,13) Path Lenght: 5600
+Edges: (1,3) (3,6) (6,13) (13,14) Path Lenght: 5900
+Edges: (3,6) (6,13) (12,13) Path Lenght: 4300
+Edges: (3,6) (6,13) Path Lenght: 4000
+Edges: (3,6) (6,13) (13,14) Path Lenght: 4300
+Edges: (5,6) (6,13) (12,13) Path Lenght: 3400
+Edges: (5,6) (6,13) Path Lenght: 3100
+Edges: (6,13) (12,13) (9,12) Path Lenght: 2800
+Edges: (6,13) (12,13) (11,12) Path Lenght: 3100
+Edges: (6,13) (12,13) Path Lenght: 2300
+Edges: (6,13) Path Lenght: 2000
+Edges: (6,13) (13,14) Path Lenght: 2300
+Edges: (5,7) (5,6) (6,13) (12,13) (11,12) Path Lenght: 5000
+Edges: (5,7) (5,6) (6,13) Path Lenght: 3900
+Edges: (6,10) (6,13) Path Lenght: 3200
+-------- 
+
+Size: 15| Omega: 51
+Clique: ( 11 12 13 34 35 36 53 54 58 60 61 62 63 67 69 )
+Paths of this clique:
+Edges: (1,3) (3,6) (6,13) (12,13) Path Lenght: 5900
+Edges: (1,3) (3,6) (6,13) Path Lenght: 5600
+Edges: (1,3) (3,6) (6,13) (13,14) Path Lenght: 5900
+Edges: (3,6) (6,13) (12,13) Path Lenght: 4300
+Edges: (3,6) (6,13) Path Lenght: 4000
+Edges: (3,6) (6,13) (13,14) Path Lenght: 4300
+Edges: (5,6) (6,13) (12,13) Path Lenght: 3400
+Edges: (5,6) (6,13) Path Lenght: 3100
+Edges: (6,13) (12,13) (9,12) Path Lenght: 2800
+Edges: (6,13) (12,13) (11,12) Path Lenght: 3100
+Edges: (6,13) (12,13) Path Lenght: 2300
+Edges: (6,13) Path Lenght: 2000
+Edges: (6,13) (13,14) Path Lenght: 2300
+Edges: (5,7) (5,6) (6,13) (12,13) (11,12) Path Lenght: 5000
+Edges: (5,7) (5,6) (6,13) Path Lenght: 3900
+-------- 
+
+Size: 15| Omega: 51
+Clique: ( 11 12 13 34 35 36 53 54 58 60 61 62 63 67 84 )
+Paths of this clique:
+Edges: (1,3) (3,6) (6,13) (12,13) Path Lenght: 5900
+Edges: (1,3) (3,6) (6,13) Path Lenght: 5600
+Edges: (1,3) (3,6) (6,13) (13,14) Path Lenght: 5900
+Edges: (3,6) (6,13) (12,13) Path Lenght: 4300
+Edges: (3,6) (6,13) Path Lenght: 4000
+Edges: (3,6) (6,13) (13,14) Path Lenght: 4300
+Edges: (5,6) (6,13) (12,13) Path Lenght: 3400
+Edges: (5,6) (6,13) Path Lenght: 3100
+Edges: (6,13) (12,13) (9,12) Path Lenght: 2800
+Edges: (6,13) (12,13) (11,12) Path Lenght: 3100
+Edges: (6,13) (12,13) Path Lenght: 2300
+Edges: (6,13) Path Lenght: 2000
+Edges: (6,13) (13,14) Path Lenght: 2300
+Edges: (5,7) (5,6) (6,13) (12,13) (11,12) Path Lenght: 5000
+Edges: (6,10) (6,13) Path Lenght: 3200
+-------- 
+
+Size: 15| Omega: 51
+Clique: ( 11 12 13 34 35 36 53 54 58 60 61 62 63 69 84 )
+Paths of this clique:
+Edges: (1,3) (3,6) (6,13) (12,13) Path Lenght: 5900
+Edges: (1,3) (3,6) (6,13) Path Lenght: 5600
+Edges: (1,3) (3,6) (6,13) (13,14) Path Lenght: 5900
+Edges: (3,6) (6,13) (12,13) Path Lenght: 4300
+Edges: (3,6) (6,13) Path Lenght: 4000
+Edges: (3,6) (6,13) (13,14) Path Lenght: 4300
+Edges: (5,6) (6,13) (12,13) Path Lenght: 3400
+Edges: (5,6) (6,13) Path Lenght: 3100
+Edges: (6,13) (12,13) (9,12) Path Lenght: 2800
+Edges: (6,13) (12,13) (11,12) Path Lenght: 3100
+Edges: (6,13) (12,13) Path Lenght: 2300
+Edges: (6,13) Path Lenght: 2000
+Edges: (6,13) (13,14) Path Lenght: 2300
+Edges: (5,7) (5,6) (6,13) Path Lenght: 3900
+Edges: (6,10) (6,13) Path Lenght: 3200
+-------- 
+
+Size: 15| Omega: 51
+Clique: ( 11 12 13 34 35 36 53 54 58 61 62 63 67 69 84 )
+Paths of this clique:
+Edges: (1,3) (3,6) (6,13) (12,13) Path Lenght: 5900
+Edges: (1,3) (3,6) (6,13) Path Lenght: 5600
+Edges: (1,3) (3,6) (6,13) (13,14) Path Lenght: 5900
+Edges: (3,6) (6,13) (12,13) Path Lenght: 4300
+Edges: (3,6) (6,13) Path Lenght: 4000
+Edges: (3,6) (6,13) (13,14) Path Lenght: 4300
+Edges: (5,6) (6,13) (12,13) Path Lenght: 3400
+Edges: (5,6) (6,13) Path Lenght: 3100
+Edges: (6,13) (12,13) (9,12) Path Lenght: 2800
+Edges: (6,13) (12,13) Path Lenght: 2300
+Edges: (6,13) Path Lenght: 2000
+Edges: (6,13) (13,14) Path Lenght: 2300
+Edges: (5,7) (5,6) (6,13) (12,13) (11,12) Path Lenght: 5000
+Edges: (5,7) (5,6) (6,13) Path Lenght: 3900
+Edges: (6,10) (6,13) Path Lenght: 3200
+-------- 
+
+Size: 15| Omega: 51
+Clique: ( 11 12 13 34 35 36 53 54 60 61 62 63 67 69 84 )
+Paths of this clique:
+Edges: (1,3) (3,6) (6,13) (12,13) Path Lenght: 5900
+Edges: (1,3) (3,6) (6,13) Path Lenght: 5600
+Edges: (1,3) (3,6) (6,13) (13,14) Path Lenght: 5900
+Edges: (3,6) (6,13) (12,13) Path Lenght: 4300
+Edges: (3,6) (6,13) Path Lenght: 4000
+Edges: (3,6) (6,13) (13,14) Path Lenght: 4300
+Edges: (5,6) (6,13) (12,13) Path Lenght: 3400
+Edges: (5,6) (6,13) Path Lenght: 3100
+Edges: (6,13) (12,13) (11,12) Path Lenght: 3100
+Edges: (6,13) (12,13) Path Lenght: 2300
+Edges: (6,13) Path Lenght: 2000
+Edges: (6,13) (13,14) Path Lenght: 2300
+Edges: (5,7) (5,6) (6,13) (12,13) (11,12) Path Lenght: 5000
+Edges: (5,7) (5,6) (6,13) Path Lenght: 3900
+Edges: (6,10) (6,13) Path Lenght: 3200
+-------- 
+
+Size: 15| Omega: 51
+Clique: ( 11 12 13 34 35 36 53 58 60 61 62 63 67 69 84 )
+Paths of this clique:
+Edges: (1,3) (3,6) (6,13) (12,13) Path Lenght: 5900
+Edges: (1,3) (3,6) (6,13) Path Lenght: 5600
+Edges: (1,3) (3,6) (6,13) (13,14) Path Lenght: 5900
+Edges: (3,6) (6,13) (12,13) Path Lenght: 4300
+Edges: (3,6) (6,13) Path Lenght: 4000
+Edges: (3,6) (6,13) (13,14) Path Lenght: 4300
+Edges: (5,6) (6,13) (12,13) Path Lenght: 3400
+Edges: (6,13) (12,13) (9,12) Path Lenght: 2800
+Edges: (6,13) (12,13) (11,12) Path Lenght: 3100
+Edges: (6,13) (12,13) Path Lenght: 2300
+Edges: (6,13) Path Lenght: 2000
+Edges: (6,13) (13,14) Path Lenght: 2300
+Edges: (5,7) (5,6) (6,13) (12,13) (11,12) Path Lenght: 5000
+Edges: (5,7) (5,6) (6,13) Path Lenght: 3900
+Edges: (6,10) (6,13) Path Lenght: 3200
+-------- 
+
+Size: 15| Omega: 51
+Clique: ( 11 12 13 34 35 36 54 58 60 61 62 63 67 69 84 )
+Paths of this clique:
+Edges: (1,3) (3,6) (6,13) (12,13) Path Lenght: 5900
+Edges: (1,3) (3,6) (6,13) Path Lenght: 5600
+Edges: (1,3) (3,6) (6,13) (13,14) Path Lenght: 5900
+Edges: (3,6) (6,13) (12,13) Path Lenght: 4300
+Edges: (3,6) (6,13) Path Lenght: 4000
+Edges: (3,6) (6,13) (13,14) Path Lenght: 4300
+Edges: (5,6) (6,13) Path Lenght: 3100
+Edges: (6,13) (12,13) (9,12) Path Lenght: 2800
+Edges: (6,13) (12,13) (11,12) Path Lenght: 3100
+Edges: (6,13) (12,13) Path Lenght: 2300
+Edges: (6,13) Path Lenght: 2000
+Edges: (6,13) (13,14) Path Lenght: 2300
+Edges: (5,7) (5,6) (6,13) (12,13) (11,12) Path Lenght: 5000
+Edges: (5,7) (5,6) (6,13) Path Lenght: 3900
+Edges: (6,10) (6,13) Path Lenght: 3200
+-------- 
+
+Size: 15| Omega: 51
+Clique: ( 11 12 13 34 35 53 54 58 60 61 62 63 67 69 84 )
+Paths of this clique:
+Edges: (1,3) (3,6) (6,13) (12,13) Path Lenght: 5900
+Edges: (1,3) (3,6) (6,13) Path Lenght: 5600
+Edges: (1,3) (3,6) (6,13) (13,14) Path Lenght: 5900
+Edges: (3,6) (6,13) (12,13) Path Lenght: 4300
+Edges: (3,6) (6,13) Path Lenght: 4000
+Edges: (5,6) (6,13) (12,13) Path Lenght: 3400
+Edges: (5,6) (6,13) Path Lenght: 3100
+Edges: (6,13) (12,13) (9,12) Path Lenght: 2800
+Edges: (6,13) (12,13) (11,12) Path Lenght: 3100
+Edges: (6,13) (12,13) Path Lenght: 2300
+Edges: (6,13) Path Lenght: 2000
+Edges: (6,13) (13,14) Path Lenght: 2300
+Edges: (5,7) (5,6) (6,13) (12,13) (11,12) Path Lenght: 5000
+Edges: (5,7) (5,6) (6,13) Path Lenght: 3900
+Edges: (6,10) (6,13) Path Lenght: 3200
+-------- 
+
+Size: 15| Omega: 51
+Clique: ( 11 12 13 34 36 53 54 58 60 61 62 63 67 69 84 )
+Paths of this clique:
+Edges: (1,3) (3,6) (6,13) (12,13) Path Lenght: 5900
+Edges: (1,3) (3,6) (6,13) Path Lenght: 5600
+Edges: (1,3) (3,6) (6,13) (13,14) Path Lenght: 5900
+Edges: (3,6) (6,13) (12,13) Path Lenght: 4300
+Edges: (3,6) (6,13) (13,14) Path Lenght: 4300
+Edges: (5,6) (6,13) (12,13) Path Lenght: 3400
+Edges: (5,6) (6,13) Path Lenght: 3100
+Edges: (6,13) (12,13) (9,12) Path Lenght: 2800
+Edges: (6,13) (12,13) (11,12) Path Lenght: 3100
+Edges: (6,13) (12,13) Path Lenght: 2300
+Edges: (6,13) Path Lenght: 2000
+Edges: (6,13) (13,14) Path Lenght: 2300
+Edges: (5,7) (5,6) (6,13) (12,13) (11,12) Path Lenght: 5000
+Edges: (5,7) (5,6) (6,13) Path Lenght: 3900
+Edges: (6,10) (6,13) Path Lenght: 3200
+-------- 
+
+Size: 15| Omega: 51
+Clique: ( 11 12 13 35 36 53 54 58 60 61 62 63 67 69 84 )
+Paths of this clique:
+Edges: (1,3) (3,6) (6,13) (12,13) Path Lenght: 5900
+Edges: (1,3) (3,6) (6,13) Path Lenght: 5600
+Edges: (1,3) (3,6) (6,13) (13,14) Path Lenght: 5900
+Edges: (3,6) (6,13) Path Lenght: 4000
+Edges: (3,6) (6,13) (13,14) Path Lenght: 4300
+Edges: (5,6) (6,13) (12,13) Path Lenght: 3400
+Edges: (5,6) (6,13) Path Lenght: 3100
+Edges: (6,13) (12,13) (9,12) Path Lenght: 2800
+Edges: (6,13) (12,13) (11,12) Path Lenght: 3100
+Edges: (6,13) (12,13) Path Lenght: 2300
+Edges: (6,13) Path Lenght: 2000
+Edges: (6,13) (13,14) Path Lenght: 2300
+Edges: (5,7) (5,6) (6,13) (12,13) (11,12) Path Lenght: 5000
+Edges: (5,7) (5,6) (6,13) Path Lenght: 3900
+Edges: (6,10) (6,13) Path Lenght: 3200
+-------- 
+
+Size: 15| Omega: 51
+Clique: ( 11 12 34 35 36 53 54 58 60 61 62 63 67 69 84 )
+Paths of this clique:
+Edges: (1,3) (3,6) (6,13) (12,13) Path Lenght: 5900
+Edges: (1,3) (3,6) (6,13) Path Lenght: 5600
+Edges: (3,6) (6,13) (12,13) Path Lenght: 4300
+Edges: (3,6) (6,13) Path Lenght: 4000
+Edges: (3,6) (6,13) (13,14) Path Lenght: 4300
+Edges: (5,6) (6,13) (12,13) Path Lenght: 3400
+Edges: (5,6) (6,13) Path Lenght: 3100
+Edges: (6,13) (12,13) (9,12) Path Lenght: 2800
+Edges: (6,13) (12,13) (11,12) Path Lenght: 3100
+Edges: (6,13) (12,13) Path Lenght: 2300
+Edges: (6,13) Path Lenght: 2000
+Edges: (6,13) (13,14) Path Lenght: 2300
+Edges: (5,7) (5,6) (6,13) (12,13) (11,12) Path Lenght: 5000
+Edges: (5,7) (5,6) (6,13) Path Lenght: 3900
+Edges: (6,10) (6,13) Path Lenght: 3200
+-------- 
+
+Size: 15| Omega: 51
+Clique: ( 11 13 34 35 36 53 54 58 60 61 62 63 67 69 84 )
+Paths of this clique:
+Edges: (1,3) (3,6) (6,13) (12,13) Path Lenght: 5900
+Edges: (1,3) (3,6) (6,13) (13,14) Path Lenght: 5900
+Edges: (3,6) (6,13) (12,13) Path Lenght: 4300
+Edges: (3,6) (6,13) Path Lenght: 4000
+Edges: (3,6) (6,13) (13,14) Path Lenght: 4300
+Edges: (5,6) (6,13) (12,13) Path Lenght: 3400
+Edges: (5,6) (6,13) Path Lenght: 3100
+Edges: (6,13) (12,13) (9,12) Path Lenght: 2800
+Edges: (6,13) (12,13) (11,12) Path Lenght: 3100
+Edges: (6,13) (12,13) Path Lenght: 2300
+Edges: (6,13) Path Lenght: 2000
+Edges: (6,13) (13,14) Path Lenght: 2300
+Edges: (5,7) (5,6) (6,13) (12,13) (11,12) Path Lenght: 5000
+Edges: (5,7) (5,6) (6,13) Path Lenght: 3900
+Edges: (6,10) (6,13) Path Lenght: 3200
+-------- 
+
+Size: 15| Omega: 51
+Clique: ( 12 13 34 35 36 53 54 58 60 61 62 63 67 69 84 )
+Paths of this clique:
+Edges: (1,3) (3,6) (6,13) Path Lenght: 5600
+Edges: (1,3) (3,6) (6,13) (13,14) Path Lenght: 5900
+Edges: (3,6) (6,13) (12,13) Path Lenght: 4300
+Edges: (3,6) (6,13) Path Lenght: 4000
+Edges: (3,6) (6,13) (13,14) Path Lenght: 4300
+Edges: (5,6) (6,13) (12,13) Path Lenght: 3400
+Edges: (5,6) (6,13) Path Lenght: 3100
+Edges: (6,13) (12,13) (9,12) Path Lenght: 2800
+Edges: (6,13) (12,13) (11,12) Path Lenght: 3100
+Edges: (6,13) (12,13) Path Lenght: 2300
+Edges: (6,13) Path Lenght: 2000
+Edges: (6,13) (13,14) Path Lenght: 2300
+Edges: (5,7) (5,6) (6,13) (12,13) (11,12) Path Lenght: 5000
+Edges: (5,7) (5,6) (6,13) Path Lenght: 3900
+Edges: (6,10) (6,13) Path Lenght: 3200
+-------- 
+
+Size: 11| Omega: 51
+Clique: ( 13 24 36 63 68 70 75 80 87 90 91 )
+Paths of this clique:
+Edges: (1,3) (3,6) (6,13) (13,14) Path Lenght: 5900
+Edges: (2,4) (4,11) (11,14) (13,14) Path Lenght: 4500
+Edges: (3,6) (6,13) (13,14) Path Lenght: 4300
+Edges: (6,13) (13,14) Path Lenght: 2300
+Edges: (7,8) (8,9) (9,14) (13,14) (12,13) Path Lenght: 2500
+Edges: (7,8) (8,9) (9,12) (12,13) (13,14) Path Lenght: 2500
+Edges: (8,9) (9,14) (13,14) Path Lenght: 1500
+Edges: (9,14) (13,14) Path Lenght: 800
+Edges: (11,14) (13,14) Path Lenght: 1100
+Edges: (12,13) (13,14) Path Lenght: 600
+Edges: (13,14) Path Lenght: 300
+-------- 
+
+
+---------------END OF Forbidden Cliques Information------------------
+
+ITERATION FINISHED
+
+---------------BEGIN OF ILP Min Cost Multi Commodity Cplex------------------
+Number of demands : 91
+Number of arcs : 42
+Number of nodes : 14
+
+Number of variables = 3823
+
+Capacity :50
+
+---------------END OF ILP Min Cost Multi Commodity Cplex------------------
+TIME == MCMCF duration in seconds: 0
+Output - MCMCF Problem - 
+Capacity = 50
+Routing : 
+From demand: 1 Between nodes: 1 to 2 :: 1 - 2 :: with length 1100
+From demand: 2 Between nodes: 1 to 3 :: 1 - 3 :: with length 1600
+From demand: 3 Between nodes: 1 to 4 :: 1 - 2 - 4 :: with length 2100
+From demand: 4 Between nodes: 1 to 5 :: 1 - 3 - 6 - 5 :: with length 4700
+From demand: 5 Between nodes: 1 to 6 :: 1 - 3 - 6 :: with length 3600
+From demand: 6 Between nodes: 1 to 7 :: 1 - 2 - 3 - 6 - 5 - 7 :: with length 5600
+From demand: 7 Between nodes: 1 to 8 :: 1 - 8 :: with length 2800
+From demand: 8 Between nodes: 1 to 9 :: 1 - 3 - 6 - 10 - 9 :: with length 5700
+From demand: 9 Between nodes: 1 to 10 :: 1 - 3 - 6 - 10 :: with length 4800
+From demand: 10 Between nodes: 1 to 11 :: 1 - 2 - 4 - 11 :: with length 4500
+From demand: 11 Between nodes: 1 to 12 :: 1 - 2 - 4 - 11 - 12 :: with length 5300
+From demand: 12 Between nodes: 1 to 13 :: 1 - 3 - 6 - 13 :: with length 5600
+From demand: 13 Between nodes: 1 to 14 :: 1 - 3 - 6 - 13 - 14 :: with length 5900
+From demand: 14 Between nodes: 2 to 3 :: 2 - 1 - 3 :: with length 2700
+From demand: 15 Between nodes: 2 to 4 :: 2 - 4 :: with length 1000
+From demand: 16 Between nodes: 2 to 5 :: 2 - 4 - 5 :: with length 1600
+From demand: 17 Between nodes: 2 to 6 :: 2 - 1 - 3 - 6 :: with length 4700
+From demand: 18 Between nodes: 2 to 7 :: 2 - 4 - 5 - 7 :: with length 2400
+From demand: 19 Between nodes: 2 to 8 :: 2 - 1 - 8 :: with length 3900
+From demand: 20 Between nodes: 2 to 9 :: 2 - 4 - 11 - 14 - 9 :: with length 4700
+From demand: 21 Between nodes: 2 to 10 :: 2 - 3 - 6 - 10 :: with length 3800
+From demand: 22 Between nodes: 2 to 11 :: 2 - 4 - 11 :: with length 3400
+From demand: 23 Between nodes: 2 to 12 :: 2 - 4 - 11 - 12 :: with length 4200
+From demand: 24 Between nodes: 2 to 13 :: 2 - 3 - 6 - 13 :: with length 4600
+From demand: 25 Between nodes: 2 to 14 :: 2 - 4 - 11 - 14 :: with length 4200
+From demand: 26 Between nodes: 3 to 4 :: 3 - 2 - 4 :: with length 1600
+From demand: 27 Between nodes: 3 to 5 :: 3 - 2 - 4 - 5 :: with length 2200
+From demand: 28 Between nodes: 3 to 6 :: 3 - 6 :: with length 2000
+From demand: 29 Between nodes: 3 to 7 :: 3 - 1 - 8 - 7 :: with length 5100
+From demand: 30 Between nodes: 3 to 8 :: 3 - 2 - 1 - 8 :: with length 4500
+From demand: 31 Between nodes: 3 to 9 :: 3 - 6 - 10 - 9 :: with length 4100
+From demand: 32 Between nodes: 3 to 10 :: 3 - 6 - 10 :: with length 3200
+From demand: 33 Between nodes: 3 to 11 :: 3 - 6 - 13 - 12 - 11 :: with length 5100
+From demand: 34 Between nodes: 3 to 12 :: 3 - 1 - 8 - 9 - 12 :: with length 5600
+From demand: 35 Between nodes: 3 to 13 :: 3 - 6 - 13 :: with length 4000
+From demand: 36 Between nodes: 3 to 14 :: 3 - 2 - 4 - 11 - 14 :: with length 4800
+From demand: 37 Between nodes: 4 to 5 :: 4 - 5 :: with length 600
+From demand: 38 Between nodes: 4 to 6 :: 4 - 5 - 6 :: with length 1700
+From demand: 39 Between nodes: 4 to 7 :: 4 - 5 - 7 :: with length 1400
+From demand: 40 Between nodes: 4 to 8 :: 4 - 5 - 7 - 8 :: with length 2100
+From demand: 41 Between nodes: 4 to 9 :: 4 - 11 - 14 - 9 :: with length 3700
+From demand: 42 Between nodes: 4 to 10 :: 4 - 11 - 12 - 9 - 10 :: with length 4600
+From demand: 43 Between nodes: 4 to 11 :: 4 - 11 :: with length 2400
+From demand: 44 Between nodes: 4 to 12 :: 4 - 11 - 12 :: with length 3200
+From demand: 45 Between nodes: 4 to 13 :: 4 - 11 - 14 - 13 :: with length 3500
+From demand: 46 Between nodes: 4 to 14 :: 4 - 5 - 6 - 13 - 14 :: with length 4000
+From demand: 47 Between nodes: 5 to 6 :: 5 - 6 :: with length 1100
+From demand: 48 Between nodes: 5 to 7 :: 5 - 7 :: with length 800
+From demand: 49 Between nodes: 5 to 8 :: 5 - 7 - 8 :: with length 1500
+From demand: 50 Between nodes: 5 to 9 :: 5 - 7 - 8 - 9 :: with length 2200
+From demand: 51 Between nodes: 5 to 10 :: 5 - 6 - 10 :: with length 2300
+From demand: 52 Between nodes: 5 to 11 :: 5 - 6 - 13 - 12 - 11 :: with length 4200
+From demand: 53 Between nodes: 5 to 12 :: 5 - 6 - 13 - 12 :: with length 3400
+From demand: 54 Between nodes: 5 to 13 :: 5 - 6 - 13 :: with length 3100
+From demand: 55 Between nodes: 5 to 14 :: 5 - 6 - 13 - 14 :: with length 3400
+From demand: 56 Between nodes: 6 to 7 :: 6 - 5 - 7 :: with length 1900
+From demand: 57 Between nodes: 6 to 8 :: 6 - 5 - 7 - 8 :: with length 2600
+From demand: 58 Between nodes: 6 to 9 :: 6 - 10 - 9 :: with length 2100
+From demand: 59 Between nodes: 6 to 10 :: 6 - 10 :: with length 1200
+From demand: 60 Between nodes: 6 to 11 :: 6 - 10 - 9 - 14 - 11 :: with length 3400
+From demand: 61 Between nodes: 6 to 12 :: 6 - 13 - 12 :: with length 2300
+From demand: 62 Between nodes: 6 to 13 :: 6 - 13 :: with length 2000
+From demand: 63 Between nodes: 6 to 14 :: 6 - 10 - 9 - 14 :: with length 2600
+From demand: 64 Between nodes: 7 to 8 :: 7 - 8 :: with length 700
+From demand: 65 Between nodes: 7 to 9 :: 7 - 8 - 9 :: with length 1400
+From demand: 66 Between nodes: 7 to 10 :: 7 - 8 - 9 - 10 :: with length 2300
+From demand: 67 Between nodes: 7 to 11 :: 7 - 5 - 4 - 11 :: with length 3800
+From demand: 68 Between nodes: 7 to 12 :: 7 - 8 - 9 - 12 :: with length 1900
+From demand: 69 Between nodes: 7 to 13 :: 7 - 5 - 4 - 11 - 12 - 13 :: with length 4900
+From demand: 70 Between nodes: 7 to 14 :: 7 - 8 - 9 - 14 :: with length 1900
+From demand: 71 Between nodes: 8 to 9 :: 8 - 7 - 5 - 4 - 11 - 12 - 9 :: with length 5800
+From demand: 72 Between nodes: 8 to 10 :: 8 - 7 - 5 - 6 - 10 :: with length 3800
+From demand: 73 Between nodes: 8 to 11 :: 8 - 9 - 12 - 11 :: with length 2000
+From demand: 74 Between nodes: 8 to 12 :: 8 - 9 - 12 :: with length 1200
+From demand: 75 Between nodes: 8 to 13 :: 8 - 9 - 12 - 13 :: with length 1500
+From demand: 76 Between nodes: 8 to 14 :: 8 - 9 - 14 :: with length 1200
+From demand: 77 Between nodes: 9 to 10 :: 9 - 10 :: with length 900
+From demand: 78 Between nodes: 9 to 11 :: 9 - 14 - 11 :: with length 1300
+From demand: 79 Between nodes: 9 to 12 :: 9 - 12 :: with length 500
+From demand: 80 Between nodes: 9 to 13 :: 9 - 12 - 13 :: with length 800
+From demand: 81 Between nodes: 9 to 14 :: 9 - 14 :: with length 500
+From demand: 82 Between nodes: 10 to 11 :: 10 - 6 - 13 - 14 - 11 :: with length 4300
+From demand: 83 Between nodes: 10 to 12 :: 10 - 9 - 12 :: with length 1400
+From demand: 84 Between nodes: 10 to 13 :: 10 - 6 - 13 :: with length 3200
+From demand: 85 Between nodes: 10 to 14 :: 10 - 9 - 14 :: with length 1400
+From demand: 86 Between nodes: 11 to 12 :: 11 - 14 - 9 - 12 :: with length 1800
+From demand: 87 Between nodes: 11 to 13 :: 11 - 12 - 13 :: with length 1100
+From demand: 88 Between nodes: 11 to 14 :: 11 - 14 :: with length 800
+From demand: 89 Between nodes: 12 to 13 :: 12 - 13 :: with length 300
+From demand: 90 Between nodes: 12 to 14 :: 12 - 11 - 14 :: with length 1600
+From demand: 91 Between nodes: 13 to 14 :: 13 - 14 :: with length 300
+
+
+---------------BEGIN OF Possible paths Information------------------
+For demand: 1
+Edges: (1,2) Path Lenght: 1100
+Edges: (1,3) (2,3) Path Lenght: 2200
+***********************: 
+For demand: 2
+Edges: (1,3) Path Lenght: 1600
+Edges: (1,2) (2,3) Path Lenght: 1700
+***********************: 
+For demand: 3
+Edges: (1,2) (2,4) Path Lenght: 2100
+***********************: 
+For demand: 4
+Edges: (1,3) (2,3) (2,4) (4,5) Path Lenght: 3800
+Edges: (1,3) (3,6) (5,6) Path Lenght: 4700
+Edges: (1,2) (2,4) (4,5) Path Lenght: 2700
+***********************: 
+For demand: 5
+Edges: (1,2) (2,4) (4,5) (5,6) Path Lenght: 3800
+Edges: (1,3) (3,6) Path Lenght: 3600
+***********************: 
+For demand: 6
+Edges: (1,8) (7,8) Path Lenght: 3500
+Edges: (1,3) (3,6) (5,6) (5,7) Path Lenght: 5500
+Edges: (1,2) (2,4) (4,5) (5,7) Path Lenght: 3500
+Edges: (1,2) (2,3) (3,6) (5,6) (5,7) Path Lenght: 5600
+***********************: 
+For demand: 7
+Edges: (1,8) Path Lenght: 2800
+***********************: 
+For demand: 8
+Edges: (1,3) (3,6) (6,10) (9,10) Path Lenght: 5700
+Edges: (1,2) (2,4) (4,11) (11,12) (9,12) Path Lenght: 5800
+***********************: 
+For demand: 9
+Edges: (1,3) (3,6) (6,10) Path Lenght: 4800
+Edges: (1,2) (2,3) (3,6) (6,10) Path Lenght: 4900
+***********************: 
+For demand: 10
+Edges: (1,2) (2,4) (4,11) Path Lenght: 4500
+***********************: 
+For demand: 11
+Edges: (1,2) (2,4) (4,11) (11,12) Path Lenght: 5300
+Edges: (1,3) (3,6) (6,13) (12,13) Path Lenght: 5900
+***********************: 
+For demand: 12
+Edges: (1,3) (3,6) (6,13) Path Lenght: 5600
+***********************: 
+For demand: 13
+Edges: (1,2) (2,3) (3,6) (6,13) (13,14) Path Lenght: 6000
+Edges: (1,3) (3,6) (6,13) (13,14) Path Lenght: 5900
+***********************: 
+For demand: 14
+Edges: (2,3) Path Lenght: 600
+Edges: (1,2) (1,3) Path Lenght: 2700
+***********************: 
+For demand: 15
+Edges: (2,4) Path Lenght: 1000
+***********************: 
+For demand: 16
+Edges: (2,4) (4,5) Path Lenght: 1600
+***********************: 
+For demand: 17
+Edges: (2,3) (3,6) Path Lenght: 2600
+Edges: (1,2) (1,3) (3,6) Path Lenght: 4700
+***********************: 
+For demand: 18
+Edges: (2,4) (4,5) (5,7) Path Lenght: 2400
+Edges: (1,2) (1,8) (7,8) Path Lenght: 4600
+***********************: 
+For demand: 19
+Edges: (1,2) (1,8) Path Lenght: 3900
+***********************: 
+For demand: 20
+Edges: (2,3) (3,6) (6,10) (9,10) Path Lenght: 4700
+Edges: (2,4) (4,11) (11,12) (9,12) Path Lenght: 4700
+Edges: (2,4) (4,11) (11,14) (9,14) Path Lenght: 4700
+***********************: 
+For demand: 21
+Edges: (2,3) (3,6) (6,10) Path Lenght: 3800
+Edges: (2,4) (4,11) (11,12) (9,12) (9,10) Path Lenght: 5600
+***********************: 
+For demand: 22
+Edges: (2,4) (4,11) Path Lenght: 3400
+Edges: (2,3) (3,6) (6,10) (9,10) (9,12) (11,12) Path Lenght: 6000
+***********************: 
+For demand: 23
+Edges: (2,3) (3,6) (6,13) (12,13) Path Lenght: 4900
+Edges: (2,4) (4,11) (11,12) Path Lenght: 4200
+***********************: 
+For demand: 24
+Edges: (2,3) (3,6) (6,13) Path Lenght: 4600
+Edges: (2,4) (4,11) (11,14) (13,14) Path Lenght: 4500
+***********************: 
+For demand: 25
+Edges: (2,3) (3,6) (6,10) (9,10) (9,14) Path Lenght: 5200
+Edges: (2,4) (4,11) (11,14) Path Lenght: 4200
+Edges: (2,3) (3,6) (6,13) (13,14) Path Lenght: 4900
+***********************: 
+For demand: 26
+Edges: (2,3) (2,4) Path Lenght: 1600
+***********************: 
+For demand: 27
+Edges: (2,3) (2,4) (4,5) Path Lenght: 2200
+***********************: 
+For demand: 28
+Edges: (3,6) Path Lenght: 2000
+***********************: 
+For demand: 29
+Edges: (3,6) (5,6) (5,7) Path Lenght: 3900
+Edges: (2,3) (1,2) (1,8) (7,8) Path Lenght: 5200
+Edges: (1,3) (1,8) (7,8) Path Lenght: 5100
+***********************: 
+For demand: 30
+Edges: (1,3) (1,8) Path Lenght: 4400
+Edges: (2,3) (1,2) (1,8) Path Lenght: 4500
+***********************: 
+For demand: 31
+Edges: (3,6) (6,10) (9,10) Path Lenght: 4100
+***********************: 
+For demand: 32
+Edges: (3,6) (6,10) Path Lenght: 3200
+***********************: 
+For demand: 33
+Edges: (2,3) (2,4) (4,11) Path Lenght: 4000
+Edges: (3,6) (6,13) (12,13) (11,12) Path Lenght: 5100
+***********************: 
+For demand: 34
+Edges: (2,3) (2,4) (4,11) (11,12) Path Lenght: 4800
+Edges: (3,6) (6,13) (12,13) Path Lenght: 4300
+Edges: (1,3) (1,8) (8,9) (9,12) Path Lenght: 5600
+***********************: 
+For demand: 35
+Edges: (3,6) (6,13) Path Lenght: 4000
+***********************: 
+For demand: 36
+Edges: (3,6) (6,13) (13,14) Path Lenght: 4300
+Edges: (3,6) (6,10) (9,10) (9,14) Path Lenght: 4600
+Edges: (2,3) (2,4) (4,11) (11,14) Path Lenght: 4800
+***********************: 
+For demand: 37
+Edges: (4,5) Path Lenght: 600
+***********************: 
+For demand: 38
+Edges: (4,5) (5,6) Path Lenght: 1700
+***********************: 
+For demand: 39
+Edges: (4,5) (5,7) Path Lenght: 1400
+***********************: 
+For demand: 40
+Edges: (4,5) (5,7) (7,8) Path Lenght: 2100
+***********************: 
+For demand: 41
+Edges: (4,11) (11,12) (9,12) Path Lenght: 3700
+Edges: (4,5) (5,6) (6,10) (9,10) Path Lenght: 3800
+Edges: (4,11) (11,14) (9,14) Path Lenght: 3700
+***********************: 
+For demand: 42
+Edges: (4,5) (5,6) (6,10) Path Lenght: 2900
+Edges: (4,11) (11,12) (9,12) (9,10) Path Lenght: 4600
+Edges: (4,11) (11,14) (9,14) (9,10) Path Lenght: 4600
+***********************: 
+For demand: 43
+Edges: (4,11) Path Lenght: 2400
+***********************: 
+For demand: 44
+Edges: (4,11) (11,12) Path Lenght: 3200
+***********************: 
+For demand: 45
+Edges: (4,11) (11,12) (12,13) Path Lenght: 3500
+Edges: (4,5) (5,6) (6,13) Path Lenght: 3700
+Edges: (4,11) (11,14) (13,14) Path Lenght: 3500
+***********************: 
+For demand: 46
+Edges: (4,11) (11,14) Path Lenght: 3200
+Edges: (4,5) (5,6) (6,13) (13,14) Path Lenght: 4000
+***********************: 
+For demand: 47
+Edges: (5,6) Path Lenght: 1100
+***********************: 
+For demand: 48
+Edges: (5,7) Path Lenght: 800
+***********************: 
+For demand: 49
+Edges: (5,7) (7,8) Path Lenght: 1500
+***********************: 
+For demand: 50
+Edges: (5,7) (7,8) (8,9) Path Lenght: 2200
+***********************: 
+For demand: 51
+Edges: (5,6) (6,10) Path Lenght: 2300
+***********************: 
+For demand: 52
+Edges: (4,5) (4,11) Path Lenght: 3000
+Edges: (5,6) (6,10) (9,10) (9,14) (11,14) Path Lenght: 4500
+Edges: (5,6) (6,10) (9,10) (9,12) (11,12) Path Lenght: 4500
+Edges: (5,6) (6,13) (12,13) (11,12) Path Lenght: 4200
+***********************: 
+For demand: 53
+Edges: (5,6) (6,13) (12,13) Path Lenght: 3400
+***********************: 
+For demand: 54
+Edges: (5,6) (6,13) Path Lenght: 3100
+***********************: 
+For demand: 55
+Edges: (5,6) (6,10) (9,10) (9,14) Path Lenght: 3700
+Edges: (4,5) (4,11) (11,14) Path Lenght: 3800
+Edges: (5,6) (6,13) (13,14) Path Lenght: 3400
+***********************: 
+For demand: 56
+Edges: (5,6) (5,7) Path Lenght: 1900
+***********************: 
+For demand: 57
+Edges: (5,6) (5,7) (7,8) Path Lenght: 2600
+***********************: 
+For demand: 58
+Edges: (6,13) (12,13) (9,12) Path Lenght: 2800
+Edges: (6,10) (9,10) Path Lenght: 2100
+***********************: 
+For demand: 59
+Edges: (6,10) Path Lenght: 1200
+***********************: 
+For demand: 60
+Edges: (6,13) (12,13) (11,12) Path Lenght: 3100
+Edges: (5,6) (4,5) (4,11) Path Lenght: 4100
+Edges: (6,10) (9,10) (9,14) (11,14) Path Lenght: 3400
+***********************: 
+For demand: 61
+Edges: (6,13) (12,13) Path Lenght: 2300
+Edges: (6,10) (9,10) (9,12) Path Lenght: 2600
+***********************: 
+For demand: 62
+Edges: (6,13) Path Lenght: 2000
+***********************: 
+For demand: 63
+Edges: (6,10) (9,10) (9,14) Path Lenght: 2600
+Edges: (6,13) (13,14) Path Lenght: 2300
+***********************: 
+For demand: 64
+Edges: (7,8) Path Lenght: 700
+***********************: 
+For demand: 65
+Edges: (7,8) (8,9) Path Lenght: 1400
+***********************: 
+For demand: 66
+Edges: (7,8) (8,9) (9,10) Path Lenght: 2300
+***********************: 
+For demand: 67
+Edges: (5,7) (5,6) (6,13) (12,13) (11,12) Path Lenght: 5000
+Edges: (5,7) (4,5) (4,11) Path Lenght: 3800
+***********************: 
+For demand: 68
+Edges: (7,8) (8,9) (9,12) Path Lenght: 1900
+Edges: (7,8) (8,9) (9,14) (13,14) (12,13) Path Lenght: 2500
+***********************: 
+For demand: 69
+Edges: (5,7) (5,6) (6,13) Path Lenght: 3900
+Edges: (5,7) (4,5) (4,11) (11,12) (12,13) Path Lenght: 4900
+Edges: (5,7) (4,5) (4,11) (11,14) (13,14) Path Lenght: 4900
+***********************: 
+For demand: 70
+Edges: (7,8) (8,9) (9,14) Path Lenght: 1900
+Edges: (7,8) (8,9) (9,12) (12,13) (13,14) Path Lenght: 2500
+***********************: 
+For demand: 71
+Edges: (7,8) (5,7) (4,5) (4,11) (11,12) (9,12) Path Lenght: 5800
+Edges: (8,9) Path Lenght: 700
+***********************: 
+For demand: 72
+Edges: (7,8) (5,7) (5,6) (6,10) Path Lenght: 3800
+***********************: 
+For demand: 73
+Edges: (8,9) (9,12) (11,12) Path Lenght: 2000
+Edges: (8,9) (9,14) (11,14) Path Lenght: 2000
+***********************: 
+For demand: 74
+Edges: (8,9) (9,14) (13,14) (12,13) Path Lenght: 1800
+Edges: (8,9) (9,12) Path Lenght: 1200
+Edges: (8,9) (9,14) (11,14) (11,12) Path Lenght: 2800
+***********************: 
+For demand: 75
+Edges: (8,9) (9,12) (12,13) Path Lenght: 1500
+Edges: (8,9) (9,14) (13,14) Path Lenght: 1500
+***********************: 
+For demand: 76
+Edges: (8,9) (9,14) Path Lenght: 1200
+Edges: (8,9) (9,12) (12,13) (13,14) Path Lenght: 1800
+***********************: 
+For demand: 77
+Edges: (9,10) Path Lenght: 900
+***********************: 
+For demand: 78
+Edges: (9,12) (11,12) Path Lenght: 1300
+Edges: (9,14) (11,14) Path Lenght: 1300
+***********************: 
+For demand: 79
+Edges: (9,12) Path Lenght: 500
+***********************: 
+For demand: 80
+Edges: (9,12) (12,13) Path Lenght: 800
+Edges: (9,14) (13,14) Path Lenght: 800
+***********************: 
+For demand: 81
+Edges: (9,14) Path Lenght: 500
+***********************: 
+For demand: 82
+Edges: (9,10) (9,12) (11,12) Path Lenght: 2200
+Edges: (6,10) (6,13) (12,13) (11,12) Path Lenght: 4300
+Edges: (6,10) (6,13) (13,14) (11,14) Path Lenght: 4300
+***********************: 
+For demand: 83
+Edges: (9,10) (9,12) Path Lenght: 1400
+Edges: (9,10) (9,14) (11,14) (11,12) Path Lenght: 3000
+***********************: 
+For demand: 84
+Edges: (6,10) (6,13) Path Lenght: 3200
+Edges: (9,10) (9,12) (12,13) Path Lenght: 1700
+Edges: (9,10) (9,14) (13,14) Path Lenght: 1700
+***********************: 
+For demand: 85
+Edges: (9,10) (9,14) Path Lenght: 1400
+Edges: (9,10) (9,12) (12,13) (13,14) Path Lenght: 2000
+Edges: (9,10) (9,12) (11,12) (11,14) Path Lenght: 3000
+***********************: 
+For demand: 86
+Edges: (11,12) Path Lenght: 800
+Edges: (11,14) (9,14) (9,12) Path Lenght: 1800
+***********************: 
+For demand: 87
+Edges: (11,12) (12,13) Path Lenght: 1100
+Edges: (11,14) (13,14) Path Lenght: 1100
+***********************: 
+For demand: 88
+Edges: (11,14) Path Lenght: 800
+Edges: (11,12) (9,12) (9,14) Path Lenght: 1800
+Edges: (11,12) (12,13) (13,14) Path Lenght: 1400
+***********************: 
+For demand: 89
+Edges: (12,13) Path Lenght: 300
+***********************: 
+For demand: 90
+Edges: (9,12) (9,14) Path Lenght: 1000
+Edges: (11,12) (11,14) Path Lenght: 1600
+Edges: (12,13) (13,14) Path Lenght: 600
+***********************: 
+For demand: 91
+Edges: (13,14) Path Lenght: 300
+***********************: 
+
+---------------END OF Possible paths Information------------------
+
+---------------BEGIN OF ILP Edge Path Formulation Cplex------------------
+Number of demands : 91
+Number of Edges : 21
+Number of nodes : 14
+Number of slices from MCMCF : 120
+
+Number of variables = 242317
+TIME == RSA duration in seconds: 1800
+RSA TOOK TOO LONG
+Solution found but there is a gap of: 100This RSA iteration was infeasible
+
+---------------BEGIN OF Forbidden Cliques Information------------------
+Size: 17| Omega: 53
+Clique: ( 5 8 9 11 12 13 17 20 21 23 24 28 31 32 34 35 36 )
+Paths of this clique:
+Edges: (1,3) (3,6) Path Lenght: 3600
+Edges: (1,3) (3,6) (6,10) (9,10) Path Lenght: 5700
+Edges: (1,3) (3,6) (6,10) Path Lenght: 4800
+Edges: (1,3) (3,6) (6,13) (12,13) Path Lenght: 5900
+Edges: (1,3) (3,6) (6,13) Path Lenght: 5600
+Edges: (1,3) (3,6) (6,13) (13,14) Path Lenght: 5900
+Edges: (2,3) (3,6) Path Lenght: 2600
+Edges: (2,3) (3,6) (6,10) (9,10) Path Lenght: 4700
+Edges: (2,3) (3,6) (6,10) Path Lenght: 3800
+Edges: (2,3) (3,6) (6,13) (12,13) Path Lenght: 4900
+Edges: (2,3) (3,6) (6,13) Path Lenght: 4600
+Edges: (3,6) Path Lenght: 2000
+Edges: (3,6) (6,10) (9,10) Path Lenght: 4100
+Edges: (3,6) (6,10) Path Lenght: 3200
+Edges: (3,6) (6,13) (12,13) Path Lenght: 4300
+Edges: (3,6) (6,13) Path Lenght: 4000
+Edges: (3,6) (6,13) (13,14) Path Lenght: 4300
+-------- 
+
+Size: 13| Omega: 53
+Clique: ( 6 18 29 40 49 50 57 64 65 66 68 70 72 )
+Paths of this clique:
+Edges: (1,8) (7,8) Path Lenght: 3500
+Edges: (1,2) (1,8) (7,8) Path Lenght: 4600
+Edges: (2,3) (1,2) (1,8) (7,8) Path Lenght: 5200
+Edges: (4,5) (5,7) (7,8) Path Lenght: 2100
+Edges: (5,7) (7,8) Path Lenght: 1500
+Edges: (5,7) (7,8) (8,9) Path Lenght: 2200
+Edges: (5,6) (5,7) (7,8) Path Lenght: 2600
+Edges: (7,8) Path Lenght: 700
+Edges: (7,8) (8,9) Path Lenght: 1400
+Edges: (7,8) (8,9) (9,10) Path Lenght: 2300
+Edges: (7,8) (8,9) (9,12) Path Lenght: 1900
+Edges: (7,8) (8,9) (9,14) Path Lenght: 1900
+Edges: (7,8) (5,7) (5,6) (6,10) Path Lenght: 3800
+-------- 
+
+Size: 14| Omega: 52
+Clique: ( 3 10 15 16 18 20 21 22 23 24 25 26 27 33 )
+Paths of this clique:
+Edges: (1,2) (2,4) Path Lenght: 2100
+Edges: (1,2) (2,4) (4,11) Path Lenght: 4500
+Edges: (2,4) Path Lenght: 1000
+Edges: (2,4) (4,5) Path Lenght: 1600
+Edges: (2,4) (4,5) (5,7) Path Lenght: 2400
+Edges: (2,4) (4,11) (11,12) (9,12) Path Lenght: 4700
+Edges: (2,4) (4,11) (11,12) (9,12) (9,10) Path Lenght: 5600
+Edges: (2,4) (4,11) Path Lenght: 3400
+Edges: (2,4) (4,11) (11,12) Path Lenght: 4200
+Edges: (2,4) (4,11) (11,14) (13,14) Path Lenght: 4500
+Edges: (2,4) (4,11) (11,14) Path Lenght: 4200
+Edges: (2,3) (2,4) Path Lenght: 1600
+Edges: (2,3) (2,4) (4,5) Path Lenght: 2200
+Edges: (2,3) (2,4) (4,11) Path Lenght: 4000
+-------- 
+
+Size: 16| Omega: 54
+Clique: ( 11 12 13 34 35 36 53 54 58 60 61 62 63 67 69 84 )
+Paths of this clique:
+Edges: (1,3) (3,6) (6,13) (12,13) Path Lenght: 5900
+Edges: (1,3) (3,6) (6,13) Path Lenght: 5600
+Edges: (1,3) (3,6) (6,13) (13,14) Path Lenght: 5900
+Edges: (3,6) (6,13) (12,13) Path Lenght: 4300
+Edges: (3,6) (6,13) Path Lenght: 4000
+Edges: (3,6) (6,13) (13,14) Path Lenght: 4300
+Edges: (5,6) (6,13) (12,13) Path Lenght: 3400
+Edges: (5,6) (6,13) Path Lenght: 3100
+Edges: (6,13) (12,13) (9,12) Path Lenght: 2800
+Edges: (6,13) (12,13) (11,12) Path Lenght: 3100
+Edges: (6,13) (12,13) Path Lenght: 2300
+Edges: (6,13) Path Lenght: 2000
+Edges: (6,13) (13,14) Path Lenght: 2300
+Edges: (5,7) (5,6) (6,13) (12,13) (11,12) Path Lenght: 5000
+Edges: (5,7) (5,6) (6,13) Path Lenght: 3900
+Edges: (6,10) (6,13) Path Lenght: 3200
+-------- 
+
+Size: 15| Omega: 51
+Clique: ( 11 12 13 34 35 36 53 54 58 60 61 62 63 67 69 )
+Paths of this clique:
+Edges: (1,3) (3,6) (6,13) (12,13) Path Lenght: 5900
+Edges: (1,3) (3,6) (6,13) Path Lenght: 5600
+Edges: (1,3) (3,6) (6,13) (13,14) Path Lenght: 5900
+Edges: (3,6) (6,13) (12,13) Path Lenght: 4300
+Edges: (3,6) (6,13) Path Lenght: 4000
+Edges: (3,6) (6,13) (13,14) Path Lenght: 4300
+Edges: (5,6) (6,13) (12,13) Path Lenght: 3400
+Edges: (5,6) (6,13) Path Lenght: 3100
+Edges: (6,13) (12,13) (9,12) Path Lenght: 2800
+Edges: (6,13) (12,13) (11,12) Path Lenght: 3100
+Edges: (6,13) (12,13) Path Lenght: 2300
+Edges: (6,13) Path Lenght: 2000
+Edges: (6,13) (13,14) Path Lenght: 2300
+Edges: (5,7) (5,6) (6,13) (12,13) (11,12) Path Lenght: 5000
+Edges: (5,7) (5,6) (6,13) Path Lenght: 3900
+-------- 
+
+Size: 15| Omega: 51
+Clique: ( 11 12 13 34 35 36 53 54 58 60 61 62 63 67 84 )
+Paths of this clique:
+Edges: (1,3) (3,6) (6,13) (12,13) Path Lenght: 5900
+Edges: (1,3) (3,6) (6,13) Path Lenght: 5600
+Edges: (1,3) (3,6) (6,13) (13,14) Path Lenght: 5900
+Edges: (3,6) (6,13) (12,13) Path Lenght: 4300
+Edges: (3,6) (6,13) Path Lenght: 4000
+Edges: (3,6) (6,13) (13,14) Path Lenght: 4300
+Edges: (5,6) (6,13) (12,13) Path Lenght: 3400
+Edges: (5,6) (6,13) Path Lenght: 3100
+Edges: (6,13) (12,13) (9,12) Path Lenght: 2800
+Edges: (6,13) (12,13) (11,12) Path Lenght: 3100
+Edges: (6,13) (12,13) Path Lenght: 2300
+Edges: (6,13) Path Lenght: 2000
+Edges: (6,13) (13,14) Path Lenght: 2300
+Edges: (5,7) (5,6) (6,13) (12,13) (11,12) Path Lenght: 5000
+Edges: (6,10) (6,13) Path Lenght: 3200
+-------- 
+
+Size: 15| Omega: 51
+Clique: ( 11 12 13 34 35 36 53 54 58 60 61 62 63 69 84 )
+Paths of this clique:
+Edges: (1,3) (3,6) (6,13) (12,13) Path Lenght: 5900
+Edges: (1,3) (3,6) (6,13) Path Lenght: 5600
+Edges: (1,3) (3,6) (6,13) (13,14) Path Lenght: 5900
+Edges: (3,6) (6,13) (12,13) Path Lenght: 4300
+Edges: (3,6) (6,13) Path Lenght: 4000
+Edges: (3,6) (6,13) (13,14) Path Lenght: 4300
+Edges: (5,6) (6,13) (12,13) Path Lenght: 3400
+Edges: (5,6) (6,13) Path Lenght: 3100
+Edges: (6,13) (12,13) (9,12) Path Lenght: 2800
+Edges: (6,13) (12,13) (11,12) Path Lenght: 3100
+Edges: (6,13) (12,13) Path Lenght: 2300
+Edges: (6,13) Path Lenght: 2000
+Edges: (6,13) (13,14) Path Lenght: 2300
+Edges: (5,7) (5,6) (6,13) Path Lenght: 3900
+Edges: (6,10) (6,13) Path Lenght: 3200
+-------- 
+
+Size: 15| Omega: 51
+Clique: ( 11 12 13 34 35 36 53 54 58 61 62 63 67 69 84 )
+Paths of this clique:
+Edges: (1,3) (3,6) (6,13) (12,13) Path Lenght: 5900
+Edges: (1,3) (3,6) (6,13) Path Lenght: 5600
+Edges: (1,3) (3,6) (6,13) (13,14) Path Lenght: 5900
+Edges: (3,6) (6,13) (12,13) Path Lenght: 4300
+Edges: (3,6) (6,13) Path Lenght: 4000
+Edges: (3,6) (6,13) (13,14) Path Lenght: 4300
+Edges: (5,6) (6,13) (12,13) Path Lenght: 3400
+Edges: (5,6) (6,13) Path Lenght: 3100
+Edges: (6,13) (12,13) (9,12) Path Lenght: 2800
+Edges: (6,13) (12,13) Path Lenght: 2300
+Edges: (6,13) Path Lenght: 2000
+Edges: (6,13) (13,14) Path Lenght: 2300
+Edges: (5,7) (5,6) (6,13) (12,13) (11,12) Path Lenght: 5000
+Edges: (5,7) (5,6) (6,13) Path Lenght: 3900
+Edges: (6,10) (6,13) Path Lenght: 3200
+-------- 
+
+Size: 15| Omega: 51
+Clique: ( 11 12 13 34 35 36 53 54 60 61 62 63 67 69 84 )
+Paths of this clique:
+Edges: (1,3) (3,6) (6,13) (12,13) Path Lenght: 5900
+Edges: (1,3) (3,6) (6,13) Path Lenght: 5600
+Edges: (1,3) (3,6) (6,13) (13,14) Path Lenght: 5900
+Edges: (3,6) (6,13) (12,13) Path Lenght: 4300
+Edges: (3,6) (6,13) Path Lenght: 4000
+Edges: (3,6) (6,13) (13,14) Path Lenght: 4300
+Edges: (5,6) (6,13) (12,13) Path Lenght: 3400
+Edges: (5,6) (6,13) Path Lenght: 3100
+Edges: (6,13) (12,13) (11,12) Path Lenght: 3100
+Edges: (6,13) (12,13) Path Lenght: 2300
+Edges: (6,13) Path Lenght: 2000
+Edges: (6,13) (13,14) Path Lenght: 2300
+Edges: (5,7) (5,6) (6,13) (12,13) (11,12) Path Lenght: 5000
+Edges: (5,7) (5,6) (6,13) Path Lenght: 3900
+Edges: (6,10) (6,13) Path Lenght: 3200
+-------- 
+
+Size: 15| Omega: 51
+Clique: ( 11 12 13 34 35 36 53 58 60 61 62 63 67 69 84 )
+Paths of this clique:
+Edges: (1,3) (3,6) (6,13) (12,13) Path Lenght: 5900
+Edges: (1,3) (3,6) (6,13) Path Lenght: 5600
+Edges: (1,3) (3,6) (6,13) (13,14) Path Lenght: 5900
+Edges: (3,6) (6,13) (12,13) Path Lenght: 4300
+Edges: (3,6) (6,13) Path Lenght: 4000
+Edges: (3,6) (6,13) (13,14) Path Lenght: 4300
+Edges: (5,6) (6,13) (12,13) Path Lenght: 3400
+Edges: (6,13) (12,13) (9,12) Path Lenght: 2800
+Edges: (6,13) (12,13) (11,12) Path Lenght: 3100
+Edges: (6,13) (12,13) Path Lenght: 2300
+Edges: (6,13) Path Lenght: 2000
+Edges: (6,13) (13,14) Path Lenght: 2300
+Edges: (5,7) (5,6) (6,13) (12,13) (11,12) Path Lenght: 5000
+Edges: (5,7) (5,6) (6,13) Path Lenght: 3900
+Edges: (6,10) (6,13) Path Lenght: 3200
+-------- 
+
+Size: 15| Omega: 51
+Clique: ( 11 12 13 34 35 36 54 58 60 61 62 63 67 69 84 )
+Paths of this clique:
+Edges: (1,3) (3,6) (6,13) (12,13) Path Lenght: 5900
+Edges: (1,3) (3,6) (6,13) Path Lenght: 5600
+Edges: (1,3) (3,6) (6,13) (13,14) Path Lenght: 5900
+Edges: (3,6) (6,13) (12,13) Path Lenght: 4300
+Edges: (3,6) (6,13) Path Lenght: 4000
+Edges: (3,6) (6,13) (13,14) Path Lenght: 4300
+Edges: (5,6) (6,13) Path Lenght: 3100
+Edges: (6,13) (12,13) (9,12) Path Lenght: 2800
+Edges: (6,13) (12,13) (11,12) Path Lenght: 3100
+Edges: (6,13) (12,13) Path Lenght: 2300
+Edges: (6,13) Path Lenght: 2000
+Edges: (6,13) (13,14) Path Lenght: 2300
+Edges: (5,7) (5,6) (6,13) (12,13) (11,12) Path Lenght: 5000
+Edges: (5,7) (5,6) (6,13) Path Lenght: 3900
+Edges: (6,10) (6,13) Path Lenght: 3200
+-------- 
+
+Size: 15| Omega: 51
+Clique: ( 11 12 13 34 35 53 54 58 60 61 62 63 67 69 84 )
+Paths of this clique:
+Edges: (1,3) (3,6) (6,13) (12,13) Path Lenght: 5900
+Edges: (1,3) (3,6) (6,13) Path Lenght: 5600
+Edges: (1,3) (3,6) (6,13) (13,14) Path Lenght: 5900
+Edges: (3,6) (6,13) (12,13) Path Lenght: 4300
+Edges: (3,6) (6,13) Path Lenght: 4000
+Edges: (5,6) (6,13) (12,13) Path Lenght: 3400
+Edges: (5,6) (6,13) Path Lenght: 3100
+Edges: (6,13) (12,13) (9,12) Path Lenght: 2800
+Edges: (6,13) (12,13) (11,12) Path Lenght: 3100
+Edges: (6,13) (12,13) Path Lenght: 2300
+Edges: (6,13) Path Lenght: 2000
+Edges: (6,13) (13,14) Path Lenght: 2300
+Edges: (5,7) (5,6) (6,13) (12,13) (11,12) Path Lenght: 5000
+Edges: (5,7) (5,6) (6,13) Path Lenght: 3900
+Edges: (6,10) (6,13) Path Lenght: 3200
+-------- 
+
+Size: 15| Omega: 51
+Clique: ( 11 12 13 34 36 53 54 58 60 61 62 63 67 69 84 )
+Paths of this clique:
+Edges: (1,3) (3,6) (6,13) (12,13) Path Lenght: 5900
+Edges: (1,3) (3,6) (6,13) Path Lenght: 5600
+Edges: (1,3) (3,6) (6,13) (13,14) Path Lenght: 5900
+Edges: (3,6) (6,13) (12,13) Path Lenght: 4300
+Edges: (3,6) (6,13) (13,14) Path Lenght: 4300
+Edges: (5,6) (6,13) (12,13) Path Lenght: 3400
+Edges: (5,6) (6,13) Path Lenght: 3100
+Edges: (6,13) (12,13) (9,12) Path Lenght: 2800
+Edges: (6,13) (12,13) (11,12) Path Lenght: 3100
+Edges: (6,13) (12,13) Path Lenght: 2300
+Edges: (6,13) Path Lenght: 2000
+Edges: (6,13) (13,14) Path Lenght: 2300
+Edges: (5,7) (5,6) (6,13) (12,13) (11,12) Path Lenght: 5000
+Edges: (5,7) (5,6) (6,13) Path Lenght: 3900
+Edges: (6,10) (6,13) Path Lenght: 3200
+-------- 
+
+Size: 15| Omega: 51
+Clique: ( 11 12 13 35 36 53 54 58 60 61 62 63 67 69 84 )
+Paths of this clique:
+Edges: (1,3) (3,6) (6,13) (12,13) Path Lenght: 5900
+Edges: (1,3) (3,6) (6,13) Path Lenght: 5600
+Edges: (1,3) (3,6) (6,13) (13,14) Path Lenght: 5900
+Edges: (3,6) (6,13) Path Lenght: 4000
+Edges: (3,6) (6,13) (13,14) Path Lenght: 4300
+Edges: (5,6) (6,13) (12,13) Path Lenght: 3400
+Edges: (5,6) (6,13) Path Lenght: 3100
+Edges: (6,13) (12,13) (9,12) Path Lenght: 2800
+Edges: (6,13) (12,13) (11,12) Path Lenght: 3100
+Edges: (6,13) (12,13) Path Lenght: 2300
+Edges: (6,13) Path Lenght: 2000
+Edges: (6,13) (13,14) Path Lenght: 2300
+Edges: (5,7) (5,6) (6,13) (12,13) (11,12) Path Lenght: 5000
+Edges: (5,7) (5,6) (6,13) Path Lenght: 3900
+Edges: (6,10) (6,13) Path Lenght: 3200
+-------- 
+
+Size: 15| Omega: 51
+Clique: ( 11 12 34 35 36 53 54 58 60 61 62 63 67 69 84 )
+Paths of this clique:
+Edges: (1,3) (3,6) (6,13) (12,13) Path Lenght: 5900
+Edges: (1,3) (3,6) (6,13) Path Lenght: 5600
+Edges: (3,6) (6,13) (12,13) Path Lenght: 4300
+Edges: (3,6) (6,13) Path Lenght: 4000
+Edges: (3,6) (6,13) (13,14) Path Lenght: 4300
+Edges: (5,6) (6,13) (12,13) Path Lenght: 3400
+Edges: (5,6) (6,13) Path Lenght: 3100
+Edges: (6,13) (12,13) (9,12) Path Lenght: 2800
+Edges: (6,13) (12,13) (11,12) Path Lenght: 3100
+Edges: (6,13) (12,13) Path Lenght: 2300
+Edges: (6,13) Path Lenght: 2000
+Edges: (6,13) (13,14) Path Lenght: 2300
+Edges: (5,7) (5,6) (6,13) (12,13) (11,12) Path Lenght: 5000
+Edges: (5,7) (5,6) (6,13) Path Lenght: 3900
+Edges: (6,10) (6,13) Path Lenght: 3200
+-------- 
+
+Size: 15| Omega: 51
+Clique: ( 11 13 34 35 36 53 54 58 60 61 62 63 67 69 84 )
+Paths of this clique:
+Edges: (1,3) (3,6) (6,13) (12,13) Path Lenght: 5900
+Edges: (1,3) (3,6) (6,13) (13,14) Path Lenght: 5900
+Edges: (3,6) (6,13) (12,13) Path Lenght: 4300
+Edges: (3,6) (6,13) Path Lenght: 4000
+Edges: (3,6) (6,13) (13,14) Path Lenght: 4300
+Edges: (5,6) (6,13) (12,13) Path Lenght: 3400
+Edges: (5,6) (6,13) Path Lenght: 3100
+Edges: (6,13) (12,13) (9,12) Path Lenght: 2800
+Edges: (6,13) (12,13) (11,12) Path Lenght: 3100
+Edges: (6,13) (12,13) Path Lenght: 2300
+Edges: (6,13) Path Lenght: 2000
+Edges: (6,13) (13,14) Path Lenght: 2300
+Edges: (5,7) (5,6) (6,13) (12,13) (11,12) Path Lenght: 5000
+Edges: (5,7) (5,6) (6,13) Path Lenght: 3900
+Edges: (6,10) (6,13) Path Lenght: 3200
+-------- 
+
+Size: 15| Omega: 51
+Clique: ( 12 13 34 35 36 53 54 58 60 61 62 63 67 69 84 )
+Paths of this clique:
+Edges: (1,3) (3,6) (6,13) Path Lenght: 5600
+Edges: (1,3) (3,6) (6,13) (13,14) Path Lenght: 5900
+Edges: (3,6) (6,13) (12,13) Path Lenght: 4300
+Edges: (3,6) (6,13) Path Lenght: 4000
+Edges: (3,6) (6,13) (13,14) Path Lenght: 4300
+Edges: (5,6) (6,13) (12,13) Path Lenght: 3400
+Edges: (5,6) (6,13) Path Lenght: 3100
+Edges: (6,13) (12,13) (9,12) Path Lenght: 2800
+Edges: (6,13) (12,13) (11,12) Path Lenght: 3100
+Edges: (6,13) (12,13) Path Lenght: 2300
+Edges: (6,13) Path Lenght: 2000
+Edges: (6,13) (13,14) Path Lenght: 2300
+Edges: (5,7) (5,6) (6,13) (12,13) (11,12) Path Lenght: 5000
+Edges: (5,7) (5,6) (6,13) Path Lenght: 3900
+Edges: (6,10) (6,13) Path Lenght: 3200
+-------- 
+
+Size: 11| Omega: 51
+Clique: ( 13 24 36 63 68 70 75 80 87 90 91 )
+Paths of this clique:
+Edges: (1,3) (3,6) (6,13) (13,14) Path Lenght: 5900
+Edges: (2,4) (4,11) (11,14) (13,14) Path Lenght: 4500
+Edges: (3,6) (6,13) (13,14) Path Lenght: 4300
+Edges: (6,13) (13,14) Path Lenght: 2300
+Edges: (7,8) (8,9) (9,14) (13,14) (12,13) Path Lenght: 2500
+Edges: (7,8) (8,9) (9,12) (12,13) (13,14) Path Lenght: 2500
+Edges: (8,9) (9,14) (13,14) Path Lenght: 1500
+Edges: (9,14) (13,14) Path Lenght: 800
+Edges: (11,14) (13,14) Path Lenght: 1100
+Edges: (12,13) (13,14) Path Lenght: 600
+Edges: (13,14) Path Lenght: 300
+-------- 
+
+
+---------------END OF Forbidden Cliques Information------------------
+
+ITERATION FINISHED
+Limit of 7100 passed
+LB: 50
+UB: 58
+TOTAL FRAMEWORK TIME in seconds: 7231
