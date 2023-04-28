@@ -1,1 +1,0 @@
-Base Instances is an archive with plenty of instances, each one should be verified if it is in the same model as the other instances and be adapted to the data model and copied to the folder Test_Instances
