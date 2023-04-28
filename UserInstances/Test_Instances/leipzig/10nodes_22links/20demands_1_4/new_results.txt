@@ -1,0 +1,339 @@
+
+FRAMEWORK FOR COLUMN GENERATION FOR AN EDGE PATH FORMULATION
+
+==================BEGIN READING DATA============== 
+
+==================END READING DATA============== 
+
+---------------BEGIN OF Data Information------------------
+  Graph G  
+Number of nodes: 10| Number of links: : 22
+Nodes: ( 1 2 3 4 5 6 7 8 9 10 )
+Not oriented
+Edges: (1,2) Length 32
+(1,3) Length 145
+(1,5) Length 82
+(2,3) Length 48
+(2,4) Length 62
+(2,6) Length 119
+(3,4) Length 126
+(3,5) Length 120
+(3,7) Length 86
+(3,8) Length 136
+(4,6) Length 112
+(4,7) Length 79
+(4,8) Length 138
+(5,7) Length 104
+(5,8) Length 66
+(6,8) Length 113
+(6,10) Length 91
+(7,8) Length 23
+(7,9) Length 83
+(8,9) Length 99
+(8,10) Length 95
+(9,10) Length 136
+-------- 
+
+  Graph G prime 
+Number of nodes: 10| Number of links: : 44
+Nodes: ( 1 2 3 4 5 6 7 8 9 10 )
+Oriented
+Arcs:  (1,2) Length 32
+ (1,3) Length 145
+ (1,5) Length 82
+ (2,3) Length 48
+ (2,4) Length 62
+ (2,6) Length 119
+ (3,4) Length 126
+ (3,5) Length 120
+ (3,7) Length 86
+ (3,8) Length 136
+ (4,6) Length 112
+ (4,7) Length 79
+ (4,8) Length 138
+ (5,7) Length 104
+ (5,8) Length 66
+ (6,8) Length 113
+ (6,10) Length 91
+ (7,8) Length 23
+ (7,9) Length 83
+ (8,9) Length 99
+ (8,10) Length 95
+ (9,10) Length 136
+ (2,1) Length 32
+ (3,1) Length 145
+ (5,1) Length 82
+ (3,2) Length 48
+ (4,2) Length 62
+ (6,2) Length 119
+ (4,3) Length 126
+ (5,3) Length 120
+ (7,3) Length 86
+ (8,3) Length 136
+ (6,4) Length 112
+ (7,4) Length 79
+ (8,4) Length 138
+ (7,5) Length 104
+ (8,5) Length 66
+ (8,6) Length 113
+ (10,6) Length 91
+ (8,7) Length 23
+ (9,7) Length 83
+ (9,8) Length 99
+ (10,8) Length 95
+ (10,9) Length 136
+-------- 
+
+  Demands  
+--------Index: 1
+Origin: 8| Destination: 5
+Slots: 2| Max Lenght: 2000
+
+--------Index: 2
+Origin: 10| Destination: 5
+Slots: 1| Max Lenght: 2000
+
+--------Index: 3
+Origin: 9| Destination: 3
+Slots: 3| Max Lenght: 2000
+
+--------Index: 4
+Origin: 6| Destination: 2
+Slots: 1| Max Lenght: 2000
+
+--------Index: 5
+Origin: 2| Destination: 6
+Slots: 4| Max Lenght: 2000
+
+--------Index: 6
+Origin: 8| Destination: 7
+Slots: 3| Max Lenght: 2000
+
+--------Index: 7
+Origin: 5| Destination: 3
+Slots: 4| Max Lenght: 2000
+
+--------Index: 8
+Origin: 3| Destination: 2
+Slots: 2| Max Lenght: 2000
+
+--------Index: 9
+Origin: 9| Destination: 6
+Slots: 1| Max Lenght: 2000
+
+--------Index: 10
+Origin: 7| Destination: 2
+Slots: 4| Max Lenght: 2000
+
+--------Index: 11
+Origin: 10| Destination: 3
+Slots: 3| Max Lenght: 2000
+
+--------Index: 12
+Origin: 10| Destination: 6
+Slots: 4| Max Lenght: 2000
+
+--------Index: 13
+Origin: 4| Destination: 2
+Slots: 3| Max Lenght: 2000
+
+--------Index: 14
+Origin: 4| Destination: 5
+Slots: 3| Max Lenght: 2000
+
+--------Index: 15
+Origin: 2| Destination: 4
+Slots: 2| Max Lenght: 2000
+
+--------Index: 16
+Origin: 8| Destination: 5
+Slots: 1| Max Lenght: 2000
+
+--------Index: 17
+Origin: 8| Destination: 10
+Slots: 3| Max Lenght: 2000
+
+--------Index: 18
+Origin: 2| Destination: 10
+Slots: 4| Max Lenght: 2000
+
+--------Index: 19
+Origin: 7| Destination: 6
+Slots: 3| Max Lenght: 2000
+
+--------Index: 20
+Origin: 3| Destination: 9
+Slots: 3| Max Lenght: 2000
+
+
+----------------END OF Data Information-------------------
+
+---------------BEGIN OF ILP Min Cost Multi Commodity Cplex------------------
+Number of demands : 20
+Number of arcs : 44
+Number of nodes : 10
+
+Number of variables = 881
+
+Capacity :6
+
+---------------END OF ILP Min Cost Multi Commodity Cplex------------------
+TIME == MCMCF duration in seconds: 0
+Output - MCMCF Problem - 
+Capacity = 6
+Routing : 
+From demand: 1 Between nodes: 8 to 5 :: 8 - 5 :: with length 66
+From demand: 2 Between nodes: 10 to 5 :: 10 - 6 - 2 - 1 - 5 :: with length 324
+From demand: 3 Between nodes: 9 to 3 :: 9 - 7 - 8 - 3 :: with length 242
+From demand: 4 Between nodes: 6 to 2 :: 6 - 2 :: with length 119
+From demand: 5 Between nodes: 2 to 6 :: 2 - 6 :: with length 119
+From demand: 6 Between nodes: 8 to 7 :: 8 - 7 :: with length 23
+From demand: 7 Between nodes: 5 to 3 :: 5 - 3 :: with length 120
+From demand: 8 Between nodes: 3 to 2 :: 3 - 2 :: with length 48
+From demand: 9 Between nodes: 9 to 6 :: 9 - 8 - 6 :: with length 212
+From demand: 10 Between nodes: 7 to 2 :: 7 - 5 - 1 - 2 :: with length 218
+From demand: 11 Between nodes: 10 to 3 :: 10 - 8 - 3 :: with length 231
+From demand: 12 Between nodes: 10 to 6 :: 10 - 6 :: with length 91
+From demand: 13 Between nodes: 4 to 2 :: 4 - 3 - 2 :: with length 174
+From demand: 14 Between nodes: 4 to 5 :: 4 - 6 - 8 - 5 :: with length 291
+From demand: 15 Between nodes: 2 to 4 :: 2 - 4 :: with length 62
+From demand: 16 Between nodes: 8 to 5 :: 8 - 5 :: with length 66
+From demand: 17 Between nodes: 8 to 10 :: 8 - 10 :: with length 95
+From demand: 18 Between nodes: 2 to 10 :: 2 - 4 - 8 - 9 - 10 :: with length 435
+From demand: 19 Between nodes: 7 to 6 :: 7 - 4 - 6 :: with length 191
+From demand: 20 Between nodes: 3 to 9 :: 3 - 7 - 9 :: with length 169
+
+Lower Bound UPDATED: 6
+Upper Bound: 121
+
+---------------BEGIN OF Possible paths Information------------------
+For demand: 1
+Edges: (5,8) Path Lenght: 66
+***********************: 
+For demand: 2
+Edges: (6,10) (2,6) (1,2) (1,5) Path Lenght: 324
+***********************: 
+For demand: 3
+Edges: (7,9) (7,8) (3,8) Path Lenght: 242
+***********************: 
+For demand: 4
+Edges: (2,6) Path Lenght: 119
+***********************: 
+For demand: 5
+Edges: (2,6) Path Lenght: 119
+***********************: 
+For demand: 6
+Edges: (7,8) Path Lenght: 23
+***********************: 
+For demand: 7
+Edges: (3,5) Path Lenght: 120
+***********************: 
+For demand: 8
+Edges: (2,3) Path Lenght: 48
+***********************: 
+For demand: 9
+Edges: (8,9) (6,8) Path Lenght: 212
+***********************: 
+For demand: 10
+Edges: (5,7) (1,5) (1,2) Path Lenght: 218
+***********************: 
+For demand: 11
+Edges: (8,10) (3,8) Path Lenght: 231
+***********************: 
+For demand: 12
+Edges: (6,10) Path Lenght: 91
+***********************: 
+For demand: 13
+Edges: (3,4) (2,3) Path Lenght: 174
+***********************: 
+For demand: 14
+Edges: (4,6) (6,8) (5,8) Path Lenght: 291
+***********************: 
+For demand: 15
+Edges: (2,4) Path Lenght: 62
+***********************: 
+For demand: 16
+Edges: (5,8) Path Lenght: 66
+***********************: 
+For demand: 17
+Edges: (8,10) Path Lenght: 95
+***********************: 
+For demand: 18
+Edges: (2,4) (4,8) (8,9) (9,10) Path Lenght: 435
+***********************: 
+For demand: 19
+Edges: (4,7) (4,6) Path Lenght: 191
+***********************: 
+For demand: 20
+Edges: (3,7) (7,9) Path Lenght: 169
+***********************: 
+
+---------------END OF Possible paths Information------------------
+
+---------------BEGIN OF ILP Edge Path Formulation Cplex------------------
+Number of demands : 20
+Number of Edges : 22
+Number of nodes : 10
+Number of slices from MCMCF : 120
+
+Number of variables = 55661
+
+Objective Value: 6
+
+Gap: 0
+
+---------------END OF ILP Edge Path Formulation Cplex------------------
+TIME == RSA duration in seconds: 0
+===== SOLUTION =====
+This RSA solution matches the lowerBound_
+Output - RSA Problem - 
+Interval chromatic number = 6
+Routing : 
+From demand: 1 Between nodes: 8 to 5 :: 8 - 5 :: with length 66
+ Slots : 4 - 6
+From demand: 2 Between nodes: 10 to 5 :: 10 - 6 - 2 - 1 - 5 :: with length 324
+ Slots : 0 - 1
+From demand: 3 Between nodes: 9 to 3 :: 9 - 7 - 8 - 3 :: with length 242
+ Slots : 3 - 6
+From demand: 4 Between nodes: 6 to 2 :: 6 - 2 :: with length 119
+ Slots : 1 - 2
+From demand: 5 Between nodes: 2 to 6 :: 2 - 6 :: with length 119
+ Slots : 2 - 6
+From demand: 6 Between nodes: 8 to 7 :: 8 - 7 :: with length 23
+ Slots : 0 - 3
+From demand: 7 Between nodes: 5 to 3 :: 5 - 3 :: with length 120
+ Slots : 0 - 4
+From demand: 8 Between nodes: 3 to 2 :: 3 - 2 :: with length 48
+ Slots : 4 - 6
+From demand: 9 Between nodes: 9 to 6 :: 9 - 8 - 6 :: with length 212
+ Slots : 5 - 6
+From demand: 10 Between nodes: 7 to 2 :: 7 - 5 - 1 - 2 :: with length 218
+ Slots : 1 - 5
+From demand: 11 Between nodes: 10 to 3 :: 10 - 8 - 3 :: with length 231
+ Slots : 0 - 3
+From demand: 12 Between nodes: 10 to 6 :: 10 - 6 :: with length 91
+ Slots : 1 - 5
+From demand: 13 Between nodes: 4 to 2 :: 4 - 3 - 2 :: with length 174
+ Slots : 0 - 3
+From demand: 14 Between nodes: 4 to 5 :: 4 - 6 - 8 - 5 :: with length 291
+ Slots : 0 - 3
+From demand: 15 Between nodes: 2 to 4 :: 2 - 4 :: with length 62
+ Slots : 4 - 6
+From demand: 16 Between nodes: 8 to 5 :: 8 - 5 :: with length 66
+ Slots : 3 - 4
+From demand: 17 Between nodes: 8 to 10 :: 8 - 10 :: with length 95
+ Slots : 3 - 6
+From demand: 18 Between nodes: 2 to 10 :: 2 - 4 - 8 - 9 - 10 :: with length 435
+ Slots : 0 - 4
+From demand: 19 Between nodes: 7 to 6 :: 7 - 4 - 6 :: with length 191
+ Slots : 3 - 6
+From demand: 20 Between nodes: 3 to 9 :: 3 - 7 - 9 :: with length 169
+ Slots : 0 - 3
+
+---------------------------------------------------: 
+Total time spent in MCMCF: 0
+Total time spent in RSA: 0
+Total time spent finding cliques: 0
+Iterations: 1
+----------------END OF EXECUTION-------------------: 
+TOTAL FRAMEWORK TIME in seconds: 0
