@@ -35,14 +35,14 @@ RSA_Algorithms::RSA_Algorithms(RSA_Input rsa) : RSA_Input_(rsa)
 	}
 	upperBound_ = maxSlots_ + 1;
 	smallestClique_ = maxSlots_+ 1;
-	cout << endl << "---------------BEGIN OF Data Information------------------" << endl;
-	cout << "  Graph G  " << endl;
-	cout << G_ << endl;
-	cout << "  Graph G prime " << endl;
-	cout << GPrime_ << endl;
-	cout << "  Demands  " << endl;
+	std::cout << std::endl << "---------------BEGIN OF Data Information------------------" << std::endl;
+	std::cout << "  Graph G  " << std::endl;
+	std::cout << G_ << std::endl;
+	std::cout << "  Graph G prime " << std::endl;
+	std::cout << GPrime_ << std::endl;
+	std::cout << "  Demands  " << std::endl;
 	rsa.showRequests();
-	cout << endl << "----------------END OF Data Information-------------------" << endl;
+	std::cout << std::endl << "----------------END OF Data Information-------------------" << std::endl;
 	vector<Path*> path(0);
 	for(unsigned i = 0; i < RSA_Input_.getRequests().size(); ++i)
 	{
@@ -86,199 +86,46 @@ void RSA_Algorithms::framework_1()
 	std::chrono::duration<long int> limit = (std::chrono::duration<long int>) 7100;
 
 	//total times initialization
-	auto totalMCMCF = duration_cast<seconds>(startStep - startStep);
+	auto totalKShortest = duration_cast<seconds>(startStep - startStep);
 	auto totalRSA = duration_cast<seconds>(startStep - startStep);
-	auto totalCliques = duration_cast<seconds>(startStep - startStep);
 
-    while(isOptimal_ == false)
-    {
-    	startStep = high_resolution_clock::now(); 		//Begin of MCMCF
-        this->solveMinCostMultiCommodityFlow_Cplex();
-        endStep = high_resolution_clock::now();			//End of MCMCF
-        duration = duration_cast<seconds>(endStep - startStep);
-        totalMCMCF = totalMCMCF + duration;
-        cout << "TIME == MCMCF duration in seconds: " << duration.count() << endl; 
-
-        // If MCMCF was infeasible we can end the program if it is the first iteration or upgrade the lower bound and look for a previous feasible solution
-        if ((MCMCFSolved_ == false) || (MCMCF_Output_.getCapacity() > maxSlots_)) 
-    	{
-		   	if (iterations_ == 0)
-		   	{
-		   		cout << "The first iteration of MCMCF is impossible for this instance" << endl;
-		   		cout << "Problem is infeasible" << endl;
-		   		return;
-		   	}
-		   	//If there are no cliques to reallow, this means that all possible routes were already sugested and a feasible solution was not found
-		   	if (forbiddenCliques_.size() == 0)
-		   	{
-		   		cout << "This iteration of MCMCF is infeasible, and there are no cliques to reallow " << endl;
-		   		cout << "No new routing can be proposed" << endl;
-		   		cout << "Lower bound update to upper bound + 1 so we can look one last time for a solution" << endl;
-		   		lowerBound_ = maxSlots_+ 1;
-		    	cout << "Lower Bound UPDATED: " << lowerBound_ << endl;
-		    	cout << "Upper Bound: " << upperBound_ << endl;
-		   	}
-		   	cout << "This iteration of MCMCF is infeasible, updating lower bound to the smallest clique blocked " << endl;
-		   	//This will make the program look for a previous solution		
-		   	lowerBound_ = smallestClique_;
-		   	cout << "Lower Bound UPDATED: " << smallestClique_ << endl;
-		   	cout << "Upper Bound: " << upperBound_ << endl;
-		}
-		// If MCMCF was feasible we print the solution and verify if the lower bound got higher
-		// If the solution is smallest than the smallest forbidden clique, this solution is the new lb, else, the weight of the smallest clique
-		else
-		{
-	    	cout << MCMCF_Output_ << endl;
-	    	// If the last MCMCF was feasible and the solution is feasible to the rsa, we should add the proposed routing to the pool
-	    	addNewRoutesToRSA();
-			if (MCMCF_Output_.getCapacity() > lowerBound_)
-		    {
-		    	if (MCMCF_Output_.getCapacity() <= smallestClique_)
-		    	{
-		    		lowerBound_ = MCMCF_Output_.getCapacity();
-		    		cout << "Lower Bound UPDATED: " << lowerBound_ << endl;
-		    		cout << "Upper Bound: " << upperBound_ << endl;
-		    	}
-		    	else
-		    	{
-		    		lowerBound_ = smallestClique_;
-		    		cout << "There is at lest one clique of omega between the lower bound and the solution found" << endl;
-		    		cout << "This clique has weight: " << smallestClique_ << endl;
-		    		cout << "Lower Bound UPDATED: " << lowerBound_ << endl;
-		    		cout << "Upper Bound: " << upperBound_ << endl;
-		    	}		    		
-		    }
-		 }
-		
-		// If the lower bound grew, maybe an ancient solution becomes feasible, so we verify if we already have this solution if 
-		// lower bound matches upper bound, there are only 2 possible situations
-		// 1 - lower bound match a solution (as the upper bound is the value of a solution), so we find it
-		// 2 - lower bound match the maximal number of slots + 1 (upper bound was never changed), if the lower bound matchs the number of maximal slots we could find a solotion
-		// but if the lower bound matches the number of maximal slots + 1 and we do not have a solution yet, the problem is infeasible
-	   	if (lowerBound_ >= upperBound_)
-		{
-			cout << "Lower bound matches upper bound" << endl;
-			lookForFeasibleSolution();
-		    // if we found an optimal previous solution in any of the two situations above, we show it in the screen and stop the execution
-		    if(isOptimal_ == true)
-			{
-				cout << "===== SOLUTION =====" << endl;
-				cout << "This solution becomes feasible and this iteration will be stopped" << endl;
-				cout << RSA_Output_ << endl;
-				break;
-			}
-			else
-			{
-				cout << "Problem is infeasible" << endl;
-			}
-		}
-
-		// If there's not a solution yet, the iteration will continue with the steps below, if there is it will stop 		
-		// As there's not a feasible solution yet, we can allow some cliques that respect the new lower bound to appear again
-	    // Also, if we reallow at least one clique, we should not go to the RSA step. We can solve the MCMCF with this clique reallowed
-	    if (allowFeasibleCliques() == true)
-	    {
-	    	cout << "One or more cliques were allowed, solving one extra MCMCF" << endl;
-	    	startStep = high_resolution_clock::now(); 		//Begin of MCMCF
-       		this->solveMinCostMultiCommodityFlow_Cplex();
-       		endStep = high_resolution_clock::now();			//End of MCMCF
-       		duration = duration_cast<seconds>(endStep - startStep);
-       		totalMCMCF = totalMCMCF + duration;
-       		cout << "TIME == MCMCF duration in seconds: " << duration.count() << endl; 
-       		//If this second MCMCF had a solution, we can add this solution to the pool
-       		if ((MCMCFSolved_ == true) && (MCMCF_Output_.getCapacity() <= maxSlots_)) 
-       		{
-       			cout << "The following solution will become a possible routing" << endl;
-       			cout << MCMCF_Output_ << endl;
-       			addNewRoutesToRSA();
-       		}
-       		else
-       		{
-       			cout << "The extra MCMCF is infeasible, nothing will be done" << endl;
-       		}
-	    }
-
-		// Here, we begin tha SA part of the problem
-        showPossiblePaths();
-        startStep = high_resolution_clock::now();			//Begin RSA
-        this->solveEdgePathFormulation_Cplex();
-        endStep = high_resolution_clock::now();				//End RSA
-        duration = duration_cast<seconds>(endStep - startStep);
-        totalRSA = totalRSA + duration;
-        cout << "TIME == RSA duration in seconds: " << duration.count() << endl; 
-
-        // If gap is not 0, it means that we interrupted the last EPF by time limit
-        if (gap_ > 0)
-        {
-		   	cout << "RSA TOOK TOO LONG" << endl;
-		   	cout << "Solution found but there is a gap of: " << gap_;
-        }
-        // If RSA solution is optimal we found our solution and we can end the program
-        if(isOptimal_ == true)
-		{
-			cout << "===== SOLUTION =====" << endl;
-			cout << "This RSA solution matches the lowerBound_" << endl;
-			cout << RSA_Output_ << endl;
-			break;
-		}
-		// After solving the RSA we shall look for cliques in the solution
-		if (RSASolved_ == true) 
-		{
-	       	cout << RSA_Output_ << endl;
-	       	//For instances with a big number of avaible slot and a big number of demands we can use the first solution to reduce the number of variables that will be created
-	       	//With this, the cplex will run faster.
-	       	if ((iterations_ == 0) && (RSA_Input_.getRequests().size() >= 50))
-			{
-				cout << "The first iteration of RSA will reduce the number of variables for the problem" << endl;
-				cout << "The actual value is: " << maxSlots_ << " and will become: " << RSA_Output_.getSlots() << endl;
-				maxSlots_ = RSA_Output_.getSlots();
-			}
-
-	       	if (RSA_Output_.getSlots() < upperBound_)
-	       	{
-	       		upperBound_ = RSA_Output_.getSlots();
-		    	cout << "Upper Bound UPDATED: " << upperBound_ << endl;
-		    	cout << "Lower Bound: " << lowerBound_ << endl;	
-	       	}
-	       	startStep = high_resolution_clock::now(); 			//Begin search for cliques
-	      	maxWeightedClique(RSA_Output_.getRouting());
-	       	endStep = high_resolution_clock::now();				//End search for cliques
-	       	duration = duration_cast<seconds>(endStep - startStep);
-	       	totalCliques = totalCliques + duration;
-	       	cout << "TIME == Finding cliques duration in seconds: " << duration.count() << endl;
-	    }
-	    // If this RSA iteration was infeasible, we can just finish the iteration and go to MCMCF again
-	    else
-	    {
-	    	cout << "This RSA iteration was infeasible" << endl;
-	    } 
-        showForbiddenCliques();
-    
-        cout << endl << "ITERATION FINISHED" << endl;
-        // TIME CONTROL
-       	if (totalRSA.count() > limit.count())
-       	{
-       		cout << "Limit of " << limit.count() << " passed" << endl;
-       		cout << "LB: " << lowerBound_ << endl;
-       		cout << "UB: " << upperBound_ << endl;
-       		return; 
-       	}
-
-       	iterations_ ++;
+    startStep = high_resolution_clock::now(); 		//Begin of MCMCF
+    //this->solveMinCostMultiCommodityFlow_Cplex();
+	this->SolveKShortest();
+    endStep = high_resolution_clock::now();			//End of MCMCF
+    duration = duration_cast<seconds>(endStep - startStep);
+    totalKShortest = totalKShortest + duration;
+    std::cout << "TIME == MCMCF duration in seconds: " << duration.count() << std::endl; 
+	addNewRoutesToRSA();
+	// Here, we begin tha SA part of the problem
+    showPossiblePaths();
+    startStep = high_resolution_clock::now();			//Begin RSA
+    this->solveEdgePathFormulation_Cplex();
+    endStep = high_resolution_clock::now();				//End RSA
+    duration = duration_cast<seconds>(endStep - startStep);
+    totalRSA = totalRSA + duration;
+    std::cout << "TIME == RSA duration in seconds: " << duration.count() << std::endl; 
+    // If gap is not 0, it means that we interrupted the last EPF by time limit
+    if (gap_ > 0){
+		std::cout << "RSA TOOK TOO LONG" << std::endl;
+		std::cout << "Solution found but there is a gap of: " << gap_;
     }
-    cout << "---------------------------------------------------: " << endl;
-    cout << "Total time spent in MCMCF: " << totalMCMCF.count() << endl;
-    cout << "Total time spent in RSA: " << totalRSA.count() << endl;
-    cout << "Total time spent finding cliques: " << totalCliques.count() <<endl;
-    cout << "Iterations: " << iterations_ + 1 << endl;
-    cout << "----------------END OF EXECUTION-------------------: "  << endl;
+    // If RSA solution is optimal we found our solution and we can end the program
+    if(isOptimal_ == true){
+		std::cout << "===== SOLUTION =====" << std::endl;
+		std::cout << RSA_Output_ << std::endl;
+	}
+    std::cout << "---------------------------------------------------: " << std::endl;
+    std::cout << "Total time spent in k-shortest paths: " << totalKShortest.count() << std::endl;
+    std::cout << "Total time spent in RSA: " << totalRSA.count() << std::endl;
+    std::cout << "----------------END OF EXECUTION-------------------: "  << std::endl;
 }
 
-
+void  RSA_Algorithms::solveKShortest(){}
 
 void RSA_Algorithms::solveMinCostMultiCommodityFlow_Cplex(){
 
-	cout << endl << "---------------BEGIN OF ILP Min Cost Multi Commodity Cplex------------------" << endl;
+	std::cout << std::endl << "---------------BEGIN OF ILP Min Cost Multi Commodity Cplex------------------" << std::endl;
 	unsigned K = RSA_Input_.getRequests().size();
 	unsigned A = GPrime_.getArcs().size(); 				//number of arcs in the auxilar graph G'
 	unsigned V = GPrime_.getVertices().size(); 			//number of vertices
@@ -305,7 +152,7 @@ void RSA_Algorithms::solveMinCostMultiCommodityFlow_Cplex(){
 			f_kl[k][a].setName(Var_Name.c_str());
 			ILP_MCMCF.add(f_kl[k][a]);
 			variables.add(f_kl[k][a]);
-			//std::cout << "Variable : " << k << "\t||" << a << "\t||" <<  Var_Name << std::endl;
+			//std::std::cout << "Variable : " << k << "\t||" << a << "\t||" <<  Var_Name << std::std::endl;
 		}
 	}
 
@@ -563,7 +410,7 @@ void RSA_Algorithms::solveMinCostMultiCommodityFlow_Cplex(){
     	return;
     }
     MCMCFSolved_ = true;
-	cout << endl << "Capacity :" << model.getValue(Cap) << endl;
+	std::cout << std::endl << "Capacity :" << model.getValue(Cap) << std::endl;
 
 	// Construction of the solution
 	vector<Path*> routing;
@@ -591,13 +438,13 @@ void RSA_Algorithms::solveMinCostMultiCommodityFlow_Cplex(){
 	// We save the solution to the vector of solutions
 	impossibleRoutings_MCMCF.push_back(MCMCF_Output_);
 	MCMCF.end();
-	cout << endl << "---------------END OF ILP Min Cost Multi Commodity Cplex------------------" << endl;
+	std::cout << std::endl << "---------------END OF ILP Min Cost Multi Commodity Cplex------------------" << std::endl;
 
 }
 
 void RSA_Algorithms::solveEdgePathFormulation_Cplex()
 {
-	cout << endl << "---------------BEGIN OF ILP Edge Path Formulation Cplex------------------" << endl;
+	std::cout << std::endl << "---------------BEGIN OF ILP Edge Path Formulation Cplex------------------" << std::endl;
 
 	IloEnv RSA; 									// environnement : allows use of functions Concert Technology
 	IloModel ILP_RSA(RSA); 							// model: represents the linear programm
@@ -612,7 +459,6 @@ void RSA_Algorithms::solveEdgePathFormulation_Cplex()
 	std::cout << "Number of demands : " << K << std::endl;
 	std::cout << "Number of Edges : " << E << std::endl;
 	std::cout << "Number of nodes : " << V << std::endl;
-	std::cout << "Number of slices from MCMCF : " << S << endl;
 
 	// ----------------------- VARIABLES -----------------------
 	IloNumVarArray variables(RSA);
@@ -814,30 +660,6 @@ void RSA_Algorithms::solveEdgePathFormulation_Cplex()
 		ILP_RSA.add(Mod_Slice == 0);
 		Mod_Slice.end();
 	}
-	// Constraints from previous RSA resolution
-    // For each forbidden routing that already has been a solution for a previous RSA, we shall forbid it appearing again
-    // If there are not forbidden routing, the program will not execute this part
-    for (unsigned i = 0; i < impossibleRoutings_.size(); ++i)
-    {
-        IloExpr forbiddenRoutes(RSA);
-        int counter = 0;
-        //unsigned vertexIndex;
-        // for each demand attend
-        for (unsigned k = 0; k < impossibleRoutings_[i].getRouting().size(); ++k)
-        {
-            // Start in the vertex of the origin of the demand
-            //vertexIndex = RSA_Input_.getRequests()[k]->getOrigin().getIndex();
-            // Add the part of the constraint for all the edges in the path choose
-            for (unsigned j = 0; j < impossibleRoutings_[i].getRouting()[k]->getEdges().size(); ++j)
-            {
-	            forbiddenRoutes += xk_e[RSA_Input_.getRequests()[k]->getIndex()-1][impossibleRoutings_[i].getRouting()[k]->getEdges()[j]->getIndex()-1];
-    	        //vertexIndex = impossibleRoutings_[i].getRouting()[k]->getEdges()[j]->getV2().getIndex();
-        	    counter ++;
-            }
-        }
-        ILP_RSA.add(forbiddenRoutes <= counter-1);
-        forbiddenRoutes.end();
-    }
 
 	// constraints for interval chromatic number version assignement
 	for (unsigned k = 0; k < K; k++)
@@ -867,7 +689,7 @@ void RSA_Algorithms::solveEdgePathFormulation_Cplex()
 
 	model.exportModel("Edge_Path_Formulation_Cplex.lp");
 	model.setOut(RSA.getNullStream());
-	model.setParam(IloCplex::TiLim, 1800); // Execution time limited
+	model.setParam(IloCplex::TiLim, 3600); // Execution time limited
 
 	if (model.solve() == false)
     {
@@ -877,8 +699,8 @@ void RSA_Algorithms::solveEdgePathFormulation_Cplex()
     }
     RSASolved_ = true;
 
-	cout << endl << "Objective Value: " << model.getObjValue() << endl;
-	cout << endl << "Gap: " << model.getMIPRelativeGap() << endl;
+	std::cout << std::endl << "Objective Value: " << model.getObjValue() << std::endl;
+	std::cout << std::endl << "Gap: " << model.getMIPRelativeGap() << std::endl;
 	gap_ = model.getMIPRelativeGap();
 
 	//Construction of the output of the model
@@ -919,7 +741,7 @@ void RSA_Algorithms::solveEdgePathFormulation_Cplex()
     {
         impossibleRoutings_.push_back(RSA_Output_);
     }
-	cout << endl << "---------------END OF ILP Edge Path Formulation Cplex------------------" << endl;
+	std::cout << std::endl << "---------------END OF ILP Edge Path Formulation Cplex------------------" << std::endl;
 }
 
 void RSA_Algorithms::addNewRoutesToRSA()
@@ -941,235 +763,15 @@ void RSA_Algorithms::addNewRoutesToRSA()
 	}
 }
 
-void RSA_Algorithms::lookForFeasibleSolution()
-{
-	for (unsigned i = 0; i < impossibleRoutings_.size();++i)
-	{ 
-		if (lowerBound_ >= impossibleRoutings_[i].getSlots())
-		{
-			isOptimal_ = true;
-			lowerBound_  = impossibleRoutings_[i].getSlots();
-			RSA_Output_ = impossibleRoutings_[i];
-			for (unsigned j = i+1; j < impossibleRoutings_.size();++j)
-			{
-				if (lowerBound_ > impossibleRoutings_[j].getSlots())
-				{
-					lowerBound_  = impossibleRoutings_[j].getSlots();
-					RSA_Output_ = impossibleRoutings_[j];
-				}
-			}
-			break;
-		}
-	}
-}
-
-bool RSA_Algorithms::allowFeasibleCliques()
-{
-	bool allowed = false;
-	vector<Clique>::iterator it = forbiddenCliques_.begin();
-	while (it != forbiddenCliques_.end())
-	{
-	   	if (it->getOmega() <= lowerBound_)
-	    {
-	    	cout << "The clique: " << endl << *it << "Becomes feasible" << endl;
-	     	forbiddenCliques_.erase(it);
-	     	allowed = true;
-	    }
-	    else
-	    {
-	        ++it;
-	    }
-	}
-	it = forbiddenCliques_.begin();
-	smallestClique_ = upperBound_+ 1;
-	while (it != forbiddenCliques_.end())
-	{
-	   	if (it->getOmega() < smallestClique_)
-	    {
-	    	smallestClique_ = it->getOmega();
-	    }
-	    ++it;
-	}
-	if (allowed == true)
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
-}
-
-void RSA_Algorithms::maxWeightedClique(vector<Path*> & routing)
-{
-    //--------------Begin of the construction of the intersection graph ----------------
-    vector<Vertex*> nodes;
-    vector<Edge*> edges;
-    for (unsigned k = 0; k < routing.size(); ++k)
-    {
-        Vertex* vertex  = new Vertex(routing[k]->getIndexDemand(),routing[k]->getDemand()->getSlots());
-        nodes.push_back(vertex);
-    }
-
-    //edge intersection
-    bool pathIntersected;
-    unsigned index_edges = 1;
-    //Comparation between two different paths if they share at least one edge
-    for (unsigned k = 0; k < routing.size() - 1; ++k)
-    {
-        for (unsigned l = k+1; l < routing.size(); ++l)
-        {
-            // Suppose that the two different paths do not share at least edge
-            pathIntersected = false;
-            for(unsigned ke = 0; ke <routing[k]->getEdges().size(); ++ke)
-            {
-                if(pathIntersected == true)
-                    break;
-                for(unsigned le = 0; le <routing[l]->getEdges().size(); ++le)
-                {
-                    //If it is found one edge in common, update the value of path intersection
-                    if (routing[k]->getEdges()[ke]->getIndex() == routing[l]->getEdges()[le]->getIndex())
-                    {
-                        pathIntersected = true;
-                        break;
-                    }
-                }
-            }
-            //If there are at least one edge in common, add a edge in the graph.
-            //Update the neighborhood of each vertex
-            if (pathIntersected == true)
-            {
-                Edge* edge = new Edge(nodes[k],nodes[l],index_edges);
-                edges.push_back(edge);
-                index_edges ++;
-                nodes[k]->addNeighborhood(*(nodes[l]));
-                nodes[l]->addNeighborhood(*(nodes[k]));
-                nodes[k]->addVertexEdges(*edge);
-                nodes[l]->addVertexEdges(*edge);
-            }
-        }
-    }
-
-    //--------------End of the construction of the intersection graph ----------------
-    //--------------Begin of the algorithm to find the max weighted clique number ----
-    //Best clique already found
-    //Construction of the first clique
-    Clique tests,
-    cliqueStar;
-    vector<unsigned> constructed_clique(0);
-    vector<unsigned> constructed_clique_star(0); // The aim of this vector is to know the position in the routing parameter in this function which path was selectioned to be in the clique star
-    bool inClique;
-    for (unsigned i = 0; i < nodes.size(); ++i)
-    {
-        inClique = tests.tryAddVertex(nodes[i]);
-        if (inClique == true)
-        {
-            constructed_clique.push_back(i);
-        }
-    }
-    cliqueStar = tests;
-    constructed_clique_star = constructed_clique;
-    if (tests.getOmega() > lowerBound_)
-   	{
-        cliqueStar = tests;
-		//--------------Begin of the algorithm to find forbidden edges ----
-		//Verify the idea
-		for (unsigned i = 0; i < cliqueStar.getVertices().size() - 1; ++i)
-		{
-		    for (unsigned j = i+1; j < cliqueStar.getVertices().size(); ++j)
-		    {
-		    	for (vector<Edge*>::iterator it = routing[constructed_clique_star[i]]->getEdges().begin(); it != routing[constructed_clique_star[i]]->getEdges().end(); ++it)
-					{
-					for (vector<Edge*>::iterator it2 = routing[constructed_clique_star[j]]->getEdges().begin(); it2 != routing[constructed_clique_star[j]]->getEdges().end(); ++it2)
-					{
-						if ((*it)->getIndex() == (*it2)->getIndex())
-							cliqueStar.addForbiddenEdgesFromCliques((*it), routing[constructed_clique_star[i]]->getDemand(), routing[constructed_clique_star[j]]->getDemand());
-					}
-				}
-		  	}
-		}
-		for (unsigned i = 0; i < constructed_clique_star.size(); ++i)
-		{
-			cliqueStar.addPath(routing[constructed_clique_star[i]]);			//this will add the path in the clique
-		}
-		forbiddenCliques_.push_back(cliqueStar);
-		if (cliqueStar.getOmega() < smallestClique_)
-		{
-		   	smallestClique_ = cliqueStar.getOmega();
-		}
-    }
-    //Backtrack in the clique
-    //This while verify if there are other possibles cliques to try
-    while(constructed_clique[0] < nodes.size()-1 )
-    {
-        // Find the last vertex in the clique
-        unsigned last_vertex = constructed_clique[constructed_clique.size()-1];
-        //Remove the las tvertex inth test clique
-        tests.removeTheLastVertex();
-        constructed_clique.pop_back();
-        //Try to add other vertex, maybe impossible because of the last vertex
-        for (unsigned i = last_vertex+1; i < nodes.size(); ++i)
-        {
-            inClique = tests.tryAddVertex(nodes[i]);
-            if (inClique == true)
-            {
-                constructed_clique.push_back(i);
-        	}
-        }
-        //If the new clique has weighted greater omega than the best clique already found, update
-        if (tests.getOmega() > lowerBound_)
-        {
-        	cliqueStar = tests;
-        	constructed_clique_star = constructed_clique;
-		    //--------------Begin of the algorithm to find forbidden edges ----
-		    //Verify the idea
-		    for (unsigned i = 0; i < cliqueStar.getVertices().size() - 1; ++i)
-		    {
-		    	for (unsigned j = i+1; j < cliqueStar.getVertices().size(); ++j)
-		    	{
-		    		for (vector<Edge*>::iterator it = routing[constructed_clique_star[i]]->getEdges().begin(); it != routing[constructed_clique_star[i]]->getEdges().end(); ++it)
-						{
-						for (vector<Edge*>::iterator it2 = routing[constructed_clique_star[j]]->getEdges().begin(); it2 != routing[constructed_clique_star[j]]->getEdges().end(); ++it2)
-						{
-							if ((*it)->getIndex() == (*it2)->getIndex())
-								cliqueStar.addForbiddenEdgesFromCliques((*it), routing[constructed_clique_star[i]]->getDemand(), routing[constructed_clique_star[j]]->getDemand());
-						}
-					}
-		    	}
-		    }
-		    for (unsigned i = 0; i < constructed_clique_star.size(); ++i)
-			{
-				cliqueStar.addPath(routing[constructed_clique_star[i]]);			//this will add the path in the clique
-			}
-		    forbiddenCliques_.push_back(cliqueStar);
-		    if (cliqueStar.getOmega() < smallestClique_)
-		    {
-		    	smallestClique_ = cliqueStar.getOmega();
-		    }
-        }
-       //Observe that, if there aren't vertex to add, one vertex will be retired and it's all in the iteration.
-       // We wait in some moment there are no more option and the cycle finish in some moment.
-    }
-}
-
 void 	RSA_Algorithms::showPossiblePaths() const {
-	cout << endl << "---------------BEGIN OF Possible paths Information------------------" << endl;
+	std::cout << std::endl << "---------------BEGIN OF Possible paths Information------------------" << std::endl;
 	for (unsigned i = 0; i < possiblePaths_.size(); ++i){
-		cout << "For demand: " << i+1 << endl;
+		std::cout << "For demand: " << i+1 << std::endl;
 		for (unsigned j = 0; j < possiblePaths_[i].size(); ++j){
-			cout << *(possiblePaths_[i][j]);
+			std::cout << *(possiblePaths_[i][j]);
 		}
-		cout << "***********************: " << endl;
+		std::cout << "***********************: " << std::endl;
 	}
-	cout << endl << "---------------END OF Possible paths Information------------------" << endl;
+	std::cout << std::endl << "---------------END OF Possible paths Information------------------" << std::endl;
 }
 
-void 	RSA_Algorithms::showForbiddenCliques() const
-{
-	cout << endl << "---------------BEGIN OF Forbidden Cliques Information------------------" << endl;
-	for (unsigned i = 0; i < forbiddenCliques_.size(); ++i)
-	{
-		cout << forbiddenCliques_[i] << endl;
-	}
-	cout << endl << "---------------END OF Forbidden Cliques Information------------------" << endl;
-}
