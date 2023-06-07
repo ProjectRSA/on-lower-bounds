@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
 		cout << endl << "====================================================== "<< endl;
 		cout << endl << "Number of arguments : " << argc << endl;
 		cout << endl << "Instances name : " << argv[1] << endl;
-		//cout << endl << "File outputs name : " << argv[2] << endl;
+		cout << endl << "File outputs name : " << argv[2] << endl;
 		freopen(argv[2], "w", stdout); 									//this line saves the output from the terminal to a file, comment to see output in terminal
 		cout << endl << "FRAMEWORK FOR COLUMN GENERATION FOR AN EDGE PATH FORMULATION"<< endl;
 		RSA_Input RSA;

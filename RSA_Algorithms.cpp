@@ -534,6 +534,7 @@ void  RSA_Algorithms::solveKShortest(){
 
 		//for kdjikistra
 		std::vector<std::vector<Edge*> > kpathsedges;
+		//DEFINE K SHORTEST
 		int k = 5;
 		kpathsedges = kdijkstra(adjmatrix,originDjikistra-1, destinationDijikistra-1, k);
 		for (int k = 0; k < kpathsedges.size(); k++){
