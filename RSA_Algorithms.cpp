@@ -1,4 +1,5 @@
 #include <iostream>
+#include <algorithm>
 #include <fstream>
 #include <string>
 #include <cstdlib>
@@ -81,30 +82,30 @@ void RSA_Algorithms::framework_1()
 	//time markers initialization
 	auto startStep = high_resolution_clock::now();
 	auto endStep = high_resolution_clock::now();
-	auto duration = duration_cast<seconds>(endStep - startStep);
+	auto duration = duration_cast<milliseconds>(endStep - startStep);
 	//total time control
 	std::chrono::duration<long int> limit = (std::chrono::duration<long int>) 7100;
 
 	//total times initialization
-	auto totalKShortest = duration_cast<seconds>(startStep - startStep);
-	auto totalRSA = duration_cast<seconds>(startStep - startStep);
+	auto totalKShortest = duration_cast<milliseconds>(startStep - startStep);
+	auto totalRSA = duration_cast<milliseconds>(startStep - startStep);
 
     startStep = high_resolution_clock::now(); 		//Begin of MCMCF
     //this->solveMinCostMultiCommodityFlow_Cplex();
-	this->SolveKShortest();
+	this->solveKShortest();
     endStep = high_resolution_clock::now();			//End of MCMCF
-    duration = duration_cast<seconds>(endStep - startStep);
+    duration = duration_cast<milliseconds>(endStep - startStep);
     totalKShortest = totalKShortest + duration;
-    std::cout << "TIME == MCMCF duration in seconds: " << duration.count() << std::endl; 
+    std::cout << "TIME == K shortest duration in milliseconds: " << duration.count() << std::endl; 
 	addNewRoutesToRSA();
 	// Here, we begin tha SA part of the problem
     showPossiblePaths();
     startStep = high_resolution_clock::now();			//Begin RSA
     this->solveEdgePathFormulation_Cplex();
     endStep = high_resolution_clock::now();				//End RSA
-    duration = duration_cast<seconds>(endStep - startStep);
+    duration = duration_cast<milliseconds>(endStep - startStep);
     totalRSA = totalRSA + duration;
-    std::cout << "TIME == RSA duration in seconds: " << duration.count() << std::endl; 
+    std::cout << "TIME == RSA duration in milliseconds: " << duration.count() << std::endl; 
     // If gap is not 0, it means that we interrupted the last EPF by time limit
     if (gap_ > 0){
 		std::cout << "RSA TOOK TOO LONG" << std::endl;
@@ -121,326 +122,463 @@ void RSA_Algorithms::framework_1()
     std::cout << "----------------END OF EXECUTION-------------------: "  << std::endl;
 }
 
-void  RSA_Algorithms::solveKShortest(){}
+int RSA_Algorithms::minDistance(std::vector<int> dist, std::vector<bool> sptSet)
+{
+  	// Initialize min value
+    int min = INT_MAX, min_index;
 
-void RSA_Algorithms::solveMinCostMultiCommodityFlow_Cplex(){
+    for (int v = 0; v < RSA_Input_.getNodes().size(); v++)
+        if (sptSet[v] == false && dist[v] <= min)
+            min = dist[v], min_index = v;
 
-	std::cout << std::endl << "---------------BEGIN OF ILP Min Cost Multi Commodity Cplex------------------" << std::endl;
-	unsigned K = RSA_Input_.getRequests().size();
-	unsigned A = GPrime_.getArcs().size(); 				//number of arcs in the auxilar graph G'
-	unsigned V = GPrime_.getVertices().size(); 			//number of vertices
-
-	//graph and demand information
-	std::cout << "Number of demands : " << K << std::endl;
-	std::cout << "Number of arcs : " << A << std::endl;
-	std::cout << "Number of nodes : " << V << std::endl;
-
-	IloEnv MCMCF; 										// environnement : allows use of functions in Concert Technology
-	IloModel ILP_MCMCF(MCMCF);							// model: represents the linear program
-	IloCplex model(ILP_MCMCF); 							// class Cplex : allows acces to optimization functions
-
-	// ----------------------- VARIABLES -----------------------
-	IloNumVarArray variables(MCMCF);
-
-	IloArray<IloNumVarArray> f_kl(MCMCF, K);
-	for (unsigned k = 0; k < K; k++)
-	{
-		f_kl[k] = IloNumVarArray(MCMCF, A, 0, 1, ILOINT);
-		for (unsigned a = 0; a < A; a++)
-		{
-			std::string Var_Name = "f[" + to_string(k+1) + "," + to_string(a + 1) + "]";
-			f_kl[k][a].setName(Var_Name.c_str());
-			ILP_MCMCF.add(f_kl[k][a]);
-			variables.add(f_kl[k][a]);
-			//std::std::cout << "Variable : " << k << "\t||" << a << "\t||" <<  Var_Name << std::std::endl;
-		}
+    return min_index;
+}
+  
+std::vector<int> RSA_Algorithms::dijkstra(std::vector<std::vector<int> > graph, int src, int dest, double & pathdistance)
+{
+    std::vector<int> dist; 	// The output array.  dist[i] will hold the shortest distance from src to i
+	
+	std::vector<std::vector<int> > pathNodes;
+  
+    std::vector<bool> sptSet; // sptSet[i] will be true if vertex i is included in shortest path tree or shortest distance from src to i is finalized
+  
+    // Initialize all distances as INFINITE and stpSet[] as
+    // false
+    for (int i = 0; i < RSA_Input_.getNodes().size(); i++){
+        dist.push_back(INT_MAX);
+		sptSet.push_back(false);
 	}
 
-	IloNumVar Cap = IloNumVar(MCMCF, 0, INFINITY, ILOINT);
-	std::string Var_Name = "Cap";
-	Cap.setName(Var_Name.c_str());
-	ILP_MCMCF.add(Cap);
-	variables.add(Cap);
-
-	// End of variable cretaion
-	std::cout << std::endl << "Number of variables = " << variables.getSize() << std::endl;
-
-	// ----------------------- Constraints -----------------------
-	//In the origin the flow will go out to exactly one arc
-	for (unsigned k = 0; k < K; k++)
-	{
-		IloExpr Path_outgoing(MCMCF);
-		for (unsigned a = 0; a < RSA_Input_.getRequests()[k]->getOrigin().getVertexOutArcs().size(); a++)
-		{
-			Path_outgoing += f_kl[RSA_Input_.getRequests()[k]->getIndex()-1][RSA_Input_.getRequests()[k]->getOrigin().getVertexOutArcs()[a]->getIndex()-1];
-		}
-		ILP_MCMCF.add(Path_outgoing == 1);
-		Path_outgoing.end();
+	std::vector<int> auxpathNodes;
+	for (int i = 0; i < RSA_Input_.getNodes().size(); i++){
+        pathNodes.push_back(auxpathNodes);
 	}
-
-	//In the destination the flow will not go out
-	for (unsigned k = 0; k < K; k++)
-	{
-		IloExpr Path_outgoing(MCMCF);
-		for (unsigned a = 0; a < RSA_Input_.getRequests()[k]->getDestination().getVertexOutArcs().size(); a++)
-		{
-			Path_outgoing += f_kl[RSA_Input_.getRequests()[k]->getIndex()-1][RSA_Input_.getRequests()[k]->getDestination().getVertexOutArcs()[a]->getIndex()-1];
-		}
-		ILP_MCMCF.add(Path_outgoing == 0);
-		Path_outgoing.end();
-	}
-
-	//In the destination the flow will arrive from exactly one arc
-	for (unsigned k = 0; k < K; k++)
-	{
-		IloExpr Path_ingoing(MCMCF);
-		for (unsigned a = 0; a < RSA_Input_.getRequests()[k]->getDestination().getVertexInArcs().size(); a++)
-		{
-			Path_ingoing += f_kl[RSA_Input_.getRequests()[k]->getIndex()-1][RSA_Input_.getRequests()[k]->getDestination().getVertexInArcs()[a]->getIndex()-1];
-		}
-		ILP_MCMCF.add(Path_ingoing == 1);
-		Path_ingoing.end();
-	}
-
-
-	//Flow constraint
-	for (unsigned k = 0; k < K; k++)
-	{
-		for (unsigned v = 0; v < V; ++v)
-		{
-			if ((GPrime_.getVertices()[v]->getIndex() != RSA_Input_.getRequests()[k]->getDestination().getIndex()) && (GPrime_.getVertices()[v]->getIndex() != RSA_Input_.getRequests()[k]->getOrigin().getIndex()))
-			{
-				IloExpr Flow(MCMCF);
-
-				for (unsigned a = 0; a < GPrime_.getVertices()[v]->getVertexInArcs().size();a++)
-				{
-						Flow += f_kl[RSA_Input_.getRequests()[k]->getIndex()-1][GPrime_.getVertices()[v]->getVertexInArcs()[a]->getIndex()-1];
+	  
+    // Distance of source vertex from itself is always 0
+    dist[src] = 0;
+    // Find shortest path for all vertices
+    for (int count = 0; count < RSA_Input_.getNodes().size(); count++) {
+        // Pick the minimum distance vertex from the set of
+        // vertices not yet processed. u is always equal to
+        // src in the first iteration.
+        int u = minDistance(dist, sptSet);
+        // Mark the picked vertex as processed
+        sptSet[u] = true;
+  
+        // Update dist value of the adjacent vertices of the
+        // picked vertex.
+        for (int v = 0; v < RSA_Input_.getNodes().size(); v++){
+  
+            // Update dist[v] only if is not in sptSet,
+            // there is an edge from u to v, and total
+            // weight of path from src to  v through u is
+            // smaller than current value of dist[v]
+			
+            if (!sptSet[v] && graph[u][v] && dist[u] != INT_MAX && dist[u] + graph[u][v] < dist[v]){
+				//std::cout << "avaliando " << v+1 <<std::endl; ;
+				if (pathNodes[v].size() > 0){
+					//std::cout << "path existente a ser substituido" << std::endl;
+					pathNodes[v].clear();
 				}
-
-				for (unsigned a = 0; a < GPrime_.getVertices()[v]->getVertexOutArcs().size();a++)
-				{
-						Flow -= f_kl[RSA_Input_.getRequests()[k]->getIndex()-1][GPrime_.getVertices()[v]->getVertexOutArcs()[a]->getIndex()-1];
+                dist[v] = dist[u] + graph[u][v];
+				pathNodes[v].push_back(u);
+				//std::cout << "no path do " << v+1 << " adicionar " << u+1 ;
+				//std::cout << " e tambem ";
+				for(int i = 0; i < pathNodes[u].size(); i++){
+					pathNodes[v].push_back(pathNodes[u][i]);
+					//std::cout << pathNodes[u][i] + 1 << " "; 
 				}
-
-				ILP_MCMCF.add(Flow == 0);
-				Flow.end();
-			}
-
-		}
-	}
-
-	// The flow ingoing one vertex will be just from one other vertex
-	for (unsigned k = 0; k < K; k++)
-	{
-		for (unsigned v = 0; v < V; ++v)
-		{
-			IloExpr Flow(MCMCF);
-
-			for (unsigned a = 0; a < GPrime_.getVertices()[v]->getVertexInArcs().size();a++)
-			{
-					Flow += f_kl[RSA_Input_.getRequests()[k]->getIndex()-1][GPrime_.getVertices()[v]->getVertexInArcs()[a]->getIndex()-1];
-			}
-			ILP_MCMCF.add(Flow <=1);
-			Flow.end();
-
-
-		}
-	}
-
-    // The flow outgoing one vertex will be just to one other vertex
-	for (unsigned k = 0; k < K; k++)
-	{
-		for (unsigned v = 0; v < V; ++v)
-		{
-			IloExpr Flow(MCMCF);
-
-			for (unsigned a = 0; a < GPrime_.getVertices()[v]->getVertexOutArcs().size();a++)
-				{
-						Flow += f_kl[RSA_Input_.getRequests()[k]->getIndex()-1][GPrime_.getVertices()[v]->getVertexOutArcs()[a]->getIndex()-1];
+				/*
+				std::cout<< std::endl;
+				std::cout << "novo path do " << v+1 << " : " ;
+				for(int i = 0; i < pathNodes[v].size(); i++){
+					std::cout << pathNodes[v][i] + 1 << " "; 
 				}
-			ILP_MCMCF.add(Flow <=1);
-			Flow.end();
-
-
-		}
-	}
-
-    // Length constraint
-    for (unsigned k = 0; k < K; k++)
-	{
-		IloExpr Length(MCMCF);
-		Length += RSA_Input_.getRequests()[k]->getMaxLength();
-		for (unsigned a = 0; a < GPrime_.getArcs().size(); a++)
-		{
-			Length -= f_kl[RSA_Input_.getRequests()[k]->getIndex()-1][GPrime_.getArcs()[a]->getIndex()-1] * GPrime_.getArcs()[a]->getLength();
-		}
-		ILP_MCMCF.add(Length >= 0);
-		Length.end();
-	}
-    // The capacity is equal to the biggest flow in one edge in the original RSA problem
-    // Equal to the sum of the two arcs in inverse orientation
-	for (unsigned a = 0; a < A/2; ++a)
-	{
-		IloExpr Capacity(MCMCF);
-		for (unsigned k = 0; k < K; k++)
-		{
-			Capacity += int(RSA_Input_.getRequests()[k]->getSlots()) * f_kl[RSA_Input_.getRequests()[k]->getIndex()-1][GPrime_.getArcs()[a]->getIndex()-1] ;
-			Capacity +=	int(RSA_Input_.getRequests()[k]->getSlots()) * f_kl[RSA_Input_.getRequests()[k]->getIndex()-1][GPrime_.getArcs()[a]->getIndex() + A/2 -1] ;
-		}
-		Capacity -= Cap;
-		ILP_MCMCF.add(Capacity <= 0);
-		Capacity.end();
-
-	}
-
-    // For each edge in the original graph the flow for one demand will not goes for the 2 arcs with inverse orientation
-	for (unsigned a = 0; a < A/2; ++a)
-	{
-
-		for (unsigned k = 0; k < K; k++)
-		{
-			IloExpr edgeconst(MCMCF);
-			edgeconst += f_kl[RSA_Input_.getRequests()[k]->getIndex()-1][GPrime_.getArcs()[a]->getIndex()-1] ;
-			edgeconst += f_kl[RSA_Input_.getRequests()[k]->getIndex()-1][GPrime_.getArcs()[a]->getIndex() + A/2 -1] ;
-			ILP_MCMCF.add(edgeconst <= 1);
-			edgeconst.end();
-		}
-	}
-
-    // Constraints from RSA resolution
-    // For each forbidden routing with no spectrum assignment less or equal to the lower bound
-    // If there are not forbidden routing, the program will not execute this part
-    for (unsigned i = 0; i < impossibleRoutings_.size(); ++i)
-    {
-        IloExpr rsaconst(MCMCF);
-        int counter = 0;
-        // for each demand attend
-        for (unsigned k = 0; k < impossibleRoutings_[i].getRouting().size(); ++k)
-        {
-            // Start in the vertex of the origin of the demand
-            unsigned vertex_index = RSA_Input_.getRequests()[k]->getOrigin().getIndex();
-            // Add the part of the constraint for all the edges in the path choose
-            for (unsigned j = 0; j < impossibleRoutings_[i].getRouting()[k]->getEdges().size(); ++j)
-            {
-                // if the arc is in the same orientation that the edge or not
-                if(vertex_index == impossibleRoutings_[i].getRouting()[k]->getEdges()[j]->getV1().getIndex())
-                {
-                    rsaconst += f_kl[RSA_Input_.getRequests()[k]->getIndex()-1][impossibleRoutings_[i].getRouting()[k]->getEdges()[j]->getIndex()-1];
-                    vertex_index = impossibleRoutings_[i].getRouting()[k]->getEdges()[j]->getV2().getIndex();
-                    counter ++;
-                }
-                else
-                {
-                    rsaconst += f_kl[RSA_Input_.getRequests()[k]->getIndex()-1][impossibleRoutings_[i].getRouting()[k]->getEdges()[j]->getIndex()-1+(A/2)];
-                    vertex_index = impossibleRoutings_[i].getRouting()[k]->getEdges()[j]->getV1().getIndex();
-                    counter ++;
-                }
-
-            }
-        }
-        ILP_MCMCF.add(rsaconst <= counter-1);
-        rsaconst.end();
-    }
-
-    // Constraints from MCMCF resolution
-    // For each forbidden routing with no spectrum assignment less or equal to the lower bound
-    // If there are not forbidden routing, the program will not execute this part
-    for (unsigned i = 0; i < impossibleRoutings_MCMCF.size(); ++i)
-    {
-        IloExpr mcmcfconstraint(MCMCF);
-        int counter = 0;
-        // for each demand attend
-        for (unsigned k = 0; k < impossibleRoutings_MCMCF[i].getRouting().size(); ++k)
-        {
-            // Start in the vertex of the origin of the demand
-            unsigned vertex_index = RSA_Input_.getRequests()[k]->getOrigin().getIndex();
-            // Add the part of the constraint for all the edges in the path choose
-            for (unsigned j = 0; j < impossibleRoutings_MCMCF[i].getRouting()[k]->getEdges().size(); ++j)
-            {
-                // if the arc is in the same orientation that the edge or not
-                if(vertex_index == impossibleRoutings_MCMCF[i].getRouting()[k]->getEdges()[j]->getV1().getIndex())
-                {
-                    mcmcfconstraint += f_kl[RSA_Input_.getRequests()[k]->getIndex()-1][impossibleRoutings_MCMCF[i].getRouting()[k]->getEdges()[j]->getIndex()-1];
-                    vertex_index = impossibleRoutings_MCMCF[i].getRouting()[k]->getEdges()[j]->getV2().getIndex();
-                    counter ++;
-                }
-                else
-                {
-                    mcmcfconstraint += f_kl[RSA_Input_.getRequests()[k]->getIndex()-1][impossibleRoutings_MCMCF[i].getRouting()[k]->getEdges()[j]->getIndex()-1+(A/2)];
-                    vertex_index = impossibleRoutings_MCMCF[i].getRouting()[k]->getEdges()[j]->getV1().getIndex();
-                    counter ++;
-                }
-
-            }
-        }
-        ILP_MCMCF.add(mcmcfconstraint <= counter-1);
-        mcmcfconstraint.end();
-    }
-
-    //Clique constraints
-    for (unsigned i = 0; i < forbiddenCliques_.size(); ++i)
-    {
-        IloExpr cliqueconstraint(MCMCF);
-        int counter = 0;
-        for (unsigned j = 0; j < forbiddenCliques_[i].getForbiddenEdgesFromCliques().size(); ++j)
-        {
-            for (unsigned k = 0; k < forbiddenCliques_[i].getForbiddenEdgesFromCliques()[j].indexDemand.size(); ++k)
-            {
-                cliqueconstraint += f_kl[forbiddenCliques_[i].getForbiddenEdgesFromCliques()[j].indexDemand[k]->getIndex()-1][forbiddenCliques_[i].getForbiddenEdgesFromCliques()[j].edges->getIndex()-1];
-                cliqueconstraint += f_kl[forbiddenCliques_[i].getForbiddenEdgesFromCliques()[j].indexDemand[k]->getIndex()-1][forbiddenCliques_[i].getForbiddenEdgesFromCliques()[j].edges->getIndex()-1 + A/2];
-                counter++;
-            }
-        }
-        ILP_MCMCF.add(cliqueconstraint <= counter-1);
-        cliqueconstraint.end();
-    }
-
-	//Objective function
-	IloExpr Ob(MCMCF);
-	Ob = Cap;
-	IloObjective obj(MCMCF, Ob, IloObjective::Minimize, "OBJ");
-	ILP_MCMCF.add(obj);
-
-	model.exportModel("Min_Cost_Multi_Comodity_Cplex.lp");
-	model.setOut(MCMCF.getNullStream());
-	if (model.solve() == false)
-    {
- 
-    	MCMCFSolved_ = false;
-    	return;
-    }
-    MCMCFSolved_ = true;
-	std::cout << std::endl << "Capacity :" << model.getValue(Cap) << std::endl;
-
-	// Construction of the solution
-	vector<Path*> routing;
-	for (unsigned k = 0; k < K; k++)
-	{
-		Vertex nd =  RSA_Input_.getRequests()[k]->getOrigin();
-		vector<Edge*> path(0);
-		while(nd.getIndex() != RSA_Input_.getRequests()[k]->getDestination().getIndex())
-		{
-			for (unsigned a = 0; a < nd.getVertexOutArcs().size();++a)
-			{
-				if (round(model.getValue(f_kl[RSA_Input_.getRequests()[k]->getIndex()-1][nd.getVertexOutArcs()[a]->getIndex()-1])) == 1)
-				{
-					path.push_back(nd.getVertexOutArcs()[a]->getEdge());
-					nd = nd.getVertexOutArcs()[a]->getDestination() ;
-					break;
-				}
+				std::cout<< std::endl;
+				std::cout << "dist " << v+1 << " : " << dist[v] ;
+				std::cout<< std::endl;
+				*/
 			}
 		}
-		Path * path2 = new Path(path,RSA_Input_.getRequests()[k]);
-		routing.push_back(path2);
+    }
+	/*
+	std::cout << "Vertex Path from Source" << endl;
+	for (int i = 0; i < pathNodes.size(); i++){
+		std::cout << i+1 << " ";
+		for (int j = 0; j < pathNodes[i].size(); j++){
+			std::cout <<  pathNodes[i][j] + 1<< " "; 
+		}
+		std::cout<< std::endl;
 	}
-	// Here the solution is saved
-	MCMCF_Output_ = MCMCF_Output(routing,model.getValue(Cap));
-	// We save the solution to the vector of solutions
-	impossibleRoutings_MCMCF.push_back(MCMCF_Output_);
-	MCMCF.end();
-	std::cout << std::endl << "---------------END OF ILP Min Cost Multi Commodity Cplex------------------" << std::endl;
+	*/
+	/*
+	std::cout << "Chosen path" << endl;
+	for (int i = pathNodes[dest].size() -1 ; i >= 0; i--){
+		std::cout <<  pathNodes[dest][i] + 1 << " "; 
+	}
+	std::cout << dest + 1;
+	std::cout<< std::endl;
+	*/
+	double chosendistance = dist[dest];
+	/*
+	std::cout << "Chosen distance " << chosendistance << endl;
+    // print the constructed distance array
+    std::cout << "Vertex Distance from Source" << endl;
+    for (int i = 0; i < RSA_Input_.getNodes().size(); i++){
+        std::cout << i+1 << " " << dist[i] << std::endl;
+	}
+	*/
+	std::vector<int> sol;
+	for (int i = pathNodes[dest].size() -1 ; i >= 0; i--){
+		sol.push_back(pathNodes[dest][i] + 1); 
+	}
+	sol.push_back(dest+ 1);
+	
+	return sol;
+}
+
+std::vector<std::vector<Edge*> > RSA_Algorithms::kdijkstra(std::vector<std::vector<int> > graph, int src, int dest, int K){
+	std::vector<std::vector<int> > modifiablegraph = graph;
+	std::vector<std::vector<int> > A; //chosen paths
+	std::vector<std::vector<int> > B; //candidate paths 
+	std::vector<int> djikistraSolution;
+	int spurNode;
+	std::vector<int> spurPath;
+	double dist;
+	djikistraSolution = dijkstra(graph,src,dest,dist);
+	//std::cout << "1 djikitra: ";
+	//for (int zz = 0; zz < djikistraSolution.size(); zz++){
+	//		std::cout << djikistraSolution[zz] << " ";
+	//}
+	//std::cout << std::endl;
+	A.push_back(djikistraSolution);
+	for (int k = 1; k<K; k++){
+		for (int i = 0; i < A[k-1].size()-1; i++ ){
+			//std::cout << "olha o i " << i << std::endl;
+			spurNode = A[k-1][i];
+			//std::cout << "spur node " << spurNode << std::endl;
+			std::vector<int> rootpath;
+			for (int j = 0; j <= i; j++){
+				rootpath.push_back(A[k-1][j]);
+			}
+			//std::cout << "root path: ";
+			//for (int w = 0; w < rootpath.size(); w++){
+			//	std::cout << rootpath[w] << " ";
+			//}
+			//std::cout << std::endl;
+			for (int path = 0; path < A.size() ; path ++){
+				std::vector<int> auxiliarpath;
+				//definindo se vai ate o i ou ate o fim do path ai
+				int stop = i;
+				if (A[path].size()<i){
+					//std::cout << "A nao é grande o suficiente pro i" << std::endl;
+					stop = A[path].size() -1;
+				}
+				for (int node = 0; node <= stop; node++){
+					auxiliarpath.push_back(A[path][node]);
+				}
+				//std::cout << "auxiliar path from A: ";
+				//	for (int w = 0; w < auxiliarpath.size(); w++){
+				//		std::cout << auxiliarpath[w] << " ";
+				//	}
+				//std::cout << std::endl;
+				//verificar se o roothpath é igual
+				bool auxigualroot = true;
+				for (int v = 0; v < auxiliarpath.size(); v++){
+					if (auxiliarpath[v]!=rootpath[v]){
+						auxigualroot = false;
+					}
+				}
+				if (auxigualroot == true){
+					//std::cout << "remover " << A[path][i] << " e "  << A[path][i+1] << std::endl;
+					modifiablegraph[A[path][i]-1][A[path][i+1]-1] = 0;
+					modifiablegraph[A[path][i+1]-1][A[path][i]-1] = 0;
+				}
+			}
+			//std::cout << "removendo do spur path" << std::endl;
+			if (rootpath.size() > 1){
+				for (int w = 0; w < rootpath.size()-1; w++){
+					//std::cout << "remover " << rootpath[w] << " e "  << rootpath[w+1] << std::endl;
+					modifiablegraph[rootpath[w]-1][rootpath[w+1]-1] = 0;
+					modifiablegraph[rootpath[w+1]-1][rootpath[w]-1] = 0;
+				}
+			}
+			//std::cout << "removendo causa de ciclos path" << std::endl;
+			for (int w = 0; w < rootpath.size()-1; w++){
+				for (int adj = 0; adj < modifiablegraph[rootpath[w]-1].size(); adj++){
+					//std::cout << "remover " << rootpath[w] << " e "  <<  adj+1<< std::endl;
+					modifiablegraph[rootpath[w]-1][adj] = 0;
+					modifiablegraph[adj][rootpath[w]-1] = 0;
+				}
+			}
+			//std::cout << "printing adjmatrix" <<std::endl; 
+			//for (int i = 0; i < modifiablegraph.size(); i++){
+			//	for (int j = 0; j < modifiablegraph[i].size(); j++){
+			//		std::cout << modifiablegraph[i][j] << " ";
+			//	}
+			//	std::cout << std::endl;
+			//}
+			spurPath = dijkstra(modifiablegraph,spurNode-1,dest,dist);
+			if (spurPath.size() == 1){
+				modifiablegraph = graph;
+				//std::cout << "breakou o pau comeu " << std::endl;
+			}
+			else{
+			//std::cout << "pedaço do novo candidato: ";
+			//for (int zz = 0; zz < spurPath.size(); zz++){
+			//	std::cout << spurPath[zz] << " ";
+			//}
+			//std::cout << std::endl;
+			std::vector<int> totalpath;
+			//std::cout << "adicionando root"<< std::endl;
+			for (int nn = 0; nn < rootpath.size()-1; nn++){
+				totalpath.push_back(rootpath[nn]);
+			}
+			//std::cout << "adicionando pedaço"<< std::endl;
+			for (int nn = 0; nn < spurPath.size(); nn++){
+				totalpath.push_back(spurPath[nn]);
+			}
+			//std::cout << "novo candidato: ";
+			//for (int zz = 0; zz < totalpath.size(); zz++){
+			//	std::cout << totalpath[zz] << " ";
+			//}
+			bool ehigual = false;
+			for (int bzin=0; bzin < B.size(); bzin++){
+				if (B[bzin].size() == totalpath.size()){
+					bool auxtotaligualbzin = true;
+					for (int v = 0; v < totalpath.size(); v++){
+						if (B[bzin][v]!=totalpath[v]){
+							//std::cout << "elemento diferente caraio"<<std::endl;
+							auxtotaligualbzin = false;
+						}
+					}
+					if (auxtotaligualbzin == true){
+						//std::cout << "essa porra é ingual adiciona n"<<std::endl;
+						ehigual = true;
+						break;
+					}
+				}
+			}
+			if (ehigual == false){
+				//std::cout << "adicione ";
+				//for (int zz = 0; zz < totalpath.size(); zz++){
+				//	std::cout << totalpath[zz] << " ";
+				//}
+				//std::cout << std::endl;
+				B.push_back(totalpath);
+			}
+			modifiablegraph = graph;
+			}
+		}
+		if (B.size()==0){
+			break;
+		}
+		//std::cout << "paths em b: " << B.size()<<  std::endl;
+		//for (int bzin = 0; bzin < B.size(); bzin++){
+		//	std::cout << "paths " << bzin + 1<< " : ";
+		//	for (int bzin2 = 0; bzin2 < B[bzin].size(); bzin2++){
+		//		std::cout << B[bzin][bzin2] << " ";
+		//	}
+		//	std::cout << std::endl;
+		//}
+		//FALTA O SORT
+		std::vector<double> distB;
+		for (int bzin = 0; bzin < B.size(); bzin++){
+			double distatual = 0;
+			for (int bzin2 = 0; bzin2 < B[bzin].size()-1; bzin2++){
+				//std::cout << "Somando edge " << B[bzin][bzin2] <<" " << B[bzin][bzin2+1] << " dist: " << graph[B[bzin][bzin2]-1][B[bzin][bzin2+1]-1] <<std::endl;
+				distatual = distatual + graph[B[bzin][bzin2]-1][B[bzin][bzin2+1]-1];
+			}
+			distB.push_back(distatual);
+			//std::cout << std::endl;
+		}
+		//for (int bzin = 0; bzin < distB.size(); bzin++){
+		//	std::cout << "b " << bzin + 1  << " dist: " << distB[bzin] <<std::endl;
+		//
+		//}
+		double minelement = *min_element(distB.begin(),distB.end());
+		//std::cout << "el minimo: " << minelement <<std::endl;
+		int index;
+		for (int bzin = 0; bzin < distB.size(); bzin++){
+			if(distB[bzin]==minelement){
+				index = bzin;
+				break;
+			}
+		}
+		//std::cout << "index del minimo: " << index <<std::endl;
+		//FAZER SORT
+		//std::cout << "paths em A: " << A.size()<<  std::endl;
+		//for (int bzin = 0; bzin < A.size(); bzin++){
+		//	std::cout << "paths " << bzin + 1<< " : ";
+		//	for (int bzin2 = 0; bzin2 < A[bzin].size(); bzin2++){
+		//		std::cout << A[bzin][bzin2] << " ";
+		//	}
+		//	std::cout << std::endl;
+		//}
+
+		//std::cout << "adicionando ";
+		//for (int zz = 0; zz < B[index].size(); zz++){
+		//	std::cout << B[index][zz] << " ";
+		//}
+		A.push_back(B[index]);
+		//aqui fazer swap de quem ta no index com o begin
+		//std::cout << "trocando ";
+		//for (int zz = 0; zz < B[0].size(); zz++){
+		//	std::cout << B[0][zz] << " ";
+		//}
+		//std::cout << "por ";
+		//for (int zz = 0; zz < B[index].size(); zz++){
+		//	std::cout << B[index][zz] << " ";
+		//}
+		B[0].swap(B[index]);
+		B.erase(B.begin());
+		//std::cout << "paths em b: " << B.size()<<  std::endl;
+		//for (int bzin = 0; bzin < B.size(); bzin++){
+		//	std::cout << "paths " << bzin + 1<< " : ";
+		//	for (int bzin2 = 0; bzin2 < B[bzin].size(); bzin2++){
+		//		std::cout << B[bzin][bzin2] << " ";
+		//	}
+		//	std::cout << std::endl;
+		//}
+		/*
+		std::cout << "paths em A: " << A.size()<<  std::endl;
+		for (int bzin = 0; bzin < A.size(); bzin++){
+			std::cout << "paths " << bzin + 1<< " : ";
+			for (int bzin2 = 0; bzin2 < A[bzin].size(); bzin2++){
+				std::cout << A[bzin][bzin2] << " ";
+			}
+			std::cout << std::endl;
+		}
+		std::cout << "paths em b: " << B.size()<<  std::endl;
+		for (int bzin = 0; bzin < B.size(); bzin++){
+			std::cout << "paths " << bzin +1<< " : ";
+			for (int bzin2 = 0; bzin2 < B[bzin].size(); bzin2++){
+				std::cout << B[bzin][bzin2] << " ";
+			}
+			std::cout << std::endl;
+		}*/
+	}
+
+	std::vector<std::vector<Edge*> > solution;
+	std::vector<Edge*> auxsolution;
+	for (int a = 0; a <A.size(); a++){
+		for (int i = 0; i < A[a].size() -1 ; i++){
+			int origindege = A[a][i]  ;
+			int destinationedge = A[a][i+1] ;  
+			for (int j = 0; j < RSA_Input_.getEdges().size(); j++){
+				if (RSA_Input_.getEdges()[j]->getV1().getIndex() == origindege && RSA_Input_.getEdges()[j]->getV2().getIndex() == destinationedge){
+					auxsolution.push_back(RSA_Input_.getEdges()[j]);
+				}
+				if (RSA_Input_.getEdges()[j]->getV2().getIndex() == origindege && RSA_Input_.getEdges()[j]->getV1().getIndex() == destinationedge){
+					auxsolution.push_back(RSA_Input_.getEdges()[j]);
+				}
+			}
+		}
+		solution.push_back(auxsolution);
+		auxsolution.clear();
+	}
+	return solution;
 
 }
+
+void  RSA_Algorithms::solveKShortest(){
+
+	//DJIKISTRA MODULE     
+	std::vector<int> djikistraDemandsId;
+	std::vector<std::vector<Edge*> > djikistraPathsEdges;
+    int originDjikistra;
+    int destinationDijikistra;
+	vector<Path*> routing;
+	int countroutings=0;
+
+    for (int i = 0; i < RSA_Input_.getRequests().size(); ++i){
+	//for (int i = 0; i < 1; ++i){	
+		//std::cout << std::endl <<"===========demanda: "<< i+1 << std::endl;
+        originDjikistra = RSA_Input_.getRequests()[i]->getOrigin().getIndex();
+        destinationDijikistra =  RSA_Input_.getRequests()[i]->getDestination().getIndex();
+		//std::cout << originDjikistra << " " << destinationDijikistra << std::endl;
+
+		//creating adj matrix
+		std::vector<std::vector<int> > adjmatrix;
+		std::vector<int> auxadj;
+		for (int i = 0; i < RSA_Input_.getNodes().size(); ++i){
+			for (int j = 0; j < RSA_Input_.getNodes().size(); ++j){
+				auxadj.push_back(0);
+			}
+			adjmatrix.push_back(auxadj);
+			auxadj.clear();
+		}
+		//filling adj matrix
+		for (int i = 0; i < RSA_Input_.getNodes().size(); ++i){
+			int demandorigin = i+1;
+			for (int j = 0; j < RSA_Input_.getEdges().size(); ++j){
+				int edgeorigin = RSA_Input_.getEdges()[j]->getV1().getIndex();
+				int edgedestination = RSA_Input_.getEdges()[j]->getV2().getIndex();
+				if (edgedestination == demandorigin){
+					adjmatrix[i][edgeorigin-1] = RSA_Input_.getEdges()[j]->getLength();
+				}
+				else{
+					if (edgeorigin == demandorigin){
+						adjmatrix[i][edgedestination-1] = RSA_Input_.getEdges()[j]->getLength();
+					}
+				}
+			}
+		}
+		//std::cout << "printing matrix" <<std::endl; 
+		/*for (int i = 0; i < adjmatrix.size(); i++){
+			for (int j = 0; j < adjmatrix[i].size(); j++){
+				std::cout << adjmatrix[i][j] << " ";
+			}
+			std::cout << std::endl;
+		}*/
+
+		//for kdjikistra
+		std::vector<std::vector<Edge*> > kpathsedges;
+		int k = 5;
+		kpathsedges = kdijkstra(adjmatrix,originDjikistra-1, destinationDijikistra-1, k);
+		for (int k = 0; k < kpathsedges.size(); k++){
+			//std::cout << std:: endl<< "Path from " << originDjikistra << " to " << destinationDijikistra << " is: " ; 
+			//for (int p = 0; p != kpathsedges[k].size(); ++p)
+			//	std::cout << kpathsedges[k][p]->getV1().getIndex() << " " << kpathsedges[k][p]->getV2().getIndex() << " " ;
+			djikistraDemandsId.push_back(RSA_Input_.getRequests()[i]->getIndex());
+			djikistraPathsEdges.push_back(kpathsedges[k]);
+		}
+		//std::cout << std::endl << "===========demanda: "<< i+1 << std::endl;
+	}
+		
+	// Construction of the solution
+	for (unsigned a = 0; a < djikistraPathsEdges.size(); a++)
+	{
+		vector<Edge*> path(0);
+		for (unsigned b = 0; b < djikistraPathsEdges[a].size(); b++)
+		{
+			path.push_back(djikistraPathsEdges[a][b]);
+		}
+		Path * path2 = new Path(path,RSA_Input_.getRequests()[djikistraDemandsId[countroutings]-1]);
+		//AQUI SO DAR PUSHBACK SE RESPEITAR O MAX LENGTH	
+		// URGENTE
+		if (path2->getLengthPath() <= path2->getDemand()->getMaxLength()){
+			//std::cout << "k shortest respects max length: "<< path2->getLengthPath()<< " < "<< path2->getDemand()->getMaxLength() <<std::endl;
+			routing.push_back(path2);
+		}
+		countroutings = countroutings + 1;
+	}
+	/*
+	std::cout << "Current routing" <<std::endl;
+	for (int i = 0; i < routing.size(); i ++){
+		std::cout << " routing: " << routing[i]->getIndex() << " demand: " << routing[i]->getDemand()->getIndex() << " edges: ";  
+		for (int j = 0; j < routing[i]->getEdges().size(); j ++){
+			std::cout << " "  << routing[i]->getEdges()[j]->getV1().getIndex() << " " << routing[i]->getEdges()[j]->getV2().getIndex();
+		}
+		std::cout << std::endl;
+	}*/
+    
+	// Here the solution is saved
+	MCMCF_Output_ = MCMCF_Output(routing,0);
+}
+
+
+
 
 void RSA_Algorithms::solveEdgePathFormulation_Cplex()
 {
@@ -660,7 +798,6 @@ void RSA_Algorithms::solveEdgePathFormulation_Cplex()
 		ILP_RSA.add(Mod_Slice == 0);
 		Mod_Slice.end();
 	}
-
 	// constraints for interval chromatic number version assignement
 	for (unsigned k = 0; k < K; k++)
 	{
@@ -687,7 +824,7 @@ void RSA_Algorithms::solveEdgePathFormulation_Cplex()
 	ILP_RSA.add(obj);
 
 
-	model.exportModel("Edge_Path_Formulation_Cplex.lp");
+	//model.exportModel("Edge_Path_Formulation_Cplex.lp");
 	model.setOut(RSA.getNullStream());
 	model.setParam(IloCplex::TiLim, 3600); // Execution time limited
 
@@ -698,6 +835,7 @@ void RSA_Algorithms::solveEdgePathFormulation_Cplex()
     	return;
     }
     RSASolved_ = true;
+	isOptimal_ = true;
 
 	std::cout << std::endl << "Objective Value: " << model.getObjValue() << std::endl;
 	std::cout << std::endl << "Gap: " << model.getMIPRelativeGap() << std::endl;
@@ -733,33 +871,14 @@ void RSA_Algorithms::solveEdgePathFormulation_Cplex()
         spectrumAssignment.push_back(sapd);
 	}
     RSA_Output_ = RSA_Output(routing,spectrumAssignment,model.getObjValue());
-    if (model.getObjValue() <= lowerBound_)
-    {
-        isOptimal_ = true;
-    }
-    else
-    {
-        impossibleRoutings_.push_back(RSA_Output_);
-    }
 	std::cout << std::endl << "---------------END OF ILP Edge Path Formulation Cplex------------------" << std::endl;
 }
 
 void RSA_Algorithms::addNewRoutesToRSA()
 {
-	bool alrealdyExistantPath;
 	for (unsigned i = 0; i < MCMCF_Output_.getRouting().size(); ++i)
 	{
-		alrealdyExistantPath = false;
-		for(unsigned j = 0; j < possiblePaths_[i].size(); ++j)
-        {
-            if (*(possiblePaths_[i][j]) == *(MCMCF_Output_.getRouting()[i]))
-            {
-                alrealdyExistantPath = true;
-                break;
-            }
-        }
-        if (alrealdyExistantPath == false)
-            possiblePaths_[i].push_back(MCMCF_Output_.getRouting()[i]);
+        possiblePaths_[MCMCF_Output_.getRouting()[i]->getDemand()->getIndex()-1].push_back(MCMCF_Output_.getRouting()[i]);
 	}
 }
 

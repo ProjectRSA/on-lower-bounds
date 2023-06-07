@@ -47,6 +47,12 @@ class RSA_Algorithms
 		//Shows
 		void 			showPossiblePaths() const ;
 
+		//K-shortest
+		int minDistance(std::vector<int> dist, std::vector<bool> sptSet);
+		std::vector<int> dijkstra(std::vector<std::vector<int> > graph, int src, int dest, double & pathdistance);
+		std::vector<std::vector<Edge*> > kdijkstra(std::vector<std::vector<int> > graph, int src, int dest, int k);
+
+
 		~RSA_Algorithms(){};
 };
 
