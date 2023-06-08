@@ -31,6 +31,7 @@ int main(int argc, char *argv[])
 		cout << endl << "Number of arguments : " << argc << endl;
 		cout << endl << "Instances name : " << argv[1] << endl;
 		cout << endl << "File outputs name : " << argv[2] << endl;
+		cout << endl << "K for K-shortest: " << argv[3] << endl;
 		freopen(argv[2], "w", stdout); 									//this line saves the output from the terminal to a file, comment to see output in terminal
 		cout << endl << "FRAMEWORK FOR COLUMN GENERATION FOR AN EDGE PATH FORMULATION"<< endl;
 		RSA_Input RSA;
@@ -44,7 +45,9 @@ int main(int argc, char *argv[])
 		RSA_Algorithms rsa_algo(RSA);
 
 		auto startStep = high_resolution_clock::now();
-        rsa_algo.framework_1();
+		string Kshortestinput =argv[3];
+		int Kshortest = stoi(Kshortestinput);
+        rsa_algo.framework_1(Kshortest);
         auto endStep = high_resolution_clock::now();
         auto duration = duration_cast<milliseconds>(endStep - startStep);
         cout << "TOTAL FRAMEWORK TIME in milliseconds: " << duration.count() << endl; 

@@ -77,7 +77,7 @@ void RSA_Algorithms::Construct_G_Prime()
 	GPrime_ = Graph(RSA_Input_.getNodes(), arcs);
 }
 
-void RSA_Algorithms::framework_1()
+void RSA_Algorithms::framework_1(int k)
 {
 	//time markers initialization
 	auto startStep = high_resolution_clock::now();
@@ -92,7 +92,7 @@ void RSA_Algorithms::framework_1()
 
     startStep = high_resolution_clock::now(); 		//Begin of MCMCF
     //this->solveMinCostMultiCommodityFlow_Cplex();
-	this->solveKShortest();
+	this->solveKShortest(k);
     endStep = high_resolution_clock::now();			//End of MCMCF
     duration = duration_cast<milliseconds>(endStep - startStep);
     totalKShortest = totalKShortest + duration;
@@ -481,7 +481,7 @@ std::vector<std::vector<Edge*> > RSA_Algorithms::kdijkstra(std::vector<std::vect
 
 }
 
-void  RSA_Algorithms::solveKShortest(){
+void  RSA_Algorithms::solveKShortest(int k){
 
 	//DJIKISTRA MODULE     
 	std::vector<int> djikistraDemandsId;
@@ -535,7 +535,6 @@ void  RSA_Algorithms::solveKShortest(){
 		//for kdjikistra
 		std::vector<std::vector<Edge*> > kpathsedges;
 		//DEFINE K SHORTEST
-		int k = 5;
 		kpathsedges = kdijkstra(adjmatrix,originDjikistra-1, destinationDijikistra-1, k);
 		for (int k = 0; k < kpathsedges.size(); k++){
 			//std::cout << std:: endl<< "Path from " << originDjikistra << " to " << destinationDijikistra << " is: " ; 
@@ -577,8 +576,6 @@ void  RSA_Algorithms::solveKShortest(){
 	// Here the solution is saved
 	MCMCF_Output_ = MCMCF_Output(routing,0);
 }
-
-
 
 
 void RSA_Algorithms::solveEdgePathFormulation_Cplex()

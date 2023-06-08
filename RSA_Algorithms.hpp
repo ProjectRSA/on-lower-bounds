@@ -40,8 +40,8 @@ class RSA_Algorithms
 		RSA_Algorithms(RSA_Input rsa);
 
 		//Functions
-		void            framework_1();
-		void 			solveKShortest();
+		void            framework_1(int k);
+		void 			solveKShortest(int k);
 		void 			solveMinCostMultiCommodityFlow_Cplex();
 		void 			solveEdgePathFormulation_Cplex();
 		//Shows
