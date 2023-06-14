@@ -1,0 +1,803 @@
+
+FRAMEWORK FOR COLUMN GENERATION FOR AN EDGE PATH FORMULATION
+
+==================BEGIN READING DATA============== 
+
+==================END READING DATA============== 
+
+---------------BEGIN OF Data Information------------------
+  Graph G  
+Number of nodes: 14| Number of links: : 21
+Nodes: ( 1 2 3 4 5 6 7 8 9 10 11 12 13 14 )
+Not oriented
+Edges: (1,2) Length 1100
+(1,3) Length 1600
+(1,8) Length 2800
+(2,3) Length 600
+(2,4) Length 1000
+(3,6) Length 2000
+(4,5) Length 600
+(4,11) Length 2400
+(5,6) Length 1100
+(5,7) Length 800
+(6,10) Length 1200
+(6,13) Length 2000
+(7,8) Length 700
+(8,9) Length 700
+(9,10) Length 900
+(9,12) Length 500
+(9,14) Length 500
+(11,12) Length 800
+(11,14) Length 800
+(12,13) Length 300
+(13,14) Length 300
+-------- 
+
+  Graph G prime 
+Number of nodes: 14| Number of links: : 42
+Nodes: ( 1 2 3 4 5 6 7 8 9 10 11 12 13 14 )
+Oriented
+Arcs:  (1,2) Length 1100
+ (1,3) Length 1600
+ (1,8) Length 2800
+ (2,3) Length 600
+ (2,4) Length 1000
+ (3,6) Length 2000
+ (4,5) Length 600
+ (4,11) Length 2400
+ (5,6) Length 1100
+ (5,7) Length 800
+ (6,10) Length 1200
+ (6,13) Length 2000
+ (7,8) Length 700
+ (8,9) Length 700
+ (9,10) Length 900
+ (9,12) Length 500
+ (9,14) Length 500
+ (11,12) Length 800
+ (11,14) Length 800
+ (12,13) Length 300
+ (13,14) Length 300
+ (2,1) Length 1100
+ (3,1) Length 1600
+ (8,1) Length 2800
+ (3,2) Length 600
+ (4,2) Length 1000
+ (6,3) Length 2000
+ (5,4) Length 600
+ (11,4) Length 2400
+ (6,5) Length 1100
+ (7,5) Length 800
+ (10,6) Length 1200
+ (13,6) Length 2000
+ (8,7) Length 700
+ (9,8) Length 700
+ (10,9) Length 900
+ (12,9) Length 500
+ (14,9) Length 500
+ (12,11) Length 800
+ (14,11) Length 800
+ (13,12) Length 300
+ (14,13) Length 300
+-------- 
+
+  Demands  
+--------Index: 1
+Origin: 1| Destination: 2
+Slots: 5| Max Lenght: 3000
+
+--------Index: 2
+Origin: 1| Destination: 3
+Slots: 5| Max Lenght: 3000
+
+--------Index: 3
+Origin: 1| Destination: 4
+Slots: 5| Max Lenght: 3000
+
+--------Index: 4
+Origin: 1| Destination: 5
+Slots: 3| Max Lenght: 6000
+
+--------Index: 5
+Origin: 1| Destination: 6
+Slots: 3| Max Lenght: 6000
+
+--------Index: 6
+Origin: 1| Destination: 7
+Slots: 3| Max Lenght: 6000
+
+--------Index: 7
+Origin: 1| Destination: 8
+Slots: 3| Max Lenght: 6000
+
+--------Index: 8
+Origin: 1| Destination: 9
+Slots: 3| Max Lenght: 6000
+
+--------Index: 9
+Origin: 1| Destination: 10
+Slots: 3| Max Lenght: 6000
+
+--------Index: 10
+Origin: 1| Destination: 11
+Slots: 3| Max Lenght: 6000
+
+--------Index: 11
+Origin: 1| Destination: 12
+Slots: 3| Max Lenght: 6000
+
+--------Index: 12
+Origin: 1| Destination: 13
+Slots: 3| Max Lenght: 6000
+
+--------Index: 13
+Origin: 1| Destination: 14
+Slots: 3| Max Lenght: 6000
+
+--------Index: 14
+Origin: 2| Destination: 3
+Slots: 5| Max Lenght: 3000
+
+--------Index: 15
+Origin: 2| Destination: 4
+Slots: 5| Max Lenght: 3000
+
+--------Index: 16
+Origin: 2| Destination: 5
+Slots: 5| Max Lenght: 3000
+
+--------Index: 17
+Origin: 2| Destination: 6
+Slots: 3| Max Lenght: 6000
+
+--------Index: 18
+Origin: 2| Destination: 7
+Slots: 3| Max Lenght: 6000
+
+--------Index: 19
+Origin: 2| Destination: 8
+Slots: 3| Max Lenght: 6000
+
+--------Index: 20
+Origin: 2| Destination: 9
+Slots: 3| Max Lenght: 6000
+
+--------Index: 21
+Origin: 2| Destination: 10
+Slots: 3| Max Lenght: 6000
+
+--------Index: 22
+Origin: 2| Destination: 11
+Slots: 3| Max Lenght: 6000
+
+--------Index: 23
+Origin: 2| Destination: 12
+Slots: 3| Max Lenght: 6000
+
+--------Index: 24
+Origin: 2| Destination: 13
+Slots: 3| Max Lenght: 6000
+
+--------Index: 25
+Origin: 2| Destination: 14
+Slots: 3| Max Lenght: 6000
+
+--------Index: 26
+Origin: 3| Destination: 4
+Slots: 5| Max Lenght: 3000
+
+--------Index: 27
+Origin: 3| Destination: 5
+Slots: 5| Max Lenght: 3000
+
+--------Index: 28
+Origin: 3| Destination: 6
+Slots: 5| Max Lenght: 3000
+
+--------Index: 29
+Origin: 3| Destination: 7
+Slots: 3| Max Lenght: 6000
+
+--------Index: 30
+Origin: 3| Destination: 8
+Slots: 3| Max Lenght: 6000
+
+--------Index: 31
+Origin: 3| Destination: 9
+Slots: 3| Max Lenght: 6000
+
+--------Index: 32
+Origin: 3| Destination: 10
+Slots: 3| Max Lenght: 6000
+
+--------Index: 33
+Origin: 3| Destination: 11
+Slots: 3| Max Lenght: 6000
+
+--------Index: 34
+Origin: 3| Destination: 12
+Slots: 3| Max Lenght: 6000
+
+--------Index: 35
+Origin: 3| Destination: 13
+Slots: 3| Max Lenght: 6000
+
+--------Index: 36
+Origin: 3| Destination: 14
+Slots: 3| Max Lenght: 6000
+
+--------Index: 37
+Origin: 4| Destination: 5
+Slots: 5| Max Lenght: 3000
+
+--------Index: 38
+Origin: 4| Destination: 6
+Slots: 5| Max Lenght: 3000
+
+--------Index: 39
+Origin: 4| Destination: 7
+Slots: 5| Max Lenght: 3000
+
+--------Index: 40
+Origin: 4| Destination: 8
+Slots: 5| Max Lenght: 3000
+
+--------Index: 41
+Origin: 4| Destination: 9
+Slots: 3| Max Lenght: 6000
+
+--------Index: 42
+Origin: 4| Destination: 10
+Slots: 3| Max Lenght: 6000
+
+--------Index: 43
+Origin: 4| Destination: 11
+Slots: 3| Max Lenght: 6000
+
+--------Index: 44
+Origin: 4| Destination: 12
+Slots: 3| Max Lenght: 6000
+
+--------Index: 45
+Origin: 4| Destination: 13
+Slots: 3| Max Lenght: 6000
+
+--------Index: 46
+Origin: 4| Destination: 14
+Slots: 3| Max Lenght: 6000
+
+--------Index: 47
+Origin: 5| Destination: 6
+Slots: 5| Max Lenght: 3000
+
+--------Index: 48
+Origin: 5| Destination: 7
+Slots: 5| Max Lenght: 3000
+
+--------Index: 49
+Origin: 5| Destination: 8
+Slots: 3| Max Lenght: 6000
+
+--------Index: 50
+Origin: 5| Destination: 9
+Slots: 5| Max Lenght: 3000
+
+--------Index: 51
+Origin: 5| Destination: 10
+Slots: 5| Max Lenght: 3000
+
+--------Index: 52
+Origin: 5| Destination: 11
+Slots: 3| Max Lenght: 6000
+
+--------Index: 53
+Origin: 5| Destination: 12
+Slots: 3| Max Lenght: 6000
+
+--------Index: 54
+Origin: 5| Destination: 13
+Slots: 3| Max Lenght: 6000
+
+--------Index: 55
+Origin: 5| Destination: 14
+Slots: 3| Max Lenght: 6000
+
+--------Index: 56
+Origin: 6| Destination: 7
+Slots: 5| Max Lenght: 3000
+
+--------Index: 57
+Origin: 6| Destination: 8
+Slots: 3| Max Lenght: 6000
+
+--------Index: 58
+Origin: 6| Destination: 9
+Slots: 3| Max Lenght: 6000
+
+--------Index: 59
+Origin: 6| Destination: 10
+Slots: 5| Max Lenght: 3000
+
+--------Index: 60
+Origin: 6| Destination: 11
+Slots: 3| Max Lenght: 6000
+
+--------Index: 61
+Origin: 6| Destination: 12
+Slots: 5| Max Lenght: 3000
+
+--------Index: 62
+Origin: 6| Destination: 13
+Slots: 5| Max Lenght: 3000
+
+--------Index: 63
+Origin: 6| Destination: 14
+Slots: 5| Max Lenght: 3000
+
+--------Index: 64
+Origin: 7| Destination: 8
+Slots: 5| Max Lenght: 3000
+
+--------Index: 65
+Origin: 7| Destination: 9
+Slots: 5| Max Lenght: 3000
+
+--------Index: 66
+Origin: 7| Destination: 10
+Slots: 5| Max Lenght: 3000
+
+--------Index: 67
+Origin: 7| Destination: 11
+Slots: 3| Max Lenght: 6000
+
+--------Index: 68
+Origin: 7| Destination: 12
+Slots: 5| Max Lenght: 3000
+
+--------Index: 69
+Origin: 7| Destination: 13
+Slots: 3| Max Lenght: 6000
+
+--------Index: 70
+Origin: 7| Destination: 14
+Slots: 5| Max Lenght: 3000
+
+--------Index: 71
+Origin: 8| Destination: 9
+Slots: 3| Max Lenght: 6000
+
+--------Index: 72
+Origin: 8| Destination: 10
+Slots: 3| Max Lenght: 6000
+
+--------Index: 73
+Origin: 8| Destination: 11
+Slots: 5| Max Lenght: 3000
+
+--------Index: 74
+Origin: 8| Destination: 12
+Slots: 5| Max Lenght: 3000
+
+--------Index: 75
+Origin: 8| Destination: 13
+Slots: 5| Max Lenght: 3000
+
+--------Index: 76
+Origin: 8| Destination: 14
+Slots: 5| Max Lenght: 3000
+
+--------Index: 77
+Origin: 9| Destination: 10
+Slots: 5| Max Lenght: 3000
+
+--------Index: 78
+Origin: 9| Destination: 11
+Slots: 3| Max Lenght: 6000
+
+--------Index: 79
+Origin: 9| Destination: 12
+Slots: 3| Max Lenght: 6000
+
+--------Index: 80
+Origin: 9| Destination: 13
+Slots: 5| Max Lenght: 3000
+
+--------Index: 81
+Origin: 9| Destination: 14
+Slots: 6| Max Lenght: 600
+
+--------Index: 82
+Origin: 10| Destination: 11
+Slots: 3| Max Lenght: 6000
+
+--------Index: 83
+Origin: 10| Destination: 12
+Slots: 5| Max Lenght: 3000
+
+--------Index: 84
+Origin: 10| Destination: 13
+Slots: 3| Max Lenght: 6000
+
+--------Index: 85
+Origin: 10| Destination: 14
+Slots: 5| Max Lenght: 3000
+
+--------Index: 86
+Origin: 11| Destination: 12
+Slots: 5| Max Lenght: 3000
+
+--------Index: 87
+Origin: 11| Destination: 13
+Slots: 5| Max Lenght: 3000
+
+--------Index: 88
+Origin: 11| Destination: 14
+Slots: 3| Max Lenght: 3000
+
+--------Index: 89
+Origin: 12| Destination: 13
+Slots: 6| Max Lenght: 600
+
+--------Index: 90
+Origin: 12| Destination: 14
+Slots: 6| Max Lenght: 3000
+
+
+----------------END OF Data Information-------------------
+TIME == K shortest duration in milliseconds: 1
+
+---------------BEGIN OF Possible paths Information------------------
+For demand: 1
+Edges: (1,2) Path Lenght: 1100
+Edges: (1,3) (2,3) Path Lenght: 2200
+***********************: 
+For demand: 2
+Edges: (1,3) Path Lenght: 1600
+Edges: (1,2) (2,3) Path Lenght: 1700
+***********************: 
+For demand: 3
+Edges: (1,2) (2,4) Path Lenght: 2100
+***********************: 
+For demand: 4
+Edges: (1,2) (2,4) (4,5) Path Lenght: 2700
+Edges: (1,3) (2,3) (2,4) (4,5) Path Lenght: 3800
+***********************: 
+For demand: 5
+Edges: (1,3) (3,6) Path Lenght: 3600
+Edges: (1,2) (2,3) (3,6) Path Lenght: 3700
+***********************: 
+For demand: 6
+Edges: (1,2) (2,4) (4,5) (5,7) Path Lenght: 3500
+Edges: (1,8) (7,8) Path Lenght: 3500
+***********************: 
+For demand: 7
+Edges: (1,8) Path Lenght: 2800
+Edges: (1,2) (2,4) (4,5) (5,7) (7,8) Path Lenght: 4200
+***********************: 
+For demand: 8
+Edges: (1,8) (8,9) Path Lenght: 3500
+Edges: (1,2) (2,4) (4,5) (5,7) (7,8) (8,9) Path Lenght: 4900
+***********************: 
+For demand: 9
+Edges: (1,8) (8,9) (9,10) Path Lenght: 4400
+Edges: (1,3) (3,6) (6,10) Path Lenght: 4800
+***********************: 
+For demand: 10
+Edges: (1,2) (2,4) (4,11) Path Lenght: 4500
+Edges: (1,8) (8,9) (9,14) (11,14) Path Lenght: 4800
+***********************: 
+For demand: 11
+Edges: (1,8) (8,9) (9,12) Path Lenght: 4000
+Edges: (1,8) (8,9) (9,14) (13,14) (12,13) Path Lenght: 4600
+***********************: 
+For demand: 12
+Edges: (1,8) (8,9) (9,14) (13,14) Path Lenght: 4300
+Edges: (1,8) (8,9) (9,12) (12,13) Path Lenght: 4300
+***********************: 
+For demand: 13
+Edges: (1,8) (8,9) (9,14) Path Lenght: 4000
+Edges: (1,8) (8,9) (9,12) (12,13) (13,14) Path Lenght: 4600
+***********************: 
+For demand: 14
+Edges: (2,3) Path Lenght: 600
+Edges: (1,2) (1,3) Path Lenght: 2700
+***********************: 
+For demand: 15
+Edges: (2,4) Path Lenght: 1000
+***********************: 
+For demand: 16
+Edges: (2,4) (4,5) Path Lenght: 1600
+***********************: 
+For demand: 17
+Edges: (2,3) (3,6) Path Lenght: 2600
+Edges: (2,4) (4,5) (5,6) Path Lenght: 2700
+***********************: 
+For demand: 18
+Edges: (2,4) (4,5) (5,7) Path Lenght: 2400
+Edges: (2,3) (3,6) (5,6) (5,7) Path Lenght: 4500
+***********************: 
+For demand: 19
+Edges: (2,4) (4,5) (5,7) (7,8) Path Lenght: 3100
+Edges: (1,2) (1,8) Path Lenght: 3900
+***********************: 
+For demand: 20
+Edges: (2,4) (4,5) (5,7) (7,8) (8,9) Path Lenght: 3800
+Edges: (1,2) (1,8) (8,9) Path Lenght: 4600
+***********************: 
+For demand: 21
+Edges: (2,3) (3,6) (6,10) Path Lenght: 3800
+Edges: (2,4) (4,5) (5,6) (6,10) Path Lenght: 3900
+***********************: 
+For demand: 22
+Edges: (2,4) (4,11) Path Lenght: 3400
+Edges: (2,4) (4,5) (5,7) (7,8) (8,9) (9,14) (11,14) Path Lenght: 5100
+***********************: 
+For demand: 23
+Edges: (2,4) (4,11) (11,12) Path Lenght: 4200
+Edges: (2,4) (4,5) (5,7) (7,8) (8,9) (9,12) Path Lenght: 4300
+***********************: 
+For demand: 24
+Edges: (2,4) (4,11) (11,14) (13,14) Path Lenght: 4500
+Edges: (2,4) (4,11) (11,12) (12,13) Path Lenght: 4500
+***********************: 
+For demand: 25
+Edges: (2,4) (4,11) (11,14) Path Lenght: 4200
+Edges: (2,4) (4,5) (5,7) (7,8) (8,9) (9,14) Path Lenght: 4300
+***********************: 
+For demand: 26
+Edges: (2,3) (2,4) Path Lenght: 1600
+***********************: 
+For demand: 27
+Edges: (2,3) (2,4) (4,5) Path Lenght: 2200
+***********************: 
+For demand: 28
+Edges: (3,6) Path Lenght: 2000
+***********************: 
+For demand: 29
+Edges: (2,3) (2,4) (4,5) (5,7) Path Lenght: 3000
+Edges: (3,6) (5,6) (5,7) Path Lenght: 3900
+***********************: 
+For demand: 30
+Edges: (2,3) (2,4) (4,5) (5,7) (7,8) Path Lenght: 3700
+Edges: (1,3) (1,8) Path Lenght: 4400
+***********************: 
+For demand: 31
+Edges: (3,6) (6,10) (9,10) Path Lenght: 4100
+Edges: (2,3) (2,4) (4,5) (5,7) (7,8) (8,9) Path Lenght: 4400
+***********************: 
+For demand: 32
+Edges: (3,6) (6,10) Path Lenght: 3200
+Edges: (2,3) (2,4) (4,5) (5,6) (6,10) Path Lenght: 4500
+***********************: 
+For demand: 33
+Edges: (2,3) (2,4) (4,11) Path Lenght: 4000
+Edges: (3,6) (6,13) (13,14) (11,14) Path Lenght: 5100
+***********************: 
+For demand: 34
+Edges: (3,6) (6,13) (12,13) Path Lenght: 4300
+Edges: (3,6) (6,10) (9,10) (9,12) Path Lenght: 4600
+***********************: 
+For demand: 35
+Edges: (3,6) (6,13) Path Lenght: 4000
+Edges: (3,6) (6,10) (9,10) (9,14) (13,14) Path Lenght: 4900
+***********************: 
+For demand: 36
+Edges: (3,6) (6,13) (13,14) Path Lenght: 4300
+Edges: (3,6) (6,10) (9,10) (9,14) Path Lenght: 4600
+***********************: 
+For demand: 37
+Edges: (4,5) Path Lenght: 600
+***********************: 
+For demand: 38
+Edges: (4,5) (5,6) Path Lenght: 1700
+***********************: 
+For demand: 39
+Edges: (4,5) (5,7) Path Lenght: 1400
+***********************: 
+For demand: 40
+Edges: (4,5) (5,7) (7,8) Path Lenght: 2100
+***********************: 
+For demand: 41
+Edges: (4,5) (5,7) (7,8) (8,9) Path Lenght: 2800
+Edges: (4,11) (11,14) (9,14) Path Lenght: 3700
+***********************: 
+For demand: 42
+Edges: (4,5) (5,6) (6,10) Path Lenght: 2900
+Edges: (4,5) (5,7) (7,8) (8,9) (9,10) Path Lenght: 3700
+***********************: 
+For demand: 43
+Edges: (4,11) Path Lenght: 2400
+Edges: (4,5) (5,7) (7,8) (8,9) (9,14) (11,14) Path Lenght: 4100
+***********************: 
+For demand: 44
+Edges: (4,11) (11,12) Path Lenght: 3200
+Edges: (4,5) (5,7) (7,8) (8,9) (9,12) Path Lenght: 3300
+***********************: 
+For demand: 45
+Edges: (4,11) (11,14) (13,14) Path Lenght: 3500
+Edges: (4,11) (11,12) (12,13) Path Lenght: 3500
+***********************: 
+For demand: 46
+Edges: (4,11) (11,14) Path Lenght: 3200
+Edges: (4,5) (5,7) (7,8) (8,9) (9,14) Path Lenght: 3300
+***********************: 
+For demand: 47
+Edges: (5,6) Path Lenght: 1100
+***********************: 
+For demand: 48
+Edges: (5,7) Path Lenght: 800
+***********************: 
+For demand: 49
+Edges: (5,7) (7,8) Path Lenght: 1500
+Edges: (5,6) (6,10) (9,10) (8,9) Path Lenght: 3900
+***********************: 
+For demand: 50
+Edges: (5,7) (7,8) (8,9) Path Lenght: 2200
+***********************: 
+For demand: 51
+Edges: (5,6) (6,10) Path Lenght: 2300
+***********************: 
+For demand: 52
+Edges: (4,5) (4,11) Path Lenght: 3000
+Edges: (5,7) (7,8) (8,9) (9,14) (11,14) Path Lenght: 3500
+***********************: 
+For demand: 53
+Edges: (5,7) (7,8) (8,9) (9,12) Path Lenght: 2700
+Edges: (5,7) (7,8) (8,9) (9,14) (13,14) (12,13) Path Lenght: 3300
+***********************: 
+For demand: 54
+Edges: (5,7) (7,8) (8,9) (9,14) (13,14) Path Lenght: 3000
+Edges: (5,7) (7,8) (8,9) (9,12) (12,13) Path Lenght: 3000
+***********************: 
+For demand: 55
+Edges: (5,7) (7,8) (8,9) (9,14) Path Lenght: 2700
+Edges: (5,7) (7,8) (8,9) (9,12) (12,13) (13,14) Path Lenght: 3300
+***********************: 
+For demand: 56
+Edges: (5,6) (5,7) Path Lenght: 1900
+***********************: 
+For demand: 57
+Edges: (5,6) (5,7) (7,8) Path Lenght: 2600
+Edges: (6,10) (9,10) (8,9) Path Lenght: 2800
+***********************: 
+For demand: 58
+Edges: (6,10) (9,10) Path Lenght: 2100
+Edges: (6,13) (13,14) (9,14) Path Lenght: 2800
+***********************: 
+For demand: 59
+Edges: (6,10) Path Lenght: 1200
+***********************: 
+For demand: 60
+Edges: (6,13) (13,14) (11,14) Path Lenght: 3100
+Edges: (6,13) (12,13) (11,12) Path Lenght: 3100
+***********************: 
+For demand: 61
+Edges: (6,13) (12,13) Path Lenght: 2300
+Edges: (6,10) (9,10) (9,12) Path Lenght: 2600
+***********************: 
+For demand: 62
+Edges: (6,13) Path Lenght: 2000
+Edges: (6,10) (9,10) (9,14) (13,14) Path Lenght: 2900
+***********************: 
+For demand: 63
+Edges: (6,13) (13,14) Path Lenght: 2300
+Edges: (6,10) (9,10) (9,14) Path Lenght: 2600
+***********************: 
+For demand: 64
+Edges: (7,8) Path Lenght: 700
+***********************: 
+For demand: 65
+Edges: (7,8) (8,9) Path Lenght: 1400
+***********************: 
+For demand: 66
+Edges: (7,8) (8,9) (9,10) Path Lenght: 2300
+***********************: 
+For demand: 67
+Edges: (7,8) (8,9) (9,14) (11,14) Path Lenght: 2700
+Edges: (7,8) (8,9) (9,12) (11,12) Path Lenght: 2700
+***********************: 
+For demand: 68
+Edges: (7,8) (8,9) (9,12) Path Lenght: 1900
+Edges: (7,8) (8,9) (9,14) (13,14) (12,13) Path Lenght: 2500
+***********************: 
+For demand: 69
+Edges: (7,8) (8,9) (9,14) (13,14) Path Lenght: 2200
+Edges: (7,8) (8,9) (9,12) (12,13) Path Lenght: 2200
+***********************: 
+For demand: 70
+Edges: (7,8) (8,9) (9,14) Path Lenght: 1900
+Edges: (7,8) (8,9) (9,12) (12,13) (13,14) Path Lenght: 2500
+***********************: 
+For demand: 71
+Edges: (8,9) Path Lenght: 700
+Edges: (7,8) (5,7) (5,6) (6,10) (9,10) Path Lenght: 4700
+***********************: 
+For demand: 72
+Edges: (8,9) (9,10) Path Lenght: 1600
+Edges: (7,8) (5,7) (5,6) (6,10) Path Lenght: 3800
+***********************: 
+For demand: 73
+Edges: (8,9) (9,14) (11,14) Path Lenght: 2000
+Edges: (8,9) (9,12) (11,12) Path Lenght: 2000
+***********************: 
+For demand: 74
+Edges: (8,9) (9,12) Path Lenght: 1200
+Edges: (8,9) (9,14) (13,14) (12,13) Path Lenght: 1800
+***********************: 
+For demand: 75
+Edges: (8,9) (9,14) (13,14) Path Lenght: 1500
+Edges: (8,9) (9,12) (12,13) Path Lenght: 1500
+***********************: 
+For demand: 76
+Edges: (8,9) (9,14) Path Lenght: 1200
+Edges: (8,9) (9,12) (12,13) (13,14) Path Lenght: 1800
+***********************: 
+For demand: 77
+Edges: (9,10) Path Lenght: 900
+***********************: 
+For demand: 78
+Edges: (9,14) (11,14) Path Lenght: 1300
+Edges: (9,12) (11,12) Path Lenght: 1300
+***********************: 
+For demand: 79
+Edges: (9,12) Path Lenght: 500
+Edges: (9,14) (13,14) (12,13) Path Lenght: 1100
+***********************: 
+For demand: 80
+Edges: (9,14) (13,14) Path Lenght: 800
+Edges: (9,12) (12,13) Path Lenght: 800
+***********************: 
+For demand: 81
+Edges: (9,14) Path Lenght: 500
+***********************: 
+For demand: 82
+Edges: (9,10) (9,14) (11,14) Path Lenght: 2200
+Edges: (9,10) (9,12) (11,12) Path Lenght: 2200
+***********************: 
+For demand: 83
+Edges: (9,10) (9,12) Path Lenght: 1400
+Edges: (9,10) (9,14) (13,14) (12,13) Path Lenght: 2000
+***********************: 
+For demand: 84
+Edges: (9,10) (9,14) (13,14) Path Lenght: 1700
+Edges: (9,10) (9,12) (12,13) Path Lenght: 1700
+***********************: 
+For demand: 85
+Edges: (9,10) (9,14) Path Lenght: 1400
+Edges: (9,10) (9,12) (12,13) (13,14) Path Lenght: 2000
+***********************: 
+For demand: 86
+Edges: (11,12) Path Lenght: 800
+Edges: (11,14) (13,14) (12,13) Path Lenght: 1400
+***********************: 
+For demand: 87
+Edges: (11,14) (13,14) Path Lenght: 1100
+Edges: (11,12) (12,13) Path Lenght: 1100
+***********************: 
+For demand: 88
+Edges: (11,14) Path Lenght: 800
+Edges: (11,12) (12,13) (13,14) Path Lenght: 1400
+***********************: 
+For demand: 89
+Edges: (12,13) Path Lenght: 300
+***********************: 
+For demand: 90
+Edges: (12,13) (13,14) Path Lenght: 600
+Edges: (9,12) (9,14) Path Lenght: 1000
+***********************: 
+
+---------------END OF Possible paths Information------------------
+
+---------------BEGIN OF ILP Edge Path Formulation Cplex------------------
+Number of demands : 90
+Number of Edges : 21
+Number of nodes : 14
+
+Number of variables = 120849
+TIME == RSA duration in milliseconds: 2024
+RSA TOOK TOO LONG
+Solution found but there is a gap of: 100---------------------------------------------------: 
+Total time spent in k-shortest paths: 1
+Total time spent in RSA: 2024
+----------------END OF EXECUTION-------------------: 
+TOTAL FRAMEWORK TIME in milliseconds: 2027
