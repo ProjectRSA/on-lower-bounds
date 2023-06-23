@@ -4,25 +4,27 @@
 #include "Arc.hpp"
 #include "Demand.hpp"
 
-std::ostream & operator << (std::ostream & flux, const Demand & d) 
+std::ostream& operator << (std::ostream& flux, const Demand& d)
 {
-	flux << "--------" << "Index: " << d.getIndex() << std::endl ;
-	flux << "Origin: " << d.getOrigin().getIndex() << "| Destination: " << d.getDestination().getIndex() << std::endl ;
-	flux << "Slots: " << d.getSlots() << "| Max Lenght: " << d.getMaxLength() << std::endl ;
+	flux << " " << d.getIndex() << "\t| " << d.getOrigin().getIndex() << "\t| "
+		<< d.getDestination().getIndex() << "\t| " << d.getMaxLength() << "\t| "
+		<< d.getSlots() << "\t| ";
 	return flux;
 }
 
 void Demand::showRoutings() const 
 {
 	std::cout << "Routings for demand: " << index_ << std::endl;
+	int idx = 1;
 	for (std::vector<Path*>::const_iterator it = routings_.begin(); it != routings_.end(); it++){
-		std::cout << "Routing: " << (*it)->getIndex() << std::endl;
+		std::cout << "Routing: " << idx << std::endl;
 		std::cout << "Edges: ";
 		for (std::vector<Edge*>::const_iterator it2 = (*it)->getEdges().begin(); it2 != (*it)->getEdges().end(); it++){
 			std::cout << "(" << (*it2)->getV1() << "," << (*it2)->getV2() << ") ";
 		}
 		std::cout << "Routing: " << *it << std::endl;
 		std::cout << "-------- " << std::endl ;
+		idx++;
 	}
 	std::cout << "-------- " << std::endl ;
 }

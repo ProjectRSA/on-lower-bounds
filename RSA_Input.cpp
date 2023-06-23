@@ -14,9 +14,11 @@
 
 using namespace std;     
 
-void RSA_Input::showRequests() const {
-	
-	for (std::vector<Demand*>::const_iterator it = requests_.begin(); it != requests_.end(); it++)
+void RSA_Input::showRequests() const
+{
+	cout << " k \t| Org.\t| Dst.\t| L_k\t| W_k\t| " << endl;
+	cout << "-----------------------------------------" << endl;
+	for (std::vector<Demand *>::const_iterator it = requests_.begin(); it != requests_.end(); it++)
 		cout << **it << endl;
 }
 

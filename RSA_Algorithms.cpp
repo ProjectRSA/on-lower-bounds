@@ -3,6 +3,7 @@
 #include <string>
 #include <cstdlib>
 #include <vector>
+#include <set>
 #include "Vertex.hpp"
 #include "Edge.hpp"
 #include "Arc.hpp"
@@ -14,6 +15,7 @@
 #include "MCMCF_Output.hpp"
 #include "RSA_Output.hpp"
 #include "RSA_Algorithms.hpp"
+#include "IterationInfo.hpp"
 #include <ilcplex/ilocplex.h>
 #include <chrono> 
 #include <math.h> 
@@ -35,18 +37,30 @@ RSA_Algorithms::RSA_Algorithms(RSA_Input rsa) : RSA_Input_(rsa)
 	}
 	upperBound_ = maxSlots_ + 1;
 	smallestClique_ = maxSlots_+ 1;
-	cout << endl << "---------------BEGIN OF Data Information------------------" << endl;
+	cliqueBound_ = maxSlots_ + 1;
+	cout << endl << "-------------- BEGIN OF Instance Information -------------------------" << endl;
 	cout << "  Graph G  " << endl;
 	cout << G_ << endl;
 	cout << "  Graph G prime " << endl;
 	cout << GPrime_ << endl;
 	cout << "  Demands  " << endl;
 	rsa.showRequests();
-	cout << endl << "----------------END OF Data Information-------------------" << endl;
-	vector<Path*> path(0);
-	for(unsigned i = 0; i < RSA_Input_.getRequests().size(); ++i)
+	cout << endl << "-------------- END OF Instance Information ---------------------------" << endl << endl;
+	// Preprocessing for mirror demands
+	mirrorDemands_ = findMirrorDemands(RSA_Input_.getRequests());
+	vector<vector<Path*>*> pathPool(RSA_Input_.getRequests().size());
+	possiblePathsNew_ = pathPool;
+	for (int i = 0; i < mirrorDemands_.size(); i++)
 	{
-		possiblePaths_.push_back(path);
+		vector<Path*>* pathSet = new vector<Path*>();
+		for (int j = 0; j < mirrorDemands_[i].size(); j++)
+		{
+			for (int k = 0; k < mirrorDemands_[i][j].size(); k++)
+			{
+				Demand d = *mirrorDemands_[i][j][k];
+				possiblePathsNew_[d.getIndex() - 1] = pathSet;
+			}
+		}
 	}
 	lowerBound_ = 0;
 	isOptimal_ = false;
@@ -76,209 +90,320 @@ void RSA_Algorithms::Construct_G_Prime()
 	GPrime_ = Graph(RSA_Input_.getNodes(), arcs);
 }
 
-void RSA_Algorithms::framework_1()
+void RSA_Algorithms::framework(char *summaryFileName, bool skipEPF)
 {
+	// Clocks
+	auto fwTime_i = high_resolution_clock::now();
+	auto fwTime_f = high_resolution_clock::now();
+	auto iterationTime_i = high_resolution_clock::now();
+	auto iterationTime_f = high_resolution_clock::now();
+	auto iterationExecTime = duration_cast<milliseconds>(iterationTime_f - iterationTime_i);
+
+	// Output Information 
+	// TODO: Extranct in a wrapper object and desacoplate processing from "presentation"
+	vector<IterationInfo> iterationsInfo;
+
+	// Framework's Flow Control Variables
+	int NumOfDemands = RSA_Input_.getRequests().size();
+	bool newPathsAdded = false;
+	bool newCliquesAllowed = false;
+	bool epfSolved = false;
+	bool skipNextEPF = false;
+
+	// Save Initialization values
+	iterationsInfo.push_back(IterationInfo(-2, lowerBound_, cliqueBound_, upperBound_));
+
 	//time markers initialization
 	auto startStep = high_resolution_clock::now();
 	auto endStep = high_resolution_clock::now();
-	auto duration = duration_cast<seconds>(endStep - startStep);
-	//total time control
-	std::chrono::duration<long int> limit = (std::chrono::duration<long int>) 7100;
-
+	auto duration = duration_cast<milliseconds>(endStep - startStep);
+	
 	//total times initialization
-	auto totalMCMCF = duration_cast<seconds>(startStep - startStep);
-	auto totalRSA = duration_cast<seconds>(startStep - startStep);
-	auto totalCliques = duration_cast<seconds>(startStep - startStep);
+	auto totalMCMCF = duration_cast<milliseconds>(startStep - startStep);
+	auto totalRSA = duration_cast<milliseconds>(startStep - startStep);
+	auto totalCliques = duration_cast<milliseconds>(startStep - startStep);
 
-    while(isOptimal_ == false)
-    {
-    	startStep = high_resolution_clock::now(); 		//Begin of MCMCF
-        this->solveMinCostMultiCommodityFlow_Cplex();
-        endStep = high_resolution_clock::now();			//End of MCMCF
-        duration = duration_cast<seconds>(endStep - startStep);
-        totalMCMCF = totalMCMCF + duration;
-        cout << "TIME == MCMCF duration in seconds: " << duration.count() << endl; 
+	cout << "=========================================================================================" << endl;
+	cout << "============== BEGIN OF FW EXECUTION ====================================================" << endl;
+	cout << "=========================================================================================" << endl;
+	//Initial MCMCF
+	startStep = high_resolution_clock::now(); 		//Begin of MCMCF
+	this->solveMinCostMultiCommodityFlow_Cplex();
+	endStep = high_resolution_clock::now();			//End of MCMCF
+	duration = duration_cast<milliseconds>(endStep - startStep);
+	MCMCFDuration_ = duration.count();
+	totalMCMCF = totalMCMCF + duration;
+	cout << "TIME == MCMCF duration in ms: " << duration.count() << endl << endl;
 
-        // If MCMCF was infeasible we can end the program if it is the first iteration or upgrade the lower bound and look for a previous feasible solution
-        if ((MCMCFSolved_ == false) || (MCMCF_Output_.getCapacity() > maxSlots_)) 
-    	{
-		   	if (iterations_ == 0)
-		   	{
-		   		cout << "The first iteration of MCMCF is impossible for this instance" << endl;
-		   		cout << "Problem is infeasible" << endl;
-		   		return;
-		   	}
-		   	//If there are no cliques to reallow, this means that all possible routes were already sugested and a feasible solution was not found
-		   	if (forbiddenCliques_.size() == 0)
-		   	{
-		   		cout << "This iteration of MCMCF is infeasible, and there are no cliques to reallow " << endl;
-		   		cout << "No new routing can be proposed" << endl;
-		   		cout << "Lower bound update to upper bound + 1 so we can look one last time for a solution" << endl;
-		   		lowerBound_ = maxSlots_+ 1;
-		    	cout << "Lower Bound UPDATED: " << lowerBound_ << endl;
-		    	cout << "Upper Bound: " << upperBound_ << endl;
-		   	}
-		   	cout << "This iteration of MCMCF is infeasible, updating lower bound to the smallest clique blocked " << endl;
-		   	//This will make the program look for a previous solution		
-		   	lowerBound_ = smallestClique_;
-		   	cout << "Lower Bound UPDATED: " << smallestClique_ << endl;
-		   	cout << "Upper Bound: " << upperBound_ << endl;
+	if ((!MCMCFSolved_) || (MCMCF_Output_.getCapacity() > maxSlots_))
+	{
+		cout << "============== INFEASIBLE INSTANCE ======================================================" << endl;
+		iterationsInfo.push_back(IterationInfo(-1, lowerBound_, cliqueBound_, upperBound_, MCMCFSolved_, MCMCFDuration_, MCMCF_Output_.getCapacity(), nullopt, nullopt, nullopt, nullopt, nullopt, nullopt, nullopt, nullopt, MCMCFDuration_));
+		return;
+	}
+	else
+	{
+		lowerBound_ = MCMCF_Output_.getCapacity();
+		newPathsAdded = UpdatePossiblePathsSet();
+		iterationsInfo.push_back(IterationInfo(-1, lowerBound_, cliqueBound_, upperBound_, MCMCFSolved_, MCMCFDuration_, MCMCF_Output_.getCapacity(), nullopt, nullopt, nullopt, nullopt, nullopt, newPathsAdded, nullopt, nullopt, MCMCFDuration_));
+	}
+
+	while (!isOptimal_)
+	{
+		iterationTime_i = high_resolution_clock::now();
+		cout << "============== BEGIN ITERATION " << iterations_ << " ========================================================" << endl;
+		cout << "============== LB " << lowerBound_ << endl;
+		cout << "============== UB " << upperBound_ << endl;
+		cout << "============== CB " << cliqueBound_ << endl;
+		showPossiblePaths();
+		cout << endl;
+
+		// EPF: Edge-Path Formulation
+		if (!skipNextEPF)
+		{
+			startStep = high_resolution_clock::now(); //Begin RSA
+			this->solveEdgePathFormulation_Cplex();
+			endStep = high_resolution_clock::now(); //End RSA
+			duration = duration_cast<milliseconds>(endStep - startStep);
+			EPFDuration_ = duration.count();
+			totalRSA = totalRSA + duration;
+			cout << "TIME == EPF duration in ms: " << duration.count() << endl << endl;
+			epfSolved = RSASolved_;
 		}
-		// If MCMCF was feasible we print the solution and verify if the lower bound got higher
-		// If the solution is smallest than the smallest forbidden clique, this solution is the new lb, else, the weight of the smallest clique
 		else
 		{
-	    	cout << MCMCF_Output_ << endl;
-	    	// If the last MCMCF was feasible and the solution is feasible to the rsa, we should add the proposed routing to the pool
-	    	addNewRoutesToRSA();
-			if (MCMCF_Output_.getCapacity() > lowerBound_)
-		    {
-		    	if (MCMCF_Output_.getCapacity() <= smallestClique_)
-		    	{
-		    		lowerBound_ = MCMCF_Output_.getCapacity();
-		    		cout << "Lower Bound UPDATED: " << lowerBound_ << endl;
-		    		cout << "Upper Bound: " << upperBound_ << endl;
-		    	}
-		    	else
-		    	{
-		    		lowerBound_ = smallestClique_;
-		    		cout << "There is at lest one clique of omega between the lower bound and the solution found" << endl;
-		    		cout << "This clique has weight: " << smallestClique_ << endl;
-		    		cout << "Lower Bound UPDATED: " << lowerBound_ << endl;
-		    		cout << "Upper Bound: " << upperBound_ << endl;
-		    	}		    		
-		    }
-		 }
-		
-		// If the lower bound grew, maybe an ancient solution becomes feasible, so we verify if we already have this solution if 
-		// lower bound matches upper bound, there are only 2 possible situations
-		// 1 - lower bound match a solution (as the upper bound is the value of a solution), so we find it
-		// 2 - lower bound match the maximal number of slots + 1 (upper bound was never changed), if the lower bound matchs the number of maximal slots we could find a solotion
-		// but if the lower bound matches the number of maximal slots + 1 and we do not have a solution yet, the problem is infeasible
-	   	if (lowerBound_ >= upperBound_)
+			cout << "-------------- EPF CPLEX SKIPPED -------------------------------------" << endl << endl;
+		}
+
+		if (epfSolved)
 		{
-			cout << "Lower bound matches upper bound" << endl;
-			lookForFeasibleSolution();
-		    // if we found an optimal previous solution in any of the two situations above, we show it in the screen and stop the execution
-		    if(isOptimal_ == true)
+			if (RSA_Output_.getSlots() == (NumOfDemands * lowerBound_))
 			{
-				cout << "===== SOLUTION =====" << endl;
-				cout << "This solution becomes feasible and this iteration will be stopped" << endl;
+				cout << "============== OPTIMAL SOLUTION FOUND ===================================================" << endl;
 				cout << RSA_Output_ << endl;
+				cout << "============== END ITERATION   " << iterations_ << " ========================================================" << endl << endl;
+				isOptimal_ = true;
+				iterationTime_f = high_resolution_clock::now();
+				iterationExecTime = duration_cast<milliseconds>(iterationTime_f - iterationTime_i);
+				iterationsInfo.push_back(IterationInfo(iterations_, lowerBound_, cliqueBound_, upperBound_, nullopt, nullopt, nullopt, epfSolved, skipNextEPF, EPFDuration_, RSA_Output_.getSlots(), RSA_Output_.getSpan(), newPathsAdded, newCliquesAllowed, nullopt, iterationExecTime.count()));
 				break;
 			}
 			else
 			{
-				cout << "Problem is infeasible" << endl;
+				if (RSA_Output_.getSpan() != upperBound_)
+				{
+					unsigned aux = upperBound_;
+					upperBound_ = RSA_Output_.getSpan();
+					cout << "/!\\ Updated UB (" << aux << " -> " << upperBound_ << ")" << endl << endl;
+				}
+
+				// Symmetry Routings
+				startStep = high_resolution_clock::now();
+				vector<vector<Path*>> symmRoutings = generateMirrorRoutings(MCMCF_Output_.getRouting());
+				vector<vector<Path*>> symmRoutingsEPF = generateMirrorRoutings(RSA_Output_.getRouting());
+				symmRoutings.insert(symmRoutings.end(), symmRoutingsEPF.begin(), symmRoutingsEPF.end());
+				endStep = high_resolution_clock::now();	
+				cout << "TIME == Generating symmetry routings in ms: " << duration.count() << endl;
+
+				startStep = high_resolution_clock::now(); 			//Begin search for cliques
+				for (vector<vector<Path*>>::iterator rting = symmRoutings.begin(); rting != symmRoutings.end(); rting++)
+				{
+					maxWeightedClique(*rting);
+				}
+				endStep = high_resolution_clock::now();				//End search for cliques
+				duration = duration_cast<milliseconds>(endStep - startStep);
+				CliquesDuration_ = duration.count();
+				totalCliques = totalCliques + duration;
+				cout << "TIME == Finding cliques duration in ms: " << duration.count() << endl;
+				showForbiddenCliques();
+				cout << endl;
+				
+				if (!forbiddenCliques_.size() == 0)
+				{
+					unsigned wq = minForbiddenCliquesWeight();
+					if (wq < cliqueBound_)
+					{
+						unsigned aux = cliqueBound_;
+						cliqueBound_ = wq;
+						cout << "/!\\ Updated CB (" << aux << " -> " << cliqueBound_ << ")" << endl << endl;
+					}
+				}
+
+				updateForbiddenRoutings(symmRoutings);
 			}
 		}
-
-		// If there's not a solution yet, the iteration will continue with the steps below, if there is it will stop 		
-		// As there's not a feasible solution yet, we can allow some cliques that respect the new lower bound to appear again
-	    // Also, if we reallow at least one clique, we should not go to the RSA step. We can solve the MCMCF with this clique reallowed
-	    if (allowFeasibleCliques() == true)
-	    {
-	    	cout << "One or more cliques were allowed, solving one extra MCMCF" << endl;
-	    	startStep = high_resolution_clock::now(); 		//Begin of MCMCF
-       		this->solveMinCostMultiCommodityFlow_Cplex();
-       		endStep = high_resolution_clock::now();			//End of MCMCF
-       		duration = duration_cast<seconds>(endStep - startStep);
-       		totalMCMCF = totalMCMCF + duration;
-       		cout << "TIME == MCMCF duration in seconds: " << duration.count() << endl; 
-       		//If this second MCMCF had a solution, we can add this solution to the pool
-       		if ((MCMCFSolved_ == true) && (MCMCF_Output_.getCapacity() <= maxSlots_)) 
-       		{
-       			cout << "The following solution will become a possible routing" << endl;
-       			cout << MCMCF_Output_ << endl;
-       			addNewRoutesToRSA();
-       		}
-       		else
-       		{
-       			cout << "The extra MCMCF is infeasible, nothing will be done" << endl;
-       		}
-	    }
-
-		// Here, we begin tha SA part of the problem
-        showPossiblePaths();
-        startStep = high_resolution_clock::now();			//Begin RSA
-        this->solveEdgePathFormulation_Cplex();
-        endStep = high_resolution_clock::now();				//End RSA
-        duration = duration_cast<seconds>(endStep - startStep);
-        totalRSA = totalRSA + duration;
-        cout << "TIME == RSA duration in seconds: " << duration.count() << endl; 
-
-        // If gap is not 0, it means that we interrupted the last EPF by time limit
-        if (gap_ > 0)
-        {
-		   	cout << "RSA TOOK TOO LONG" << endl;
-		   	cout << "Solution found but there is a gap of: " << gap_;
-        }
-        // If RSA solution is optimal we found our solution and we can end the program
-        if(isOptimal_ == true)
+		else
 		{
-			cout << "===== SOLUTION =====" << endl;
-			cout << "This RSA solution matches the lowerBound_" << endl;
-			cout << RSA_Output_ << endl;
-			break;
+			// Symmetry Routings
+			startStep = high_resolution_clock::now();
+			vector<vector<Path *>> symmRoutings = generateMirrorRoutings(MCMCF_Output_.getRouting());
+			endStep = high_resolution_clock::now();
+			cout << "TIME == Generating symmetry routings in ms: " << duration.count() << endl;
+			updateForbiddenRoutings(symmRoutings);
 		}
-		// After solving the RSA we shall look for cliques in the solution
-		if (RSASolved_ == true) 
+
+		// MCMCF: Min-Cost Multicomodity Flow
+		startStep = high_resolution_clock::now(); 		//Begin of MCMCF
+		this->solveMinCostMultiCommodityFlow_Cplex();
+		endStep = high_resolution_clock::now();			//End of MCMCF
+		duration = duration_cast<milliseconds>(endStep - startStep);
+		MCMCFDuration_ = duration.count();
+		totalMCMCF = totalMCMCF + duration;
+		cout << "TIME == MCMCF duration in ms: " << duration.count() << endl << endl;
+
+		while (!MCMCFSolved_)
 		{
-	       	cout << RSA_Output_ << endl;
-	       	//For instances with a big number of avaible slot and a big number of demands we can use the first solution to reduce the number of variables that will be created
-	       	//With this, the cplex will run faster.
-	       	if ((iterations_ == 0) && (RSA_Input_.getRequests().size() >= 50))
+			if (cliqueBound_ == upperBound_ && upperBound_ == maxSlots_ + 1)
 			{
-				cout << "The first iteration of RSA will reduce the number of variables for the problem" << endl;
-				cout << "The actual value is: " << maxSlots_ << " and will become: " << RSA_Output_.getSlots() << endl;
-				maxSlots_ = RSA_Output_.getSlots();
+				cout << "============== INFEASIBLE INSTANCE ======================================================" << endl;
+				cout << "============== END ITERATION   " << iterations_ << " ========================================================" << endl << endl;
+				iterationTime_f = high_resolution_clock::now();
+				iterationExecTime = duration_cast<milliseconds>(iterationTime_f - iterationTime_i);
+				iterationsInfo.push_back(IterationInfo(iterations_, lowerBound_, cliqueBound_, upperBound_, MCMCFSolved_, MCMCFDuration_, MCMCF_Output_.getCapacity(), epfSolved, skipNextEPF, EPFDuration_, RSA_Output_.getSlots(), RSA_Output_.getSpan(), newPathsAdded, newCliquesAllowed, CliquesDuration_, iterationExecTime.count()));
+				return;
 			}
+			else
+			{
+				if (upperBound_ <= cliqueBound_ && upperBound_ <= maxSlots_)
+				{
+					cout << "============== OPTIMAL SOLUTION FOUND ===================================================" << endl;
+					cout << RSA_Output_ << endl;
+					cout << "============== END ITERATION   " << iterations_ << " ========================================================" << endl << endl;
+					isOptimal_ = true;
+					iterationTime_f = high_resolution_clock::now();
+					iterationExecTime = duration_cast<milliseconds>(iterationTime_f - iterationTime_i);
+					iterationsInfo.push_back(IterationInfo(iterations_, lowerBound_, cliqueBound_, upperBound_, MCMCFSolved_, MCMCFDuration_, MCMCF_Output_.getCapacity(), epfSolved, skipNextEPF, EPFDuration_, RSA_Output_.getSlots(), RSA_Output_.getSpan(), newPathsAdded, newCliquesAllowed, CliquesDuration_, iterationExecTime.count()));
+					break;
+				}
+				else
+				{
+					newCliquesAllowed = AllowFeasibleCliques();
+					unsigned aux = cliqueBound_;
+					if (forbiddenCliques_.size() == 0)
+					{
+						cliqueBound_ = maxSlots_ + 1;
+					}
+					else
+					{
+						cliqueBound_ = minForbiddenCliquesWeight();
+					}
+					cout << "/!\\ Updated CB (" << aux << " -> " << cliqueBound_ << ")" << endl << endl;
+				}
+			}
+			startStep = high_resolution_clock::now(); 		//Begin of MCMCF
+			this->solveMinCostMultiCommodityFlow_Cplex();
+			endStep = high_resolution_clock::now();			//End of MCMCF
+			duration = duration_cast<milliseconds>(endStep - startStep);
+			MCMCFDuration_ = duration.count();
+			totalMCMCF = totalMCMCF + duration;
+			cout << "TIME == MCMCF duration in ms: " << duration.count() << endl << endl;
+		}
 
-	       	if (RSA_Output_.getSlots() < upperBound_)
-	       	{
-	       		upperBound_ = RSA_Output_.getSlots();
-		    	cout << "Upper Bound UPDATED: " << upperBound_ << endl;
-		    	cout << "Lower Bound: " << lowerBound_ << endl;	
-	       	}
-	       	startStep = high_resolution_clock::now(); 			//Begin search for cliques
-	      	maxWeightedClique(RSA_Output_.getRouting());
-	       	endStep = high_resolution_clock::now();				//End search for cliques
-	       	duration = duration_cast<seconds>(endStep - startStep);
-	       	totalCliques = totalCliques + duration;
-	       	cout << "TIME == Finding cliques duration in seconds: " << duration.count() << endl;
-	    }
-	    // If this RSA iteration was infeasible, we can just finish the iteration and go to MCMCF again
-	    else
-	    {
-	    	cout << "This RSA iteration was infeasible" << endl;
-	    } 
-        showForbiddenCliques();
-    
-        cout << endl << "ITERATION FINISHED" << endl;
-        // TIME CONTROL
-       	if (totalRSA.count() > limit.count())
-       	{
-       		cout << "Limit of " << limit.count() << " passed" << endl;
-       		cout << "LB: " << lowerBound_ << endl;
-       		cout << "UB: " << upperBound_ << endl;
-       		return; 
-       	}
+		// At this point we know MCMCFSolved_ == true
+		// Except if an Optimal Solution was found in the inneer While loop of MCMCF
+		if (!MCMCFSolved_)
+			break;
+		
+		unsigned cap = MCMCF_Output_.getCapacity();
+		if (cliqueBound_ == upperBound_ && upperBound_ == maxSlots_ + 1 && maxSlots_ + 1 <= cap)
+		{
+			cout << "============== INFEASIBLE INSTANCE ======================================================" << endl;
+			cout << "============== END ITERATION   " << iterations_ << " ========================================================" << endl << endl;
+			iterationTime_f = high_resolution_clock::now();
+			iterationExecTime = duration_cast<milliseconds>(iterationTime_f - iterationTime_i);
+			iterationsInfo.push_back(IterationInfo(iterations_, lowerBound_, cliqueBound_, upperBound_, MCMCFSolved_, MCMCFDuration_, MCMCF_Output_.getCapacity(), epfSolved, skipNextEPF, EPFDuration_, RSA_Output_.getSlots(), RSA_Output_.getSpan(), newPathsAdded, newCliquesAllowed, CliquesDuration_, iterationExecTime.count()));
+			return;
+		}
+		else
+		{
+			if ((cliqueBound_ == upperBound_ && upperBound_ <= maxSlots_ && upperBound_ <= cap) || (upperBound_ < cliqueBound_ && upperBound_ <= cap))
+			{
+				cout << "============== OPTIMAL SOLUTION FOUND ===================================================" << endl;
+				cout << RSA_Output_ << endl;
+				cout << "============== END ITERATION   " << iterations_ << " ========================================================" << endl << endl;
+				isOptimal_ = true;
+				iterationTime_f = high_resolution_clock::now();
+				iterationExecTime = duration_cast<milliseconds>(iterationTime_f - iterationTime_i);
+				iterationsInfo.push_back(IterationInfo(iterations_, lowerBound_, cliqueBound_, upperBound_, MCMCFSolved_, MCMCFDuration_, MCMCF_Output_.getCapacity(), epfSolved, skipNextEPF, EPFDuration_, RSA_Output_.getSlots(), RSA_Output_.getSpan(), newPathsAdded, newCliquesAllowed, CliquesDuration_, iterationExecTime.count()));
+				break;
+			}
+			else
+			{
+				if (cap < cliqueBound_ && cap < upperBound_)
+				{
+					if (cap != lowerBound_)
+					{
+						unsigned aux = lowerBound_;
+						lowerBound_ = cap;
+						cout << "/!\\ Updated LB (" << aux << " -> " << lowerBound_ << ")" << endl << endl;
+					}
+				}
 
+				if (cliqueBound_ <= cap && cliqueBound_ < upperBound_)
+				{
+					unsigned aux = lowerBound_;
+					lowerBound_ = cliqueBound_;
+					cout << "/!\\ Updated LB (" << aux << " -> " << lowerBound_ << ")" << endl << endl;
+
+					newCliquesAllowed = AllowFeasibleCliques();
+					aux = cliqueBound_;
+					if (forbiddenCliques_.size() == 0)
+					{
+						cliqueBound_ = maxSlots_ + 1;
+					}
+					else
+					{
+						cliqueBound_ = minForbiddenCliquesWeight();
+					}
+					cout << "/!\\ Updated CB (" << aux << " -> " << cliqueBound_ << ")" << endl << endl;
+				}
+				
+				newPathsAdded = UpdatePossiblePathsSet();
+			}
+		}
+
+        cout << "============== END ITERATION   " << iterations_ << " ========================================================" << endl << endl;
+		iterationTime_f = high_resolution_clock::now();
+		iterationExecTime = duration_cast<milliseconds>(iterationTime_f - iterationTime_i);
+		iterationsInfo.push_back(IterationInfo(iterations_, lowerBound_, cliqueBound_, upperBound_, MCMCFSolved_, MCMCFDuration_, MCMCF_Output_.getCapacity(), epfSolved, skipNextEPF, EPFDuration_, RSA_Output_.getSlots(), RSA_Output_.getSpan(), newPathsAdded, newCliquesAllowed, CliquesDuration_, iterationExecTime.count()));
+
+		skipNextEPF = skipEPF ? !(newPathsAdded || newCliquesAllowed) : skipEPF;
+		newPathsAdded = false;
+		newCliquesAllowed = false;
+		epfSolved = false;
+		CliquesDuration_ = 0;
        	iterations_ ++;
     }
-    cout << "---------------------------------------------------: " << endl;
-    cout << "Total time spent in MCMCF: " << totalMCMCF.count() << endl;
-    cout << "Total time spent in RSA: " << totalRSA.count() << endl;
-    cout << "Total time spent finding cliques: " << totalCliques.count() <<endl;
-    cout << "Iterations: " << iterations_ + 1 << endl;
-    cout << "----------------END OF EXECUTION-------------------: "  << endl;
+
+	fwTime_f = high_resolution_clock::now();
+	auto fwExecTime = duration_cast<milliseconds>(fwTime_f - fwTime_i);
+	cout << "=========================================================================================" << endl;
+	cout << "============== END OF FW EXECUTION ======================================================" << endl;
+	cout << "=========================================================================================" << endl;
+    cout << "============== Total time spent in MCMCF: " << totalMCMCF.count() << endl;
+    cout << "============== Total time spent in RSA: " << totalRSA.count() << endl;
+    cout << "============== Total time spent finding cliques: " << totalCliques.count() <<endl;
+    cout << "============== Iterations: " << iterations_ + 1 << endl;
+	cout << "============== Total framework running time: " << fwExecTime.count() << endl;
+
+	if (summaryFileName != NULL)
+	{
+		ofstream summary;
+		summary.open(summaryFileName);
+		summary << "IT; EPF; EPFt; EPFopt; EPFSpan; MCMCF; MCMCFt; MCMCFopt; Lb; Cb; Ub; newPaths?; reallowedCliques?; CQt; ITt" << endl;
+		vector<IterationInfo>::iterator it = iterationsInfo.begin();
+		while (it != iterationsInfo.end())
+		{
+			summary << *it << endl;
+			it++;
+		}
+		summary.close();
+	}
 }
-
-
 
 void RSA_Algorithms::solveMinCostMultiCommodityFlow_Cplex(){
 
-	cout << endl << "---------------BEGIN OF ILP Min Cost Multi Commodity Cplex------------------" << endl;
+	cout << "-------------- BEGIN OF ILP MCMCF CPLEX ------------------------------" << endl;
 	unsigned K = RSA_Input_.getRequests().size();
 	unsigned A = GPrime_.getArcs().size(); 				//number of arcs in the auxilar graph G'
 	unsigned V = GPrime_.getVertices().size(); 			//number of vertices
@@ -301,11 +426,10 @@ void RSA_Algorithms::solveMinCostMultiCommodityFlow_Cplex(){
 		f_kl[k] = IloNumVarArray(MCMCF, A, 0, 1, ILOINT);
 		for (unsigned a = 0; a < A; a++)
 		{
-			std::string Var_Name = "f[" + to_string(k+1) + "," + to_string(a + 1) + "]";
+			std::string Var_Name = "f[" + to_string(k + 1) + "," + to_string(a + 1) + "]";
 			f_kl[k][a].setName(Var_Name.c_str());
 			ILP_MCMCF.add(f_kl[k][a]);
 			variables.add(f_kl[k][a]);
-			//std::cout << "Variable : " << k << "\t||" << a << "\t||" <<  Var_Name << std::endl;
 		}
 	}
 
@@ -319,7 +443,8 @@ void RSA_Algorithms::solveMinCostMultiCommodityFlow_Cplex(){
 	std::cout << std::endl << "Number of variables = " << variables.getSize() << std::endl;
 
 	// ----------------------- Constraints -----------------------
-	//In the origin the flow will go out to exactly one arc
+	
+	// Source constraints (2b) : In the origin the flow will go out to exactly one arc
 	for (unsigned k = 0; k < K; k++)
 	{
 		IloExpr Path_outgoing(MCMCF);
@@ -331,7 +456,31 @@ void RSA_Algorithms::solveMinCostMultiCommodityFlow_Cplex(){
 		Path_outgoing.end();
 	}
 
-	//In the destination the flow will not go out
+	// Source contraints (2b') : In the origin there's no ingoing flow 
+	for (unsigned k = 0; k < K; k++)
+	{
+		IloExpr Path_ingoing(MCMCF);
+		for (unsigned a = 0; a < RSA_Input_.getRequests()[k]->getOrigin().getVertexInArcs().size(); a++)
+		{
+			Path_ingoing += f_kl[RSA_Input_.getRequests()[k]->getIndex()-1][RSA_Input_.getRequests()[k]->getOrigin().getVertexInArcs()[a]->getIndex()-1];
+		}
+		ILP_MCMCF.add(Path_ingoing == 0);
+		Path_ingoing.end();
+	}
+
+	// Sink constraints (2c) : In the destination the flow will arrive from exactly one arc
+	for (unsigned k = 0; k < K; k++)
+	{
+		IloExpr Path_ingoing(MCMCF);
+		for (unsigned a = 0; a < RSA_Input_.getRequests()[k]->getDestination().getVertexInArcs().size(); a++)
+		{
+			Path_ingoing += f_kl[RSA_Input_.getRequests()[k]->getIndex() - 1][RSA_Input_.getRequests()[k]->getDestination().getVertexInArcs()[a]->getIndex() - 1];
+		}
+		ILP_MCMCF.add(Path_ingoing == 1);
+		Path_ingoing.end();
+	}
+
+	// Sink constraints (2c') : In the destination theres no outgoing flow
 	for (unsigned k = 0; k < K; k++)
 	{
 		IloExpr Path_outgoing(MCMCF);
@@ -343,194 +492,125 @@ void RSA_Algorithms::solveMinCostMultiCommodityFlow_Cplex(){
 		Path_outgoing.end();
 	}
 
-	//In the destination the flow will arrive from exactly one arc
-	for (unsigned k = 0; k < K; k++)
-	{
-		IloExpr Path_ingoing(MCMCF);
-		for (unsigned a = 0; a < RSA_Input_.getRequests()[k]->getDestination().getVertexInArcs().size(); a++)
-		{
-			Path_ingoing += f_kl[RSA_Input_.getRequests()[k]->getIndex()-1][RSA_Input_.getRequests()[k]->getDestination().getVertexInArcs()[a]->getIndex()-1];
-		}
-		ILP_MCMCF.add(Path_ingoing == 1);
-		Path_ingoing.end();
-	}
-
-
-	//Flow constraint
+	// Flow conservation constraints (2d)
 	for (unsigned k = 0; k < K; k++)
 	{
 		for (unsigned v = 0; v < V; ++v)
 		{
-			if ((GPrime_.getVertices()[v]->getIndex() != RSA_Input_.getRequests()[k]->getDestination().getIndex()) && (GPrime_.getVertices()[v]->getIndex() != RSA_Input_.getRequests()[k]->getOrigin().getIndex()))
+			if ((GPrime_.getVertices()[v]->getIndex() != RSA_Input_.getRequests()[k]->getDestination().getIndex()) &&
+				(GPrime_.getVertices()[v]->getIndex() != RSA_Input_.getRequests()[k]->getOrigin().getIndex()))
 			{
 				IloExpr Flow(MCMCF);
 
-				for (unsigned a = 0; a < GPrime_.getVertices()[v]->getVertexInArcs().size();a++)
+				for (unsigned a = 0; a < GPrime_.getVertices()[v]->getVertexInArcs().size(); a++)
 				{
-						Flow += f_kl[RSA_Input_.getRequests()[k]->getIndex()-1][GPrime_.getVertices()[v]->getVertexInArcs()[a]->getIndex()-1];
+					Flow += f_kl[RSA_Input_.getRequests()[k]->getIndex() - 1][GPrime_.getVertices()[v]->getVertexInArcs()[a]->getIndex() - 1];
 				}
-
-				for (unsigned a = 0; a < GPrime_.getVertices()[v]->getVertexOutArcs().size();a++)
+				for (unsigned a = 0; a < GPrime_.getVertices()[v]->getVertexOutArcs().size(); a++)
 				{
-						Flow -= f_kl[RSA_Input_.getRequests()[k]->getIndex()-1][GPrime_.getVertices()[v]->getVertexOutArcs()[a]->getIndex()-1];
+					Flow -= f_kl[RSA_Input_.getRequests()[k]->getIndex() - 1][GPrime_.getVertices()[v]->getVertexOutArcs()[a]->getIndex() - 1];
 				}
-
 				ILP_MCMCF.add(Flow == 0);
 				Flow.end();
 			}
-
 		}
 	}
 
-	// The flow ingoing one vertex will be just from one other vertex
+	// Degree constratints (2e) : Avoiding cycles attached to P_k
 	for (unsigned k = 0; k < K; k++)
 	{
 		for (unsigned v = 0; v < V; ++v)
 		{
-			IloExpr Flow(MCMCF);
-
-			for (unsigned a = 0; a < GPrime_.getVertices()[v]->getVertexInArcs().size();a++)
+			if ((GPrime_.getVertices()[v]->getIndex() != RSA_Input_.getRequests()[k]->getDestination().getIndex()) &&
+				(GPrime_.getVertices()[v]->getIndex() != RSA_Input_.getRequests()[k]->getOrigin().getIndex()))
 			{
-					Flow += f_kl[RSA_Input_.getRequests()[k]->getIndex()-1][GPrime_.getVertices()[v]->getVertexInArcs()[a]->getIndex()-1];
-			}
-			ILP_MCMCF.add(Flow <=1);
-			Flow.end();
+				IloExpr Flow(MCMCF);
 
-
-		}
-	}
-
-    // The flow outgoing one vertex will be just to one other vertex
-	for (unsigned k = 0; k < K; k++)
-	{
-		for (unsigned v = 0; v < V; ++v)
-		{
-			IloExpr Flow(MCMCF);
-
-			for (unsigned a = 0; a < GPrime_.getVertices()[v]->getVertexOutArcs().size();a++)
+				for (unsigned a = 0; a < GPrime_.getVertices()[v]->getVertexInArcs().size(); a++)
 				{
-						Flow += f_kl[RSA_Input_.getRequests()[k]->getIndex()-1][GPrime_.getVertices()[v]->getVertexOutArcs()[a]->getIndex()-1];
+					Flow += f_kl[RSA_Input_.getRequests()[k]->getIndex() - 1][GPrime_.getVertices()[v]->getVertexInArcs()[a]->getIndex() - 1];
 				}
-			ILP_MCMCF.add(Flow <=1);
-			Flow.end();
-
-
+				ILP_MCMCF.add(Flow <= 1);
+				Flow.end();
+			}
 		}
 	}
 
-    // Length constraint
-    for (unsigned k = 0; k < K; k++)
+	// Capacity constraints (2f) : The sum on opposite arcs (on each edge) is bounded by Cap
+	for (unsigned a = 0; a < A / 2; ++a)
+	{
+		IloExpr Capacity(MCMCF);
+		for (unsigned k = 0; k < K; k++)
+		{
+			Capacity += int(RSA_Input_.getRequests()[k]->getSlots()) * f_kl[RSA_Input_.getRequests()[k]->getIndex() - 1][GPrime_.getArcs()[a]->getIndex() - 1];
+			Capacity += int(RSA_Input_.getRequests()[k]->getSlots()) * f_kl[RSA_Input_.getRequests()[k]->getIndex() - 1][GPrime_.getArcs()[a]->getIndex() + A / 2 - 1];
+		}
+		Capacity -= Cap;
+		ILP_MCMCF.add(Capacity <= 0);
+		Capacity.end();
+	}
+
+	// For each edge in the original graph the flow for one demand will not goes for the 2 arcs with inverse orientation
+	// for (unsigned a = 0; a < A / 2; ++a)
+	// {
+	// 	for (unsigned k = 0; k < K; k++)
+	// 	{
+	// 		IloExpr edgeconst(MCMCF);
+	// 		edgeconst += f_kl[RSA_Input_.getRequests()[k]->getIndex() - 1][GPrime_.getArcs()[a]->getIndex() - 1];
+	// 		edgeconst += f_kl[RSA_Input_.getRequests()[k]->getIndex() - 1][GPrime_.getArcs()[a]->getIndex() + A / 2 - 1];
+	// 		ILP_MCMCF.add(edgeconst <= 1);
+	// 		edgeconst.end();
+	// 	}
+	// }
+
+	// Length constraints
+	for (unsigned k = 0; k < K; k++)
 	{
 		IloExpr Length(MCMCF);
 		Length += RSA_Input_.getRequests()[k]->getMaxLength();
 		for (unsigned a = 0; a < GPrime_.getArcs().size(); a++)
 		{
-			Length -= f_kl[RSA_Input_.getRequests()[k]->getIndex()-1][GPrime_.getArcs()[a]->getIndex()-1] * GPrime_.getArcs()[a]->getLength();
+			Length -= f_kl[RSA_Input_.getRequests()[k]->getIndex() - 1][GPrime_.getArcs()[a]->getIndex() - 1] * GPrime_.getArcs()[a]->getLength();
 		}
 		ILP_MCMCF.add(Length >= 0);
 		Length.end();
 	}
-    // The capacity is equal to the biggest flow in one edge in the original RSA problem
-    // Equal to the sum of the two arcs in inverse orientation
-	for (unsigned a = 0; a < A/2; ++a)
-	{
-		IloExpr Capacity(MCMCF);
-		for (unsigned k = 0; k < K; k++)
-		{
-			Capacity += int(RSA_Input_.getRequests()[k]->getSlots()) * f_kl[RSA_Input_.getRequests()[k]->getIndex()-1][GPrime_.getArcs()[a]->getIndex()-1] ;
-			Capacity +=	int(RSA_Input_.getRequests()[k]->getSlots()) * f_kl[RSA_Input_.getRequests()[k]->getIndex()-1][GPrime_.getArcs()[a]->getIndex() + A/2 -1] ;
-		}
-		Capacity -= Cap;
-		ILP_MCMCF.add(Capacity <= 0);
-		Capacity.end();
 
+	// Forbidden Routing Constraints (3)
+	for (unsigned i = 0; i < forbiddenRoutings_.size(); ++i)
+	{
+		IloExpr mcmcfconstraint(MCMCF);
+		int counter = 0;
+		// for each demand attend
+		for (unsigned k = 0; k < forbiddenRoutings_[i].size(); ++k)
+		{
+			// Start in the vertex of the origin of the demand
+			unsigned vertex_index = RSA_Input_.getRequests()[k]->getOrigin().getIndex();
+			forbiddenRoutings_[i][k]->reorient(vertex_index);
+			// Add the part of the constraint for all the edges in the path choose
+			for (unsigned j = 0; j < forbiddenRoutings_[i][k]->getEdges().size(); ++j)
+			{
+				// if the arc is in the same orientation that the edge or not
+				if (vertex_index == forbiddenRoutings_[i][k]->getEdges()[j]->getV1().getIndex())
+				{
+					mcmcfconstraint += f_kl[RSA_Input_.getRequests()[k]->getIndex() - 1][forbiddenRoutings_[i][k]->getEdges()[j]->getIndex() - 1];
+					vertex_index = forbiddenRoutings_[i][k]->getEdges()[j]->getV2().getIndex();
+					counter++;
+				}
+				else
+				{
+					mcmcfconstraint += f_kl[RSA_Input_.getRequests()[k]->getIndex() - 1][forbiddenRoutings_[i][k]->getEdges()[j]->getIndex() - 1 + (A / 2)];
+					vertex_index = forbiddenRoutings_[i][k]->getEdges()[j]->getV1().getIndex();
+					counter++;
+				}
+
+			}
+		}
+		ILP_MCMCF.add(mcmcfconstraint <= counter - 1);
+		mcmcfconstraint.end();
 	}
 
-    // For each edge in the original graph the flow for one demand will not goes for the 2 arcs with inverse orientation
-	for (unsigned a = 0; a < A/2; ++a)
-	{
-
-		for (unsigned k = 0; k < K; k++)
-		{
-			IloExpr edgeconst(MCMCF);
-			edgeconst += f_kl[RSA_Input_.getRequests()[k]->getIndex()-1][GPrime_.getArcs()[a]->getIndex()-1] ;
-			edgeconst += f_kl[RSA_Input_.getRequests()[k]->getIndex()-1][GPrime_.getArcs()[a]->getIndex() + A/2 -1] ;
-			ILP_MCMCF.add(edgeconst <= 1);
-			edgeconst.end();
-		}
-	}
-
-    // Constraints from RSA resolution
-    // For each forbidden routing with no spectrum assignment less or equal to the lower bound
-    // If there are not forbidden routing, the program will not execute this part
-    for (unsigned i = 0; i < impossibleRoutings_.size(); ++i)
-    {
-        IloExpr rsaconst(MCMCF);
-        int counter = 0;
-        // for each demand attend
-        for (unsigned k = 0; k < impossibleRoutings_[i].getRouting().size(); ++k)
-        {
-            // Start in the vertex of the origin of the demand
-            unsigned vertex_index = RSA_Input_.getRequests()[k]->getOrigin().getIndex();
-            // Add the part of the constraint for all the edges in the path choose
-            for (unsigned j = 0; j < impossibleRoutings_[i].getRouting()[k]->getEdges().size(); ++j)
-            {
-                // if the arc is in the same orientation that the edge or not
-                if(vertex_index == impossibleRoutings_[i].getRouting()[k]->getEdges()[j]->getV1().getIndex())
-                {
-                    rsaconst += f_kl[RSA_Input_.getRequests()[k]->getIndex()-1][impossibleRoutings_[i].getRouting()[k]->getEdges()[j]->getIndex()-1];
-                    vertex_index = impossibleRoutings_[i].getRouting()[k]->getEdges()[j]->getV2().getIndex();
-                    counter ++;
-                }
-                else
-                {
-                    rsaconst += f_kl[RSA_Input_.getRequests()[k]->getIndex()-1][impossibleRoutings_[i].getRouting()[k]->getEdges()[j]->getIndex()-1+(A/2)];
-                    vertex_index = impossibleRoutings_[i].getRouting()[k]->getEdges()[j]->getV1().getIndex();
-                    counter ++;
-                }
-
-            }
-        }
-        ILP_MCMCF.add(rsaconst <= counter-1);
-        rsaconst.end();
-    }
-
-    // Constraints from MCMCF resolution
-    // For each forbidden routing with no spectrum assignment less or equal to the lower bound
-    // If there are not forbidden routing, the program will not execute this part
-    for (unsigned i = 0; i < impossibleRoutings_MCMCF.size(); ++i)
-    {
-        IloExpr mcmcfconstraint(MCMCF);
-        int counter = 0;
-        // for each demand attend
-        for (unsigned k = 0; k < impossibleRoutings_MCMCF[i].getRouting().size(); ++k)
-        {
-            // Start in the vertex of the origin of the demand
-            unsigned vertex_index = RSA_Input_.getRequests()[k]->getOrigin().getIndex();
-            // Add the part of the constraint for all the edges in the path choose
-            for (unsigned j = 0; j < impossibleRoutings_MCMCF[i].getRouting()[k]->getEdges().size(); ++j)
-            {
-                // if the arc is in the same orientation that the edge or not
-                if(vertex_index == impossibleRoutings_MCMCF[i].getRouting()[k]->getEdges()[j]->getV1().getIndex())
-                {
-                    mcmcfconstraint += f_kl[RSA_Input_.getRequests()[k]->getIndex()-1][impossibleRoutings_MCMCF[i].getRouting()[k]->getEdges()[j]->getIndex()-1];
-                    vertex_index = impossibleRoutings_MCMCF[i].getRouting()[k]->getEdges()[j]->getV2().getIndex();
-                    counter ++;
-                }
-                else
-                {
-                    mcmcfconstraint += f_kl[RSA_Input_.getRequests()[k]->getIndex()-1][impossibleRoutings_MCMCF[i].getRouting()[k]->getEdges()[j]->getIndex()-1+(A/2)];
-                    vertex_index = impossibleRoutings_MCMCF[i].getRouting()[k]->getEdges()[j]->getV1().getIndex();
-                    counter ++;
-                }
-
-            }
-        }
-        ILP_MCMCF.add(mcmcfconstraint <= counter-1);
-        mcmcfconstraint.end();
-    }
-
-    //Clique constraints
+    // Forbidden Cliques Constraints (4)
     for (unsigned i = 0; i < forbiddenCliques_.size(); ++i)
     {
         IloExpr cliqueconstraint(MCMCF);
@@ -556,48 +636,49 @@ void RSA_Algorithms::solveMinCostMultiCommodityFlow_Cplex(){
 
 	model.exportModel("Min_Cost_Multi_Comodity_Cplex.lp");
 	model.setOut(MCMCF.getNullStream());
-	if (model.solve() == false)
+	
+	MCMCFSolved_ = model.solve();
+	if (!MCMCFSolved_)
     {
- 
-    	MCMCFSolved_ = false;
+		MCMCF.end();
+		cout << "MCMCF Instance Infeasible" << endl;
+		cout << "-------------- END OF ILP MCMCF CPLEX --------------------------------" << endl;
     	return;
     }
-    MCMCFSolved_ = true;
-	cout << endl << "Capacity :" << model.getValue(Cap) << endl;
+	model.writeSolutions("MCMCF_Sol.sol");
 
 	// Construction of the solution
-	vector<Path*> routing;
+	vector<Path *> routing;
 	for (unsigned k = 0; k < K; k++)
 	{
-		Vertex nd =  RSA_Input_.getRequests()[k]->getOrigin();
-		vector<Edge*> path(0);
-		while(nd.getIndex() != RSA_Input_.getRequests()[k]->getDestination().getIndex())
+		Vertex nd = RSA_Input_.getRequests()[k]->getOrigin();
+		vector<Edge *> path(0);
+		while (nd.getIndex() != RSA_Input_.getRequests()[k]->getDestination().getIndex())
 		{
-			for (unsigned a = 0; a < nd.getVertexOutArcs().size();++a)
+			for (unsigned a = 0; a < nd.getVertexOutArcs().size(); ++a)
 			{
-				if (round(model.getValue(f_kl[RSA_Input_.getRequests()[k]->getIndex()-1][nd.getVertexOutArcs()[a]->getIndex()-1])) == 1)
+				if (round(model.getValue(f_kl[RSA_Input_.getRequests()[k]->getIndex() - 1][nd.getVertexOutArcs()[a]->getIndex() - 1])) == 1)
 				{
 					path.push_back(nd.getVertexOutArcs()[a]->getEdge());
-					nd = nd.getVertexOutArcs()[a]->getDestination() ;
+					nd = nd.getVertexOutArcs()[a]->getDestination();
 					break;
 				}
 			}
 		}
-		Path * path2 = new Path(path,RSA_Input_.getRequests()[k]);
+		Path *path2 = new Path(path);
 		routing.push_back(path2);
 	}
-	// Here the solution is saved
-	MCMCF_Output_ = MCMCF_Output(routing,model.getValue(Cap));
-	// We save the solution to the vector of solutions
-	impossibleRoutings_MCMCF.push_back(MCMCF_Output_);
-	MCMCF.end();
-	cout << endl << "---------------END OF ILP Min Cost Multi Commodity Cplex------------------" << endl;
 
+	// Here the solution is saved
+	MCMCF_Output_ = MCMCF_Output(RSA_Input_.getRequests(), routing, round(model.getObjValue()));
+	MCMCF.end();
+	cout << MCMCF_Output_ << endl;
+	cout << "-------------- END OF ILP MCMCF CPLEX --------------------------------" << endl;
 }
 
 void RSA_Algorithms::solveEdgePathFormulation_Cplex()
 {
-	cout << endl << "---------------BEGIN OF ILP Edge Path Formulation Cplex------------------" << endl;
+	cout << "-------------- BEGIN OF ILP EPF CPLEX --------------------------------" << endl;
 
 	IloEnv RSA; 									// environnement : allows use of functions Concert Technology
 	IloModel ILP_RSA(RSA); 							// model: represents the linear programm
@@ -609,10 +690,10 @@ void RSA_Algorithms::solveEdgePathFormulation_Cplex()
 	unsigned S = maxSlots_; 						//number of avaiable slices
 
 	//graph and demand information
-	std::cout << "Number of demands : " << K << std::endl;
-	std::cout << "Number of Edges : " << E << std::endl;
-	std::cout << "Number of nodes : " << V << std::endl;
-	std::cout << "Number of slices from MCMCF : " << S << endl;
+	cout << "# Demands : " << K << endl;
+	cout << "# Edges   : " << E << endl;
+	cout << "# Nodes   : " << V << endl;
+	cout << "# Slots   : " << S << endl;
 
 	// ----------------------- VARIABLES -----------------------
 	IloNumVarArray variables(RSA);
@@ -620,11 +701,10 @@ void RSA_Algorithms::solveEdgePathFormulation_Cplex()
 
     // Chose one path for each demand
 	IloArray<IloNumVarArray> y_kp(RSA, K);
-
 	unsigned P_k;
 	for (unsigned k = 0; k < K; k++)
 	{
-		P_k = possiblePaths_[k].size();
+		P_k = (*possiblePathsNew_[k]).size();
 		y_kp[k] = IloNumVarArray(RSA, P_k, 0, 1, ILOINT);
 		for (unsigned p = 0; p < P_k; ++p){
 			std::string Var_Name = "y[" + to_string(k + 1) + "," + to_string(p + 1) + "]";
@@ -680,22 +760,23 @@ void RSA_Algorithms::solveEdgePathFormulation_Cplex()
 		}
 	}
 
-	// Variable for the interval chromatic number
-	IloNumVar xI = IloNumVar(RSA, 0, INFINITY, ILOINT);
-	std::string Var_Name = "xI";
-	xI.setName(Var_Name.c_str());
-	ILP_RSA.add(xI);
-	variables.add(xI);
+	// Span variable
+	IloNumVar Smax = IloNumVar(RSA, 0, INFINITY, ILOINT);
+	std::string Var_Name = "SMax";
+	Smax.setName(Var_Name.c_str());
+	ILP_RSA.add(Smax);
+	variables.add(Smax);
 
 	// End of variable cretaion
 	std::cout << std::endl << "Number of variables = " << variables.getSize() << std::endl;
 
 	// ----------------------- Constraints -----------------------
-	//path selection
+	
+	//path selection (5b)
 	for (unsigned k = 0; k < K; k++)
 	{
 		IloExpr path(RSA);
-		P_k = possiblePaths_[k].size();
+		P_k = (*possiblePathsNew_[k]).size();
 		for (unsigned p = 0; p < P_k; p++)
 		{
 			path += y_kp[k][p];
@@ -703,18 +784,19 @@ void RSA_Algorithms::solveEdgePathFormulation_Cplex()
 		ILP_RSA.add(path == 1);
 		path.end();
 	}
-	//edge activation
+
+	//edge activation (5c)
 	for (unsigned k = 0; k < K; k++)
 	{
 		for (unsigned e = 0; e < E; e++)
 		{
 			IloExpr edge_path(RSA);
 			edge_path = xk_e[k][e];
-			P_k = possiblePaths_[k].size();
+			P_k = (*possiblePathsNew_[k]).size();
 
 			for (unsigned p = 0; p < P_k; ++p)
 			{
-				for ( vector<Edge*>::const_iterator it = possiblePaths_[k][p]->getEdges().begin(); it != possiblePaths_[k][p]->getEdges().end(); ++it)
+				for ( vector<Edge*>::const_iterator it = (*possiblePathsNew_[k])[p]->getEdges().begin(); it != (*possiblePathsNew_[k])[p]->getEdges().end(); ++it)
 				{
 					if (((*it)->getV1().getIndex() == G_.getEdges()[e]->getV1().getIndex()) && ((*it)->getV2().getIndex() == G_.getEdges()[e]->getV2().getIndex()))
 					{
@@ -726,6 +808,7 @@ void RSA_Algorithms::solveEdgePathFormulation_Cplex()
 			edge_path.end();
 		}
 	}
+
 	// length constraint (total length moode)
 	for (unsigned k = 0; k < K; k++)
 	{
@@ -738,11 +821,23 @@ void RSA_Algorithms::solveEdgePathFormulation_Cplex()
 		length.end();
 	}
 
-	//spectrum assignment
+	// unavailable slices for each demand respecting the capacity (5d)
+	for (unsigned k = 0; k < K; k++)
+	{
+		IloExpr Mod_Slice(RSA);
+		for (unsigned s = 0; s < RSA_Input_.getRequests()[k]->getSlots() - 1; s++)
+		{
+			Mod_Slice += zk_s[k][s];
+		}
+		ILP_RSA.add(Mod_Slice == 0);
+		Mod_Slice.end();
+	}
+
+	//spectrum assignment (5e)
 	for (unsigned k = 0; k < K; k++)
 	{
 		IloExpr modSlice(RSA);
-		for (unsigned s = RSA_Input_.getRequests()[k]->getSlots() - 1; s < S; s++)
+		for (unsigned s = RSA_Input_.getRequests()[k]->getSlots() - 1; s < upperBound_ - 1; s++)
 		{
 			modSlice += zk_s[k][s];
 		}
@@ -750,13 +845,13 @@ void RSA_Algorithms::solveEdgePathFormulation_Cplex()
 		modSlice.end();
 	}
 
-	//demand_edge_slice
+	//demand_edge_slice (5f)
 	// tk assignment from zk (and zk - demand weight) if xk is equal to one in the edge.
 	for (unsigned k = 0; k < K; k++)
 	{
 		for (unsigned e = 0; e < E; e++)
 		{
-			for (unsigned s = 0; s < S; s++)
+			for (unsigned s = 0; s < upperBound_ - 1; s++)
 			{
 				IloExpr slice(RSA);
 				slice += xk_e[k][e];
@@ -774,13 +869,13 @@ void RSA_Algorithms::solveEdgePathFormulation_Cplex()
 		}
 	}
 
-	// The sum of tk in one edge that is used must be equal to weight demand
+	// The sum of tk in one edge that is used must be equal to weight demand (5g)
 	for (unsigned k = 0; k < K; k++)
 	{
 		for (unsigned e = 0; e < E; e++)
 		{
 			IloExpr slice(RSA);
-			for (unsigned s = 0; s < S; s++)
+			for (unsigned s = 0; s < upperBound_ - 1; s++)
 			{
 				slice += tk_es[k][e][s];
 			}
@@ -789,10 +884,11 @@ void RSA_Algorithms::solveEdgePathFormulation_Cplex()
 			slice.end();
 		}
 	}
-	//non_overlapping in edge an in one slot two different demands
+
+	//non_overlapping in edge an in one slot two different demands (5h)
 	for (unsigned e = 0; e < E; e++)
 	{
-		for (unsigned s = 0; s < S; s++)
+		for (unsigned s = 0; s < upperBound_ - 1; s++)
 		{
 			IloExpr slice(RSA);
 			for (unsigned k = 0; k < K; k++)
@@ -803,83 +899,149 @@ void RSA_Algorithms::solveEdgePathFormulation_Cplex()
 			slice.end();
 		}
 	}
-	// unavailable slices for each demand respecting the capacity
-	for (unsigned k = 0; k < K; k++)
-	{
-		IloExpr Mod_Slice(RSA);
-		for (unsigned s = 0; s < RSA_Input_.getRequests()[k]->getSlots() - 1; s++)
-		{
-			Mod_Slice += zk_s[k][s];
-		}
-		ILP_RSA.add(Mod_Slice == 0);
-		Mod_Slice.end();
-	}
-	// Constraints from previous RSA resolution
-    // For each forbidden routing that already has been a solution for a previous RSA, we shall forbid it appearing again
-    // If there are not forbidden routing, the program will not execute this part
-    for (unsigned i = 0; i < impossibleRoutings_.size(); ++i)
-    {
-        IloExpr forbiddenRoutes(RSA);
-        int counter = 0;
-        //unsigned vertexIndex;
-        // for each demand attend
-        for (unsigned k = 0; k < impossibleRoutings_[i].getRouting().size(); ++k)
-        {
-            // Start in the vertex of the origin of the demand
-            //vertexIndex = RSA_Input_.getRequests()[k]->getOrigin().getIndex();
-            // Add the part of the constraint for all the edges in the path choose
-            for (unsigned j = 0; j < impossibleRoutings_[i].getRouting()[k]->getEdges().size(); ++j)
-            {
-	            forbiddenRoutes += xk_e[RSA_Input_.getRequests()[k]->getIndex()-1][impossibleRoutings_[i].getRouting()[k]->getEdges()[j]->getIndex()-1];
-    	        //vertexIndex = impossibleRoutings_[i].getRouting()[k]->getEdges()[j]->getV2().getIndex();
-        	    counter ++;
-            }
-        }
-        ILP_RSA.add(forbiddenRoutes <= counter-1);
-        forbiddenRoutes.end();
-    }
 
-	// constraints for interval chromatic number version assignement
-	for (unsigned k = 0; k < K; k++)
+	// Demands' span constraints (5i)
+	for (int k = 0; k < K; k++)
 	{
-		IloExpr xINumber(RSA);
-		xINumber += xI;
-		for (unsigned s = 0; s < S; s++)
+		IloExpr demandSpan(RSA);
+		int w_k = RSA_Input_.getRequests()[k]->getSlots();
+		for (int s = w_k - 1; s < S; s++)
 		{
-			xINumber -= IloNum(s + 1) * zk_s[k][s];
+			demandSpan += ((s + 1) * zk_s[k][s]);
 		}
-		ILP_RSA.add(xINumber >= 0);
-		xINumber.end();
+		demandSpan -= Smax;
+		ILP_RSA.add(demandSpan <= 0);
+		demandSpan.end();
 	}
-    IloExpr xINumber(RSA);
-    xINumber += xI;
-    ILP_RSA.add(xINumber >= IloNum(lowerBound_));
-    xINumber.end();
 
-	//Objective Function
+	// Span limit constraint (5j)
+	IloExpr spanLimit(RSA);
+	spanLimit += Smax;
+	spanLimit -= (upperBound_ - 1);
+	ILP_RSA.add(spanLimit <= 0);
+	spanLimit.end();	
+
+	// Union of forbidden routings (FULL and PARTIAL) 
+	// vector<vector<Path *>> TotalForbiddenR(0);
+	// // FULL from forbidden routings set
+	// TotalForbiddenR.insert(TotalForbiddenR.end(), forbiddenRoutings_.begin(), forbiddenRoutings_.end());
+	// // PARTIAL from forbidden qliques set
+	// for (unsigned i = 0; i < forbiddenCliques_.size(); i++)
+	// {
+	// 	TotalForbiddenR.push_back(forbiddenCliques_[0].getPaths());
+	// }
+	
+	// Constraints from forbidden FULL routings (6)
+	for (unsigned i = 0; i < forbiddenRoutings_.size(); ++i)
+	{
+		IloExpr forbiddenRoutes(RSA);
+		int size = forbiddenRoutings_[i].size();
+		// For each Path in the forbidden Routing
+		for (unsigned j = 0; j < size; ++j)
+		{
+			unsigned p = 0;
+			while ((p < (*possiblePathsNew_[j]).size()) && !(*forbiddenRoutings_[i][j] == *(*possiblePathsNew_[j])[p]))
+			{
+				p++;
+			}
+			forbiddenRoutes += y_kp[j][p];
+		}
+		ILP_RSA.add(forbiddenRoutes <= size - 1);
+		forbiddenRoutes.end();
+	}
+
+	// Constraints from forbidden PARTIAL routings i.e. Cliques (6)
+	for (unsigned i = 0; i < forbiddenCliques_.size(); ++i)
+	{
+		IloExpr forbiddenRoutes(RSA);
+		int size = forbiddenCliques_[i].getPaths().size();
+		// For each Path in the forbidden Routing
+		for (unsigned j = 0; j < size; ++j)
+		{
+			unsigned k = forbiddenCliques_[i].getVertices()[j]->getIndex() - 1;
+			unsigned p = 0;
+			while ((p < (*possiblePathsNew_[k]).size()) && !(*forbiddenCliques_[i].getPaths()[j] == *(*possiblePathsNew_[k])[p]))
+			{
+				p++;
+			}
+			forbiddenRoutes += y_kp[k][p];
+		}
+		ILP_RSA.add(forbiddenRoutes <= size - 1);
+		forbiddenRoutes.end();
+	}
+
+	// Mirror Demands Restrictions (Symmetry Breaking)
+	for (vector<vector<vector<Demand *>>>::iterator equalOkDkGroup = mirrorDemands_.begin(); equalOkDkGroup != mirrorDemands_.end(); equalOkDkGroup++)
+	{
+		for (vector<vector<Demand *>>::iterator equalOkDkWkSet = (*equalOkDkGroup).begin(); equalOkDkWkSet != (*equalOkDkGroup).end(); equalOkDkWkSet++)
+		{
+			int L = (*possiblePathsNew_[(*equalOkDkWkSet)[0]->getIndex()-1]).size();
+			int Dm = (*equalOkDkWkSet).size();
+			int maxIdx = 0;
+			for (vector<Demand *>::iterator dem = (*equalOkDkWkSet).begin(); dem != (*equalOkDkWkSet).end(); dem++)
+			{
+				if ((*dem)->getIndex() > maxIdx)
+				{
+					maxIdx = (*dem)->getIndex();
+				}
+			}
+
+			for (vector<Demand *>::iterator dem = (*equalOkDkWkSet).begin(); dem != (*equalOkDkWkSet).end(); dem++)
+			{
+				int k_prim = (*dem)->getIndex();
+				if (k_prim != maxIdx)
+				{
+					for (int l_prim = 1; l_prim < L; l_prim++)
+					{
+						IloExpr mirrorDem(RSA);
+						for (vector<Demand *>::iterator dem2 = (*equalOkDkWkSet).begin(); dem2 != (*equalOkDkWkSet).end(); dem2++)
+						{
+							int k = (*dem2)->getIndex();
+							if (k > k_prim)
+							{
+								for (int l = 0; l < l_prim; l++)
+								{
+									mirrorDem += y_kp[k - 1][l];
+								}
+							}
+						}
+						ILP_RSA.add(mirrorDem <= Dm * (1 - y_kp[k_prim - 1][l_prim]));
+						mirrorDem.end();
+					}
+				}
+			}
+		}
+	}
+
+	// Objective function: |D|*Smax + Penalization of slots from {b_low + 1, ..., b_up}
 	IloExpr Ob(RSA);
-	// Objective function: interval chromatic number
-	Ob = xI;
+	Ob += ((int)K) * Smax;
+	for (unsigned k = 0; k < K; k++)
+	{
+		for (int s = lowerBound_; s < upperBound_ - 1; s++)
+		{
+			Ob += zk_s[k][s];
+		}
+	}
 
 	IloObjective obj (RSA, Ob, IloObjective::Minimize, "OBJ");
 	ILP_RSA.add(obj);
 
-
 	model.exportModel("Edge_Path_Formulation_Cplex.lp");
 	model.setOut(RSA.getNullStream());
-	model.setParam(IloCplex::TiLim, 1800); // Execution time limited
 
-	if (model.solve() == false)
-    {
-    	RSASolved_ = false;
-    	gap_ = 100;
-    	return;
-    }
-    RSASolved_ = true;
-
-	cout << endl << "Objective Value: " << model.getObjValue() << endl;
-	cout << endl << "Gap: " << model.getMIPRelativeGap() << endl;
+	RSASolved_ = model.solve();
+	if (!RSASolved_)
+	{
+		gap_ = 100;
+		RSA.end();
+		cout << "EPF instance infeasible" << endl;
+		cout << "Gap: " << gap_ << endl;
+		cout << "-------------- END OF ILP EPF CPLEX ----------------------------------" << endl;
+		return;
+	}
 	gap_ = model.getMIPRelativeGap();
+	model.writeSolutions("EPF_Sol.sol");
 
 	//Construction of the output of the model
     std::vector<Path*> routing;
@@ -887,12 +1049,12 @@ void RSA_Algorithms::solveEdgePathFormulation_Cplex()
     for (unsigned k = 0; k < K; k++)
 	{
 	    // Routing construction
-		P_k = possiblePaths_[k].size();
+		P_k = (*possiblePathsNew_[k]).size();
 		for (unsigned p = 0; p < P_k; p++)
 		{
 			if( round(model.getValue(y_kp[k][p])) == 1)
             {
-                routing.push_back(possiblePaths_[k][p]);
+                routing.push_back((*possiblePathsNew_[k])[p]);
                 break;
             }
 		}
@@ -904,99 +1066,99 @@ void RSA_Algorithms::solveEdgePathFormulation_Cplex()
 		{
 			if(round(model.getValue(zk_s[k][s])) == 1)
             {
-                sapd.spectrum = s+1;
-                break;
+				sapd.spectrum = s + 1;
+				sapd.spectrumInitial = s + 1 - RSA_Input_.getRequests()[k]->getSlots();
+				break;
             }
 		}
         spectrumAssignment.push_back(sapd);
 	}
-    RSA_Output_ = RSA_Output(routing,spectrumAssignment,model.getObjValue());
-    if (model.getObjValue() <= lowerBound_)
-    {
-        isOptimal_ = true;
-    }
-    else
-    {
-        impossibleRoutings_.push_back(RSA_Output_);
-    }
-	cout << endl << "---------------END OF ILP Edge Path Formulation Cplex------------------" << endl;
+	RSA_Output_ = RSA_Output(RSA_Input_.getRequests(), routing, spectrumAssignment, model.getObjValue());
+	RSA.end();
+	cout << RSA_Output_ << endl;
+	cout << "Gap: " << gap_ << endl;
+	cout << "-------------- END OF ILP EPF CPLEX ----------------------------------" << endl;
 }
 
-void RSA_Algorithms::addNewRoutesToRSA()
+bool RSA_Algorithms::UpdatePossiblePathsSet()
 {
-	bool alrealdyExistantPath;
+	bool newPath = false;
 	for (unsigned i = 0; i < MCMCF_Output_.getRouting().size(); ++i)
 	{
-		alrealdyExistantPath = false;
-		for(unsigned j = 0; j < possiblePaths_[i].size(); ++j)
-        {
-            if (*(possiblePaths_[i][j]) == *(MCMCF_Output_.getRouting()[i]))
-            {
-                alrealdyExistantPath = true;
-                break;
-            }
-        }
-        if (alrealdyExistantPath == false)
-            possiblePaths_[i].push_back(MCMCF_Output_.getRouting()[i]);
-	}
-}
-
-void RSA_Algorithms::lookForFeasibleSolution()
-{
-	for (unsigned i = 0; i < impossibleRoutings_.size();++i)
-	{ 
-		if (lowerBound_ >= impossibleRoutings_[i].getSlots())
+		unsigned j = 0;
+		while ((j < (*possiblePathsNew_[i]).size()) && !(*(*possiblePathsNew_[i])[j] == *(MCMCF_Output_.getRouting()[i])))
 		{
-			isOptimal_ = true;
-			lowerBound_  = impossibleRoutings_[i].getSlots();
-			RSA_Output_ = impossibleRoutings_[i];
-			for (unsigned j = i+1; j < impossibleRoutings_.size();++j)
-			{
-				if (lowerBound_ > impossibleRoutings_[j].getSlots())
-				{
-					lowerBound_  = impossibleRoutings_[j].getSlots();
-					RSA_Output_ = impossibleRoutings_[j];
-				}
-			}
-			break;
+			j++;
+		}
+		if (j == (*possiblePathsNew_[i]).size())
+		{
+			(*possiblePathsNew_[i]).push_back(MCMCF_Output_.getRouting()[i]);
+			newPath = true;
 		}
 	}
+
+	return newPath;
 }
 
-bool RSA_Algorithms::allowFeasibleCliques()
+bool RSA_Algorithms::AllowFeasibleCliques()
 {
-	bool allowed = false;
+	bool cliqueReAllowed = false;
 	vector<Clique>::iterator it = forbiddenCliques_.begin();
 	while (it != forbiddenCliques_.end())
 	{
-	   	if (it->getOmega() <= lowerBound_)
-	    {
-	    	cout << "The clique: " << endl << *it << "Becomes feasible" << endl;
-	     	forbiddenCliques_.erase(it);
-	     	allowed = true;
-	    }
-	    else
-	    {
-	        ++it;
-	    }
+		if (it->getOmega() == cliqueBound_)
+		{
+			cout << "The clique: " << endl << *it << "Becomes feasible" << endl;
+			it = forbiddenCliques_.erase(it);
+			cliqueReAllowed = true;
+		}
+		else
+		{
+			++it;
+		}
 	}
-	it = forbiddenCliques_.begin();
-	smallestClique_ = upperBound_+ 1;
-	while (it != forbiddenCliques_.end())
+	return cliqueReAllowed;
+}
+
+unsigned RSA_Algorithms::minForbiddenCliquesWeight()
+{
+	unsigned minWeight = forbiddenCliques_[0].getOmega();
+	for (unsigned i = 1; i < forbiddenCliques_.size(); ++i)
 	{
-	   	if (it->getOmega() < smallestClique_)
-	    {
-	    	smallestClique_ = it->getOmega();
-	    }
-	    ++it;
+		if (forbiddenCliques_[i].getOmega() < minWeight)
+		{
+			minWeight = forbiddenCliques_[i].getOmega();
+		}
 	}
-	if (allowed == true)
+	return minWeight;
+}
+
+void RSA_Algorithms::updateForbiddenRoutings(std::vector<Path*>& routing)
+{
+	unsigned j = 0;
+	while ((j < forbiddenRoutings_.size()) && !(equalRoutings(routing, forbiddenRoutings_[j])))
 	{
-		return true;
+		j++;
 	}
-	else
+	if (j == forbiddenRoutings_.size())
 	{
-		return false;
+		forbiddenRoutings_.push_back(routing);
+	}
+}
+
+void RSA_Algorithms::updateForbiddenRoutings(vector<vector<Path *>> &routings)
+{
+	for (vector<vector<Path *>>::iterator r = routings.begin(); r != routings.end(); r++)
+	{
+		unsigned j = 0;
+		while ((j < forbiddenRoutings_.size()) && !(equalRoutings((*r), forbiddenRoutings_[j])))
+		{
+			j++;
+		}
+		if (j == forbiddenRoutings_.size())
+		{
+			forbiddenRoutings_.push_back((*r));
+		}
 	}
 }
 
@@ -1007,8 +1169,8 @@ void RSA_Algorithms::maxWeightedClique(vector<Path*> & routing)
     vector<Edge*> edges;
     for (unsigned k = 0; k < routing.size(); ++k)
     {
-        Vertex* vertex  = new Vertex(routing[k]->getIndexDemand(),routing[k]->getDemand()->getSlots());
-        nodes.push_back(vertex);
+		Vertex *vertex = new Vertex(k + 1, RSA_Input_.getRequests()[k]->getSlots());
+		nodes.push_back(vertex);
     }
 
     //edge intersection
@@ -1083,14 +1245,15 @@ void RSA_Algorithms::maxWeightedClique(vector<Path*> & routing)
 					for (vector<Edge*>::iterator it2 = routing[constructed_clique_star[j]]->getEdges().begin(); it2 != routing[constructed_clique_star[j]]->getEdges().end(); ++it2)
 					{
 						if ((*it)->getIndex() == (*it2)->getIndex())
-							cliqueStar.addForbiddenEdgesFromCliques((*it), routing[constructed_clique_star[i]]->getDemand(), routing[constructed_clique_star[j]]->getDemand());
+							cliqueStar.addForbiddenEdgesFromCliques((*it), RSA_Input_.getRequests()[constructed_clique_star[i]], RSA_Input_.getRequests()[constructed_clique_star[j]]);
 					}
 				}
 		  	}
 		}
 		for (unsigned i = 0; i < constructed_clique_star.size(); ++i)
 		{
-			cliqueStar.addPath(routing[constructed_clique_star[i]]);			//this will add the path in the clique
+			string lbl = getPathLabel(constructed_clique_star[i], routing[constructed_clique_star[i]]);
+			cliqueStar.addPath(lbl, routing[constructed_clique_star[i]]);			//this will add the path in the clique
 		}
 		forbiddenCliques_.push_back(cliqueStar);
 		if (cliqueStar.getOmega() < smallestClique_)
@@ -1132,14 +1295,15 @@ void RSA_Algorithms::maxWeightedClique(vector<Path*> & routing)
 						for (vector<Edge*>::iterator it2 = routing[constructed_clique_star[j]]->getEdges().begin(); it2 != routing[constructed_clique_star[j]]->getEdges().end(); ++it2)
 						{
 							if ((*it)->getIndex() == (*it2)->getIndex())
-								cliqueStar.addForbiddenEdgesFromCliques((*it), routing[constructed_clique_star[i]]->getDemand(), routing[constructed_clique_star[j]]->getDemand());
+								cliqueStar.addForbiddenEdgesFromCliques((*it), RSA_Input_.getRequests()[constructed_clique_star[i]], RSA_Input_.getRequests()[constructed_clique_star[j]]);
 						}
 					}
 		    	}
 		    }
 		    for (unsigned i = 0; i < constructed_clique_star.size(); ++i)
 			{
-				cliqueStar.addPath(routing[constructed_clique_star[i]]);			//this will add the path in the clique
+				string lbl = getPathLabel(constructed_clique_star[i], routing[constructed_clique_star[i]]);
+				cliqueStar.addPath(lbl, routing[constructed_clique_star[i]]);			//this will add the path in the clique
 			}
 		    forbiddenCliques_.push_back(cliqueStar);
 		    if (cliqueStar.getOmega() < smallestClique_)
@@ -1152,24 +1316,154 @@ void RSA_Algorithms::maxWeightedClique(vector<Path*> & routing)
     }
 }
 
-void 	RSA_Algorithms::showPossiblePaths() const {
-	cout << endl << "---------------BEGIN OF Possible paths Information------------------" << endl;
-	for (unsigned i = 0; i < possiblePaths_.size(); ++i){
-		cout << "For demand: " << i+1 << endl;
-		for (unsigned j = 0; j < possiblePaths_[i].size(); ++j){
-			cout << *(possiblePaths_[i][j]);
+void RSA_Algorithms::showPossiblePaths() const
+{
+	cout << "-------------- BEGIN OF Possible Paths Information -------------------" << endl;
+	for (unsigned i = 0; i < possiblePathsNew_.size(); ++i)
+	{
+		cout << "For demand: " << i + 1 << endl;
+		for (unsigned j = 0; j < (*possiblePathsNew_[i]).size(); ++j)
+		{
+			cout << "P" << i + 1 << "_" << j + 1 << "\t: " << *((*possiblePathsNew_[i])[j]);
 		}
-		cout << "***********************: " << endl;
+		cout << "-----------------------" << endl;
 	}
-	cout << endl << "---------------END OF Possible paths Information------------------" << endl;
+	cout << "-------------- END OF Possible Paths Information ---------------------" << endl;
 }
 
-void 	RSA_Algorithms::showForbiddenCliques() const
+void RSA_Algorithms::showForbiddenCliques() const
 {
-	cout << endl << "---------------BEGIN OF Forbidden Cliques Information------------------" << endl;
+	cout << "-------------- BEGIN OF Forbidden Cliques Information-----------------" << endl;
 	for (unsigned i = 0; i < forbiddenCliques_.size(); ++i)
 	{
 		cout << forbiddenCliques_[i] << endl;
 	}
-	cout << endl << "---------------END OF Forbidden Cliques Information------------------" << endl;
+	cout << "-------------- END OF Forbidden Cliques Information-------------------" << endl;
+}
+
+bool RSA_Algorithms::equalRoutings(std::vector<Path *> &routing, std::vector<Path *> &routing2)
+{
+	if (!(routing.size() == routing2.size()))
+		return false;
+
+	unsigned i = 0;
+	while ((i < routing.size()) && (routing[i] == routing2[i]))
+	{
+		i++;
+	}
+	if (i == routing.size())
+		return true;
+	else
+		return false;
+}
+
+vector<vector<vector<Demand *>>> RSA_Algorithms::findMirrorDemands(vector<Demand *> demands)
+{
+	vector<vector<Demand *>> mirrorDemands(0);
+	// Grouping for origin, destination and weight 
+	while (!demands.empty())
+	{
+		vector<Demand *> group(0);
+		Demand *d = demands.front();
+		vector<Demand *>::iterator it = demands.begin();
+		while (it != demands.end())
+		{
+			if (((d->getOrigin().getIndex() == (*it)->getOrigin().getIndex() && d->getDestination().getIndex() == (*it)->getDestination().getIndex()) ||
+				(d->getOrigin().getIndex() == (*it)->getDestination().getIndex() && d->getDestination().getIndex() == (*it)->getOrigin().getIndex())) &&
+				(d->getSlots() == (*it)->getSlots()))
+			{
+				group.push_back(*it);
+				it = demands.erase(it);
+			}
+			else
+			{
+				++it;
+			}
+		}
+		mirrorDemands.push_back(group);
+	}
+	// Grouping Goups by origin and destination
+	vector<vector<vector<Demand*>>> demandsPartition(0);
+	while (!mirrorDemands.empty())
+	{
+		vector<vector<Demand *>> mirrorGroups(0);
+		vector<Demand*> equalWGroup = mirrorDemands.front();
+		vector<vector<Demand *>>::iterator it = mirrorDemands.begin();
+		while (it != mirrorDemands.end())
+		{
+			if ((equalWGroup.front()->getOrigin().getIndex() == (*it).front()->getOrigin().getIndex() && equalWGroup.front()->getDestination().getIndex() == (*it).front()->getDestination().getIndex()) ||
+				(equalWGroup.front()->getOrigin().getIndex() == (*it).front()->getDestination().getIndex() && equalWGroup.front()->getDestination().getIndex() == (*it).front()->getOrigin().getIndex()))
+			{
+				mirrorGroups.push_back(*it);
+				it = mirrorDemands.erase(it);
+			}
+			else
+			{
+				++it;
+			}
+		}
+		demandsPartition.push_back(mirrorGroups);
+	}
+
+	return demandsPartition;
+}
+
+string RSA_Algorithms::getPathLabel(int demandIdx, Path* pth)
+{
+	int pthIdx = 0;
+	while(pth != (*possiblePathsNew_[demandIdx])[pthIdx])
+	{
+		pthIdx++;
+	}
+	return "P" + to_string(demandIdx + 1) + "_" + to_string(pthIdx + 1);
+}
+
+vector<vector<Path*>> RSA_Algorithms::generateMirrorRoutings(vector<Path*> initialRouting)
+{
+	vector<vector<Path *>> permutations;
+	permutations.push_back(initialRouting);	
+	vector<vector<vector<Demand*>>>::iterator eqOkDk = mirrorDemands_.begin();
+	while(eqOkDk != mirrorDemands_.end())
+	{
+		vector<vector<Demand*>>::iterator eqOkDkWk = eqOkDk->begin();
+		while (eqOkDkWk != eqOkDk->end())
+		{
+			vector<vector<Path *>> permutationsNew;
+			for (int pidx = 0; pidx < permutations.size(); pidx++)
+			{
+				vector<vector<Path *>> permOfRouting = permute(permutations[pidx], *eqOkDkWk);
+				permutationsNew.insert(permutationsNew.end(), permOfRouting.begin(), permOfRouting.end());
+			}
+			permutations = permutationsNew;
+			eqOkDkWk++;
+		}
+		eqOkDk++;
+	}
+	// removing equal permutations
+	set<vector<Path*>> s;
+	unsigned size = permutations.size();
+	for (unsigned i = 0; i < size; ++i)
+		s.insert(permutations[i]);
+	permutations.assign(s.begin(), s.end());
+
+	return permutations;
+}
+
+vector<vector<Path *>> RSA_Algorithms::permute(vector<Path *> routing, vector<Demand*> demands)
+{
+	vector<vector<Path *>> permutations(0);
+	permutations.push_back(routing);
+	int n = demands.size();
+	for (int i = 0; i < n - 1; i++)
+	{
+		Path* aux = routing[demands[0]->getIndex()-1];
+		for(int idx = 0; idx < n - 1; idx++)
+		{
+			routing[demands[idx]->getIndex() - 1] = routing[demands[idx+1]->getIndex() - 1];
+		}
+		routing[demands[n - 1]->getIndex() - 1] = aux;
+		permutations.push_back(routing);
+	}
+
+	return permutations;
 }

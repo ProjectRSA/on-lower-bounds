@@ -11,34 +11,25 @@ class Demand;
 class Path
 {
 	private:
-		unsigned 				index_;
 		std::vector<Edge*> 		edges_; 			//Edges that compose the path
 		double 					lengthPath_;		//Total length of all edges
-		Demand*				    originalDemand_;	//Demand served by the path
 
 	public:
 		//Constructors
-		Path(unsigned i = 0): index_(i) {}
 		Path(std::vector<Edge*> & e);
 		Path(std::vector<Edge*> & e, Demand* d);
 
 		//Getters
-		const unsigned &			getIndex() const {return index_;}
 		const std::vector<Edge*> &	getEdges() const {return edges_;}		
 		const double &				getLengthPath() const {return lengthPath_;}
-		const unsigned &			getIndexDemand() const;
-        const Demand* 			    getDemand() const {return originalDemand_;}
 
         //Non constant getters
-        Demand* 			        getDemand() {return originalDemand_;}
         std::vector<Edge*> &		getEdges()  {return edges_;}
-		//Setters
+		void reorient(int origin_index);
 
         //Shows
-        void                        showInVerticesPath();
-
-        //Views
-        std::ostream &              viewInVertices(std::ostream & flux);
+        std::ostream &              viewOriented(std::ostream & flux, int index_vertex);
+		
 
 		//Destructors
 		~Path(){}

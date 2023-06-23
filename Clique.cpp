@@ -10,30 +10,31 @@ using namespace std;
 Clique::Clique(std::vector<Vertex*> v) : vertices_(v)
 {
 	size_ = v.size();
-	omega_ = 0;
+	weight_ = 0;
     index_ = 0;
 
 	for (std::vector<Vertex*>::iterator it = v.begin(); it!= v.end(); it++){
-		omega_ += (*it)->getWeight() ;
+		weight_ += (*it)->getWeight() ;
 	}
 }
 
 void Clique::addVertex(Vertex* & v)
 {
     vertices_.push_back(v);
-    omega_ += v->getWeight();
+    weight_ += v->getWeight();
     size_ ++;
 }
 
 void Clique::removeTheLastVertex()
 {
-    omega_ -= vertices_[vertices_.size()-1]->getWeight();
+    weight_ -= vertices_[vertices_.size()-1]->getWeight();
     vertices_.pop_back();
     size_ --;
 }
 
-void Clique::addPath(Path* & p)
+void Clique::addPath(string label, Path* & p)
 {
+    pathsLabels_.push_back(label);
     paths_.push_back(p);
 }
 
@@ -96,17 +97,19 @@ void Clique::addForbiddenEdgesFromCliques(Edge* & e, Demand* d1, Demand* d2)
 
 std::ostream & operator << (std::ostream & flux, const Clique & c)
 {
-	//flux << "--------" << "Index: " << c.getIndex() << std::endl ;
-	flux << "Size: " << c.getSize() << "| Omega: " << c.getOmega() << std::endl ;
+	flux << "Size: " << c.getSize() << "| Weight: " << c.getOmega() << std::endl ;
 	flux << "Clique: ( " ;
 	for (std::vector<Vertex*>::const_iterator it = c.getVertices().begin(); it != c.getVertices().end(); it++)
 		flux << (*it)->getIndex() << " ";
 	flux << ")" << std::endl ;
-    flux << "Paths of this clique:" << endl;
+    flux << "Paths : ( " ;
+	for (vector<string>::const_iterator pLbl = c.pathsLabels_.begin(); pLbl != c.pathsLabels_.end(); pLbl++)
+		flux << *pLbl << " ";
+	flux << ")" << std::endl ;
     for (unsigned i = 0; i < c.getPaths().size(); ++i)
     {
         flux << (*(c.getPaths()[i]));
     }
-	flux << "-------- " << std::endl ;
+	flux << "-----------------------" << std::endl ;
 	return flux;
 }
