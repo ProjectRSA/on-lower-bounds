@@ -12,6 +12,7 @@ ILOSTLBEGIN
 #include "Graph.hpp"
 #include "Path.hpp"
 #include "Clique.hpp"
+#include "Obstruction.hpp"
 #include "RSA_Input.hpp"
 #include "RSA_Output.hpp"
 #include "MCMCF_Output.hpp"
@@ -68,6 +69,7 @@ int main(int argc, char *argv[])
 		RSA_Input RSA;
 		cout << "FRAMEWORK FOR COLUMN GENERATION FOR AN EDGE PATH FORMULATION"<< endl;
 		cout << "==================BEGIN READING DATA============== "<< endl;
+
 		RSA.data_load_node(instance_ + "/Node.csv");
 		RSA.data_load_edge(instance_ + "/Link.csv");
 		RSA.data_load_demand(instance_ + "/Demand.csv");

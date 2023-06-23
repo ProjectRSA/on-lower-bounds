@@ -33,7 +33,7 @@ APPNAME = RSASolver
 exec: RSA_Solver.cpp
 		$(CCC) $(RFLAGS) -I$(CPLEXINC) -I$(CONCERTINC)  \
 		-L$(CPLEXLIB) -L$(CONCERTLIB)  \
-		 RSA_Solver.cpp Vertex.cpp Edge.cpp Arc.cpp Graph.cpp Demand.cpp Path.cpp RSA_Input.cpp Clique.cpp RSA_Output.cpp MCMCF_Output.cpp RSA_Algorithms.cpp IterationInfo.cpp \
+		 RSA_Solver.cpp Vertex.cpp Edge.cpp Arc.cpp Graph.cpp Demand.cpp Path.cpp RSA_Input.cpp Clique.cpp Obstruction.cpp RSA_Output.cpp MCMCF_Output.cpp RSA_Algorithms.cpp IterationInfo.cpp \
 		-lconcert -lilocplex -lcplex \
 		-lm -lpthread -ldl -o $(OUTDIR)$(APPNAME)
 
@@ -43,6 +43,6 @@ clean:
 debug: RSA_Solver.cpp
 		$(CCC) $(DFLAGS) -I$(CPLEXINC) -I$(CONCERTINC)  \
 		-L$(CPLEXLIB) -L$(CONCERTLIB)  \
-		 RSA_Solver.cpp Vertex.cpp Edge.cpp Arc.cpp Graph.cpp Demand.cpp Path.cpp RSA_Input.cpp Clique.cpp RSA_Output.cpp MCMCF_Output.cpp RSA_Algorithms.cpp IterationInfo.cpp\
+		 RSA_Solver.cpp Vertex.cpp Edge.cpp Arc.cpp Graph.cpp Demand.cpp Path.cpp RSA_Input.cpp Clique.cpp Obstruction.cpp RSA_Output.cpp MCMCF_Output.cpp RSA_Algorithms.cpp IterationInfo.cpp\
 		-lconcert -lilocplex -lcplex \
 		-lm -lpthread -ldl -o $(OUTDIR)$(APPNAME)_Debug

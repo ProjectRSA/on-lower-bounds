@@ -12,6 +12,7 @@ class MCMCF_Output;
 class Path;
 class Graph;
 class Clique;
+class Obstruction;
 
 class RSA_Algorithms
 {
@@ -22,8 +23,7 @@ class RSA_Algorithms
 		MCMCF_Output 							MCMCF_Output_;				//output from last execution of MCMCF model (solution)
 		RSA_Output 								RSA_Output_; 				//output from last execution of RSA model (solution)	
 		vector<vector<Path*>*>					possiblePathsNew_;			//PBar, paths possible to be chosen in EPF
-        std::vector<Clique> 					forbiddenCliques_;			//cliques that should be forbidden
-		std::vector<std::vector<Path*>>         forbiddenRoutings_;			//R in the framework description
+		Obstruction								obstructions_;				//contains all forbidden cliques and routings that are circuits
         unsigned								upperBound_;				
         unsigned                                lowerBound_;
         unsigned                                cliqueBound_;
@@ -37,17 +37,18 @@ class RSA_Algorithms
         double									gap_;						//gap of the current EPF solution
         bool                                    isOptimal_;					//framework found a possible solution
         unsigned								iterations_;
+		double									tConstraintsMCF_;
+		double									tConstraintsEPF_;
+		double									tTimeMCF_;
+		double									tTimeEPF_;
+		unsigned								nCallsMCF_;
+		unsigned								nCallsEPF_;
 		vector<vector<vector<Demand *>>> mirrorDemands_;
 
 		//Functions
 		void 			Construct_G_Prime();
 		bool 			UpdatePossiblePathsSet();								// Adds found paths to the pool of possible paths. Returns true if at least one new path was added, false otherwise. I.e., the set remains the same
-		bool			AllowFeasibleCliques();									// Remove from the set of Forbidden Cliques all cliques s.t. W(q) = cliqueBound
 		void 			maxWeightedClique(std::vector<Path*> &  routing);		// function that finds weighted cliques that are bigger than the lower bound
-		unsigned        minForbiddenCliquesWeight();
-		void            updateForbiddenRoutings(std::vector<Path*>& routing);
-		void 			updateForbiddenRoutings(vector<vector<Path *>> &routings);
-		bool            equalRoutings(std::vector<Path *> &routing, std::vector<Path *> &routing2);
 		vector<vector<vector<Demand *>>> findMirrorDemands(vector<Demand *> demands);
 		string getPathLabel(int demandIdx, Path* pth);
 		vector<vector<Path*>> generateMirrorRoutings(vector<Path*> initialRouting);
