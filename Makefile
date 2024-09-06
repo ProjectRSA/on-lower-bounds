@@ -5,7 +5,7 @@
 # the directories where CPLEX and CONCERT are installed.
 #
 #------------------------------------------------------------
-CPLEXINSTALL = /opt/ibm/ILOG/CPLEX_Studio1210/
+CPLEXINSTALL = /opt/ibm/ILOG/CPLEX_Studio2211/
 LIBFORMAT = static_pic
 SYSTEM = x86-64_linux
 
