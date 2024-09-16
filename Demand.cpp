@@ -8,7 +8,7 @@ std::ostream & operator << (std::ostream & flux, const Demand & d)
 {
 	flux << "--------" << "Index: " << d.getIndex() << std::endl ;
 	flux << "Origin: " << d.getOrigin().getIndex() << "| Destination: " << d.getDestination().getIndex() << std::endl ;
-	flux << "Slots: " << d.getSlots() << "| Max Lenght: " << d.getMaxLength() << std::endl ;
+	flux << "Slots: " << d.getSlots() << "| Max Lenght: " << d.getMaxLength() << "| Min OSNR: " << d.getMinOsnr()<< std::endl ;
 	return flux;
 }
 

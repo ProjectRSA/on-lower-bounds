@@ -559,9 +559,22 @@ void  RSA_Algorithms::solveKShortest(int k){
 		// URGENTE
 		if (path2->getLengthPath() <= path2->getDemand()->getMaxLength()){
 			//std::cout << "k shortest respects max length: "<< path2->getLengthPath()<< " < "<< path2->getDemand()->getMaxLength() <<std::endl;
-			routing.push_back(path2);
+			// IF MAX LENGTH OK, VERIFY OSNR
+			double pathNoise = path2->getNoisePath();
+			double pch = path2->getDemand()->getPch();
+			double osnr;
+			double osnrdb;		
+			osnr = pch/(pathNoise);
+			osnrdb = 10.0 * log10(osnr);
+			//std::cout << "k shortest osnr limit: "<< osnrdb<< " x "<< path2->getDemand()->getMinOsnr() <<std::endl;
+			//std::cout << "PASSO MAX RECH";
+			if (path2->getDemand()->getMinOsnr() <= osnrdb){
+				//std::cout << " PASSO OSNR" << std::endl;
+				routing.push_back(path2);
+			}
 		}
 		countroutings = countroutings + 1;
+
 	}
 	/*
 	std::cout << "Current routing" <<std::endl;
@@ -709,6 +722,7 @@ void RSA_Algorithms::solveEdgePathFormulation_Cplex()
 		}
 	}
 	// length constraint (total length moode)
+	/*
 	for (unsigned k = 0; k < K; k++)
 	{
 		IloExpr length(RSA);
@@ -719,6 +733,7 @@ void RSA_Algorithms::solveEdgePathFormulation_Cplex()
 		ILP_RSA.add(length <= RSA_Input_.getRequests()[k]->getMaxLength());
 		length.end();
 	}
+	*/
 
 	//spectrum assignment
 	for (unsigned k = 0; k < K; k++)
@@ -823,9 +838,9 @@ void RSA_Algorithms::solveEdgePathFormulation_Cplex()
 
 
 	//model.exportModel("Edge_Path_Formulation_Cplex.lp");
-	model.setOut(RSA.getNullStream());
+	//model.setOut(RSA.getNullStream());
 	model.setParam(IloCplex::TiLim, 3600); // Execution time limited
-
+	cout << "CPLEX STATUS" << model.getStatus() <<endl;;
 	if (model.solve() == false)
     {
     	RSASolved_ = false;

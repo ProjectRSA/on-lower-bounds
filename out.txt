@@ -1,0 +1,445 @@
+
+FRAMEWORK FOR COLUMN GENERATION FOR AN EDGE PATH FORMULATION
+
+==================BEGIN READING DATA============== 
+
+==================END READING DATA============== 
+
+---------------BEGIN OF Data Information------------------
+  Graph G  
+Number of nodes: 14| Number of links: : 21
+Nodes: ( 1 2 3 4 5 6 7 8 9 10 11 12 13 14 )
+Not oriented
+Edges: (1,2) Length 1100 Noise 3.4797e-06
+(1,3) Length 1600 Noise 5.0124e-06
+(1,8) Length 2800 Noise 8.39111e-06
+(2,3) Length 600 Noise 1.97456e-06
+(2,4) Length 1000 Noise 3.08633e-06
+(3,6) Length 2000 Noise 6.13863e-06
+(4,5) Length 600 Noise 1.97456e-06
+(4,11) Length 2400 Noise 7.26487e-06
+(5,6) Length 1100 Noise 3.4797e-06
+(5,7) Length 800 Noise 2.75993e-06
+(6,10) Length 1200 Noise 3.88616e-06
+(6,13) Length 2000 Noise 6.13863e-06
+(7,8) Length 700 Noise 2.35666e-06
+(8,9) Length 700 Noise 2.35666e-06
+(9,10) Length 900 Noise 2.70811e-06
+(9,12) Length 500 Noise 1.61895e-06
+(9,14) Length 500 Noise 1.61895e-06
+(11,12) Length 800 Noise 2.75993e-06
+(11,14) Length 800 Noise 2.75993e-06
+(12,13) Length 300 Noise 1.24101e-06
+(13,14) Length 300 Noise 1.24101e-06
+-------- 
+
+  Graph G prime 
+Number of nodes: 14| Number of links: : 42
+Nodes: ( 1 2 3 4 5 6 7 8 9 10 11 12 13 14 )
+Oriented
+Arcs:  (1,2) Length 1100
+ (1,3) Length 1600
+ (1,8) Length 2800
+ (2,3) Length 600
+ (2,4) Length 1000
+ (3,6) Length 2000
+ (4,5) Length 600
+ (4,11) Length 2400
+ (5,6) Length 1100
+ (5,7) Length 800
+ (6,10) Length 1200
+ (6,13) Length 2000
+ (7,8) Length 700
+ (8,9) Length 700
+ (9,10) Length 900
+ (9,12) Length 500
+ (9,14) Length 500
+ (11,12) Length 800
+ (11,14) Length 800
+ (12,13) Length 300
+ (13,14) Length 300
+ (2,1) Length 1100
+ (3,1) Length 1600
+ (8,1) Length 2800
+ (3,2) Length 600
+ (4,2) Length 1000
+ (6,3) Length 2000
+ (5,4) Length 600
+ (11,4) Length 2400
+ (6,5) Length 1100
+ (7,5) Length 800
+ (10,6) Length 1200
+ (13,6) Length 2000
+ (8,7) Length 700
+ (9,8) Length 700
+ (10,9) Length 900
+ (12,9) Length 500
+ (14,9) Length 500
+ (12,11) Length 800
+ (14,11) Length 800
+ (13,12) Length 300
+ (14,13) Length 300
+-------- 
+
+  Demands  
+--------Index: 1
+Origin: 11| Destination: 13
+Slots: 6| Max Lenght: 2352.94| Min OSNR: 21
+
+--------Index: 2
+Origin: 12| Destination: 3
+Slots: 3| Max Lenght: 5882.35| Min OSNR: 13
+
+--------Index: 3
+Origin: 7| Destination: 9
+Slots: 6| Max Lenght: 2352.94| Min OSNR: 21
+
+--------Index: 4
+Origin: 13| Destination: 5
+Slots: 3| Max Lenght: 5882.35| Min OSNR: 13
+
+--------Index: 5
+Origin: 7| Destination: 2
+Slots: 6| Max Lenght: 2941.18| Min OSNR: 16
+
+--------Index: 6
+Origin: 10| Destination: 9
+Slots: 6| Max Lenght: 1176.47| Min OSNR: 24
+
+--------Index: 7
+Origin: 6| Destination: 4
+Slots: 6| Max Lenght: 2352.94| Min OSNR: 21
+
+--------Index: 8
+Origin: 1| Destination: 2
+Slots: 6| Max Lenght: 2352.94| Min OSNR: 21
+
+--------Index: 9
+Origin: 11| Destination: 10
+Slots: 6| Max Lenght: 2941.18| Min OSNR: 16
+
+--------Index: 10
+Origin: 10| Destination: 13
+Slots: 6| Max Lenght: 2352.94| Min OSNR: 21
+
+--------Index: 11
+Origin: 11| Destination: 6
+Slots: 3| Max Lenght: 5882.35| Min OSNR: 13
+
+--------Index: 12
+Origin: 1| Destination: 7
+Slots: 3| Max Lenght: 5882.35| Min OSNR: 13
+
+--------Index: 13
+Origin: 10| Destination: 13
+Slots: 6| Max Lenght: 2352.94| Min OSNR: 21
+
+--------Index: 14
+Origin: 1| Destination: 8
+Slots: 6| Max Lenght: 2941.18| Min OSNR: 16
+
+--------Index: 15
+Origin: 7| Destination: 8
+Slots: 6| Max Lenght: 1176.47| Min OSNR: 24
+
+--------Index: 16
+Origin: 8| Destination: 3
+Slots: 3| Max Lenght: 5882.35| Min OSNR: 13
+
+--------Index: 17
+Origin: 7| Destination: 6
+Slots: 6| Max Lenght: 2941.18| Min OSNR: 16
+
+--------Index: 18
+Origin: 7| Destination: 9
+Slots: 6| Max Lenght: 2352.94| Min OSNR: 21
+
+--------Index: 19
+Origin: 7| Destination: 1
+Slots: 3| Max Lenght: 5882.35| Min OSNR: 13
+
+--------Index: 20
+Origin: 2| Destination: 7
+Slots: 6| Max Lenght: 2941.18| Min OSNR: 16
+
+--------Index: 21
+Origin: 13| Destination: 4
+Slots: 3| Max Lenght: 5882.35| Min OSNR: 13
+
+--------Index: 22
+Origin: 3| Destination: 13
+Slots: 3| Max Lenght: 5882.35| Min OSNR: 13
+
+--------Index: 23
+Origin: 14| Destination: 2
+Slots: 3| Max Lenght: 5882.35| Min OSNR: 13
+
+--------Index: 24
+Origin: 5| Destination: 11
+Slots: 3| Max Lenght: 5882.35| Min OSNR: 13
+
+--------Index: 25
+Origin: 13| Destination: 7
+Slots: 6| Max Lenght: 2941.18| Min OSNR: 16
+
+--------Index: 26
+Origin: 8| Destination: 4
+Slots: 6| Max Lenght: 2941.18| Min OSNR: 16
+
+--------Index: 27
+Origin: 10| Destination: 2
+Slots: 3| Max Lenght: 5882.35| Min OSNR: 13
+
+--------Index: 28
+Origin: 6| Destination: 11
+Slots: 3| Max Lenght: 5882.35| Min OSNR: 13
+
+--------Index: 29
+Origin: 11| Destination: 12
+Slots: 6| Max Lenght: 1176.47| Min OSNR: 24
+
+--------Index: 30
+Origin: 11| Destination: 3
+Slots: 3| Max Lenght: 5882.35| Min OSNR: 13
+
+--------Index: 31
+Origin: 3| Destination: 9
+Slots: 3| Max Lenght: 5882.35| Min OSNR: 13
+
+--------Index: 32
+Origin: 5| Destination: 2
+Slots: 6| Max Lenght: 2352.94| Min OSNR: 21
+
+--------Index: 33
+Origin: 6| Destination: 7
+Slots: 6| Max Lenght: 2941.18| Min OSNR: 16
+
+--------Index: 34
+Origin: 3| Destination: 8
+Slots: 3| Max Lenght: 5882.35| Min OSNR: 13
+
+--------Index: 35
+Origin: 13| Destination: 5
+Slots: 3| Max Lenght: 5882.35| Min OSNR: 13
+
+--------Index: 36
+Origin: 5| Destination: 4
+Slots: 6| Max Lenght: 1176.47| Min OSNR: 24
+
+--------Index: 37
+Origin: 11| Destination: 14
+Slots: 6| Max Lenght: 1176.47| Min OSNR: 24
+
+--------Index: 38
+Origin: 9| Destination: 1
+Slots: 3| Max Lenght: 5882.35| Min OSNR: 13
+
+--------Index: 39
+Origin: 7| Destination: 12
+Slots: 6| Max Lenght: 2941.18| Min OSNR: 16
+
+--------Index: 40
+Origin: 6| Destination: 10
+Slots: 6| Max Lenght: 2352.94| Min OSNR: 21
+
+
+----------------END OF Data Information-------------------
+TIME == K shortest duration in milliseconds: 2
+
+---------------BEGIN OF Possible paths Information------------------
+For demand: 1
+Edges: (11,14) (13,14) Path Lenght: 1100 Path OSNR: 22.729
+Edges: (11,12) (12,13) Path Lenght: 1100 Path OSNR: 22.729
+***********************: 
+For demand: 2
+Edges: (12,13) (6,13) (3,6) Path Lenght: 4300 Path OSNR: 14.4311
+Edges: (9,12) (9,10) (6,10) (3,6) Path Lenght: 4600 Path OSNR: 14.1712
+***********************: 
+For demand: 3
+Edges: (7,8) (8,9) Path Lenght: 1400 Path OSNR: 22.0173
+***********************: 
+For demand: 4
+Edges: (13,14) (9,14) (8,9) (7,8) (5,7) Path Lenght: 3000 Path OSNR: 15.598
+Edges: (12,13) (9,12) (8,9) (7,8) (5,7) Path Lenght: 3000 Path OSNR: 15.598
+***********************: 
+For demand: 5
+Edges: (5,7) (4,5) (2,4) Path Lenght: 2400 Path OSNR: 19.8181
+***********************: 
+For demand: 6
+Edges: (9,10) Path Lenght: 900 Path OSNR: 24.4239
+***********************: 
+For demand: 7
+Edges: (5,6) (4,5) Path Lenght: 1700 Path OSNR: 21.3833
+***********************: 
+For demand: 8
+Edges: (1,2) Path Lenght: 1100 Path OSNR: 23.3352
+***********************: 
+For demand: 9
+Edges: (11,14) (9,14) (9,10) Path Lenght: 2200 Path OSNR: 20.246
+Edges: (11,12) (9,12) (9,10) Path Lenght: 2200 Path OSNR: 20.246
+***********************: 
+For demand: 10
+Edges: (9,10) (9,14) (13,14) Path Lenght: 1700 Path OSNR: 21.2936
+Edges: (9,10) (9,12) (12,13) Path Lenght: 1700 Path OSNR: 21.2936
+***********************: 
+For demand: 11
+Edges: (11,14) (13,14) (6,13) Path Lenght: 3100 Path OSNR: 15.6801
+Edges: (11,12) (12,13) (6,13) Path Lenght: 3100 Path OSNR: 15.6801
+***********************: 
+For demand: 12
+Edges: (1,2) (2,4) (4,5) (5,7) Path Lenght: 3500 Path OSNR: 15.2093
+Edges: (1,8) (7,8) Path Lenght: 3500 Path OSNR: 15.4271
+***********************: 
+For demand: 13
+Edges: (9,10) (9,14) (13,14) Path Lenght: 1700 Path OSNR: 21.2936
+Edges: (9,10) (9,12) (12,13) Path Lenght: 1700 Path OSNR: 21.2936
+***********************: 
+For demand: 14
+Edges: (1,8) Path Lenght: 2800 Path OSNR: 19.5124
+***********************: 
+For demand: 15
+Edges: (7,8) Path Lenght: 700 Path OSNR: 25.0276
+***********************: 
+For demand: 16
+Edges: (7,8) (5,7) (4,5) (2,4) (2,3) Path Lenght: 3700 Path OSNR: 14.8938
+Edges: (1,8) (1,3) Path Lenght: 4400 Path OSNR: 14.4681
+***********************: 
+For demand: 17
+Edges: (5,7) (5,6) Path Lenght: 1900 Path OSNR: 20.799
+***********************: 
+For demand: 18
+Edges: (7,8) (8,9) Path Lenght: 1400 Path OSNR: 22.0173
+***********************: 
+For demand: 19
+Edges: (7,8) (1,8) Path Lenght: 3500 Path OSNR: 15.4271
+Edges: (5,7) (4,5) (2,4) (1,2) Path Lenght: 3500 Path OSNR: 15.2093
+***********************: 
+For demand: 20
+Edges: (2,4) (4,5) (5,7) Path Lenght: 2400 Path OSNR: 19.8181
+***********************: 
+For demand: 21
+Edges: (13,14) (11,14) (4,11) Path Lenght: 3500 Path OSNR: 15.2227
+Edges: (12,13) (11,12) (4,11) Path Lenght: 3500 Path OSNR: 15.2227
+***********************: 
+For demand: 22
+Edges: (3,6) (6,13) Path Lenght: 4000 Path OSNR: 14.8493
+Edges: (3,6) (6,10) (9,10) (9,14) (13,14) Path Lenght: 4900 Path OSNR: 13.8111
+***********************: 
+For demand: 23
+Edges: (11,14) (4,11) (2,4) Path Lenght: 4200 Path OSNR: 14.5639
+Edges: (9,14) (8,9) (7,8) (5,7) (4,5) (2,4) Path Lenght: 4300 Path OSNR: 14.2318
+***********************: 
+For demand: 24
+Edges: (4,5) (4,11) Path Lenght: 3000 Path OSNR: 16.0839
+Edges: (5,7) (7,8) (8,9) (9,14) (11,14) Path Lenght: 3500 Path OSNR: 15.0024
+***********************: 
+For demand: 25
+Edges: (13,14) (9,14) (8,9) (7,8) Path Lenght: 2200 Path OSNR: 19.9578
+Edges: (12,13) (9,12) (8,9) (7,8) Path Lenght: 2200 Path OSNR: 19.9578
+***********************: 
+For demand: 26
+Edges: (7,8) (5,7) (4,5) Path Lenght: 2100 Path OSNR: 20.2434
+***********************: 
+For demand: 27
+Edges: (6,10) (3,6) (2,3) Path Lenght: 3800 Path OSNR: 14.9487
+Edges: (6,10) (5,6) (4,5) (2,4) Path Lenght: 3900 Path OSNR: 14.7967
+***********************: 
+For demand: 28
+Edges: (6,13) (13,14) (11,14) Path Lenght: 3100 Path OSNR: 15.6801
+Edges: (6,13) (12,13) (11,12) Path Lenght: 3100 Path OSNR: 15.6801
+***********************: 
+For demand: 29
+Edges: (11,12) Path Lenght: 800 Path OSNR: 24.3416
+***********************: 
+For demand: 30
+Edges: (4,11) (2,4) (2,3) Path Lenght: 4000 Path OSNR: 14.8322
+Edges: (11,14) (13,14) (6,13) (3,6) Path Lenght: 5100 Path OSNR: 13.6242
+***********************: 
+For demand: 31
+Edges: (3,6) (6,10) (9,10) Path Lenght: 4100 Path OSNR: 14.691
+Edges: (2,3) (2,4) (4,5) (5,7) (7,8) (8,9) Path Lenght: 4400 Path OSNR: 14.124
+***********************: 
+For demand: 32
+Edges: (4,5) (2,4) Path Lenght: 1600 Path OSNR: 21.7083
+***********************: 
+For demand: 33
+Edges: (5,6) (5,7) Path Lenght: 1900 Path OSNR: 20.799
+***********************: 
+For demand: 34
+Edges: (2,3) (2,4) (4,5) (5,7) (7,8) Path Lenght: 3700 Path OSNR: 14.8938
+Edges: (1,3) (1,8) Path Lenght: 4400 Path OSNR: 14.4681
+***********************: 
+For demand: 35
+Edges: (13,14) (9,14) (8,9) (7,8) (5,7) Path Lenght: 3000 Path OSNR: 15.598
+Edges: (12,13) (9,12) (8,9) (7,8) (5,7) Path Lenght: 3000 Path OSNR: 15.598
+***********************: 
+For demand: 36
+Edges: (4,5) Path Lenght: 600 Path OSNR: 25.7959
+***********************: 
+For demand: 37
+Edges: (11,14) Path Lenght: 800 Path OSNR: 24.3416
+***********************: 
+For demand: 38
+Edges: (8,9) (1,8) Path Lenght: 3500 Path OSNR: 15.4271
+Edges: (8,9) (7,8) (5,7) (4,5) (2,4) (1,2) Path Lenght: 4900 Path OSNR: 13.6954
+***********************: 
+For demand: 39
+Edges: (7,8) (8,9) (9,12) Path Lenght: 1900 Path OSNR: 20.735
+Edges: (7,8) (8,9) (9,14) (13,14) (12,13) Path Lenght: 2500 Path OSNR: 19.2987
+***********************: 
+For demand: 40
+Edges: (6,10) Path Lenght: 1200 Path OSNR: 22.8554
+***********************: 
+
+---------------END OF Possible paths Information------------------
+
+---------------BEGIN OF ILP Edge Path Formulation Cplex------------------
+Number of demands : 40
+Number of Edges : 21
+Number of nodes : 14
+
+Number of variables = 36104
+CPLEX STATUSUnknown
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+CPXPARAM_TimeLimit                               3600
+Tried aggregator 2 times.
+MIP Presolve eliminated 28206 rows and 27645 columns.
+MIP Presolve modified 1488 coefficients.
+Aggregator did 144 substitutions.
+Reduced MIP has 7931 rows, 8315 columns, and 53600 nonzeros.
+Reduced MIP has 8314 binaries, 1 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.14 sec. (128.94 ticks)
+Probing time = 0.03 sec. (6.34 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+MIP Presolve modified 14 coefficients.
+Reduced MIP has 7931 rows, 8315 columns, and 53586 nonzeros.
+Reduced MIP has 8314 binaries, 1 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.04 sec. (41.10 ticks)
+Probing time = 0.03 sec. (6.02 ticks)
+Clique table members: 28315.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 8 threads.
+Root relaxation solution time = 0.09 sec. (26.48 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0    infeasible                                        755         
+
+Root node processing (before b&c):
+  Real time             =    0.58 sec. (468.78 ticks)
+Parallel b&c, 8 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.58 sec. (468.78 ticks)
+TIME == RSA duration in milliseconds: 720
+RSA TOOK TOO LONG
+Solution found but there is a gap of: 100---------------------------------------------------: 
+Total time spent in k-shortest paths: 2
+Total time spent in RSA: 720
+----------------END OF EXECUTION-------------------: 
+TOTAL FRAMEWORK TIME in milliseconds: 724

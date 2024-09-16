@@ -40,7 +40,7 @@ std::ostream & operator << (std::ostream & flux, const Graph & g)
 		flux << "Edges: ";
 		for (std::vector<Edge*>::const_iterator it = g.getEdges().begin(); it != g.getEdges().end(); it++)
 		{
-			flux << "(" << (*it)->getV1().getIndex() << "," << (*it)->getV2().getIndex() << ") " << "Length " << (*it)->getLength() << std::endl;
+			flux << "(" << (*it)->getV1().getIndex() << "," << (*it)->getV2().getIndex() << ") " << "Length " << (*it)->getLength() << " Noise " << (*it)->getNoise()<< std::endl;
 		}
 	}
 	flux << "-------- " << std::endl ;

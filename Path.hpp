@@ -14,6 +14,7 @@ class Path
 		unsigned 				index_;
 		std::vector<Edge*> 		edges_; 			//Edges that compose the path
 		double 					lengthPath_;		//Total length of all edges
+		double					noisePath_;		//Total noise of all edges
 		Demand*				    originalDemand_;	//Demand served by the path
 
 	public:
@@ -26,6 +27,7 @@ class Path
 		const unsigned &			getIndex() const {return index_;}
 		const std::vector<Edge*> &	getEdges() const {return edges_;}		
 		const double &				getLengthPath() const {return lengthPath_;}
+		const double &				getNoisePath() const {return noisePath_;}
 		const unsigned &			getIndexDemand() const;
         const Demand* 			    getDemand() const {return originalDemand_;}
 

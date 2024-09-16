@@ -23,7 +23,7 @@ FLAGS = -m64 -O -fPIC -fno-strict-aliasing -fexceptions -DNDEBUG -DIL_STD -g -Wa
 #CONCERTLIB = $(CPLEXINSTALL)concert/lib/$(SYSTEM)/$(LIBFORMAT)
 
 # CHANGEME: Cplex paths ok
-CPLEXVERSION = CPLEX_Studio1210
+CPLEXVERSION = CPLEX_Studio2211
 CPLEXDIR = /opt/ibm/ILOG/$(CPLEXVERSION)/cplex
 CPLEXINCDIR = $(CPLEXDIR)/include/
 CPLEXLIBDIR = $(CPLEXDIR)/lib/$(SYSTEM)/$(LIBFORMAT)
