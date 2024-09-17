@@ -481,6 +481,41 @@ std::vector<std::vector<Edge*> > RSA_Algorithms::kdijkstra(std::vector<std::vect
 
 }
 
+void RSA_Algorithms::AllPathsUtil(int u, int d, bool visited[], int path[], int& path_index)
+{
+    // Mark the current node and store it in path[]
+    visited[u] = true;
+    path[path_index] = u;
+    path_index++;
+    // If current vertex is same as destination, then print
+    // current path[]
+    if (u == d) {
+        std::vector<Vertex*> aux;
+        for (int i = 0; i < path_index; i++){
+            //std::cout << path[i] << " ";
+            //std::cout << getCompactNodeLabel(getCompactNodeFromLabel(path[i])) << " "; ;
+            aux.push_back(G_.getVertices()[path[i]]);
+
+        }
+        pathsdemand.push_back(aux);
+        //std::cout << std::endl;
+    }
+    else // If current vertex is not destination
+    {
+        // Recur for all the vertices adjacent to current vertex
+        std::vector<int>::iterator i;
+        for (i = adj_list[u].begin(); i != adj_list[u].end(); ++i){
+            if (!visited[*i]){
+                AllPathsUtil(*i, d, visited, path, path_index);
+			}
+		}
+    }
+ 
+    // Remove current vertex from path[] and mark it as unvisited
+    path_index--;
+    visited[u] = false;
+}
+
 void  RSA_Algorithms::solveKShortest(int k){
 
 	//DJIKISTRA MODULE     
@@ -491,14 +526,20 @@ void  RSA_Algorithms::solveKShortest(int k){
 	vector<Path*> routing;
 	int countroutings=0;
 
+	//ALL PATHS MODULE
+	int chemins = 0;
+	int refused = 0;
+	int passOsnrButRefused =0;
+	int passReachButRefused =0;
+	int approuved = 0;
+
     for (int i = 0; i < RSA_Input_.getRequests().size(); ++i){
-	//for (int i = 0; i < 1; ++i){	
-		//std::cout << std::endl <<"===========demanda: "<< i+1 << std::endl;
         originDjikistra = RSA_Input_.getRequests()[i]->getOrigin().getIndex();
         destinationDijikistra =  RSA_Input_.getRequests()[i]->getDestination().getIndex();
-		//std::cout << originDjikistra << " " << destinationDijikistra << std::endl;
 
+		//FOR K DJIKSTRA
 		//creating adj matrix
+		/*
 		std::vector<std::vector<int> > adjmatrix;
 		std::vector<int> auxadj;
 		for (int i = 0; i < RSA_Input_.getNodes().size(); ++i){
@@ -524,6 +565,7 @@ void  RSA_Algorithms::solveKShortest(int k){
 				}
 			}
 		}
+		*/
 		//std::cout << "printing matrix" <<std::endl; 
 		/*for (int i = 0; i < adjmatrix.size(); i++){
 			for (int j = 0; j < adjmatrix[i].size(); j++){
@@ -531,8 +573,7 @@ void  RSA_Algorithms::solveKShortest(int k){
 			}
 			std::cout << std::endl;
 		}*/
-
-		//for kdjikistra
+		/*
 		std::vector<std::vector<Edge*> > kpathsedges;
 		//DEFINE K SHORTEST
 		kpathsedges = kdijkstra(adjmatrix,originDjikistra-1, destinationDijikistra-1, k);
@@ -542,10 +583,70 @@ void  RSA_Algorithms::solveKShortest(int k){
 			//	std::cout << kpathsedges[k][p]->getV1().getIndex() << " " << kpathsedges[k][p]->getV2().getIndex() << " " ;
 			djikistraDemandsId.push_back(RSA_Input_.getRequests()[i]->getIndex());
 			djikistraPathsEdges.push_back(kpathsedges[k]);
+			chemins = chemins + 1;
 		}
 		//std::cout << std::endl << "===========demanda: "<< i+1 << std::endl;
+		*/
+
+
+		//FOR ALL PATHS
+		//creating adj list
+		// ADJACENCY LIST
+		std::vector<std::vector<int> > aux(RSA_Input_.getNodes().size());
+		adj_list = aux;
+		//std::cout << "Edges:";
+		for (int j = 0; j < RSA_Input_.getEdges().size(); ++j){
+			int edgeorigin = RSA_Input_.getEdges()[j]->getV1().getIndex();
+			int edgedestination = RSA_Input_.getEdges()[j]->getV2().getIndex();
+			adj_list[edgeorigin-1].push_back(edgedestination-1);
+			adj_list[edgedestination-1].push_back(edgeorigin-1);
+		}
+		/*std::cout << "printing list" <<std::endl; 
+		for (int i = 0; i < adj_list.size(); i++){
+			std::cout << i+1 << "|";
+			for (int j = 0; j < adj_list[i].size(); j++){
+				std::cout << adj_list[i][j]+1 << " ";
+			}
+			std::cout << std::endl;
+		}*/
+		bool* visited = new bool[G_.getnumberNodes()];
+        // Create an array to store paths
+        int* path = new int[G_.getnumberNodes()];
+        int path_index = 0; // Initialize path[] as empty
+        // Initialize all vertices as not visited
+        for (int i = 0; i < G_.getnumberNodes(); i++){
+            visited[i] = false;
+		}
+		AllPathsUtil(originDjikistra-1, destinationDijikistra-1, visited, path, path_index);
+		//std::cout << "RESULTE " << RSA_Input_.getRequests()[i]->getIndex()<< endl;
+		//std::cout << "FROM " << RSA_Input_.getRequests()[i]->getOrigin().getIndex() << "TO" << RSA_Input_.getRequests()[i]->getDestination().getIndex()<< endl;
+		for (int a = 0; a <pathsdemand.size(); a++){
+			//for (int i = 0; i < pathsdemand[a].size() ; i++){
+			//	std::cout << pathsdemand[a][i]->getIndex() << "-";
+			//}
+			//std::cout <<endl ;
+			chemins = chemins + 1;
+		}
+		for (int k = 0; k < pathsdemand.size(); k++){
+			std::vector<Edge*> auxsolution;
+			djikistraDemandsId.push_back(RSA_Input_.getRequests()[i]->getIndex());
+			for (int i = 0; i < pathsdemand[k].size() -1 ; i++){
+				int origindege = pathsdemand[k][i]->getIndex() ;
+				int destinationedge = pathsdemand[k][i+1]->getIndex() ;  
+				for (int j = 0; j < RSA_Input_.getEdges().size(); j++){
+					if (RSA_Input_.getEdges()[j]->getV1().getIndex() == origindege && RSA_Input_.getEdges()[j]->getV2().getIndex() == destinationedge){
+						auxsolution.push_back(RSA_Input_.getEdges()[j]);
+					}
+					if (RSA_Input_.getEdges()[j]->getV2().getIndex() == origindege && RSA_Input_.getEdges()[j]->getV1().getIndex() == destinationedge){
+						auxsolution.push_back(RSA_Input_.getEdges()[j]);
+					}
+				}
+			}
+			djikistraPathsEdges.push_back(auxsolution);
+			auxsolution.clear();
+		}
+        pathsdemand.clear();
 	}
-		
 	// Construction of the solution
 	for (unsigned a = 0; a < djikistraPathsEdges.size(); a++)
 	{
@@ -555,26 +656,37 @@ void  RSA_Algorithms::solveKShortest(int k){
 			path.push_back(djikistraPathsEdges[a][b]);
 		}
 		Path * path2 = new Path(path,RSA_Input_.getRequests()[djikistraDemandsId[countroutings]-1]);
-		//AQUI SO DAR PUSHBACK SE RESPEITAR O MAX LENGTH	
-		// URGENTE
+		double pathNoise = path2->getNoisePath();
+		double pch = path2->getDemand()->getPch();
+		double osnr;
+		double osnrdb;		
+		osnr = pch/(pathNoise);
+		osnrdb = 10.0 * log10(osnr);
 		if (path2->getLengthPath() <= path2->getDemand()->getMaxLength()){
-			//std::cout << "k shortest respects max length: "<< path2->getLengthPath()<< " < "<< path2->getDemand()->getMaxLength() <<std::endl;
-			// IF MAX LENGTH OK, VERIFY OSNR
-			double pathNoise = path2->getNoisePath();
-			double pch = path2->getDemand()->getPch();
-			double osnr;
-			double osnrdb;		
-			osnr = pch/(pathNoise);
-			osnrdb = 10.0 * log10(osnr);
-			//std::cout << "k shortest osnr limit: "<< osnrdb<< " x "<< path2->getDemand()->getMinOsnr() <<std::endl;
-			//std::cout << "PASSO MAX RECH";
 			if (path2->getDemand()->getMinOsnr() <= osnrdb){
 				//std::cout << " PASSO OSNR" << std::endl;
 				routing.push_back(path2);
+				approuved = approuved+1;
 			}
 		}
 		countroutings = countroutings + 1;
-
+		bool auxCD = false;
+		bool auxOS = false;
+		if (path2->getLengthPath() <= path2->getDemand()->getMaxLength()){
+			auxCD = true;
+		}
+		if (path2->getDemand()->getMinOsnr() <= osnrdb){
+			auxOS = true;
+		}
+		if((auxCD==true) && (auxOS==false)){
+			passReachButRefused =passReachButRefused+1;
+		}
+		if((auxCD==false) && (auxOS==true)){
+			passOsnrButRefused =passOsnrButRefused+1;
+		}
+		if((auxCD==false) && (auxOS==false)){
+			refused =refused+1;
+		}
 	}
 	/*
 	std::cout << "Current routing" <<std::endl;
@@ -585,7 +697,11 @@ void  RSA_Algorithms::solveKShortest(int k){
 		}
 		std::cout << std::endl;
 	}*/
-    
+	std::cout << "CHEMINS " << chemins << std::endl;
+	std::cout << "APPROUVED " << approuved << std::endl;
+	std::cout << "Only reach " << passReachButRefused << std::endl;
+	std::cout << "Only OSNR " << passOsnrButRefused << std::endl;
+	std::cout << "Refused " << refused << std::endl;
 	// Here the solution is saved
 	MCMCF_Output_ = MCMCF_Output(routing,0);
 }
@@ -839,8 +955,8 @@ void RSA_Algorithms::solveEdgePathFormulation_Cplex()
 
 	//model.exportModel("Edge_Path_Formulation_Cplex.lp");
 	//model.setOut(RSA.getNullStream());
-	model.setParam(IloCplex::TiLim, 3600); // Execution time limited
-	cout << "CPLEX STATUS" << model.getStatus() <<endl;;
+	model.setParam(IloCplex::TiLim, 14400); // Execution time limited
+	std::cout << "CPLEX STATUS" << model.getStatus() <<endl;;
 	if (model.solve() == false)
     {
     	RSASolved_ = false;

@@ -51,7 +51,12 @@ class RSA_Algorithms
 		int minDistance(std::vector<int> dist, std::vector<bool> sptSet);
 		std::vector<int> dijkstra(std::vector<std::vector<int> > graph, int src, int dest, double & pathdistance);
 		std::vector<std::vector<Edge*> > kdijkstra(std::vector<std::vector<int> > graph, int src, int dest, int k);
+		
 
+		void AllPathsUtil(int u, int d, bool visited[], int path[], int& path_index);
+		std::vector<std::vector<int> > adj_list;
+		std::vector<std::vector<Vertex*> >  pathsdemand;
+    	std::vector<std::vector<std::vector<Vertex*> > > allpaths;
 
 		~RSA_Algorithms(){};
 };
