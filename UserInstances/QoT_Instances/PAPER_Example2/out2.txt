@@ -1,0 +1,209 @@
+
+FRAMEWORK FOR COLUMN GENERATION FOR AN EDGE PATH FORMULATION
+
+==================BEGIN READING DATA============== 
+
+==================END READING DATA============== 
+
+---------------BEGIN OF Data Information------------------
+  Graph G  
+Number of nodes: 14| Number of links: : 21
+Nodes: ( 1 2 3 4 5 6 7 8 9 10 11 12 13 14 )
+Not oriented
+Edges: (1,2) Length 1100 Noise 3.4797e-06
+(1,3) Length 1600 Noise 5.0124e-06
+(1,8) Length 2800 Noise 8.39111e-06
+(2,3) Length 600 Noise 1.97456e-06
+(2,4) Length 1000 Noise 3.08633e-06
+(3,6) Length 2000 Noise 6.13863e-06
+(4,5) Length 600 Noise 1.97456e-06
+(4,11) Length 2400 Noise 7.26487e-06
+(5,6) Length 1100 Noise 3.4797e-06
+(5,7) Length 800 Noise 2.75993e-06
+(6,10) Length 1200 Noise 3.88616e-06
+(6,13) Length 2000 Noise 6.13863e-06
+(7,8) Length 700 Noise 2.35666e-06
+(8,9) Length 700 Noise 2.35666e-06
+(9,10) Length 900 Noise 2.70811e-06
+(9,12) Length 500 Noise 1.61895e-06
+(9,14) Length 500 Noise 1.61895e-06
+(11,12) Length 800 Noise 2.75993e-06
+(11,14) Length 800 Noise 2.75993e-06
+(12,13) Length 300 Noise 1.24101e-06
+(13,14) Length 300 Noise 1.24101e-06
+-------- 
+
+  Graph G prime 
+Number of nodes: 14| Number of links: : 42
+Nodes: ( 1 2 3 4 5 6 7 8 9 10 11 12 13 14 )
+Oriented
+Arcs:  (1,2) Length 1100
+ (1,3) Length 1600
+ (1,8) Length 2800
+ (2,3) Length 600
+ (2,4) Length 1000
+ (3,6) Length 2000
+ (4,5) Length 600
+ (4,11) Length 2400
+ (5,6) Length 1100
+ (5,7) Length 800
+ (6,10) Length 1200
+ (6,13) Length 2000
+ (7,8) Length 700
+ (8,9) Length 700
+ (9,10) Length 900
+ (9,12) Length 500
+ (9,14) Length 500
+ (11,12) Length 800
+ (11,14) Length 800
+ (12,13) Length 300
+ (13,14) Length 300
+ (2,1) Length 1100
+ (3,1) Length 1600
+ (8,1) Length 2800
+ (3,2) Length 600
+ (4,2) Length 1000
+ (6,3) Length 2000
+ (5,4) Length 600
+ (11,4) Length 2400
+ (6,5) Length 1100
+ (7,5) Length 800
+ (10,6) Length 1200
+ (13,6) Length 2000
+ (8,7) Length 700
+ (9,8) Length 700
+ (10,9) Length 900
+ (12,9) Length 500
+ (14,9) Length 500
+ (12,11) Length 800
+ (14,11) Length 800
+ (13,12) Length 300
+ (14,13) Length 300
+-------- 
+
+  Demands  
+--------Index: 1
+Origin: 1| Destination: 4
+Slots: 4| Max Lenght: 1176.47| Min OSNR: 16
+
+--------Index: 2
+Origin: 5| Destination: 9
+Slots: 4| Max Lenght: 1176.47| Min OSNR: 16
+
+--------Index: 3
+Origin: 10| Destination: 11
+Slots: 4| Max Lenght: 1176.47| Min OSNR: 16
+
+
+----------------END OF Data Information-------------------
+CHEMINS 15
+APPROUVED 15
+Only reach 0
+Only OSNR 8
+Refused 7
+TIME == K shortest duration in milliseconds: 0
+
+---------------BEGIN OF Possible paths Information------------------
+For demand: 1
+Edges: (1,2) (2,4) Path Lenght: 2100 Path OSNR: 18.8167
+Edges: (1,3) (2,3) (2,4) Path Lenght: 3200 Path OSNR: 16.958
+Edges: (1,8) (7,8) (5,7) (4,5) Path Lenght: 4900 Path OSNR: 15.0914
+Edges: (1,3) (3,6) (5,6) (4,5) Path Lenght: 5300 Path OSNR: 14.7872
+Edges: (1,2) (2,3) (3,6) (5,6) (4,5) Path Lenght: 5400 Path OSNR: 14.6732
+***********************: 
+For demand: 2
+Edges: (5,6) (6,10) (9,10) Path Lenght: 3200 Path OSNR: 16.9577
+Edges: (5,7) (7,8) (8,9) Path Lenght: 2200 Path OSNR: 18.2546
+Edges: (5,6) (6,13) (13,14) (9,14) Path Lenght: 3900 Path OSNR: 16.0281
+Edges: (4,5) (4,11) (11,14) (9,14) Path Lenght: 4300 Path OSNR: 15.6485
+Edges: (5,6) (6,13) (12,13) (9,12) Path Lenght: 3900 Path OSNR: 16.0281
+***********************: 
+For demand: 3
+Edges: (9,10) (9,14) (11,14) Path Lenght: 2200 Path OSNR: 18.4851
+Edges: (9,10) (9,12) (11,12) Path Lenght: 2200 Path OSNR: 18.4851
+Edges: (6,10) (6,13) (13,14) (11,14) Path Lenght: 4300 Path OSNR: 15.5204
+Edges: (6,10) (5,6) (4,5) (4,11) Path Lenght: 5300 Path OSNR: 14.7872
+Edges: (6,10) (6,13) (12,13) (11,12) Path Lenght: 4300 Path OSNR: 15.5204
+***********************: 
+
+---------------END OF Possible paths Information------------------
+
+---------------BEGIN OF ILP Edge Path Formulation Cplex------------------
+Number of demands : 3
+Number of Edges : 21
+Number of nodes : 14
+
+Number of variables = 12091
+CPLEX STATUSUnknown
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+CPXPARAM_TimeLimit                               14400
+Tried aggregator 2 times.
+MIP Presolve eliminated 6428 rows and 4950 columns.
+MIP Presolve modified 537 coefficients.
+Aggregator did 21 substitutions.
+Reduced MIP has 8978 rows, 7120 columns, and 51701 nonzeros.
+Reduced MIP has 7119 binaries, 1 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.15 sec. (99.01 ticks)
+Found incumbent of value 15935.000000 after 0.23 sec. (158.83 ticks)
+Probing time = 0.04 sec. (9.66 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 8978 rows, 7120 columns, and 51701 nonzeros.
+Reduced MIP has 7119 binaries, 1 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.06 sec. (42.86 ticks)
+Probing time = 0.05 sec. (9.49 ticks)
+Clique table members: 32560.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 8 threads.
+Root relaxation solution time = 0.15 sec. (108.36 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                        15935.0000        4.0000            99.97%
+*     0+    0                        15896.0000        4.0000            99.97%
+*     0+    0                        15883.0000        4.0000            99.97%
+*     0+    0                        15870.0000        4.0000            99.97%
+*     0+    0                        15857.0000        4.0000            99.97%
+*     0+    0                        15844.0000        4.0000            99.97%
+*     0+    0                        15831.0000        4.0000            99.97%
+*     0+    0                        15818.0000        4.0000            99.97%
+*     0+    0                        15805.0000        4.0000            99.97%
+*     0+    0                        15792.0000        4.0000            99.97%
+      0     0        4.0000    56    15792.0000        4.0000      583   99.97%
+*     0+    0                            4.0000        4.0000             0.00%
+      0     0        cutoff              4.0000        4.0000      583    0.00%
+Elapsed time = 0.81 sec. (469.20 ticks, tree = 0.01 MB, solutions = 11)
+
+Root node processing (before b&c):
+  Real time             =    0.82 sec. (470.59 ticks)
+Parallel b&c, 8 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.82 sec. (470.59 ticks)
+
+Objective Value: 4
+
+Gap: 0
+
+---------------END OF ILP Edge Path Formulation Cplex------------------
+TIME == RSA duration in milliseconds: 927
+===== SOLUTION =====
+Output - RSA Problem - 
+Interval chromatic number = 4
+Routing : 
+From demand: 1 Between nodes: 1 to 4 :: 1 - 3 - 2 - 4 :: with length 3200
+ Slots : 0 - 4
+From demand: 2 Between nodes: 5 to 9 :: 5 - 4 - 11 - 14 - 9 :: with length 4300
+ Slots : 0 - 4
+From demand: 3 Between nodes: 10 to 11 :: 10 - 6 - 13 - 12 - 11 :: with length 4300
+ Slots : 0 - 4
+
+---------------------------------------------------: 
+Total time spent in k-shortest paths: 0
+Total time spent in RSA: 927
+----------------END OF EXECUTION-------------------: 
+TOTAL FRAMEWORK TIME in milliseconds: 928

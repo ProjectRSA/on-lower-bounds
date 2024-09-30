@@ -537,120 +537,119 @@ void  RSA_Algorithms::solveKShortest(int k){
         originDjikistra = RSA_Input_.getRequests()[i]->getOrigin().getIndex();
         destinationDijikistra =  RSA_Input_.getRequests()[i]->getDestination().getIndex();
 
-		//FOR K DJIKSTRA
-		//creating adj matrix
-		
-		std::vector<std::vector<int> > adjmatrix;
-		std::vector<int> auxadj;
-		for (int i = 0; i < RSA_Input_.getNodes().size(); ++i){
-			for (int j = 0; j < RSA_Input_.getNodes().size(); ++j){
-				auxadj.push_back(0);
+		int djikOrAll = 1;
+		if (djikOrAll ==1){
+			//FOR K DJIKSTRA
+			//creating adj matrix
+			std::vector<std::vector<int> > adjmatrix;
+			std::vector<int> auxadj;
+			for (int i = 0; i < RSA_Input_.getNodes().size(); ++i){
+				for (int j = 0; j < RSA_Input_.getNodes().size(); ++j){
+					auxadj.push_back(0);
+				}
+				adjmatrix.push_back(auxadj);
+				auxadj.clear();
 			}
-			adjmatrix.push_back(auxadj);
-			auxadj.clear();
+			//filling adj matrix
+			for (int i = 0; i < RSA_Input_.getNodes().size(); ++i){
+				int demandorigin = i+1;
+				for (int j = 0; j < RSA_Input_.getEdges().size(); ++j){
+					int edgeorigin = RSA_Input_.getEdges()[j]->getV1().getIndex();
+					int edgedestination = RSA_Input_.getEdges()[j]->getV2().getIndex();
+					if (edgedestination == demandorigin){
+						//adjmatrix[i][edgeorigin-1] = RSA_Input_.getEdges()[j]->getLength();
+						adjmatrix[i][edgeorigin-1] = 1;
+					}
+					else{
+						if (edgeorigin == demandorigin){
+							//adjmatrix[i][edgedestination-1] = RSA_Input_.getEdges()[j]->getLength();
+							adjmatrix[i][edgedestination-1] = 1;
+						}
+					}
+				}
+			}
+			//std::cout << "printing matrix" <<std::endl; 
+			/*for (int i = 0; i < adjmatrix.size(); i++){
+				for (int j = 0; j < adjmatrix[i].size(); j++){
+					std::cout << adjmatrix[i][j] << " ";
+				}
+				std::cout << std::endl;
+			}*/
+			
+			std::vector<std::vector<Edge*> > kpathsedges;
+			//DEFINE K SHORTEST
+			kpathsedges = kdijkstra(adjmatrix,originDjikistra-1, destinationDijikistra-1, k);
+			for (int k = 0; k < kpathsedges.size(); k++){
+				//std::cout << std:: endl<< "Path from " << originDjikistra << " to " << destinationDijikistra << " is: " ; 
+				//for (int p = 0; p != kpathsedges[k].size(); ++p)
+				//	std::cout << kpathsedges[k][p]->getV1().getIndex() << " " << kpathsedges[k][p]->getV2().getIndex() << " " ;
+				djikistraDemandsId.push_back(RSA_Input_.getRequests()[i]->getIndex());
+				djikistraPathsEdges.push_back(kpathsedges[k]);
+				chemins = chemins + 1;
+			}
+			//std::cout << std::endl << "===========demanda: "<< i+1 << std::endl;
 		}
-		//filling adj matrix
-		for (int i = 0; i < RSA_Input_.getNodes().size(); ++i){
-			int demandorigin = i+1;
+		if (djikOrAll ==2){
+			//FOR ALL PATHS
+			//creating adj list
+			// ADJACENCY LIST
+			
+			std::vector<std::vector<int> > aux(RSA_Input_.getNodes().size());
+			adj_list = aux;
+			//std::cout << "Edges:";
 			for (int j = 0; j < RSA_Input_.getEdges().size(); ++j){
 				int edgeorigin = RSA_Input_.getEdges()[j]->getV1().getIndex();
 				int edgedestination = RSA_Input_.getEdges()[j]->getV2().getIndex();
-				if (edgedestination == demandorigin){
-					//adjmatrix[i][edgeorigin-1] = RSA_Input_.getEdges()[j]->getLength();
-					adjmatrix[i][edgeorigin-1] = 1;
+				adj_list[edgeorigin-1].push_back(edgedestination-1);
+				adj_list[edgedestination-1].push_back(edgeorigin-1);
+			}
+			/*std::cout << "printing list" <<std::endl; 
+			for (int i = 0; i < adj_list.size(); i++){
+				std::cout << i+1 << "|";
+				for (int j = 0; j < adj_list[i].size(); j++){
+					std::cout << adj_list[i][j]+1 << " ";
 				}
-				else{
-					if (edgeorigin == demandorigin){
-						//adjmatrix[i][edgedestination-1] = RSA_Input_.getEdges()[j]->getLength();
-						adjmatrix[i][edgedestination-1] = 1;
+				std::cout << std::endl;
+			}*/
+			
+			bool* visited = new bool[G_.getnumberNodes()];
+			// Create an array to store paths
+			int* path = new int[G_.getnumberNodes()];
+			int path_index = 0; // Initialize path[] as empty
+			// Initialize all vertices as not visited
+			for (int i = 0; i < G_.getnumberNodes(); i++){
+				visited[i] = false;
+			}
+			AllPathsUtil(originDjikistra-1, destinationDijikistra-1, visited, path, path_index);
+			//std::cout << "RESULTE " << RSA_Input_.getRequests()[i]->getIndex()<< endl;
+			//std::cout << "FROM " << RSA_Input_.getRequests()[i]->getOrigin().getIndex() << "TO" << RSA_Input_.getRequests()[i]->getDestination().getIndex()<< endl;
+			for (int a = 0; a <pathsdemand.size(); a++){
+				//for (int i = 0; i < pathsdemand[a].size() ; i++){
+				//	std::cout << pathsdemand[a][i]->getIndex() << "-";
+				//}
+				//std::cout <<endl ;
+				chemins = chemins + 1;
+			}
+			for (int k = 0; k < pathsdemand.size(); k++){
+				std::vector<Edge*> auxsolution;
+				djikistraDemandsId.push_back(RSA_Input_.getRequests()[i]->getIndex());
+				for (int i = 0; i < pathsdemand[k].size() -1 ; i++){
+					int origindege = pathsdemand[k][i]->getIndex() ;
+					int destinationedge = pathsdemand[k][i+1]->getIndex() ;  
+					for (int j = 0; j < RSA_Input_.getEdges().size(); j++){
+						if (RSA_Input_.getEdges()[j]->getV1().getIndex() == origindege && RSA_Input_.getEdges()[j]->getV2().getIndex() == destinationedge){
+							auxsolution.push_back(RSA_Input_.getEdges()[j]);
+						}
+						if (RSA_Input_.getEdges()[j]->getV2().getIndex() == origindege && RSA_Input_.getEdges()[j]->getV1().getIndex() == destinationedge){
+							auxsolution.push_back(RSA_Input_.getEdges()[j]);
+						}
 					}
 				}
+				djikistraPathsEdges.push_back(auxsolution);
+				auxsolution.clear();
 			}
+			pathsdemand.clear();
 		}
-		
-		//std::cout << "printing matrix" <<std::endl; 
-		/*for (int i = 0; i < adjmatrix.size(); i++){
-			for (int j = 0; j < adjmatrix[i].size(); j++){
-				std::cout << adjmatrix[i][j] << " ";
-			}
-			std::cout << std::endl;
-		}*/
-		
-		std::vector<std::vector<Edge*> > kpathsedges;
-		//DEFINE K SHORTEST
-		kpathsedges = kdijkstra(adjmatrix,originDjikistra-1, destinationDijikistra-1, k);
-		for (int k = 0; k < kpathsedges.size(); k++){
-			//std::cout << std:: endl<< "Path from " << originDjikistra << " to " << destinationDijikistra << " is: " ; 
-			//for (int p = 0; p != kpathsedges[k].size(); ++p)
-			//	std::cout << kpathsedges[k][p]->getV1().getIndex() << " " << kpathsedges[k][p]->getV2().getIndex() << " " ;
-			djikistraDemandsId.push_back(RSA_Input_.getRequests()[i]->getIndex());
-			djikistraPathsEdges.push_back(kpathsedges[k]);
-			chemins = chemins + 1;
-		}
-		//std::cout << std::endl << "===========demanda: "<< i+1 << std::endl;
-		
-
-
-		//FOR ALL PATHS
-		//creating adj list
-		// ADJACENCY LIST
-		/*
-		std::vector<std::vector<int> > aux(RSA_Input_.getNodes().size());
-		adj_list = aux;
-		//std::cout << "Edges:";
-		for (int j = 0; j < RSA_Input_.getEdges().size(); ++j){
-			int edgeorigin = RSA_Input_.getEdges()[j]->getV1().getIndex();
-			int edgedestination = RSA_Input_.getEdges()[j]->getV2().getIndex();
-			adj_list[edgeorigin-1].push_back(edgedestination-1);
-			adj_list[edgedestination-1].push_back(edgeorigin-1);
-		}*/
-		/*std::cout << "printing list" <<std::endl; 
-		for (int i = 0; i < adj_list.size(); i++){
-			std::cout << i+1 << "|";
-			for (int j = 0; j < adj_list[i].size(); j++){
-				std::cout << adj_list[i][j]+1 << " ";
-			}
-			std::cout << std::endl;
-		}*/
-		/*
-		bool* visited = new bool[G_.getnumberNodes()];
-        // Create an array to store paths
-        int* path = new int[G_.getnumberNodes()];
-        int path_index = 0; // Initialize path[] as empty
-        // Initialize all vertices as not visited
-        for (int i = 0; i < G_.getnumberNodes(); i++){
-            visited[i] = false;
-		}
-		AllPathsUtil(originDjikistra-1, destinationDijikistra-1, visited, path, path_index);
-		//std::cout << "RESULTE " << RSA_Input_.getRequests()[i]->getIndex()<< endl;
-		//std::cout << "FROM " << RSA_Input_.getRequests()[i]->getOrigin().getIndex() << "TO" << RSA_Input_.getRequests()[i]->getDestination().getIndex()<< endl;
-		for (int a = 0; a <pathsdemand.size(); a++){
-			//for (int i = 0; i < pathsdemand[a].size() ; i++){
-			//	std::cout << pathsdemand[a][i]->getIndex() << "-";
-			//}
-			//std::cout <<endl ;
-			chemins = chemins + 1;
-		}
-		for (int k = 0; k < pathsdemand.size(); k++){
-			std::vector<Edge*> auxsolution;
-			djikistraDemandsId.push_back(RSA_Input_.getRequests()[i]->getIndex());
-			for (int i = 0; i < pathsdemand[k].size() -1 ; i++){
-				int origindege = pathsdemand[k][i]->getIndex() ;
-				int destinationedge = pathsdemand[k][i+1]->getIndex() ;  
-				for (int j = 0; j < RSA_Input_.getEdges().size(); j++){
-					if (RSA_Input_.getEdges()[j]->getV1().getIndex() == origindege && RSA_Input_.getEdges()[j]->getV2().getIndex() == destinationedge){
-						auxsolution.push_back(RSA_Input_.getEdges()[j]);
-					}
-					if (RSA_Input_.getEdges()[j]->getV2().getIndex() == origindege && RSA_Input_.getEdges()[j]->getV1().getIndex() == destinationedge){
-						auxsolution.push_back(RSA_Input_.getEdges()[j]);
-					}
-				}
-			}
-			djikistraPathsEdges.push_back(auxsolution);
-			auxsolution.clear();
-		}
-        pathsdemand.clear();
-		*/
 	}
 	// Construction of the solution
 	for (unsigned a = 0; a < djikistraPathsEdges.size(); a++)
@@ -668,12 +667,13 @@ void  RSA_Algorithms::solveKShortest(int k){
 		osnr = pch/(pathNoise);
 		osnrdb = 10.0 * log10(osnr);
 		//cout << osnrdb << endl;
-		//if (path2->getLengthPath() <= path2->getDemand()->getMaxLength()){
-		//if (path2->getDemand()->getMinOsnr() <= osnrdb){
-			routing.push_back(path2);
-			approuved = approuved+1;
-			//}
-		//}
+		//if (path2->getLengthPath()> 4000){
+		if (path2->getLengthPath() <= path2->getDemand()->getMaxLength()){
+			if (path2->getDemand()->getMinOsnr() <= osnrdb){
+				routing.push_back(path2);
+				approuved = approuved+1;
+			}
+		}
 		countroutings = countroutings + 1;
 		bool auxCD = false;
 		bool auxOS = false;
