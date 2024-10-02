@@ -667,13 +667,21 @@ void  RSA_Algorithms::solveKShortest(int k){
 		osnr = pch/(pathNoise);
 		osnrdb = 10.0 * log10(osnr);
 		//cout << osnrdb << endl;
-		//if (path2->getLengthPath()> 4000){
+		/*
+		if ((path2->getLengthPath() <= path2->getDemand()->getMaxLength()) && (path2->getDemand()->getMinOsnr() > osnrdb)){
+			std::cout << "Demand " << path2->getDemand()->getIndex() << " " << "CD"<< std::endl;
+		}
+		if ((path2->getLengthPath() > path2->getDemand()->getMaxLength()) && (path2->getDemand()->getMinOsnr() <= osnrdb)){
+			std::cout << "Demand " << path2->getDemand()->getIndex() << " " << "OSNR"<< std::endl;
+		}
+		*/
 		if (path2->getLengthPath() <= path2->getDemand()->getMaxLength()){
 			if (path2->getDemand()->getMinOsnr() <= osnrdb){
 				routing.push_back(path2);
 				approuved = approuved+1;
 			}
 		}
+
 		countroutings = countroutings + 1;
 		bool auxCD = false;
 		bool auxOS = false;
@@ -951,14 +959,25 @@ void RSA_Algorithms::solveEdgePathFormulation_Cplex()
 
 	//Objective Function
 	IloExpr Ob(RSA);
+	int lastOrTotal = 2;
+	
 	// Objective function: interval chromatic number
-	Ob = xI;
-
+	if (lastOrTotal ==1){
+		Ob = xI;
+	}
+	// Objective function: total used slots
+	if (lastOrTotal ==2){
+		for (unsigned k = 0; k < K; k++){
+			for (unsigned e = 0; e < E; e++){
+				Ob += int(RSA_Input_.getRequests()[k]->getSlots()) * xk_e[k][e];
+			}
+		}
+	}
 	IloObjective obj (RSA, Ob, IloObjective::Minimize, "OBJ");
 	ILP_RSA.add(obj);
 
 
-	//model.exportModel("Edge_Path_Formulation_Cplex.lp");
+	model.exportModel("Edge_Path_Formulation_Cplex.lp");
 	//model.setOut(RSA.getNullStream());
 	model.setParam(IloCplex::TiLim, 14400); // Execution time limited
 	std::cout << "CPLEX STATUS" << model.getStatus() <<endl;;
