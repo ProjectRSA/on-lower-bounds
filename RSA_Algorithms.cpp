@@ -557,13 +557,13 @@ void  RSA_Algorithms::solveKShortest(int k){
 					int edgeorigin = RSA_Input_.getEdges()[j]->getV1().getIndex();
 					int edgedestination = RSA_Input_.getEdges()[j]->getV2().getIndex();
 					if (edgedestination == demandorigin){
-						//adjmatrix[i][edgeorigin-1] = RSA_Input_.getEdges()[j]->getLength();
-						adjmatrix[i][edgeorigin-1] = 1;
+						adjmatrix[i][edgeorigin-1] = RSA_Input_.getEdges()[j]->getLength();
+						//adjmatrix[i][edgeorigin-1] = 1;
 					}
 					else{
 						if (edgeorigin == demandorigin){
-							//adjmatrix[i][edgedestination-1] = RSA_Input_.getEdges()[j]->getLength();
-							adjmatrix[i][edgedestination-1] = 1;
+							adjmatrix[i][edgedestination-1] = RSA_Input_.getEdges()[j]->getLength();
+							//adjmatrix[i][edgedestination-1] = 1;
 						}
 					}
 				}
