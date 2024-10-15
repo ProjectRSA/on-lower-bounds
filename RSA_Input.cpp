@@ -107,12 +107,13 @@ bool point_found(string value, int i)
 
 float convert_string_to_float(string value)
 {
+	/*
 	bool point = false;
 	std::string bef;
 	std::string aft;
 	for (unsigned int i = 0; i < value.size(); i++)
 	{
-		if ((point_found(value, i)== true) || (value[i] == ','))
+		if ((point_found(value, i)== true) || (value[i] == ',')|| (value[i] == '.'))
 			point = true;
 		else
 			if (point == true)
@@ -143,6 +144,8 @@ float convert_string_to_float(string value)
 		v2 = float(stoi(bef.c_str()));
 	}
 	val = v2 + v;
+	*/
+	float val = std::stod(value);
 	return val;
 }
 
@@ -166,7 +169,7 @@ void RSA_Input::data_load_edge(const std::string  filename)
 
 	for (unsigned k = 2; k < Lin.size(); ++k)
 	{
-		Edge * edge = new Edge(convert_string_to_float(Lin[k][0]), convert_string_to_float(Lin[k][3]), convert_string_to_float(Lin[k][5]), convert_string_to_float(Lin[k][4]) );
+		Edge * edge = new Edge(convert_string_to_float(Lin[k][0]),convert_string_to_float(Lin[k][3]),  convert_string_to_float(Lin[k][7]),convert_string_to_float(Lin[k][5]), convert_string_to_float(Lin[k][4]) );
 
 		unsigned v1 = convert_string_to_float(Lin[k][1]);
 		unsigned v2 = convert_string_to_float(Lin[k][2]);
@@ -194,7 +197,7 @@ void RSA_Input::data_load_demand(const std::string filename)
 	for (unsigned k = 2; k < Dem.size(); ++k)
 	{
 		
-		Demand * dm = new Demand(convert_string_to_float(Dem[k][0]), convert_string_to_float(Dem[k][3]), convert_string_to_float(Dem[k][4]) );
+		Demand * dm = new Demand(convert_string_to_float(Dem[k][0]), convert_string_to_float(Dem[k][3]), convert_string_to_float(Dem[k][4])/17.0, convert_string_to_float(Dem[k][5]) , convert_string_to_float(Dem[k][12]));
 		
 		unsigned v1 = convert_string_to_float(Dem[k][1]);
 		unsigned v2 = convert_string_to_float(Dem[k][2]);

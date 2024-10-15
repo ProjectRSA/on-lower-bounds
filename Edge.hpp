@@ -13,16 +13,17 @@ class Edge
 		Vertex* 	v2_;
 		unsigned 	index_;
 		double 		length_;
+		double 		noise_;
 		double 		cost_;
 		unsigned	numberSlices_;
 
 	public:
 		//Constructors
 		Edge(){}
-		Edge(const Edge & e) : v1_(e.v1_), v2_(e.v2_), index_(e.index_), length_(e.length_), cost_(e.cost_), numberSlices_(e.numberSlices_){}
-		Edge(Vertex v1, Vertex v2, unsigned i, double l, double c, unsigned n) : v1_(&v1), v2_(&v2), index_(i), length_(l), cost_(c), numberSlices_(n){}
-		Edge(Vertex* v1, Vertex* v2, unsigned i) : v1_(v1), v2_(v2), index_(i), length_(), cost_(), numberSlices_(){}
-		Edge(unsigned i, double l, double c, unsigned n) : index_(i), length_(l), cost_(c), numberSlices_(n){}
+		Edge(const Edge & e) : v1_(e.v1_), v2_(e.v2_), index_(e.index_), length_(e.length_), noise_(e.noise_), cost_(e.cost_), numberSlices_(e.numberSlices_){}
+		Edge(Vertex v1, Vertex v2, unsigned i, double l, double no, double c, unsigned n) : v1_(&v1), v2_(&v2), index_(i), length_(l), noise_(no), cost_(c), numberSlices_(n){}
+		Edge(Vertex* v1, Vertex* v2, unsigned i) : v1_(v1), v2_(v2), index_(i), length_(), noise_(), cost_(), numberSlices_(){}
+		Edge(unsigned i, double l, double no, double c, unsigned n) : index_(i), length_(l), noise_(no), cost_(c), numberSlices_(n){}
 
 
 		//Getters
@@ -30,6 +31,7 @@ class Edge
 		const Vertex &		getV2() const {return *v2_;}
 		const unsigned &	getIndex() const {return index_;}
 		const double & 		getLength() const {return length_;}
+		const double & 		getNoise() const {return noise_;}
 		const double &		getCost() const {return cost_;}
 		const unsigned & 	getNumberSlices() const {return numberSlices_;}
 		

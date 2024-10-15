@@ -16,13 +16,15 @@ class Demand
 		unsigned 				index_;
 		unsigned				slots_;
 		double 					maxLength_;  	//max length allowed for this demand
+		double 					minOSNR_;  	
+		double 					pch_;	
 		std::vector<Path*> 		routings_;		//possible routings for this demand
 
 	public:
 		//Constructors
 		Demand(){}
-		Demand(Vertex o, Vertex d, unsigned i, unsigned s, double m) : origin_(&o), destination_(&d), index_(i), slots_(s), maxLength_(m), routings_(){}
-		Demand(unsigned i, unsigned s, double m) : index_(i), slots_(s), maxLength_(m), routings_(){}
+		Demand(Vertex o, Vertex d, unsigned i, unsigned s, double m, double os, double pc) : origin_(&o), destination_(&d), index_(i), slots_(s), maxLength_(m), minOSNR_(os), pch_(pc), routings_(){}
+		Demand(unsigned i, unsigned s, double m, double os, double pc) : index_(i), slots_(s), maxLength_(m), minOSNR_(os), pch_(pc), routings_(){}
 	
 		//Getters
 		const Vertex & 			getOrigin() const {return *origin_;}
@@ -30,6 +32,8 @@ class Demand
 		const unsigned &		getIndex() const {return index_;}
 		const unsigned &		getSlots() const {return slots_;}
 		const double &			getMaxLength() const {return maxLength_;}
+		const double &			getMinOsnr() const {return minOSNR_;}
+		const double &			getPch() const {return pch_;}
 
 		//Non constant getters
 		Vertex & 				getOrigin() {return *origin_;}

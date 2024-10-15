@@ -13,6 +13,7 @@ class Path
 	private:
 		std::vector<Edge*> 		edges_; 			//Edges that compose the path
 		double 					lengthPath_;		//Total length of all edges
+		double					noisePath_;		//Total noise of all edges
 
 	public:
 		//Constructors
@@ -22,7 +23,7 @@ class Path
 		//Getters
 		const std::vector<Edge*> &	getEdges() const {return edges_;}		
 		const double &				getLengthPath() const {return lengthPath_;}
-
+		const double &				getNoisePath() const {return noisePath_;}
         //Non constant getters
         std::vector<Edge*> &		getEdges()  {return edges_;}
 		void reorient(int origin_index);

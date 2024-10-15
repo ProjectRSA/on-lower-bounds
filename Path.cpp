@@ -13,6 +13,10 @@ Path::Path(vector<Edge*> & e) : edges_(e)
 	for (vector<Edge*>::iterator it = edges_.begin(); it != edges_.end(); it++){
 		lengthPath_ += (*it)->getLength() ;
 	}
+    noisePath_ = 0.0;
+    for (vector<Edge*>::iterator it = edges_.begin(); it != edges_.end(); it++){
+		noisePath_ += (*it)->getNoise() ;
+	}
 }
 
 ostream & operator << (ostream & flux, const Path & p)
@@ -21,7 +25,8 @@ ostream & operator << (ostream & flux, const Path & p)
 	for (vector<Edge*>::const_iterator it = p.getEdges().begin(); it != p.getEdges().end(); it++)
 		flux << "(" << (*it)->getV1().getIndex() << "," << (*it)->getV2().getIndex() << ") ";
 
-	flux << "Path Lenght: " << p.getLengthPath()<< std::endl ;
+    flux << "Path Lenght: " << p.getLengthPath()<< " Path Noise: " << p.getNoisePath()<< std::endl ;
+
 	return flux;
 }
 

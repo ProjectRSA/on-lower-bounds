@@ -578,6 +578,22 @@ void RSA_Algorithms::solveMinCostMultiCommodityFlow_Cplex(){
 		Length.end();
 	}
 
+		// OSNR constraints
+	for (unsigned k = 0; k < K; k++)
+	{
+		IloExpr OSNR(MCMCF);
+		double osnrLimdb = RSA_Input_.getRequests()[k]->getMinOsnr();
+    	double osnrLim = pow(10,osnrLimdb/10);
+    	double pch = RSA_Input_.getRequests()[k]->getPch();
+		OSNR += (pch/osnrLim);
+		for (unsigned a = 0; a < GPrime_.getArcs().size(); a++)
+		{
+			OSNR -= f_kl[RSA_Input_.getRequests()[k]->getIndex() - 1][GPrime_.getArcs()[a]->getIndex() - 1] * GPrime_.getArcs()[a]->getEdge()->getNoise();
+		}
+		ILP_MCMCF.add(OSNR >= 0);
+		OSNR.end();
+	}
+
 	// Forbidden Cliques Constraints (4)
 	// reducing cliques
 	bool ainb = false, bina = false, anotb = false;
@@ -608,7 +624,7 @@ void RSA_Algorithms::solveMinCostMultiCommodityFlow_Cplex(){
 	IloObjective obj(MCMCF, Ob, IloObjective::Minimize, "OBJ");
 	ILP_MCMCF.add(obj);
 
-	model.exportModel("Min_Cost_Multi_Comodity_Cplex.lp");
+	//model.exportModel("Min_Cost_Multi_Comodity_Cplex.lp");
 	cout << "Number of constraints of MCF: " << model.getNrows() << endl;
 	tConstraintsMCF_ += model.getNrows();
 	nCallsMCF_ += 1;
@@ -622,7 +638,7 @@ void RSA_Algorithms::solveMinCostMultiCommodityFlow_Cplex(){
 		cout << "-------------- END OF ILP MCMCF CPLEX --------------------------------" << endl;
     	return;
     }
-	model.writeSolutions("MCMCF_Sol.sol");
+	//model.writeSolutions("MCMCF_Sol.sol");
 
 	// Construction of the solution
 	vector<Path *> routing;
@@ -785,7 +801,7 @@ void RSA_Algorithms::solveEdgePathFormulation_Cplex()
 			edge_path.end();
 		}
 	}
-
+	/*
 	// length constraint (total length moode)
 	for (unsigned k = 0; k < K; k++)
 	{
@@ -797,6 +813,24 @@ void RSA_Algorithms::solveEdgePathFormulation_Cplex()
 		ILP_RSA.add(length <= RSA_Input_.getRequests()[k]->getMaxLength());
 		length.end();
 	}
+
+	// OSNR constraints
+	for (unsigned k = 0; k < K; k++)
+	{
+		IloExpr OSNR(RSA);
+		double osnrLimdb = RSA_Input_.getRequests()[k]->getMinOsnr();
+    	double osnrLim = pow(10,osnrLimdb/10);
+    	double pch = RSA_Input_.getRequests()[k]->getPch();
+		OSNR += (pch/osnrLim);
+
+		for (unsigned e = 0; e < E; e++)
+		{
+			OSNR += (G_.getEdges()[e]->getNoise()) * xk_e[k][e];
+		}
+		ILP_RSA.add(OSNR <= (pch/osnrLim));
+		OSNR.end();
+	}
+	*/
 
 	// unavailable slices for each demand respecting the capacity (5d)
 	for (unsigned k = 0; k < K; k++)
@@ -989,7 +1023,7 @@ void RSA_Algorithms::solveEdgePathFormulation_Cplex()
 	IloObjective obj (RSA, Ob, IloObjective::Minimize, "OBJ");
 	ILP_RSA.add(obj);
 
-	model.exportModel("Edge_Path_Formulation_Cplex.lp");
+	//model.exportModel("Edge_Path_Formulation_Cplex.lp");
 	cout << "Number of constraints of EPF: " << model.getNrows() << endl;
 	tConstraintsEPF_ += model.getNrows();
 	nCallsEPF_ += 1;
@@ -1006,7 +1040,7 @@ void RSA_Algorithms::solveEdgePathFormulation_Cplex()
 		return;
 	}
 	gap_ = model.getMIPRelativeGap();
-	model.writeSolutions("EPF_Sol.sol");
+	//model.writeSolutions("EPF_Sol.sol");
 
 	//Construction of the output of the model
     std::vector<Path*> routing;

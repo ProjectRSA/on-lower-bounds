@@ -67,6 +67,22 @@ else:
     shutil.rmtree("../Outputs/executionOutputs")
     os.mkdir("../Outputs/executionOutputs")
 
+for test in testSet:
+    auxOutputFolder = [f.name for f in os.scandir("../Outputs/executionOutputs") if f.is_dir()]
+    if str(test.linkStrategy) not in auxOutputFolder:
+        os.mkdir("../Outputs/executionOutputs/" + str(test.linkStrategy))
+
+    auxOutputFolder = [f.name for f in os.scandir("../Outputs/executionOutputs"+ "/" + str(test.linkStrategy)) if f.is_dir()]    
+    if test.transponderStrategy not in auxOutputFolder:
+        os.mkdir("../Outputs/executionOutputs/" + str(test.linkStrategy)+"/" + test.transponderStrategy)
+
+    auxOutputFolder = [f.name for f in os.scandir("../Outputs/executionOutputs"+ "/" + str(test.linkStrategy)+ "/" + test.transponderStrategy) if f.is_dir()] 
+    if test.topology not in auxOutputFolder:
+        os.mkdir("../Outputs/executionOutputs/" + str(test.linkStrategy)+"/" + test.transponderStrategy +"/" + test.topology)
+    
+    auxOutputFolder = [f.name for f in os.scandir("../Outputs/executionOutputs"+ "/" + str(test.linkStrategy)+ "/" + test.transponderStrategy+ "/" + test.topology) if f.is_dir()] 
+    if test.demandCode not in auxOutputFolder:
+        os.mkdir("../Outputs/executionOutputs/" + str(test.linkStrategy)+"/" + test.transponderStrategy +"/" + test.topology + "/" + test.demandCode)
 
 jobsRows = []
 with open("../Inputs/jobsBase.sh", newline='') as jobsFile: 
@@ -98,7 +114,7 @@ with open(jobsName, "w") as f:
     f.write(stringLine1)
     echoLine = "echo parametersSet/${tab1[$SLURM_ARRAY_TASK_ID]}\n"
     f.write(echoLine)
-    lastLine = "./RSASolver -I ${tab1[$SLURM_ARRAY_TASK_ID]} -O executionOutputs/${tab1[$SLURM_ARRAY_TASK_ID]}/out.txt" 
+    lastLine = "./RSASolver -I ${tab1[$SLURM_ARRAY_TASK_ID]} -O executionOutputs/${tab1[$SLURM_ARRAY_TASK_ID]}/out.txt -S executionOutputs/${tab1[$SLURM_ARRAY_TASK_ID]}/sum.csv" 
     f.write(lastLine)
     f.close() 
 print("Jobs script created")
