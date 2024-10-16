@@ -48,27 +48,27 @@ Arcs:  (1,2) Length 2
   Demands  
 --------Index: 1
 Origin: 1| Destination: 6
-Slots: 3| Max Lenght: 6
+Slots: 3| Max length: 6
 
 --------Index: 2
 Origin: 1| Destination: 5
-Slots: 1| Max Lenght: 6
+Slots: 1| Max length: 6
 
 --------Index: 3
 Origin: 2| Destination: 5
-Slots: 3| Max Lenght: 6
+Slots: 3| Max length: 6
 
 --------Index: 4
 Origin: 2| Destination: 6
-Slots: 1| Max Lenght: 6
+Slots: 1| Max length: 6
 
 --------Index: 5
 Origin: 3| Destination: 6
-Slots: 3| Max Lenght: 6
+Slots: 3| Max length: 6
 
 --------Index: 6
 Origin: 4| Destination: 1
-Slots: 2| Max Lenght: 6
+Slots: 2| Max length: 6
 
 
 ----------------END OF Data Information-------------------

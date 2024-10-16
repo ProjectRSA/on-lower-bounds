@@ -51,31 +51,31 @@ Arcs:  (1,2) Length 1
   Demands  
 --------Index: 1
 Origin: 10| Destination: 3
-Slots: 3| Max Lenght: 7
+Slots: 3| Max length: 7
 
 --------Index: 2
 Origin: 2| Destination: 5
-Slots: 3| Max Lenght: 7
+Slots: 3| Max length: 7
 
 --------Index: 3
 Origin: 4| Destination: 7
-Slots: 3| Max Lenght: 7
+Slots: 3| Max length: 7
 
 --------Index: 4
 Origin: 6| Destination: 9
-Slots: 3| Max Lenght: 7
+Slots: 3| Max length: 7
 
 --------Index: 5
 Origin: 8| Destination: 1
-Slots: 3| Max Lenght: 7
+Slots: 3| Max length: 7
 
 --------Index: 6
 Origin: 5| Destination: 8
-Slots: 1| Max Lenght: 7
+Slots: 1| Max length: 7
 
 --------Index: 7
 Origin: 6| Destination: 7
-Slots: 1| Max Lenght: 7
+Slots: 1| Max length: 7
 
 
 ----------------END OF Data Information-------------------
@@ -106,25 +106,25 @@ Lower Bound UPDATED: 7
 
 ---------------BEGIN OF Possible paths Information------------------
 For demand: 1
-Edges: (1,10) (1,2) (2,3) Path Lenght: 3
+Edges: (1,10) (1,2) (2,3) Path length: 3
 ***********************: 
 For demand: 2
-Edges: (2,3) (3,4) (4,5) Path Lenght: 3
+Edges: (2,3) (3,4) (4,5) Path length: 3
 ***********************: 
 For demand: 3
-Edges: (4,5) (5,6) (6,7) Path Lenght: 3
+Edges: (4,5) (5,6) (6,7) Path length: 3
 ***********************: 
 For demand: 4
-Edges: (6,7) (7,8) (8,9) Path Lenght: 3
+Edges: (6,7) (7,8) (8,9) Path length: 3
 ***********************: 
 For demand: 5
-Edges: (8,9) (9,10) (1,10) Path Lenght: 3
+Edges: (8,9) (9,10) (1,10) Path length: 3
 ***********************: 
 For demand: 6
-Edges: (4,5) (3,4) (2,3) (1,2) (1,10) (9,10) (8,9) Path Lenght: 7
+Edges: (4,5) (3,4) (2,3) (1,2) (1,10) (9,10) (8,9) Path length: 7
 ***********************: 
 For demand: 7
-Edges: (6,7) Path Lenght: 1
+Edges: (6,7) Path length: 1
 ***********************: 
 
 ---------------END OF Possible paths Information------------------
@@ -171,26 +171,26 @@ Lower Bound UPDATED: 8
 
 ---------------BEGIN OF Possible paths Information------------------
 For demand: 1
-Edges: (1,10) (1,2) (2,3) Path Lenght: 3
+Edges: (1,10) (1,2) (2,3) Path length: 3
 ***********************: 
 For demand: 2
-Edges: (2,3) (3,4) (4,5) Path Lenght: 3
+Edges: (2,3) (3,4) (4,5) Path length: 3
 ***********************: 
 For demand: 3
-Edges: (4,5) (5,6) (6,7) Path Lenght: 3
+Edges: (4,5) (5,6) (6,7) Path length: 3
 ***********************: 
 For demand: 4
-Edges: (6,7) (7,8) (8,9) Path Lenght: 3
+Edges: (6,7) (7,8) (8,9) Path length: 3
 ***********************: 
 For demand: 5
-Edges: (8,9) (9,10) (1,10) Path Lenght: 3
+Edges: (8,9) (9,10) (1,10) Path length: 3
 ***********************: 
 For demand: 6
-Edges: (4,5) (3,4) (2,3) (1,2) (1,10) (9,10) (8,9) Path Lenght: 7
-Edges: (5,6) (6,7) (7,8) Path Lenght: 3
+Edges: (4,5) (3,4) (2,3) (1,2) (1,10) (9,10) (8,9) Path length: 7
+Edges: (5,6) (6,7) (7,8) Path length: 3
 ***********************: 
 For demand: 7
-Edges: (6,7) Path Lenght: 1
+Edges: (6,7) Path length: 1
 ***********************: 
 
 ---------------END OF Possible paths Information------------------

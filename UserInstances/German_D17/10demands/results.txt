@@ -96,43 +96,43 @@ Arcs:  (1,14) Length 122.16
   Demands  
 --------Index: 1
 Origin: 3| Destination: 12
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 2
 Origin: 3| Destination: 5
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 3
 Origin: 12| Destination: 14
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 4
 Origin: 5| Destination: 14
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 5
 Origin: 3| Destination: 17
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 6
 Origin: 14| Destination: 17
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 7
 Origin: 3| Destination: 13
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 8
 Origin: 13| Destination: 14
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 9
 Origin: 2| Destination: 12
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 10
 Origin: 2| Destination: 5
-Slots: 5| Max Lenght: 1500
+Slots: 5| Max length: 1500
 
 
 ----------------END OF Data Information-------------------
@@ -167,34 +167,34 @@ Upper Bound: 161
 
 ---------------BEGIN OF Possible paths Information------------------
 For demand: 1
-Edges: (3,4) (4,7) (6,7) (6,12) Path Lenght: 789.034
+Edges: (3,4) (4,7) (6,7) (6,12) Path length: 789.034
 ***********************: 
 For demand: 2
-Edges: (3,4) (4,7) (6,7) (5,6) Path Lenght: 785.782
+Edges: (3,4) (4,7) (6,7) (5,6) Path length: 785.782
 ***********************: 
 For demand: 3
-Edges: (6,12) (6,15) (7,15) (2,7) (2,14) Path Lenght: 947.862
+Edges: (6,12) (6,15) (7,15) (2,7) (2,14) Path length: 947.862
 ***********************: 
 For demand: 4
-Edges: (5,11) (11,12) (12,17) (13,17) (13,15) (10,15) (10,16) (1,16) (1,14) Path Lenght: 960.982
+Edges: (5,11) (11,12) (12,17) (13,17) (13,15) (10,15) (10,16) (1,16) (1,14) Path length: 960.982
 ***********************: 
 For demand: 5
-Edges: (3,14) (1,14) (1,16) (8,16) (8,9) (9,10) (10,15) (13,15) (13,17) Path Lenght: 816.835
+Edges: (3,14) (1,14) (1,16) (8,16) (8,9) (9,10) (10,15) (13,15) (13,17) Path length: 816.835
 ***********************: 
 For demand: 6
-Edges: (1,14) (1,16) (8,16) (8,9) (9,10) (10,15) (6,15) (6,12) (12,17) Path Lenght: 1002.79
+Edges: (1,14) (1,16) (8,16) (8,9) (9,10) (10,15) (6,15) (6,12) (12,17) Path length: 1002.79
 ***********************: 
 For demand: 7
-Edges: (3,14) (1,14) (1,16) (8,16) (8,9) (9,10) (10,15) (13,15) Path Lenght: 766.258
+Edges: (3,14) (1,14) (1,16) (8,16) (8,9) (9,10) (10,15) (13,15) Path length: 766.258
 ***********************: 
 For demand: 8
-Edges: (13,17) (12,17) (6,12) (6,7) (4,7) (3,4) (3,14) Path Lenght: 1002.1
+Edges: (13,17) (12,17) (6,12) (6,7) (4,7) (3,4) (3,14) Path length: 1002.1
 ***********************: 
 For demand: 9
-Edges: (2,7) (6,7) (5,6) (5,11) (11,12) Path Lenght: 782.797
+Edges: (2,7) (6,7) (5,6) (5,11) (11,12) Path length: 782.797
 ***********************: 
 For demand: 10
-Edges: (2,7) (7,15) (6,15) (5,6) Path Lenght: 833.281
+Edges: (2,7) (7,15) (6,15) (5,6) Path length: 833.281
 ***********************: 
 
 ---------------END OF Possible paths Information------------------
@@ -245,11 +245,11 @@ TIME == Finding cliques duration in seconds: 0
 Size: 5| Omega: 15
 Clique: ( 4 5 6 7 8 )
 Paths of this clique:
-Edges: (5,11) (11,12) (12,17) (13,17) (13,15) (10,15) (10,16) (1,16) (1,14) Path Lenght: 960.982
-Edges: (3,14) (1,14) (1,16) (8,16) (8,9) (9,10) (10,15) (13,15) (13,17) Path Lenght: 816.835
-Edges: (1,14) (1,16) (8,16) (8,9) (9,10) (10,15) (6,15) (6,12) (12,17) Path Lenght: 1002.79
-Edges: (3,14) (1,14) (1,16) (8,16) (8,9) (9,10) (10,15) (13,15) Path Lenght: 766.258
-Edges: (13,17) (12,17) (6,12) (6,7) (4,7) (3,4) (3,14) Path Lenght: 1002.1
+Edges: (5,11) (11,12) (12,17) (13,17) (13,15) (10,15) (10,16) (1,16) (1,14) Path length: 960.982
+Edges: (3,14) (1,14) (1,16) (8,16) (8,9) (9,10) (10,15) (13,15) (13,17) Path length: 816.835
+Edges: (1,14) (1,16) (8,16) (8,9) (9,10) (10,15) (6,15) (6,12) (12,17) Path length: 1002.79
+Edges: (3,14) (1,14) (1,16) (8,16) (8,9) (9,10) (10,15) (13,15) Path length: 766.258
+Edges: (13,17) (12,17) (6,12) (6,7) (4,7) (3,4) (3,14) Path length: 1002.1
 -------- 
 
 
@@ -285,44 +285,44 @@ From demand: 10 Between nodes: 2 to 5 :: 2 - 16 - 10 - 15 - 6 - 5 :: with length
 
 ---------------BEGIN OF Possible paths Information------------------
 For demand: 1
-Edges: (3,4) (4,7) (6,7) (6,12) Path Lenght: 789.034
-Edges: (2,3) (2,7) (7,15) (6,15) (6,12) Path Lenght: 975.258
+Edges: (3,4) (4,7) (6,7) (6,12) Path length: 789.034
+Edges: (2,3) (2,7) (7,15) (6,15) (6,12) Path length: 975.258
 ***********************: 
 For demand: 2
-Edges: (3,4) (4,7) (6,7) (5,6) Path Lenght: 785.782
-Edges: (2,3) (2,7) (6,7) (6,12) (11,12) (5,11) Path Lenght: 924.773
+Edges: (3,4) (4,7) (6,7) (5,6) Path length: 785.782
+Edges: (2,3) (2,7) (6,7) (6,12) (11,12) (5,11) Path length: 924.773
 ***********************: 
 For demand: 3
-Edges: (6,12) (6,15) (7,15) (2,7) (2,14) Path Lenght: 947.862
-Edges: (6,12) (6,15) (10,15) (10,16) (1,16) (1,14) Path Lenght: 916.796
+Edges: (6,12) (6,15) (7,15) (2,7) (2,14) Path length: 947.862
+Edges: (6,12) (6,15) (10,15) (10,16) (1,16) (1,14) Path length: 916.796
 ***********************: 
 For demand: 4
-Edges: (5,11) (11,12) (12,17) (13,17) (13,15) (10,15) (10,16) (1,16) (1,14) Path Lenght: 960.982
-Edges: (5,6) (6,7) (2,7) (2,14) Path Lenght: 698.639
+Edges: (5,11) (11,12) (12,17) (13,17) (13,15) (10,15) (10,16) (1,16) (1,14) Path length: 960.982
+Edges: (5,6) (6,7) (2,7) (2,14) Path length: 698.639
 ***********************: 
 For demand: 5
-Edges: (3,14) (1,14) (1,16) (8,16) (8,9) (9,10) (10,15) (13,15) (13,17) Path Lenght: 816.835
-Edges: (3,4) (4,7) (7,15) (13,15) (13,17) Path Lenght: 817.991
+Edges: (3,14) (1,14) (1,16) (8,16) (8,9) (9,10) (10,15) (13,15) (13,17) Path length: 816.835
+Edges: (3,4) (4,7) (7,15) (13,15) (13,17) Path length: 817.991
 ***********************: 
 For demand: 6
-Edges: (1,14) (1,16) (8,16) (8,9) (9,10) (10,15) (6,15) (6,12) (12,17) Path Lenght: 1002.79
-Edges: (3,14) (3,4) (4,7) (6,7) (5,6) (5,11) (11,12) (12,17) Path Lenght: 1143.76
+Edges: (1,14) (1,16) (8,16) (8,9) (9,10) (10,15) (6,15) (6,12) (12,17) Path length: 1002.79
+Edges: (3,14) (3,4) (4,7) (6,7) (5,6) (5,11) (11,12) (12,17) Path length: 1143.76
 ***********************: 
 For demand: 7
-Edges: (3,14) (1,14) (1,16) (8,16) (8,9) (9,10) (10,15) (13,15) Path Lenght: 766.258
-Edges: (3,4) (4,7) (7,15) (13,15) Path Lenght: 767.414
+Edges: (3,14) (1,14) (1,16) (8,16) (8,9) (9,10) (10,15) (13,15) Path length: 766.258
+Edges: (3,4) (4,7) (7,15) (13,15) Path length: 767.414
 ***********************: 
 For demand: 8
-Edges: (13,17) (12,17) (6,12) (6,7) (4,7) (3,4) (3,14) Path Lenght: 1002.1
-Edges: (13,15) (7,15) (2,7) (2,14) Path Lenght: 680.271
+Edges: (13,17) (12,17) (6,12) (6,7) (4,7) (3,4) (3,14) Path length: 1002.1
+Edges: (13,15) (7,15) (2,7) (2,14) Path length: 680.271
 ***********************: 
 For demand: 9
-Edges: (2,7) (6,7) (5,6) (5,11) (11,12) Path Lenght: 782.797
-Edges: (2,16) (8,16) (8,9) (9,10) (10,15) (13,15) (13,17) (12,17) Path Lenght: 623.118
+Edges: (2,7) (6,7) (5,6) (5,11) (11,12) Path length: 782.797
+Edges: (2,16) (8,16) (8,9) (9,10) (10,15) (13,15) (13,17) (12,17) Path length: 623.118
 ***********************: 
 For demand: 10
-Edges: (2,7) (7,15) (6,15) (5,6) Path Lenght: 833.281
-Edges: (2,16) (10,16) (10,15) (6,15) (5,6) Path Lenght: 750.888
+Edges: (2,7) (7,15) (6,15) (5,6) Path length: 833.281
+Edges: (2,16) (10,16) (10,15) (6,15) (5,6) Path length: 750.888
 ***********************: 
 
 ---------------END OF Possible paths Information------------------

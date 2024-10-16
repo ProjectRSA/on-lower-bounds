@@ -6,7 +6,7 @@ std::ostream & operator << (std::ostream & flux, const Edge & e)
 {
 	flux << "--------" << "Index: " << e.getIndex() << std::endl ;
 	flux << "v1: " << e.getV1().getIndex() << "| v2: " << e.getV2().getIndex() << std::endl ; 
-	flux << "Lenght: " << e.getLength()<< "| Noise: " << e.getNoise() << "| Cost: " << e.getCost() << "| Slices: " << e.getNumberSlices() << std::endl ; 
+	flux << "length: " << e.getLength()<< "| Noise: " << e.getNoise() << "| Cost: " << e.getCost() << "| Slices: " << e.getNumberSlices() << std::endl ; 
 	flux << "-------- " << std::endl ;
 	return flux;
 }

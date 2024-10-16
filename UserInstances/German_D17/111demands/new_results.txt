@@ -96,447 +96,447 @@ Arcs:  (1,14) Length 122.16
   Demands  
 --------Index: 1
 Origin: 3| Destination: 12
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 2
 Origin: 3| Destination: 5
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 3
 Origin: 12| Destination: 14
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 4
 Origin: 5| Destination: 14
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 5
 Origin: 3| Destination: 17
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 6
 Origin: 14| Destination: 17
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 7
 Origin: 3| Destination: 13
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 8
 Origin: 13| Destination: 14
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 9
 Origin: 2| Destination: 12
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 10
 Origin: 2| Destination: 5
-Slots: 5| Max Lenght: 1500
+Slots: 5| Max length: 1500
 
 --------Index: 11
 Origin: 3| Destination: 6
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 12
 Origin: 4| Destination: 17
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 13
 Origin: 5| Destination: 16
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 14
 Origin: 5| Destination: 8
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 15
 Origin: 6| Destination: 14
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 16
 Origin: 2| Destination: 17
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 17
 Origin: 4| Destination: 12
-Slots: 5| Max Lenght: 1500
+Slots: 5| Max length: 1500
 
 --------Index: 18
 Origin: 4| Destination: 12
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 19
 Origin: 14| Destination: 15
-Slots: 5| Max Lenght: 1500
+Slots: 5| Max length: 1500
 
 --------Index: 20
 Origin: 14| Destination: 15
-Slots: 5| Max Lenght: 1500
+Slots: 5| Max length: 1500
 
 --------Index: 21
 Origin: 4| Destination: 5
-Slots: 5| Max Lenght: 1500
+Slots: 5| Max length: 1500
 
 --------Index: 22
 Origin: 4| Destination: 13
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 23
 Origin: 4| Destination: 10
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 24
 Origin: 4| Destination: 9
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 25
 Origin: 5| Destination: 10
-Slots: 5| Max Lenght: 1500
+Slots: 5| Max length: 1500
 
 --------Index: 26
 Origin: 2| Destination: 13
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 27
 Origin: 4| Destination: 8
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 28
 Origin: 1| Destination: 15
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 29
 Origin: 7| Destination: 10
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 30
 Origin: 4| Destination: 15
-Slots: 5| Max Lenght: 1500
+Slots: 5| Max length: 1500
 
 --------Index: 31
 Origin: 4| Destination: 15
-Slots: 5| Max Lenght: 1500
+Slots: 5| Max length: 1500
 
 --------Index: 32
 Origin: 4| Destination: 15
-Slots: 5| Max Lenght: 1500
+Slots: 5| Max length: 1500
 
 --------Index: 33
 Origin: 2| Destination: 6
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 34
 Origin: 4| Destination: 16
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 35
 Origin: 7| Destination: 8
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 36
 Origin: 2| Destination: 15
-Slots: 5| Max Lenght: 1500
+Slots: 5| Max length: 1500
 
 --------Index: 37
 Origin: 2| Destination: 15
-Slots: 5| Max Lenght: 1500
+Slots: 5| Max length: 1500
 
 --------Index: 38
 Origin: 2| Destination: 15
-Slots: 5| Max Lenght: 1500
+Slots: 5| Max length: 1500
 
 --------Index: 39
 Origin: 2| Destination: 15
-Slots: 5| Max Lenght: 1500
+Slots: 5| Max length: 1500
 
 --------Index: 40
 Origin: 7| Destination: 17
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 41
 Origin: 12| Destination: 16
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 42
 Origin: 8| Destination: 12
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 43
 Origin: 3| Destination: 10
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 44
 Origin: 7| Destination: 16
-Slots: 5| Max Lenght: 1500
+Slots: 5| Max length: 1500
 
 --------Index: 45
 Origin: 7| Destination: 12
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 46
 Origin: 5| Destination: 7
-Slots: 5| Max Lenght: 1500
+Slots: 5| Max length: 1500
 
 --------Index: 47
 Origin: 4| Destination: 6
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 48
 Origin: 10| Destination: 14
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 49
 Origin: 7| Destination: 13
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 50
 Origin: 3| Destination: 8
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 51
 Origin: 4| Destination: 14
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 52
 Origin: 16| Destination: 17
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 53
 Origin: 10| Destination: 12
-Slots: 6| Max Lenght: 600
+Slots: 6| Max length: 600
 
 --------Index: 54
 Origin: 6| Destination: 10
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 55
 Origin: 3| Destination: 15
-Slots: 6| Max Lenght: 600
+Slots: 6| Max length: 600
 
 --------Index: 56
 Origin: 3| Destination: 16
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 57
 Origin: 5| Destination: 15
-Slots: 6| Max Lenght: 600
+Slots: 6| Max length: 600
 
 --------Index: 58
 Origin: 7| Destination: 14
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 59
 Origin: 5| Destination: 13
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 60
 Origin: 14| Destination: 16
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 61
 Origin: 7| Destination: 15
-Slots: 6| Max Lenght: 600
+Slots: 6| Max length: 600
 
 --------Index: 62
 Origin: 7| Destination: 15
-Slots: 6| Max Lenght: 600
+Slots: 6| Max length: 600
 
 --------Index: 63
 Origin: 7| Destination: 15
-Slots: 6| Max Lenght: 600
+Slots: 6| Max length: 600
 
 --------Index: 64
 Origin: 13| Destination: 16
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 65
 Origin: 8| Destination: 13
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 66
 Origin: 10| Destination: 17
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 67
 Origin: 2| Destination: 10
-Slots: 5| Max Lenght: 1500
+Slots: 5| Max length: 1500
 
 --------Index: 68
 Origin: 5| Destination: 17
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 69
 Origin: 11| Destination: 15
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 70
 Origin: 3| Destination: 4
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 71
 Origin: 6| Destination: 13
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 72
 Origin: 2| Destination: 4
-Slots: 5| Max Lenght: 1500
+Slots: 5| Max length: 1500
 
 --------Index: 73
 Origin: 6| Destination: 7
-Slots: 6| Max Lenght: 600
+Slots: 6| Max length: 600
 
 --------Index: 74
 Origin: 15| Destination: 16
-Slots: 6| Max Lenght: 600
+Slots: 6| Max length: 600
 
 --------Index: 75
 Origin: 10| Destination: 13
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 76
 Origin: 2| Destination: 8
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 77
 Origin: 6| Destination: 17
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 78
 Origin: 8| Destination: 15
-Slots: 5| Max Lenght: 1500
+Slots: 5| Max length: 1500
 
 --------Index: 79
 Origin: 2| Destination: 7
-Slots: 5| Max Lenght: 1500
+Slots: 5| Max length: 1500
 
 --------Index: 80
 Origin: 5| Destination: 12
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 81
 Origin: 2| Destination: 16
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 82
 Origin: 9| Destination: 15
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 83
 Origin: 12| Destination: 15
-Slots: 6| Max Lenght: 600
+Slots: 6| Max length: 600
 
 --------Index: 84
 Origin: 12| Destination: 15
-Slots: 5| Max Lenght: 1500
+Slots: 5| Max length: 1500
 
 --------Index: 85
 Origin: 6| Destination: 15
-Slots: 6| Max Lenght: 600
+Slots: 6| Max length: 600
 
 --------Index: 86
 Origin: 6| Destination: 15
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 87
 Origin: 10| Destination: 15
-Slots: 6| Max Lenght: 600
+Slots: 6| Max length: 600
 
 --------Index: 88
 Origin: 10| Destination: 15
-Slots: 6| Max Lenght: 600
+Slots: 6| Max length: 600
 
 --------Index: 89
 Origin: 10| Destination: 15
-Slots: 6| Max Lenght: 600
+Slots: 6| Max length: 600
 
 --------Index: 90
 Origin: 6| Destination: 12
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 91
 Origin: 3| Destination: 7
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 92
 Origin: 5| Destination: 6
-Slots: 5| Max Lenght: 1500
+Slots: 5| Max length: 1500
 
 --------Index: 93
 Origin: 4| Destination: 7
-Slots: 6| Max Lenght: 600
+Slots: 6| Max length: 600
 
 --------Index: 94
 Origin: 2| Destination: 3
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 95
 Origin: 1| Destination: 14
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 96
 Origin: 5| Destination: 11
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 97
 Origin: 15| Destination: 17
-Slots: 6| Max Lenght: 600
+Slots: 6| Max length: 600
 
 --------Index: 98
 Origin: 15| Destination: 17
-Slots: 6| Max Lenght: 600
+Slots: 6| Max length: 600
 
 --------Index: 99
 Origin: 15| Destination: 17
-Slots: 6| Max Lenght: 600
+Slots: 6| Max length: 600
 
 --------Index: 100
 Origin: 15| Destination: 17
-Slots: 6| Max Lenght: 600
+Slots: 6| Max length: 600
 
 --------Index: 101
 Origin: 15| Destination: 17
-Slots: 6| Max Lenght: 600
+Slots: 6| Max length: 600
 
 --------Index: 102
 Origin: 15| Destination: 17
-Slots: 6| Max Lenght: 600
+Slots: 6| Max length: 600
 
 --------Index: 103
 Origin: 12| Destination: 13
-Slots: 5| Max Lenght: 1500
+Slots: 5| Max length: 1500
 
 --------Index: 104
 Origin: 2| Destination: 14
-Slots: 5| Max Lenght: 1500
+Slots: 5| Max length: 1500
 
 --------Index: 105
 Origin: 3| Destination: 14
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 106
 Origin: 10| Destination: 16
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 107
 Origin: 13| Destination: 15
-Slots: 6| Max Lenght: 600
+Slots: 6| Max length: 600
 
 --------Index: 108
 Origin: 12| Destination: 17
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 109
 Origin: 8| Destination: 10
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 110
 Origin: 13| Destination: 17
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 --------Index: 111
 Origin: 8| Destination: 16
-Slots: 3| Max Lenght: 3000
+Slots: 3| Max length: 3000
 
 
 ----------------END OF Data Information-------------------
@@ -672,337 +672,337 @@ Upper Bound: 161
 
 ---------------BEGIN OF Possible paths Information------------------
 For demand: 1
-Edges: (2,3) (2,7) (6,7) (5,6) (5,11) (11,12) Path Lenght: 921.522
+Edges: (2,3) (2,7) (6,7) (5,6) (5,11) (11,12) Path length: 921.522
 ***********************: 
 For demand: 2
-Edges: (2,3) (2,7) (6,7) (5,6) Path Lenght: 726.034
+Edges: (2,3) (2,7) (6,7) (5,6) Path length: 726.034
 ***********************: 
 For demand: 3
-Edges: (6,12) (6,7) (2,7) (2,14) Path Lenght: 701.89
+Edges: (6,12) (6,7) (2,7) (2,14) Path length: 701.89
 ***********************: 
 For demand: 4
-Edges: (5,6) (6,7) (2,7) (2,14) Path Lenght: 698.639
+Edges: (5,6) (6,7) (2,7) (2,14) Path length: 698.639
 ***********************: 
 For demand: 5
-Edges: (3,4) (4,7) (7,15) (13,15) (13,17) Path Lenght: 817.991
+Edges: (3,4) (4,7) (7,15) (13,15) (13,17) Path length: 817.991
 ***********************: 
 For demand: 6
-Edges: (3,14) (3,4) (4,7) (6,7) (6,12) (12,17) Path Lenght: 951.521
+Edges: (3,14) (3,4) (4,7) (6,7) (6,12) (12,17) Path length: 951.521
 ***********************: 
 For demand: 7
-Edges: (3,4) (4,7) (7,15) (13,15) Path Lenght: 767.414
+Edges: (3,4) (4,7) (7,15) (13,15) Path length: 767.414
 ***********************: 
 For demand: 8
-Edges: (13,15) (6,15) (6,7) (2,7) (2,14) Path Lenght: 797.14
+Edges: (13,15) (6,15) (6,7) (2,7) (2,14) Path length: 797.14
 ***********************: 
 For demand: 9
-Edges: (2,14) (1,14) (1,16) (8,16) (8,9) (9,10) (10,15) (6,15) (6,12) Path Lenght: 1048.4
+Edges: (2,14) (1,14) (1,16) (8,16) (8,9) (9,10) (10,15) (6,15) (6,12) Path length: 1048.4
 ***********************: 
 For demand: 10
-Edges: (2,7) (6,7) (5,6) Path Lenght: 587.309
+Edges: (2,7) (6,7) (5,6) Path length: 587.309
 ***********************: 
 For demand: 11
-Edges: (3,14) (1,14) (1,16) (2,16) (2,4) (4,7) (6,7) Path Lenght: 1267.27
+Edges: (3,14) (1,14) (1,16) (2,16) (2,4) (4,7) (6,7) Path length: 1267.27
 ***********************: 
 For demand: 12
-Edges: (4,7) (6,7) (6,12) (12,17) Path Lenght: 599.136
+Edges: (4,7) (6,7) (6,12) (12,17) Path length: 599.136
 ***********************: 
 For demand: 13
-Edges: (5,6) (6,12) (12,17) (13,17) (13,15) (10,15) (10,16) Path Lenght: 714.584
+Edges: (5,6) (6,12) (12,17) (13,17) (13,15) (10,15) (10,16) Path length: 714.584
 ***********************: 
 For demand: 14
-Edges: (5,11) (11,12) (12,17) (13,17) (13,15) (10,15) (9,10) (8,9) Path Lenght: 598.682
+Edges: (5,11) (11,12) (12,17) (13,17) (13,15) (10,15) (9,10) (8,9) Path length: 598.682
 ***********************: 
 For demand: 15
-Edges: (6,7) (2,7) (2,14) Path Lenght: 547.422
+Edges: (6,7) (2,7) (2,14) Path length: 547.422
 ***********************: 
 For demand: 16
-Edges: (2,7) (6,7) (6,12) (12,17) Path Lenght: 656.275
+Edges: (2,7) (6,7) (6,12) (12,17) Path length: 656.275
 ***********************: 
 For demand: 17
-Edges: (4,7) (6,7) (6,12) Path Lenght: 533.422
+Edges: (4,7) (6,7) (6,12) Path length: 533.422
 ***********************: 
 For demand: 18
-Edges: (4,7) (7,15) (13,15) (13,17) (12,17) Path Lenght: 628.093
+Edges: (4,7) (7,15) (13,15) (13,17) (12,17) Path length: 628.093
 ***********************: 
 For demand: 19
-Edges: (1,14) (1,16) (8,16) (8,9) (9,10) (10,15) Path Lenght: 601.187
+Edges: (1,14) (1,16) (8,16) (8,9) (9,10) (10,15) Path length: 601.187
 ***********************: 
 For demand: 20
-Edges: (2,14) (2,4) (4,7) (7,15) Path Lenght: 795.84
+Edges: (2,14) (2,4) (4,7) (7,15) Path length: 795.84
 ***********************: 
 For demand: 21
-Edges: (2,4) (2,7) (7,15) (6,15) (5,6) Path Lenght: 1074.29
+Edges: (2,4) (2,7) (7,15) (6,15) (5,6) Path length: 1074.29
 ***********************: 
 For demand: 22
-Edges: (4,7) (6,7) (6,12) (12,17) (13,17) Path Lenght: 649.713
+Edges: (4,7) (6,7) (6,12) (12,17) (13,17) Path length: 649.713
 ***********************: 
 For demand: 23
-Edges: (4,7) (2,7) (2,16) (10,16) Path Lenght: 614.668
+Edges: (4,7) (2,7) (2,16) (10,16) Path length: 614.668
 ***********************: 
 For demand: 24
-Edges: (3,4) (3,14) (1,14) (1,16) (8,16) (8,9) Path Lenght: 762.292
+Edges: (3,4) (3,14) (1,14) (1,16) (8,16) (8,9) Path length: 762.292
 ***********************: 
 For demand: 25
-Edges: (5,11) (11,12) (6,12) (6,7) (4,7) (2,4) (2,16) (10,16) Path Lenght: 1233.54
+Edges: (5,11) (11,12) (6,12) (6,7) (4,7) (2,4) (2,16) (10,16) Path length: 1233.54
 ***********************: 
 For demand: 26
-Edges: (2,7) (7,15) (13,15) Path Lenght: 568.941
+Edges: (2,7) (7,15) (13,15) Path length: 568.941
 ***********************: 
 For demand: 27
-Edges: (3,4) (3,14) (1,14) (1,16) (8,16) Path Lenght: 734.966
+Edges: (3,4) (3,14) (1,14) (1,16) (8,16) Path length: 734.966
 ***********************: 
 For demand: 28
-Edges: (1,14) (2,14) (2,4) (4,7) (6,7) (6,15) Path Lenght: 1034.87
+Edges: (1,14) (2,14) (2,4) (4,7) (6,7) (6,15) Path length: 1034.87
 ***********************: 
 For demand: 29
-Edges: (2,7) (2,14) (1,14) (1,16) (8,16) (8,9) (9,10) Path Lenght: 761.981
+Edges: (2,7) (2,14) (1,14) (1,16) (8,16) (8,9) (9,10) Path length: 761.981
 ***********************: 
 For demand: 30
-Edges: (4,7) (7,15) Path Lenght: 443.506
+Edges: (4,7) (7,15) Path length: 443.506
 ***********************: 
 For demand: 31
-Edges: (4,7) (7,15) Path Lenght: 443.506
+Edges: (4,7) (7,15) Path length: 443.506
 ***********************: 
 For demand: 32
-Edges: (4,7) (7,15) Path Lenght: 443.506
+Edges: (4,7) (7,15) Path length: 443.506
 ***********************: 
 For demand: 33
-Edges: (2,4) (4,7) (6,7) Path Lenght: 619.959
+Edges: (2,4) (4,7) (6,7) Path length: 619.959
 ***********************: 
 For demand: 34
-Edges: (2,4) (2,16) Path Lenght: 434.944
+Edges: (2,4) (2,16) Path length: 434.944
 ***********************: 
 For demand: 35
-Edges: (2,7) (2,16) (10,16) (9,10) (8,9) Path Lenght: 531.699
+Edges: (2,7) (2,16) (10,16) (9,10) (8,9) Path length: 531.699
 ***********************: 
 For demand: 36
-Edges: (2,7) (7,15) Path Lenght: 500.645
+Edges: (2,7) (7,15) Path length: 500.645
 ***********************: 
 For demand: 37
-Edges: (2,3) (3,14) (1,14) (1,16) (8,16) (8,9) (9,10) (10,15) Path Lenght: 836.685
+Edges: (2,3) (3,14) (1,14) (1,16) (8,16) (8,9) (9,10) (10,15) Path length: 836.685
 ***********************: 
 For demand: 38
-Edges: (2,16) (10,16) (10,15) Path Lenght: 418.251
+Edges: (2,16) (10,16) (10,15) Path length: 418.251
 ***********************: 
 For demand: 39
-Edges: (2,7) (7,15) Path Lenght: 500.645
+Edges: (2,7) (7,15) Path length: 500.645
 ***********************: 
 For demand: 40
-Edges: (7,15) (13,15) (13,17) Path Lenght: 415.428
+Edges: (7,15) (13,15) (13,17) Path length: 415.428
 ***********************: 
 For demand: 41
-Edges: (6,12) (6,15) (10,15) (10,16) Path Lenght: 560.201
+Edges: (6,12) (6,15) (10,15) (10,16) Path length: 560.201
 ***********************: 
 For demand: 42
-Edges: (8,9) (9,10) (10,15) (13,15) (13,17) (12,17) Path Lenght: 403.194
+Edges: (8,9) (9,10) (10,15) (13,15) (13,17) (12,17) Path length: 403.194
 ***********************: 
 For demand: 43
-Edges: (3,14) (1,14) (1,16) (10,16) Path Lenght: 523.057
+Edges: (3,14) (1,14) (1,16) (10,16) Path length: 523.057
 ***********************: 
 For demand: 44
-Edges: (2,7) (2,16) Path Lenght: 398.029
+Edges: (2,7) (2,16) Path length: 398.029
 ***********************: 
 For demand: 45
-Edges: (6,7) (6,12) Path Lenght: 386.471
+Edges: (6,7) (6,12) Path length: 386.471
 ***********************: 
 For demand: 46
-Edges: (5,6) (6,15) (7,15) Path Lenght: 629.191
+Edges: (5,6) (6,15) (7,15) Path length: 629.191
 ***********************: 
 For demand: 47
-Edges: (4,7) (6,7) Path Lenght: 378.954
+Edges: (4,7) (6,7) Path length: 378.954
 ***********************: 
 For demand: 48
-Edges: (10,16) (1,16) (1,14) Path Lenght: 426.282
+Edges: (10,16) (1,16) (1,14) Path length: 426.282
 ***********************: 
 For demand: 49
-Edges: (6,7) (6,12) (12,17) (13,17) Path Lenght: 502.761
+Edges: (6,7) (6,12) (12,17) (13,17) Path length: 502.761
 ***********************: 
 For demand: 50
-Edges: (3,14) (1,14) (1,16) (8,16) Path Lenght: 479.354
+Edges: (3,14) (1,14) (1,16) (8,16) Path length: 479.354
 ***********************: 
 For demand: 51
-Edges: (2,4) (2,14) Path Lenght: 352.335
+Edges: (2,4) (2,14) Path length: 352.335
 ***********************: 
 For demand: 52
-Edges: (2,16) (2,3) (3,4) (4,7) (6,7) (6,12) (12,17) Path Lenght: 1187.41
+Edges: (2,16) (2,3) (3,4) (4,7) (6,7) (6,12) (12,17) Path length: 1187.41
 ***********************: 
 For demand: 53
-Edges: (10,15) (13,15) (13,17) (12,17) Path Lenght: 339.212
+Edges: (10,15) (13,15) (13,17) (12,17) Path length: 339.212
 ***********************: 
 For demand: 54
-Edges: (6,15) (10,15) Path Lenght: 336.045
+Edges: (6,15) (10,15) Path length: 336.045
 ***********************: 
 For demand: 55
-Edges: (2,3) (2,16) (10,16) (10,15) Path Lenght: 556.976
+Edges: (2,3) (2,16) (10,16) (10,15) Path length: 556.976
 ***********************: 
 For demand: 56
-Edges: (3,14) (1,14) (1,16) Path Lenght: 453.369
+Edges: (3,14) (1,14) (1,16) Path length: 453.369
 ***********************: 
 For demand: 57
-Edges: (5,6) (6,15) Path Lenght: 332.637
+Edges: (5,6) (6,15) Path length: 332.637
 ***********************: 
 For demand: 58
-Edges: (2,7) (2,14) Path Lenght: 315.42
+Edges: (2,7) (2,14) Path length: 315.42
 ***********************: 
 For demand: 59
-Edges: (5,6) (6,15) (13,15) Path Lenght: 400.934
+Edges: (5,6) (6,15) (13,15) Path length: 400.934
 ***********************: 
 For demand: 60
-Edges: (1,14) (1,16) Path Lenght: 356.595
+Edges: (1,14) (1,16) Path length: 356.595
 ***********************: 
 For demand: 61
-Edges: (7,15) Path Lenght: 296.554
+Edges: (7,15) Path length: 296.554
 ***********************: 
 For demand: 62
-Edges: (7,15) Path Lenght: 296.554
+Edges: (7,15) Path length: 296.554
 ***********************: 
 For demand: 63
-Edges: (7,15) Path Lenght: 296.554
+Edges: (7,15) Path length: 296.554
 ***********************: 
 For demand: 64
-Edges: (13,17) (12,17) (11,12) (5,11) (5,6) (6,7) (2,7) (2,16) Path Lenght: 1093.03
+Edges: (13,17) (12,17) (11,12) (5,11) (5,6) (6,7) (2,7) (2,16) Path length: 1093.03
 ***********************: 
 For demand: 65
-Edges: (8,9) (9,10) (10,15) (13,15) Path Lenght: 286.904
+Edges: (8,9) (9,10) (10,15) (13,15) Path length: 286.904
 ***********************: 
 For demand: 66
-Edges: (10,16) (2,16) (2,7) (6,7) (6,12) (12,17) Path Lenght: 919.901
+Edges: (10,16) (2,16) (2,7) (6,7) (6,12) (12,17) Path length: 919.901
 ***********************: 
 For demand: 67
-Edges: (2,14) (1,14) (1,16) (10,16) Path Lenght: 537.612
+Edges: (2,14) (1,14) (1,16) (10,16) Path length: 537.612
 ***********************: 
 For demand: 68
-Edges: (5,6) (6,12) (12,17) Path Lenght: 371.398
+Edges: (5,6) (6,12) (12,17) Path length: 371.398
 ***********************: 
 For demand: 69
-Edges: (11,12) (6,12) (6,15) Path Lenght: 410.143
+Edges: (11,12) (6,12) (6,15) Path length: 410.143
 ***********************: 
 For demand: 70
-Edges: (3,4) Path Lenght: 255.611
+Edges: (3,4) Path length: 255.611
 ***********************: 
 For demand: 71
-Edges: (6,12) (12,17) (13,17) Path Lenght: 270.758
+Edges: (6,12) (12,17) (13,17) Path length: 270.758
 ***********************: 
 For demand: 72
-Edges: (2,4) Path Lenght: 241.005
+Edges: (2,4) Path length: 241.005
 ***********************: 
 For demand: 73
-Edges: (6,7) Path Lenght: 232.003
+Edges: (6,7) Path length: 232.003
 ***********************: 
 For demand: 74
-Edges: (10,15) (10,16) Path Lenght: 224.312
+Edges: (10,15) (10,16) Path length: 224.312
 ***********************: 
 For demand: 75
-Edges: (10,15) (13,15) Path Lenght: 222.922
+Edges: (10,15) (13,15) Path length: 222.922
 ***********************: 
 For demand: 76
-Edges: (2,16) (8,16) Path Lenght: 219.924
+Edges: (2,16) (8,16) Path length: 219.924
 ***********************: 
 For demand: 77
-Edges: (6,12) (12,17) Path Lenght: 220.181
+Edges: (6,12) (12,17) Path length: 220.181
 ***********************: 
 For demand: 78
-Edges: (8,16) (2,16) (2,7) (7,15) Path Lenght: 720.568
+Edges: (8,16) (2,16) (2,7) (7,15) Path length: 720.568
 ***********************: 
 For demand: 79
-Edges: (2,7) Path Lenght: 204.09
+Edges: (2,7) Path length: 204.09
 ***********************: 
 For demand: 80
-Edges: (5,11) (11,12) Path Lenght: 195.488
+Edges: (5,11) (11,12) Path length: 195.488
 ***********************: 
 For demand: 81
-Edges: (2,16) Path Lenght: 193.939
+Edges: (2,16) Path length: 193.939
 ***********************: 
 For demand: 82
-Edges: (9,10) (10,15) Path Lenght: 191.28
+Edges: (9,10) (10,15) Path length: 191.28
 ***********************: 
 For demand: 83
-Edges: (6,12) (6,15) Path Lenght: 335.889
+Edges: (6,12) (6,15) Path length: 335.889
 ***********************: 
 For demand: 84
-Edges: (6,12) (6,15) Path Lenght: 335.889
+Edges: (6,12) (6,15) Path length: 335.889
 ***********************: 
 For demand: 85
-Edges: (5,6) (5,11) (11,12) (12,17) (13,17) (13,15) Path Lenght: 531.291
+Edges: (5,6) (5,11) (11,12) (12,17) (13,17) (13,15) Path length: 531.291
 ***********************: 
 For demand: 86
-Edges: (6,15) Path Lenght: 181.42
+Edges: (6,15) Path length: 181.42
 ***********************: 
 For demand: 87
-Edges: (10,15) Path Lenght: 154.625
+Edges: (10,15) Path length: 154.625
 ***********************: 
 For demand: 88
-Edges: (10,15) Path Lenght: 154.625
+Edges: (10,15) Path length: 154.625
 ***********************: 
 For demand: 89
-Edges: (10,15) Path Lenght: 154.625
+Edges: (10,15) Path length: 154.625
 ***********************: 
 For demand: 90
-Edges: (6,12) Path Lenght: 154.468
+Edges: (6,12) Path length: 154.468
 ***********************: 
 For demand: 91
-Edges: (3,4) (4,7) Path Lenght: 402.563
+Edges: (3,4) (4,7) Path length: 402.563
 ***********************: 
 For demand: 92
-Edges: (5,6) Path Lenght: 151.216
+Edges: (5,6) Path length: 151.216
 ***********************: 
 For demand: 93
-Edges: (4,7) Path Lenght: 146.951
+Edges: (4,7) Path length: 146.951
 ***********************: 
 For demand: 94
-Edges: (2,3) Path Lenght: 138.725
+Edges: (2,3) Path length: 138.725
 ***********************: 
 For demand: 95
-Edges: (1,14) Path Lenght: 122.16
+Edges: (1,14) Path length: 122.16
 ***********************: 
 For demand: 96
-Edges: (5,11) Path Lenght: 121.233
+Edges: (5,11) Path length: 121.233
 ***********************: 
 For demand: 97
-Edges: (13,15) (13,17) Path Lenght: 118.874
+Edges: (13,15) (13,17) Path length: 118.874
 ***********************: 
 For demand: 98
-Edges: (13,15) (13,17) Path Lenght: 118.874
+Edges: (13,15) (13,17) Path length: 118.874
 ***********************: 
 For demand: 99
-Edges: (13,15) (13,17) Path Lenght: 118.874
+Edges: (13,15) (13,17) Path length: 118.874
 ***********************: 
 For demand: 100
-Edges: (6,15) (5,6) (5,11) (11,12) (12,17) Path Lenght: 593.838
+Edges: (6,15) (5,6) (5,11) (11,12) (12,17) Path length: 593.838
 ***********************: 
 For demand: 101
-Edges: (13,15) (13,17) Path Lenght: 118.874
+Edges: (13,15) (13,17) Path length: 118.874
 ***********************: 
 For demand: 102
-Edges: (6,15) (5,6) (5,11) (11,12) (12,17) Path Lenght: 593.838
+Edges: (6,15) (5,6) (5,11) (11,12) (12,17) Path length: 593.838
 ***********************: 
 For demand: 103
-Edges: (12,17) (13,17) Path Lenght: 116.29
+Edges: (12,17) (13,17) Path length: 116.29
 ***********************: 
 For demand: 104
-Edges: (2,14) Path Lenght: 111.329
+Edges: (2,14) Path length: 111.329
 ***********************: 
 For demand: 105
-Edges: (3,14) Path Lenght: 96.7743
+Edges: (3,14) Path length: 96.7743
 ***********************: 
 For demand: 106
-Edges: (10,16) Path Lenght: 69.6874
+Edges: (10,16) Path length: 69.6874
 ***********************: 
 For demand: 107
-Edges: (13,15) Path Lenght: 68.2969
+Edges: (13,15) Path length: 68.2969
 ***********************: 
 For demand: 108
-Edges: (12,17) Path Lenght: 65.7133
+Edges: (12,17) Path length: 65.7133
 ***********************: 
 For demand: 109
-Edges: (8,9) (9,10) Path Lenght: 63.9817
+Edges: (8,9) (9,10) Path length: 63.9817
 ***********************: 
 For demand: 110
-Edges: (13,17) Path Lenght: 50.5769
+Edges: (13,17) Path length: 50.5769
 ***********************: 
 For demand: 111
-Edges: (8,16) Path Lenght: 25.9848
+Edges: (8,16) Path length: 25.9848
 ***********************: 
 
 ---------------END OF Possible paths Information------------------
@@ -1387,397 +1387,397 @@ From demand: 111 Between nodes: 8 to 16 :: 8 - 16 :: with length 25.9848
 
 ---------------BEGIN OF Possible paths Information------------------
 For demand: 1
-Edges: (2,3) (2,7) (6,7) (5,6) (5,11) (11,12) Path Lenght: 921.522
+Edges: (2,3) (2,7) (6,7) (5,6) (5,11) (11,12) Path length: 921.522
 ***********************: 
 For demand: 2
-Edges: (2,3) (2,7) (6,7) (5,6) Path Lenght: 726.034
-Edges: (3,14) (2,14) (2,7) (6,7) (6,12) (11,12) (5,11) Path Lenght: 994.152
+Edges: (2,3) (2,7) (6,7) (5,6) Path length: 726.034
+Edges: (3,14) (2,14) (2,7) (6,7) (6,12) (11,12) (5,11) Path length: 994.152
 ***********************: 
 For demand: 3
-Edges: (6,12) (6,7) (2,7) (2,14) Path Lenght: 701.89
+Edges: (6,12) (6,7) (2,7) (2,14) Path length: 701.89
 ***********************: 
 For demand: 4
-Edges: (5,6) (6,7) (2,7) (2,14) Path Lenght: 698.639
+Edges: (5,6) (6,7) (2,7) (2,14) Path length: 698.639
 ***********************: 
 For demand: 5
-Edges: (3,4) (4,7) (7,15) (13,15) (13,17) Path Lenght: 817.991
+Edges: (3,4) (4,7) (7,15) (13,15) (13,17) Path length: 817.991
 ***********************: 
 For demand: 6
-Edges: (3,14) (3,4) (4,7) (6,7) (6,12) (12,17) Path Lenght: 951.521
-Edges: (2,14) (2,7) (7,15) (13,15) (13,17) Path Lenght: 730.848
+Edges: (3,14) (3,4) (4,7) (6,7) (6,12) (12,17) Path length: 951.521
+Edges: (2,14) (2,7) (7,15) (13,15) (13,17) Path length: 730.848
 ***********************: 
 For demand: 7
-Edges: (3,4) (4,7) (7,15) (13,15) Path Lenght: 767.414
-Edges: (2,3) (2,7) (7,15) (13,15) Path Lenght: 707.666
+Edges: (3,4) (4,7) (7,15) (13,15) Path length: 767.414
+Edges: (2,3) (2,7) (7,15) (13,15) Path length: 707.666
 ***********************: 
 For demand: 8
-Edges: (13,15) (6,15) (6,7) (2,7) (2,14) Path Lenght: 797.14
-Edges: (13,15) (7,15) (2,7) (2,14) Path Lenght: 680.271
+Edges: (13,15) (6,15) (6,7) (2,7) (2,14) Path length: 797.14
+Edges: (13,15) (7,15) (2,7) (2,14) Path length: 680.271
 ***********************: 
 For demand: 9
-Edges: (2,14) (1,14) (1,16) (8,16) (8,9) (9,10) (10,15) (6,15) (6,12) Path Lenght: 1048.4
-Edges: (2,4) (4,7) (6,7) (6,12) Path Lenght: 774.428
+Edges: (2,14) (1,14) (1,16) (8,16) (8,9) (9,10) (10,15) (6,15) (6,12) Path length: 1048.4
+Edges: (2,4) (4,7) (6,7) (6,12) Path length: 774.428
 ***********************: 
 For demand: 10
-Edges: (2,7) (6,7) (5,6) Path Lenght: 587.309
-Edges: (2,4) (4,7) (7,15) (6,15) (6,12) (11,12) (5,11) Path Lenght: 1215.89
+Edges: (2,7) (6,7) (5,6) Path length: 587.309
+Edges: (2,4) (4,7) (7,15) (6,15) (6,12) (11,12) (5,11) Path length: 1215.89
 ***********************: 
 For demand: 11
-Edges: (3,14) (1,14) (1,16) (2,16) (2,4) (4,7) (6,7) Path Lenght: 1267.27
-Edges: (3,4) (4,7) (6,7) Path Lenght: 634.565
+Edges: (3,14) (1,14) (1,16) (2,16) (2,4) (4,7) (6,7) Path length: 1267.27
+Edges: (3,4) (4,7) (6,7) Path length: 634.565
 ***********************: 
 For demand: 12
-Edges: (4,7) (6,7) (6,12) (12,17) Path Lenght: 599.136
-Edges: (3,4) (2,3) (2,7) (7,15) (13,15) (13,17) Path Lenght: 1013.85
+Edges: (4,7) (6,7) (6,12) (12,17) Path length: 599.136
+Edges: (3,4) (2,3) (2,7) (7,15) (13,15) (13,17) Path length: 1013.85
 ***********************: 
 For demand: 13
-Edges: (5,6) (6,12) (12,17) (13,17) (13,15) (10,15) (10,16) Path Lenght: 714.584
-Edges: (5,11) (11,12) (6,12) (6,7) (2,7) (2,16) Path Lenght: 979.988
+Edges: (5,6) (6,12) (12,17) (13,17) (13,15) (10,15) (10,16) Path length: 714.584
+Edges: (5,11) (11,12) (6,12) (6,7) (2,7) (2,16) Path length: 979.988
 ***********************: 
 For demand: 14
-Edges: (5,11) (11,12) (12,17) (13,17) (13,15) (10,15) (9,10) (8,9) Path Lenght: 598.682
-Edges: (5,6) (6,15) (10,15) (9,10) (8,9) Path Lenght: 551.244
+Edges: (5,11) (11,12) (12,17) (13,17) (13,15) (10,15) (9,10) (8,9) Path length: 598.682
+Edges: (5,6) (6,15) (10,15) (9,10) (8,9) Path length: 551.244
 ***********************: 
 For demand: 15
-Edges: (6,7) (2,7) (2,14) Path Lenght: 547.422
-Edges: (6,15) (7,15) (2,7) (2,14) Path Lenght: 793.394
+Edges: (6,7) (2,7) (2,14) Path length: 547.422
+Edges: (6,15) (7,15) (2,7) (2,14) Path length: 793.394
 ***********************: 
 For demand: 16
-Edges: (2,7) (6,7) (6,12) (12,17) Path Lenght: 656.275
-Edges: (2,4) (4,7) (6,7) (6,12) (12,17) Path Lenght: 840.141
+Edges: (2,7) (6,7) (6,12) (12,17) Path length: 656.275
+Edges: (2,4) (4,7) (6,7) (6,12) (12,17) Path length: 840.141
 ***********************: 
 For demand: 17
-Edges: (4,7) (6,7) (6,12) Path Lenght: 533.422
+Edges: (4,7) (6,7) (6,12) Path length: 533.422
 ***********************: 
 For demand: 18
-Edges: (4,7) (7,15) (13,15) (13,17) (12,17) Path Lenght: 628.093
-Edges: (4,7) (7,15) (6,15) (6,12) Path Lenght: 779.394
+Edges: (4,7) (7,15) (13,15) (13,17) (12,17) Path length: 628.093
+Edges: (4,7) (7,15) (6,15) (6,12) Path length: 779.394
 ***********************: 
 For demand: 19
-Edges: (1,14) (1,16) (8,16) (8,9) (9,10) (10,15) Path Lenght: 601.187
-Edges: (2,14) (2,7) (6,7) (6,15) Path Lenght: 728.843
+Edges: (1,14) (1,16) (8,16) (8,9) (9,10) (10,15) Path length: 601.187
+Edges: (2,14) (2,7) (6,7) (6,15) Path length: 728.843
 ***********************: 
 For demand: 20
-Edges: (2,14) (2,4) (4,7) (7,15) Path Lenght: 795.84
-Edges: (3,14) (3,4) (4,7) (7,15) Path Lenght: 795.891
+Edges: (2,14) (2,4) (4,7) (7,15) Path length: 795.84
+Edges: (3,14) (3,4) (4,7) (7,15) Path length: 795.891
 ***********************: 
 For demand: 21
-Edges: (2,4) (2,7) (7,15) (6,15) (5,6) Path Lenght: 1074.29
-Edges: (4,7) (6,7) (6,12) (11,12) (5,11) Path Lenght: 728.91
+Edges: (2,4) (2,7) (7,15) (6,15) (5,6) Path length: 1074.29
+Edges: (4,7) (6,7) (6,12) (11,12) (5,11) Path length: 728.91
 ***********************: 
 For demand: 22
-Edges: (4,7) (6,7) (6,12) (12,17) (13,17) Path Lenght: 649.713
-Edges: (4,7) (7,15) (13,15) Path Lenght: 511.803
+Edges: (4,7) (6,7) (6,12) (12,17) (13,17) Path length: 649.713
+Edges: (4,7) (7,15) (13,15) Path length: 511.803
 ***********************: 
 For demand: 23
-Edges: (4,7) (2,7) (2,16) (10,16) Path Lenght: 614.668
-Edges: (3,4) (2,3) (2,16) (10,16) Path Lenght: 657.962
+Edges: (4,7) (2,7) (2,16) (10,16) Path length: 614.668
+Edges: (3,4) (2,3) (2,16) (10,16) Path length: 657.962
 ***********************: 
 For demand: 24
-Edges: (3,4) (3,14) (1,14) (1,16) (8,16) (8,9) Path Lenght: 762.292
-Edges: (4,7) (2,7) (2,16) (8,16) (8,9) Path Lenght: 598.292
+Edges: (3,4) (3,14) (1,14) (1,16) (8,16) (8,9) Path length: 762.292
+Edges: (4,7) (2,7) (2,16) (8,16) (8,9) Path length: 598.292
 ***********************: 
 For demand: 25
-Edges: (5,11) (11,12) (6,12) (6,7) (4,7) (2,4) (2,16) (10,16) Path Lenght: 1233.54
-Edges: (5,6) (6,7) (2,7) (2,16) (10,16) Path Lenght: 850.936
+Edges: (5,11) (11,12) (6,12) (6,7) (4,7) (2,4) (2,16) (10,16) Path length: 1233.54
+Edges: (5,6) (6,7) (2,7) (2,16) (10,16) Path length: 850.936
 ***********************: 
 For demand: 26
-Edges: (2,7) (7,15) (13,15) Path Lenght: 568.941
-Edges: (2,3) (3,4) (4,7) (6,7) (5,6) (5,11) (11,12) (12,17) (13,17) Path Lenght: 1236.28
+Edges: (2,7) (7,15) (13,15) Path length: 568.941
+Edges: (2,3) (3,4) (4,7) (6,7) (5,6) (5,11) (11,12) (12,17) (13,17) Path length: 1236.28
 ***********************: 
 For demand: 27
-Edges: (3,4) (3,14) (1,14) (1,16) (8,16) Path Lenght: 734.966
-Edges: (2,4) (2,16) (10,16) (9,10) (8,9) Path Lenght: 568.613
+Edges: (3,4) (3,14) (1,14) (1,16) (8,16) Path length: 734.966
+Edges: (2,4) (2,16) (10,16) (9,10) (8,9) Path length: 568.613
 ***********************: 
 For demand: 28
-Edges: (1,14) (2,14) (2,4) (4,7) (6,7) (6,15) Path Lenght: 1034.87
-Edges: (1,16) (8,16) (8,9) (9,10) (10,15) Path Lenght: 479.027
+Edges: (1,14) (2,14) (2,4) (4,7) (6,7) (6,15) Path length: 1034.87
+Edges: (1,16) (8,16) (8,9) (9,10) (10,15) Path length: 479.027
 ***********************: 
 For demand: 29
-Edges: (2,7) (2,14) (1,14) (1,16) (8,16) (8,9) (9,10) Path Lenght: 761.981
-Edges: (4,7) (3,4) (2,3) (2,16) (10,16) Path Lenght: 804.914
+Edges: (2,7) (2,14) (1,14) (1,16) (8,16) (8,9) (9,10) Path length: 761.981
+Edges: (4,7) (3,4) (2,3) (2,16) (10,16) Path length: 804.914
 ***********************: 
 For demand: 30
-Edges: (4,7) (7,15) Path Lenght: 443.506
-Edges: (3,4) (2,3) (2,16) (8,16) (8,9) (9,10) (10,15) Path Lenght: 832.867
+Edges: (4,7) (7,15) Path length: 443.506
+Edges: (3,4) (2,3) (2,16) (8,16) (8,9) (9,10) (10,15) Path length: 832.867
 ***********************: 
 For demand: 31
-Edges: (4,7) (7,15) Path Lenght: 443.506
+Edges: (4,7) (7,15) Path length: 443.506
 ***********************: 
 For demand: 32
-Edges: (4,7) (7,15) Path Lenght: 443.506
+Edges: (4,7) (7,15) Path length: 443.506
 ***********************: 
 For demand: 33
-Edges: (2,4) (4,7) (6,7) Path Lenght: 619.959
-Edges: (2,7) (6,7) Path Lenght: 436.093
+Edges: (2,4) (4,7) (6,7) Path length: 619.959
+Edges: (2,7) (6,7) Path length: 436.093
 ***********************: 
 For demand: 34
-Edges: (2,4) (2,16) Path Lenght: 434.944
+Edges: (2,4) (2,16) Path length: 434.944
 ***********************: 
 For demand: 35
-Edges: (2,7) (2,16) (10,16) (9,10) (8,9) Path Lenght: 531.699
+Edges: (2,7) (2,16) (10,16) (9,10) (8,9) Path length: 531.699
 ***********************: 
 For demand: 36
-Edges: (2,7) (7,15) Path Lenght: 500.645
+Edges: (2,7) (7,15) Path length: 500.645
 ***********************: 
 For demand: 37
-Edges: (2,3) (3,14) (1,14) (1,16) (8,16) (8,9) (9,10) (10,15) Path Lenght: 836.685
-Edges: (2,4) (4,7) (7,15) Path Lenght: 684.511
+Edges: (2,3) (3,14) (1,14) (1,16) (8,16) (8,9) (9,10) (10,15) Path length: 836.685
+Edges: (2,4) (4,7) (7,15) Path length: 684.511
 ***********************: 
 For demand: 38
-Edges: (2,16) (10,16) (10,15) Path Lenght: 418.251
-Edges: (2,16) (8,16) (8,9) (9,10) (10,15) Path Lenght: 438.531
+Edges: (2,16) (10,16) (10,15) Path length: 418.251
+Edges: (2,16) (8,16) (8,9) (9,10) (10,15) Path length: 438.531
 ***********************: 
 For demand: 39
-Edges: (2,7) (7,15) Path Lenght: 500.645
-Edges: (2,7) (6,7) (6,15) Path Lenght: 617.514
+Edges: (2,7) (7,15) Path length: 500.645
+Edges: (2,7) (6,7) (6,15) Path length: 617.514
 ***********************: 
 For demand: 40
-Edges: (7,15) (13,15) (13,17) Path Lenght: 415.428
-Edges: (6,7) (6,12) (12,17) Path Lenght: 452.184
+Edges: (7,15) (13,15) (13,17) Path length: 415.428
+Edges: (6,7) (6,12) (12,17) Path length: 452.184
 ***********************: 
 For demand: 41
-Edges: (6,12) (6,15) (10,15) (10,16) Path Lenght: 560.201
-Edges: (11,12) (5,11) (5,6) (6,15) (10,15) (9,10) (8,9) (8,16) Path Lenght: 772.716
+Edges: (6,12) (6,15) (10,15) (10,16) Path length: 560.201
+Edges: (11,12) (5,11) (5,6) (6,15) (10,15) (9,10) (8,9) (8,16) Path length: 772.716
 ***********************: 
 For demand: 42
-Edges: (8,9) (9,10) (10,15) (13,15) (13,17) (12,17) Path Lenght: 403.194
-Edges: (8,16) (10,16) (10,15) (6,15) (6,12) Path Lenght: 586.186
+Edges: (8,9) (9,10) (10,15) (13,15) (13,17) (12,17) Path length: 403.194
+Edges: (8,16) (10,16) (10,15) (6,15) (6,12) Path length: 586.186
 ***********************: 
 For demand: 43
-Edges: (3,14) (1,14) (1,16) (10,16) Path Lenght: 523.057
-Edges: (2,3) (2,16) (10,16) Path Lenght: 402.351
+Edges: (3,14) (1,14) (1,16) (10,16) Path length: 523.057
+Edges: (2,3) (2,16) (10,16) Path length: 402.351
 ***********************: 
 For demand: 44
-Edges: (2,7) (2,16) Path Lenght: 398.029
+Edges: (2,7) (2,16) Path length: 398.029
 ***********************: 
 For demand: 45
-Edges: (6,7) (6,12) Path Lenght: 386.471
+Edges: (6,7) (6,12) Path length: 386.471
 ***********************: 
 For demand: 46
-Edges: (5,6) (6,15) (7,15) Path Lenght: 629.191
-Edges: (5,11) (11,12) (6,12) (6,7) Path Lenght: 581.959
+Edges: (5,6) (6,15) (7,15) Path length: 629.191
+Edges: (5,11) (11,12) (6,12) (6,7) Path length: 581.959
 ***********************: 
 For demand: 47
-Edges: (4,7) (6,7) Path Lenght: 378.954
+Edges: (4,7) (6,7) Path length: 378.954
 ***********************: 
 For demand: 48
-Edges: (10,16) (1,16) (1,14) Path Lenght: 426.282
+Edges: (10,16) (1,16) (1,14) Path length: 426.282
 ***********************: 
 For demand: 49
-Edges: (6,7) (6,12) (12,17) (13,17) Path Lenght: 502.761
-Edges: (7,15) (13,15) Path Lenght: 364.851
+Edges: (6,7) (6,12) (12,17) (13,17) Path length: 502.761
+Edges: (7,15) (13,15) Path length: 364.851
 ***********************: 
 For demand: 50
-Edges: (3,14) (1,14) (1,16) (8,16) Path Lenght: 479.354
-Edges: (3,4) (2,4) (2,16) (8,16) Path Lenght: 716.541
+Edges: (3,14) (1,14) (1,16) (8,16) Path length: 479.354
+Edges: (3,4) (2,4) (2,16) (8,16) Path length: 716.541
 ***********************: 
 For demand: 51
-Edges: (2,4) (2,14) Path Lenght: 352.335
-Edges: (3,4) (3,14) Path Lenght: 352.386
+Edges: (2,4) (2,14) Path length: 352.335
+Edges: (3,4) (3,14) Path length: 352.386
 ***********************: 
 For demand: 52
-Edges: (2,16) (2,3) (3,4) (4,7) (6,7) (6,12) (12,17) Path Lenght: 1187.41
-Edges: (10,16) (10,15) (13,15) (13,17) Path Lenght: 343.186
+Edges: (2,16) (2,3) (3,4) (4,7) (6,7) (6,12) (12,17) Path length: 1187.41
+Edges: (10,16) (10,15) (13,15) (13,17) Path length: 343.186
 ***********************: 
 For demand: 53
-Edges: (10,15) (13,15) (13,17) (12,17) Path Lenght: 339.212
+Edges: (10,15) (13,15) (13,17) (12,17) Path length: 339.212
 ***********************: 
 For demand: 54
-Edges: (6,15) (10,15) Path Lenght: 336.045
-Edges: (5,6) (5,11) (11,12) (12,17) (13,17) (13,15) (7,15) (4,7) (2,4) (2,16) (10,16) Path Lenght: 1479.43
+Edges: (6,15) (10,15) Path length: 336.045
+Edges: (5,6) (5,11) (11,12) (12,17) (13,17) (13,15) (7,15) (4,7) (2,4) (2,16) (10,16) Path length: 1479.43
 ***********************: 
 For demand: 55
-Edges: (2,3) (2,16) (10,16) (10,15) Path Lenght: 556.976
-Edges: (2,3) (2,16) (8,16) (8,9) (9,10) (10,15) Path Lenght: 577.255
+Edges: (2,3) (2,16) (10,16) (10,15) Path length: 556.976
+Edges: (2,3) (2,16) (8,16) (8,9) (9,10) (10,15) Path length: 577.255
 ***********************: 
 For demand: 56
-Edges: (3,14) (1,14) (1,16) Path Lenght: 453.369
-Edges: (3,4) (2,4) (2,14) (1,14) (1,16) Path Lenght: 964.541
+Edges: (3,14) (1,14) (1,16) Path length: 453.369
+Edges: (3,4) (2,4) (2,14) (1,14) (1,16) Path length: 964.541
 ***********************: 
 For demand: 57
-Edges: (5,6) (6,15) Path Lenght: 332.637
+Edges: (5,6) (6,15) Path length: 332.637
 ***********************: 
 For demand: 58
-Edges: (2,7) (2,14) Path Lenght: 315.42
+Edges: (2,7) (2,14) Path length: 315.42
 ***********************: 
 For demand: 59
-Edges: (5,6) (6,15) (13,15) Path Lenght: 400.934
-Edges: (5,6) (6,12) (12,17) (13,17) Path Lenght: 421.975
+Edges: (5,6) (6,15) (13,15) Path length: 400.934
+Edges: (5,6) (6,12) (12,17) (13,17) Path length: 421.975
 ***********************: 
 For demand: 60
-Edges: (1,14) (1,16) Path Lenght: 356.595
+Edges: (1,14) (1,16) Path length: 356.595
 ***********************: 
 For demand: 61
-Edges: (7,15) Path Lenght: 296.554
+Edges: (7,15) Path length: 296.554
 ***********************: 
 For demand: 62
-Edges: (7,15) Path Lenght: 296.554
+Edges: (7,15) Path length: 296.554
 ***********************: 
 For demand: 63
-Edges: (7,15) Path Lenght: 296.554
+Edges: (7,15) Path length: 296.554
 ***********************: 
 For demand: 64
-Edges: (13,17) (12,17) (11,12) (5,11) (5,6) (6,7) (2,7) (2,16) Path Lenght: 1093.03
-Edges: (13,15) (10,15) (9,10) (8,9) (8,16) Path Lenght: 312.888
+Edges: (13,17) (12,17) (11,12) (5,11) (5,6) (6,7) (2,7) (2,16) Path length: 1093.03
+Edges: (13,15) (10,15) (9,10) (8,9) (8,16) Path length: 312.888
 ***********************: 
 For demand: 65
-Edges: (8,9) (9,10) (10,15) (13,15) Path Lenght: 286.904
-Edges: (8,16) (2,16) (2,7) (6,7) (6,12) (12,17) (13,17) Path Lenght: 926.775
+Edges: (8,9) (9,10) (10,15) (13,15) Path length: 286.904
+Edges: (8,16) (2,16) (2,7) (6,7) (6,12) (12,17) (13,17) Path length: 926.775
 ***********************: 
 For demand: 66
-Edges: (10,16) (2,16) (2,7) (6,7) (6,12) (12,17) Path Lenght: 919.901
-Edges: (10,15) (13,15) (13,17) Path Lenght: 273.499
+Edges: (10,16) (2,16) (2,7) (6,7) (6,12) (12,17) Path length: 919.901
+Edges: (10,15) (13,15) (13,17) Path length: 273.499
 ***********************: 
 For demand: 67
-Edges: (2,14) (1,14) (1,16) (10,16) Path Lenght: 537.612
-Edges: (2,16) (10,16) Path Lenght: 263.626
+Edges: (2,14) (1,14) (1,16) (10,16) Path length: 537.612
+Edges: (2,16) (10,16) Path length: 263.626
 ***********************: 
 For demand: 68
-Edges: (5,6) (6,12) (12,17) Path Lenght: 371.398
+Edges: (5,6) (6,12) (12,17) Path length: 371.398
 ***********************: 
 For demand: 69
-Edges: (11,12) (6,12) (6,15) Path Lenght: 410.143
-Edges: (11,12) (12,17) (13,17) (13,15) Path Lenght: 258.842
+Edges: (11,12) (6,12) (6,15) Path length: 410.143
+Edges: (11,12) (12,17) (13,17) (13,15) Path length: 258.842
 ***********************: 
 For demand: 70
-Edges: (3,4) Path Lenght: 255.611
+Edges: (3,4) Path length: 255.611
 ***********************: 
 For demand: 71
-Edges: (6,12) (12,17) (13,17) Path Lenght: 270.758
-Edges: (6,15) (13,15) Path Lenght: 249.717
+Edges: (6,12) (12,17) (13,17) Path length: 270.758
+Edges: (6,15) (13,15) Path length: 249.717
 ***********************: 
 For demand: 72
-Edges: (2,4) Path Lenght: 241.005
+Edges: (2,4) Path length: 241.005
 ***********************: 
 For demand: 73
-Edges: (6,7) Path Lenght: 232.003
+Edges: (6,7) Path length: 232.003
 ***********************: 
 For demand: 74
-Edges: (10,15) (10,16) Path Lenght: 224.312
-Edges: (10,15) (9,10) (8,9) (8,16) Path Lenght: 244.592
+Edges: (10,15) (10,16) Path length: 224.312
+Edges: (10,15) (9,10) (8,9) (8,16) Path length: 244.592
 ***********************: 
 For demand: 75
-Edges: (10,15) (13,15) Path Lenght: 222.922
+Edges: (10,15) (13,15) Path length: 222.922
 ***********************: 
 For demand: 76
-Edges: (2,16) (8,16) Path Lenght: 219.924
-Edges: (2,16) (10,16) (9,10) (8,9) Path Lenght: 327.608
+Edges: (2,16) (8,16) Path length: 219.924
+Edges: (2,16) (10,16) (9,10) (8,9) Path length: 327.608
 ***********************: 
 For demand: 77
-Edges: (6,12) (12,17) Path Lenght: 220.181
-Edges: (5,6) (5,11) (11,12) (12,17) Path Lenght: 412.417
+Edges: (6,12) (12,17) Path length: 220.181
+Edges: (5,6) (5,11) (11,12) (12,17) Path length: 412.417
 ***********************: 
 For demand: 78
-Edges: (8,16) (2,16) (2,7) (7,15) Path Lenght: 720.568
-Edges: (8,9) (9,10) (10,15) Path Lenght: 218.607
+Edges: (8,16) (2,16) (2,7) (7,15) Path length: 720.568
+Edges: (8,9) (9,10) (10,15) Path length: 218.607
 ***********************: 
 For demand: 79
-Edges: (2,7) Path Lenght: 204.09
+Edges: (2,7) Path length: 204.09
 ***********************: 
 For demand: 80
-Edges: (5,11) (11,12) Path Lenght: 195.488
+Edges: (5,11) (11,12) Path length: 195.488
 ***********************: 
 For demand: 81
-Edges: (2,16) Path Lenght: 193.939
+Edges: (2,16) Path length: 193.939
 ***********************: 
 For demand: 82
-Edges: (9,10) (10,15) Path Lenght: 191.28
+Edges: (9,10) (10,15) Path length: 191.28
 ***********************: 
 For demand: 83
-Edges: (6,12) (6,15) Path Lenght: 335.889
+Edges: (6,12) (6,15) Path length: 335.889
 ***********************: 
 For demand: 84
-Edges: (6,12) (6,15) Path Lenght: 335.889
-Edges: (12,17) (13,17) (13,15) Path Lenght: 184.587
+Edges: (6,12) (6,15) Path length: 335.889
+Edges: (12,17) (13,17) (13,15) Path length: 184.587
 ***********************: 
 For demand: 85
-Edges: (5,6) (5,11) (11,12) (12,17) (13,17) (13,15) Path Lenght: 531.291
-Edges: (6,15) Path Lenght: 181.42
+Edges: (5,6) (5,11) (11,12) (12,17) (13,17) (13,15) Path length: 531.291
+Edges: (6,15) Path length: 181.42
 ***********************: 
 For demand: 86
-Edges: (6,15) Path Lenght: 181.42
+Edges: (6,15) Path length: 181.42
 ***********************: 
 For demand: 87
-Edges: (10,15) Path Lenght: 154.625
+Edges: (10,15) Path length: 154.625
 ***********************: 
 For demand: 88
-Edges: (10,15) Path Lenght: 154.625
+Edges: (10,15) Path length: 154.625
 ***********************: 
 For demand: 89
-Edges: (10,15) Path Lenght: 154.625
+Edges: (10,15) Path length: 154.625
 ***********************: 
 For demand: 90
-Edges: (6,12) Path Lenght: 154.468
+Edges: (6,12) Path length: 154.468
 ***********************: 
 For demand: 91
-Edges: (3,4) (4,7) Path Lenght: 402.563
-Edges: (2,3) (2,7) Path Lenght: 342.815
+Edges: (3,4) (4,7) Path length: 402.563
+Edges: (2,3) (2,7) Path length: 342.815
 ***********************: 
 For demand: 92
-Edges: (5,6) Path Lenght: 151.216
+Edges: (5,6) Path length: 151.216
 ***********************: 
 For demand: 93
-Edges: (4,7) Path Lenght: 146.951
+Edges: (4,7) Path length: 146.951
 ***********************: 
 For demand: 94
-Edges: (2,3) Path Lenght: 138.725
+Edges: (2,3) Path length: 138.725
 ***********************: 
 For demand: 95
-Edges: (1,14) Path Lenght: 122.16
+Edges: (1,14) Path length: 122.16
 ***********************: 
 For demand: 96
-Edges: (5,11) Path Lenght: 121.233
+Edges: (5,11) Path length: 121.233
 ***********************: 
 For demand: 97
-Edges: (13,15) (13,17) Path Lenght: 118.874
+Edges: (13,15) (13,17) Path length: 118.874
 ***********************: 
 For demand: 98
-Edges: (13,15) (13,17) Path Lenght: 118.874
-Edges: (6,15) (5,6) (5,11) (11,12) (12,17) Path Lenght: 593.838
+Edges: (13,15) (13,17) Path length: 118.874
+Edges: (6,15) (5,6) (5,11) (11,12) (12,17) Path length: 593.838
 ***********************: 
 For demand: 99
-Edges: (13,15) (13,17) Path Lenght: 118.874
-Edges: (6,15) (6,12) (12,17) Path Lenght: 401.602
+Edges: (13,15) (13,17) Path length: 118.874
+Edges: (6,15) (6,12) (12,17) Path length: 401.602
 ***********************: 
 For demand: 100
-Edges: (6,15) (5,6) (5,11) (11,12) (12,17) Path Lenght: 593.838
-Edges: (13,15) (13,17) Path Lenght: 118.874
+Edges: (6,15) (5,6) (5,11) (11,12) (12,17) Path length: 593.838
+Edges: (13,15) (13,17) Path length: 118.874
 ***********************: 
 For demand: 101
-Edges: (13,15) (13,17) Path Lenght: 118.874
-Edges: (6,15) (5,6) (5,11) (11,12) (12,17) Path Lenght: 593.838
+Edges: (13,15) (13,17) Path length: 118.874
+Edges: (6,15) (5,6) (5,11) (11,12) (12,17) Path length: 593.838
 ***********************: 
 For demand: 102
-Edges: (6,15) (5,6) (5,11) (11,12) (12,17) Path Lenght: 593.838
-Edges: (13,15) (13,17) Path Lenght: 118.874
+Edges: (6,15) (5,6) (5,11) (11,12) (12,17) Path length: 593.838
+Edges: (13,15) (13,17) Path length: 118.874
 ***********************: 
 For demand: 103
-Edges: (12,17) (13,17) Path Lenght: 116.29
+Edges: (12,17) (13,17) Path length: 116.29
 ***********************: 
 For demand: 104
-Edges: (2,14) Path Lenght: 111.329
+Edges: (2,14) Path length: 111.329
 ***********************: 
 For demand: 105
-Edges: (3,14) Path Lenght: 96.7743
+Edges: (3,14) Path length: 96.7743
 ***********************: 
 For demand: 106
-Edges: (10,16) Path Lenght: 69.6874
+Edges: (10,16) Path length: 69.6874
 ***********************: 
 For demand: 107
-Edges: (13,15) Path Lenght: 68.2969
+Edges: (13,15) Path length: 68.2969
 ***********************: 
 For demand: 108
-Edges: (12,17) Path Lenght: 65.7133
+Edges: (12,17) Path length: 65.7133
 ***********************: 
 For demand: 109
-Edges: (8,9) (9,10) Path Lenght: 63.9817
+Edges: (8,9) (9,10) Path length: 63.9817
 ***********************: 
 For demand: 110
-Edges: (13,17) Path Lenght: 50.5769
+Edges: (13,17) Path length: 50.5769
 ***********************: 
 For demand: 111
-Edges: (8,16) Path Lenght: 25.9848
+Edges: (8,16) Path length: 25.9848
 ***********************: 
 
 ---------------END OF Possible paths Information------------------

@@ -51,31 +51,31 @@ Arcs:  (1,2) Length 1
   Demands  
 --------Index: 1
 Origin: 10| Destination: 3
-Slots: 3| Max Lenght: 9
+Slots: 3| Max length: 9
 
 --------Index: 2
 Origin: 2| Destination: 5
-Slots: 3| Max Lenght: 9
+Slots: 3| Max length: 9
 
 --------Index: 3
 Origin: 4| Destination: 7
-Slots: 3| Max Lenght: 9
+Slots: 3| Max length: 9
 
 --------Index: 4
 Origin: 6| Destination: 9
-Slots: 3| Max Lenght: 9
+Slots: 3| Max length: 9
 
 --------Index: 5
 Origin: 8| Destination: 1
-Slots: 3| Max Lenght: 9
+Slots: 3| Max length: 9
 
 --------Index: 6
 Origin: 5| Destination: 8
-Slots: 1| Max Lenght: 9
+Slots: 1| Max length: 9
 
 --------Index: 7
 Origin: 6| Destination: 7
-Slots: 1| Max Lenght: 9
+Slots: 1| Max length: 9
 
 
 ----------------END OF Data Information-------------------
@@ -106,25 +106,25 @@ Lower Bound UPDATED: 7
 
 ---------------BEGIN OF Possible paths Information------------------
 For demand: 1
-Edges: (1,10) (1,2) (2,3) Path Lenght: 3
+Edges: (1,10) (1,2) (2,3) Path length: 3
 ***********************: 
 For demand: 2
-Edges: (2,3) (3,4) (4,5) Path Lenght: 3
+Edges: (2,3) (3,4) (4,5) Path length: 3
 ***********************: 
 For demand: 3
-Edges: (4,5) (5,6) (6,7) Path Lenght: 3
+Edges: (4,5) (5,6) (6,7) Path length: 3
 ***********************: 
 For demand: 4
-Edges: (6,7) (7,8) (8,9) Path Lenght: 3
+Edges: (6,7) (7,8) (8,9) Path length: 3
 ***********************: 
 For demand: 5
-Edges: (8,9) (9,10) (1,10) Path Lenght: 3
+Edges: (8,9) (9,10) (1,10) Path length: 3
 ***********************: 
 For demand: 6
-Edges: (4,5) (3,4) (2,3) (1,2) (1,10) (9,10) (8,9) Path Lenght: 7
+Edges: (4,5) (3,4) (2,3) (1,2) (1,10) (9,10) (8,9) Path length: 7
 ***********************: 
 For demand: 7
-Edges: (6,7) Path Lenght: 1
+Edges: (6,7) Path length: 1
 ***********************: 
 
 ---------------END OF Possible paths Information------------------
@@ -192,27 +192,27 @@ From demand: 7 Between nodes: 6 to 7 :: 6 - 5 - 4 - 3 - 2 - 1 - 10 - 9 - 8 - 7 :
 
 ---------------BEGIN OF Possible paths Information------------------
 For demand: 1
-Edges: (1,10) (1,2) (2,3) Path Lenght: 3
+Edges: (1,10) (1,2) (2,3) Path length: 3
 ***********************: 
 For demand: 2
-Edges: (2,3) (3,4) (4,5) Path Lenght: 3
+Edges: (2,3) (3,4) (4,5) Path length: 3
 ***********************: 
 For demand: 3
-Edges: (4,5) (5,6) (6,7) Path Lenght: 3
+Edges: (4,5) (5,6) (6,7) Path length: 3
 ***********************: 
 For demand: 4
-Edges: (6,7) (7,8) (8,9) Path Lenght: 3
+Edges: (6,7) (7,8) (8,9) Path length: 3
 ***********************: 
 For demand: 5
-Edges: (8,9) (9,10) (1,10) Path Lenght: 3
+Edges: (8,9) (9,10) (1,10) Path length: 3
 ***********************: 
 For demand: 6
-Edges: (4,5) (3,4) (2,3) (1,2) (1,10) (9,10) (8,9) Path Lenght: 7
-Edges: (5,6) (6,7) (7,8) Path Lenght: 3
+Edges: (4,5) (3,4) (2,3) (1,2) (1,10) (9,10) (8,9) Path length: 7
+Edges: (5,6) (6,7) (7,8) Path length: 3
 ***********************: 
 For demand: 7
-Edges: (6,7) Path Lenght: 1
-Edges: (5,6) (4,5) (3,4) (2,3) (1,2) (1,10) (9,10) (8,9) (7,8) Path Lenght: 9
+Edges: (6,7) Path length: 1
+Edges: (5,6) (4,5) (3,4) (2,3) (1,2) (1,10) (9,10) (8,9) (7,8) Path length: 9
 ***********************: 
 
 ---------------END OF Possible paths Information------------------
@@ -254,10 +254,10 @@ TIME == Finding cliques duration in seconds: 0
 Size: 4| Omega: 8
 Clique: ( 3 4 6 7 )
 Paths of this clique:
-Edges: (4,5) (5,6) (6,7) Path Lenght: 3
-Edges: (6,7) (7,8) (8,9) Path Lenght: 3
-Edges: (5,6) (6,7) (7,8) Path Lenght: 3
-Edges: (6,7) Path Lenght: 1
+Edges: (4,5) (5,6) (6,7) Path length: 3
+Edges: (6,7) (7,8) (8,9) Path length: 3
+Edges: (5,6) (6,7) (7,8) Path length: 3
+Edges: (6,7) Path length: 1
 -------- 
 
 
@@ -292,10 +292,10 @@ The clique:
 Size: 4| Omega: 8
 Clique: ( 3 4 6 7 )
 Paths of this clique:
-Edges: (4,5) (5,6) (6,7) Path Lenght: 3
-Edges: (6,7) (7,8) (8,9) Path Lenght: 3
-Edges: (5,6) (6,7) (7,8) Path Lenght: 3
-Edges: (6,7) Path Lenght: 1
+Edges: (4,5) (5,6) (6,7) Path length: 3
+Edges: (6,7) (7,8) (8,9) Path length: 3
+Edges: (5,6) (6,7) (7,8) Path length: 3
+Edges: (6,7) Path length: 1
 -------- 
 Becomes feasible
 One or more cliques were allowed, solving one extra MCMCF
@@ -326,28 +326,28 @@ From demand: 7 Between nodes: 6 to 7 :: 6 - 7 :: with length 1
 
 ---------------BEGIN OF Possible paths Information------------------
 For demand: 1
-Edges: (1,10) (1,2) (2,3) Path Lenght: 3
+Edges: (1,10) (1,2) (2,3) Path length: 3
 ***********************: 
 For demand: 2
-Edges: (2,3) (3,4) (4,5) Path Lenght: 3
+Edges: (2,3) (3,4) (4,5) Path length: 3
 ***********************: 
 For demand: 3
-Edges: (4,5) (5,6) (6,7) Path Lenght: 3
+Edges: (4,5) (5,6) (6,7) Path length: 3
 ***********************: 
 For demand: 4
-Edges: (6,7) (7,8) (8,9) Path Lenght: 3
-Edges: (5,6) (4,5) (3,4) (2,3) (1,2) (1,10) (9,10) Path Lenght: 7
+Edges: (6,7) (7,8) (8,9) Path length: 3
+Edges: (5,6) (4,5) (3,4) (2,3) (1,2) (1,10) (9,10) Path length: 7
 ***********************: 
 For demand: 5
-Edges: (8,9) (9,10) (1,10) Path Lenght: 3
+Edges: (8,9) (9,10) (1,10) Path length: 3
 ***********************: 
 For demand: 6
-Edges: (4,5) (3,4) (2,3) (1,2) (1,10) (9,10) (8,9) Path Lenght: 7
-Edges: (5,6) (6,7) (7,8) Path Lenght: 3
+Edges: (4,5) (3,4) (2,3) (1,2) (1,10) (9,10) (8,9) Path length: 7
+Edges: (5,6) (6,7) (7,8) Path length: 3
 ***********************: 
 For demand: 7
-Edges: (6,7) Path Lenght: 1
-Edges: (5,6) (4,5) (3,4) (2,3) (1,2) (1,10) (9,10) (8,9) (7,8) Path Lenght: 9
+Edges: (6,7) Path length: 1
+Edges: (5,6) (4,5) (3,4) (2,3) (1,2) (1,10) (9,10) (8,9) (7,8) Path length: 9
 ***********************: 
 
 ---------------END OF Possible paths Information------------------
@@ -388,25 +388,25 @@ TIME == Finding cliques duration in seconds: 0
 Size: 3| Omega: 9
 Clique: ( 1 2 4 )
 Paths of this clique:
-Edges: (1,10) (1,2) (2,3) Path Lenght: 3
-Edges: (2,3) (3,4) (4,5) Path Lenght: 3
-Edges: (5,6) (4,5) (3,4) (2,3) (1,2) (1,10) (9,10) Path Lenght: 7
+Edges: (1,10) (1,2) (2,3) Path length: 3
+Edges: (2,3) (3,4) (4,5) Path length: 3
+Edges: (5,6) (4,5) (3,4) (2,3) (1,2) (1,10) (9,10) Path length: 7
 -------- 
 
 Size: 3| Omega: 9
 Clique: ( 1 4 5 )
 Paths of this clique:
-Edges: (1,10) (1,2) (2,3) Path Lenght: 3
-Edges: (5,6) (4,5) (3,4) (2,3) (1,2) (1,10) (9,10) Path Lenght: 7
-Edges: (8,9) (9,10) (1,10) Path Lenght: 3
+Edges: (1,10) (1,2) (2,3) Path length: 3
+Edges: (5,6) (4,5) (3,4) (2,3) (1,2) (1,10) (9,10) Path length: 7
+Edges: (8,9) (9,10) (1,10) Path length: 3
 -------- 
 
 Size: 3| Omega: 9
 Clique: ( 2 3 4 )
 Paths of this clique:
-Edges: (2,3) (3,4) (4,5) Path Lenght: 3
-Edges: (4,5) (5,6) (6,7) Path Lenght: 3
-Edges: (5,6) (4,5) (3,4) (2,3) (1,2) (1,10) (9,10) Path Lenght: 7
+Edges: (2,3) (3,4) (4,5) Path length: 3
+Edges: (4,5) (5,6) (6,7) Path length: 3
+Edges: (5,6) (4,5) (3,4) (2,3) (1,2) (1,10) (9,10) Path length: 7
 -------- 
 
 
