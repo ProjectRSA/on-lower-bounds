@@ -84,6 +84,11 @@ for test in testSet:
     if test.demandCode not in auxOutputFolder:
         os.mkdir("../Outputs/executionOutputs/" + str(test.linkStrategy)+"/" + test.transponderStrategy +"/" + test.topology + "/" + test.demandCode)
 
+    with open("../Outputs/executionOutputs/" + str(test.linkStrategy)+"/" + test.transponderStrategy +"/" + test.topology + "/" + test.demandCode+ "/aa.txt", "w") as f:
+        f.write("aa")
+        f.close() 
+
+
 jobsRows = []
 with open("../Inputs/jobsBase.sh", newline='') as jobsFile: 
     aux = csv.reader(jobsFile, delimiter=';', quotechar='|')
